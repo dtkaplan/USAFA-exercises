@@ -1,0 +1,7 @@
+# Exercises for Math-141X
+
+## Chapter 1
+
+A. [Techniques](Exercises/cheetah-chew-stove.Rmd)
+
+

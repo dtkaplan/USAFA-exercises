@@ -1,0 +1,64 @@
+---
+chapter: "none yet"
+title: "Title for cow-type-kayak"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "cow-type-kayak"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [half life, exponentials, third]
+id: cow-type-kayak
+---
+
+```{r cow-type-kayak-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The Wikipedia entry on "Common Misconceptions" used to contain this item:
+
+> *Some cooks believe that food items cooked with wine or liquor will be non-alcoholic, because alcohol's low boiling point causes it to evaporate quickly when heated. However, a study found that some of the alcohol remains: 25% after 1 hour of baking or simmering, and 10% after 2 hours.*
+
+
+```{r cow-type-kayak-C1}
+etude::essay_response("a) State briefly ways in which the given information is or is not consistent with an approximately exponential process.")
+```
+
+```{etude}
+The amount of alcohol remaining in the food is decreasing toward zero.  The measurement of 25% after 1 hour suggests a half-life of 30 minutes, but the decrease from 25% to 10% in the second hour indicates that the half-life is somewhat different, a bit more than 30 minutes.
+```
+
+
+
+  
+```{r cow-type-kayak-Qinline1, echo=FALSE}
+explain <- "These are not as required within $\\pm 2.5$ percentage points of the numbers given in Wikipedia."
+etude::choose_one(
+  prompt = "b) The stated measurements appear rounded to about 5 percentage points --- 25%, 10%.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.?",
+  c("Decrease to 23.6% after one hour and 5.6% after two." = explain,
+    "+Decrease to 27.5% after one hour and 7.6% after two.+" = "",
+    "Decrease to 40% after one hour and 24% after two." = explain, 
+    "Decrease to 20% after one hour and 10% after two." = "The decrease in the first hour is by 80%, corresponding to a half life of about 26 minutes. But in the second hour the half life is 60 minutes. These are inconsistent."),
+  random_answer_order = FALSE,
+  inline=FALSE
+)
+```
+
+```{etude}
+Suppose that the decrease in the first hour were to 27.5% which is 2.5 percentage points different from 25%.  Decreasing at exactly this rate for the next hour would result in $0.275^2$ remaining after two hours, that is, $0.0756 = 7.56$%, which is also within 2.5 percentage points of the stated value.
+```
+

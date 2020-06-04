@@ -1,0 +1,87 @@
+---
+chapter: "Functions"
+title: "Title for snake-choose-kayak"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "snake-choose-kayak"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [two-variables, economics, third]
+id: snake-choose-kayak
+---
+
+```{r snake-choose-kayak-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+show_answers()
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` In economic theory, the quantity of the demand for any good is a decreasing function of the price of that good and an *increasing* function of the price of a competing good.
+
+The classical example is that apple juice competes with orange juice. The quantity of demand for orange juice might be measured in, say, thousands of liters of orange juice.
+
+```{r}
+f <- function(x,y) {
+  angle = atan2(y, x)
+  300* ((pi/2) - angle)
+}
+contour_plot(f(x, y) ~ x + y, domain(x=c(3,1.3), y=c(.4,1.3)),
+             skip = 0) %>%
+  gf_labs(title = "Demand quantity", x = "?", y = "?")
+```
+
+Note that the axes have not been labeled. You'll have to figure things out yourself.
+
+```{r snake-choose-kayak-QA1, echo=FALSE}
+explain1 <- "The prices of apple juice and of orange juice are the *inputs* to the function.  Input values are displayed as position on an axis. The contour labels identify the output value for any input that corresponds to a point on the contour."
+explain2 <- "A reasonable answer, but the function output is the quantity of *orange* juice."
+etude::choose_one(
+  prompt = "What are the numbers labeling the contours?",
+  choices = list(
+    "+Quantity of orange juice.+" = "",
+    "Price of apple juice." = explain1,
+    "Price of orange juice." = explain1,
+    "Quantity of apple juice." = explain2
+  )
+)
+```
+
+```{r snake-choose-kayak-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "What does the y-axis measure?",
+  choices = list(
+    "+Price of orange juice+" = "",
+    "Quantity of apple juice" = "B's a consonant, Bub.",
+    "Quantity of orange juice" = "C is a consonant, Chub",
+    "Price of apple juice" = "D is a consonant, Dear"
+  )
+)
+```
+
+
+```{etude}
+There are two possibilities to consider:
+
+1. x is the price of orange juice and y the price of apple juice.
+2. the reverse
+
+Let's start with possibility (1). Suppose the price of orange juice is $2. Follow the path from y = 0.4 to y = 1.2. Moving along that path, the demand for orange juice -- according to possibility (1) -- goes *down*. But a price increase for a competing good should, according to theory, lead to an *increase* in *demand* for the good itself. Possibility (1) is inconsistent with the theory. That leaves possibility (2), where y is the price of orange juice. Suppose the price is $0.80. Follow the horizontal path from x = 1.5 to x = 3.0. The demand for orange juice goes *up* along this path, as would be expected in economic theory with a rising price of a competing good (here, apple juice). 
+``` 
+
+.
+
+

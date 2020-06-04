@@ -1,0 +1,156 @@
+---
+chapter: "Functions"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: pig-find-spoon 
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-05-18 
+tags: [exponentials, data, third]
+id: pig-find-spoon 
+---
+
+(ref:pig-find-spoon) Exercise in file pig-find-spoon
+
+```{r pig-find-spoon-default, include = FALSE}
+SDSdata::sds_setup()
+library(learnr)
+library(ggformula)
+library(gradethis)
+library(QandA)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+TITLE GOES HERE: The KM textbook shows three very small datasets on page 104-105. These datasets are being provided to you as the R *data frames* named `Prozac`, `Birth_weight`, and `Coal_prices`.
+
+To get started, use the Sandbox below to display each of the three data frames. The command you will use to display the data frames is very simple: just the name of the data frame.
+
+```{r pig-find-spoon-0-setup}
+data("Chapter1", package = "mosaicUSAFA")
+```
+
+```{r pig-find-spoon-0, exercise=TRUE, exercise.setup="pig-find-spoon-0-setup", exercise.cap="Sandbox to display data frames."}
+Prozac
+```
+
+The display form used by R is the standard for data tables. The form used in the book is improper and teaches bad habits.
+
+```{r pig-find-spoon-4, echo=FALSE}
+yesno("Correct or not? The proper data form shows each variable as a column.",
+      istrue = TRUE,
+      wrong = "Remember, columns in data run vertically, just as they do in buildings.")
+```
+
+```{r pig-find-spoon-5, echo=FALSE}
+capitals <- "Capitalization matters in R names."
+choices(
+  "Check the names that appear in the `Prozac` data frame",
+  bad=list(
+    Day=capitals,
+    Conc = "Almost. This is an abbreviation of the actual variable name.",
+    Concentration = capitals,
+    Week= "Wrong data set!"),
+  good = list(
+    "day" = "Notice that lower-case was used for the variable names. This is a good convention.", 
+    "concentration" = "Right.")
+)
+
+```
+
+**Plotting the data points.** These are very simple data sets so learning to display them will be easy. Each data frame consists of two variables. In these data sets, we're interested in displaying the price or concentration or weight as a function of time, which might be denominated in years, weeks, or days, depending on the dataset. So the input to the functions you will construct will  be the time variable. The output of the function you build is intended to match the other variable.
+
+Your task is to select model forms that do a good job matching the data. For this purpose, you are going to plot both the data and the function on the same coordinate space. That makes it easy to see if the function is a good approximation to the data.
+
+You will use the sandbox below to plot out a individual data  set along with one or more of the functional forms offered to you. 
+
+```{r pig-find-spoon-6, exercise=TRUE, exercise.cap="Sandbox for graph."}
+gf_point(output ~ input, data = name)
+```
+
+The command to plot the data points will look like this:
+`gf_point(`*output*` ~ `*input*`, data = `*name_of_data_frame*`)`
+
+All you need to do is replace `name` with the name of the data frame and replace the words `output` and `input` with the names of the corresponding variables.
+
+1. Plot out the `Birth_weight` data frame to make sure you can construct the point-plotting command correctly.
+
+
+
+**Plotting out a function on top of the data points.** As you know, you can plot a function by using the `slice_plot()` command. Of course, what you want to do is put the slice plot on top of the point plot. To do this, you use the `%>%` symbol in R, which can be pronounced "then." The command to plot the data points and *then* the function will look like this:
+
+```r 
+gf_point() %>% 
+  slice_plot()
+```
+
+Of course, you'll have to fill on the arguments to the two R functions.
+
+You already know the arguments to `gf_point()`. What's left is to tell `slice_plot()` *which function* you want to plot. You can do this using a tilde expression. You will not need to give a `domain` argument to `slice_plot()` because it can already get that information from the point-plot layer that's being drawn before the slice-plot layer.
+
+Make sure to write your tilde expression in terms of the name of the input variable from data. For the `Birth_weight` data frame, for instance, the tilde formula will look like this:
+
+`600 * exp(week / 30) ~ week`
+
+If you are in the habit of giving names to things, you can create an R function using the tilde expression, like this:
+
+`baby_weight <- makeFun(600 * exp(week / 30) ~ week)`
+
+Then, in the slice-plot command, you would write 
+
+`slice_plot(baby_weight(week) ~ week)`
+
+2. Here is a set of functions (or, rather, tilde expressions). Your job is to determine which function provides the best for each of the data sets. To keep from giving to much away, I'll write the functions in mathematical rather than R notation and use the generic name $t$ for the time variable.  To make the actual plot, you'll have to write the function as a tilde-expression, substituting for $t$ the name of the time variable used in the data frame, be that year or weeks or days. 
+    
+a. $f(t) \equiv 31.5 e^{-0.048 t}$    
+b. $f(t) \equiv 31.5 e^{-0.048 (t - 1980)}$
+c. $f(t) \equiv 75.6 e^{-0.128 t}$
+d. $f(t) \equiv 37.4 e^{0.122 t}$
+e. $f(t) \equiv 75.6 e^{-0.128 t}$
+f. $f(t) \equiv 10.0 e^{-\ln(2) t / 5730}$
+
+```{r pig-find-spoon-7, echo=FALSE}
+choice_list(
+  "For `Prozac` the function that best matches the data is:",
+  choices = list(
+  A = "", B = "",  C = "", D = "", "+E+" = "", F = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+```{r pig-find-spoon-8, echo=FALSE}
+choice_list(
+  "Which function best matches the data in `Coal_prices`? ",
+  choices = list(
+  A = "A would be right if the data started at year 0.", "+B+" = "",  C = "", D = "", "E" = "", F = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+```{r pig-find-spoon-9, echo=FALSE}
+choice_list(
+  "Which function best matches the data in `Birth_weight`? ",
+  choices = list(
+  A = "", "B" = "",  C = "", "+D+" = "", "E" = "", F = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+<!--begin-answer-->
+```{r}
+gf_point(price ~ year, data = Coal_prices) %>%
+  slice_plot(31.5*exp(-0.048*(year-1980)) ~ year)
+gf_point(concentration ~ day, data = Prozac) %>%
+  slice_plot(75.6*exp(-0.128 * day) ~ day)
+```
+<!--end-answer-->
+
+
+

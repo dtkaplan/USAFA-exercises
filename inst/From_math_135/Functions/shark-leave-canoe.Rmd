@@ -1,0 +1,69 @@
+---
+chapter: "none yet"
+title: "Title for shark-leave-canoe"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "shark-leave-canoe"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [first, second, third]
+id: shark-leave-canoe
+---
+
+```{r shark-leave-canoe-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The so-called "[maximum heart rate](https://www.newfeel.co.uk/advice/how-evaluate-your-maximum-heart-rate-mhr-a_13102#:~:text=Maximum%20heart%20rate%20is%20the,means%20listening%20to%20your%20body)" (MHR) is an indication of the safe limit on heart rate in beats per minute.  The so-called "Astrand method" approximates MHR as a function of age and sex, like this,
+$$\mbox{MHR} = \left\{\begin{array}{l}
+226 - a\  \mbox{for females}\\
+220 - a\ \mbox{for males}\\
+\end{array}\right.$$ 
+where $a$ is age in years. 
+
+
+```{r shark-leave-canoe-Qinline1, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "Which of the following is correct?",
+  c("As you age, your maximum heart rate decreases by one beat per year.",
+    "As you age, your maximum hear rate decreases by one beat per minute.",
+    "+As you age, your maximum heart rate decreases by one beat per minute per year.+"),
+  random_answer_order = TRUE,
+  inline = FALSE
+)
+```
+
+```{r shark-leave-canoe-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "What can be said about the ages of a male and female with the same MHR?",
+  c("+The female is six years older than the male.+", 
+    "The male is six years older than the female.",
+    "The female and the male are the same age.",
+    "None of the above."),
+  random_answer_order = TRUE,
+  inline = FALSE
+)
+```
+
+
+
+        
+
+
+

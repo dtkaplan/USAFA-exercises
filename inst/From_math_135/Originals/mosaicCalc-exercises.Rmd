@@ -1,0 +1,23 @@
+---
+title: "mosaicCalc exercises"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+Some ideas for a `learnr` tutorial
+
+# Exercise 1
+
+```{r}
+F <- antiD(1/100*(322+3*x(98+x(37+x)))-24*x/(1+x^2)~x)
+```
+
+There's a syntax error here.  Find it.  
+
+<!--begin-answer-->
+ the x followed by the ( will be a function.
+<!--end-answer-->
+

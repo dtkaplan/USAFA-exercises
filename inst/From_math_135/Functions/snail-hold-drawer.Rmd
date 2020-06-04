@@ -1,0 +1,72 @@
+---
+chapter: "none yet"
+title: "Title for snail-hold-drawer"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "snail-hold-drawer"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [functions, qualitative derivs, derivatives]
+id: snail-hold-drawer
+---
+
+```{r snail-hold-drawer-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` A person buys a car with a down payment, and borrows the rest of the price. The total amount $T$ of dollars that buyers pay for an automobile is a function of the down payment $P$ and the interest rate $r$ of the loan on the balance. 
+
+```{r snail-hold-drawer-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "a) If $r$ is held constant, is $T$ an increasing or decreasing function of $P$?",
+  list(
+   "Increasing" = '',
+   "+Decreasing+" = '',
+   "Neither" = '',
+   "It depends on other, unknown factors." = ''
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+  
+
+
+
+
+```{r snail-hold-drawer-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "b) If $P$ is held constant, is $T$ an increasing or decreasing function of $r$?",
+  list(
+   "+Increasing+" = '',
+   "Decreasing" = '',
+   "Neither" = '',
+   "It depends on other, unknown factors." = ''
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+  
+
+
+

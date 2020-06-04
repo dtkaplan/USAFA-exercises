@@ -1,0 +1,80 @@
+---
+chapter: "none yet"
+title: "Title for lobster-lie-gloves"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "lobster-lie-gloves"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [first, second, third]
+id: lobster-lie-gloves
+---
+
+```{r lobster-lie-gloves-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The function shown in the graph is a linear combination of a constant and a sine:
+
+$$f(t) \equiv a + b \sin(2\pi t/P).$$
+
+```{r echo = FALSE}
+f <- makeFun(a + b*sin(2*pi*t/P) ~ t)
+slice_plot(f(t, P=2, a=3, b = 2) ~ t, domain(t = c(-3, 3)))
+```
+
+There are three parameters to $f()$, $a$, $b$, and $P$.
+
+
+```{r lobster-lie-gloves-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "What are the two *basis functions* being combined in the linear combination?",
+  c("+1+", "$\\sin(t)$", "$2 \\pi t$", "+$\\sin(2 \\pi t / P)$+"),
+  random_answer_order = FALSE
+)
+```
+
+Use visual inspection of the graph to answer the following:
+
+```{r lobster-lie-gloves-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "What is the numerical value of $P$ for the function shown in the graph?",
+  c("1", "+2+", "3", "4"),
+  random_answer_order = FALSE
+)
+```
+
+
+```{r lobster-lie-gloves-Qinline3, echo=FALSE}
+etude::choose_one(
+  prompt = "What is the numerical value of the parameter $b$?",
+  c("1", "+2+", "3", "4"),
+  random_answer_order = FALSE
+)
+```
+
+```{r lobster-lie-gloves-Qinline4, echo=FALSE}
+explain <- "$\\sin()$ is always centered vertically around zero. The other basis function in the linear combination is what moves the center of $\\sin()$ up from zero." 
+etude::choose_one(
+  prompt = "What is the numerical value of the parameter $a$?",
+  list("1" = explain, "2" = explain, "+3+" = "", "4" = explain),
+  random_answer_order = FALSE
+)
+```
+
+

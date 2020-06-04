@@ -1,0 +1,36 @@
+---
+chapter: "none yet"
+author: "Danny Kaplan"
+date: 2020-05-13 
+version: 0.1
+tags: [log scales, income, third]
+id: lamb-freeze-closet
+---
+
+
+```{r lamb-freeze-closet-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+
+Some exercises referring to this graphic:
+
+```{r}
+knitr::include_graphics(system.file("Exercises/images/NYT-income.png", package = "USAFAexercises"))
+```
+
+Comparing average per-capita income (in $1000s) in metropolitan areas in 2016 and 1969. [Source: NYTimes](https://www.nytimes.com/interactive/2020/05/13/opinion/inequality-cities-life-expectancy.html?referringSource=articleShare) Dark dots are 2016.
+
+
+1. Find a city with 200,000 inhabitants
+2. Why did the graph designers arrange the X-axis the way it is?
+3. Looking at the light dots, that is, for 1969, write down a simple form of model relating the per-capita income to the population size. (Hint: Do you want logs or exponential functions of income.) You can use symbols for the parameters, but give a rough numerical value for each parameter.
+
+
+```{r lamb-freeze-closet-1, echo = FALSE}
+
+```
+
+```{r lamb-freeze-closet-2, echo = FALSE}
+
+```

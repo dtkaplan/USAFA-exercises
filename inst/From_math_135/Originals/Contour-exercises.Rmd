@@ -1,0 +1,383 @@
+---
+title: "Contour plot exercises"
+author:  "Daniel Kaplan"
+tags: ["contour plots", functions, graphics]
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+library(calcbook)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+# Exercise 0
+
+
+
+# Exercise 0.b
+
+
+```{r rfun733334,echo = FALSE}
+
+```
+ 
+
+
+# Exercise 0.c
+
+
+
+# Exercise 0.c
+
+
+
+* Draw contours at $0$, $50$, and $100$.
+
+# Exercise 0.d
+
+```{r hyp,echo=FALSE}
+
+```
+ 
+
+
+# Exercise 0.e
+
+
+
+
+# Exercise 1
+
+```{r echo=FALSE}
+# Make a smooth looking random function
+practice.max = function(seed=NULL, n=2) {
+  if( !is.null(seed) ) set.seed(seed)
+  if (n==0) nmaxes = ceiling( runif(1,min=4,max=10))
+  else nmaxes = n
+  xlocs = runif( nmaxes, min=-3,max=3 )
+  ylocs = runif( nmaxes, min=-3,max=3 )
+  signsmax = runif(nmaxes,min=3,max=10)*sign( runif(nmaxes,min=-1,max=1) )
+  xscales = runif( nmaxes, min=.1, max=5 )
+
+  f <- function(x, y) {
+    res = 0
+    for(k in 1:length(xlocs)) {
+      res <- res +
+        signsmax[k]*exp(-(xscales[k]*(x-xlocs[k])^2 + (y-ylocs[k])^2)/9)
+      
+    }
+    
+    res
+  }
+  
+  # f <- function(x,y) {
+  #   sum( signsmax*exp(-(xscales*(x-xlocs)^2 + (y-ylocs)^2)/9) )
+  # }
+  # Vectorize(f, c("x", "y"))
+}
+```
+
+```{r echo = FALSE}
+f <- practice.max(seed = 102)
+graphFun(f(longitude, latitude) ~ longitude + latitude, xlim=c(-3, 3), ylim = c(-3, 3)) %>%
+  gf_segment(-2.1 + -0.5 ~ 2 + 0, color = "red") %>%
+  gf_segment(0.5 + 1.8 ~  -0.3 + 0.3, color = "blue") %>%
+  gf_text(1.8 ~ 0.3, label = "Path B", color = "blue", nudge_y = 0.2) %>%
+  gf_text(-2.1 ~ 2, label = "Path A", color = "red", nudge_x = 0.35) %>%
+  gf_theme(aspect.ratio = 1)
+```
+
+1. Which path gains the most altitude? {A, B, *about the same*}
+#. Which path is steeper? {A, *B*, about the same}
+
+# Exercise 2: Points in 3-d
+
+```{r contour-values102,echo = FALSE,}
+f = rfun(~x|y, seed=8932)
+graphFun( f(x,y) ~ x + y, xlim = range(-4,4), ylim  = range(-4,4), tile=FALSE)
+```
+ 
+
+The contours show the value of $f(x,y)$.  
+
+The following table has some blanks.  Fill in those blanks, marking the indicated label on the graph itself in the right place. If there is no such point, write "none" next to that row in the table.  If there is more than one possible point, write "multiple" next to the row of the table and mark the letter label on one of the correct points on the graph, entering the corresponding numerical values in the table.
+
+Label |      $x$      |      $y$      |      $f(x,y)$
+:----:|----:|----:|---------:
+A | 2 | 3 | ..... 
+B | 3 | | 10 
+C | ..... | -2 | 5 
+D | -1 | 3 | 10  
+E | 0 | -3 | 10
+F | 0 | ..... | .....
+G | ..... | -3  | .....
+H | ..... | 15  | .....
+
+
+# Exercise 27
+
+
+THIS ISN'T MAKING SENSE ...
+
+
+```{r echo=FALSE}
+f1 = makeFun( 70 + (Age-30)*(Dose-225)/50 ~ Age & Dose)
+f2 = makeFun( 70 + (Age-20)*(Dose-275)/50 ~ Age & Dose)
+f3 = makeFun( 70 + (Age-40)/1-(Dose-255)/25 ~ Age & Dose)
+```
+ 
+
+```{r f1,echo=FALSE}
+graphFun( f1(Age=Age,Dose=Dose)~Age&Dose,
+          Agelim=range(15,45),  Doselim=range(200,300))
+```
+ 
+
+```{r f2,echo=FALSE}
+graphFun( f2(Age=Age,Dose=Dose)~Age&Dose,
+         Agelim=range(15,45),Doselim=range(200,300))
+```
+ 
+
+```{r f3,echo=FALSE}
+graphFun( f3(Age=Age,Dose=Dose)~Age&Dose,
+          Agelim=range(15,45),Doselim=range(200,300))
+```
+ 
+
+The graphic shown above is in a standard form for displaying a
+function of two variables.  The same function, plotted as a contour
+function, is one of the following. 
+
+```
+\centerline{\begin{tabular}{ccc}
+\includegraphics[width=1.75in]{Figures/HRdrug-f3} &  
+\includegraphics[width=1.75in]{Figures/HRdrug-f2} &  
+\includegraphics[width=1.75in]{Figures/HRdrug-f1} \\  
+Fun A & Fun B & Fun C\\
+\end{tabular}}
+```
+
+
+1. On one of the contour, draw the paths that correspond to the graph of
+HR versus dose for each of ages 20, 30, and 40 years.
+2. Which contour plot matches the interaction graph?
+
+
+# Exercise 28
+
+The figure shows a function $f(x,y)$ of two variables.  Also shown is a path, which you are walking along from time $t=1$ to $t=4$.
+
+
+```{r path1,eval = FALSE, echo = FALSE}
+f = rfun(seed=345)
+patht = c(1,2,3,4)
+pathxpts = c(-4,-2,1,4)
+pathypts = c(0,2,0,0)
+pathx = splinefun(patht,pathxpts)
+pathy = splinefun(patht,pathypts)
+times = seq(1,4,by=.1)
+Paths <- data.frame(
+  x = pathx(times), y = pathy(times), t = times
+)
+graphFun(f(x,y) ~ x + y, 
+         xlim=c(-5,5), ylim=c(-5,5),tile=FALSE) %>%
+  gf_line(y ~ x, data = Paths)
+
+lines(pathx(times), pathy(times), lwd=3, col="blue")
+timemarks = c(1,2,3,4)
+text( pathx(timemarks), pathy(timemarks), c("t=1","t=2","t=3","t=4"), pos=4, col="blue")
+points( pathx(timemarks), pathy(timemarks), pch=20,cex=1.5, col="blue")
+```
+ 
+
+```{r echo=FALSE}
+knitr::include_graphics("/images/path-path1.png")
+```
+
+Your task is to draw a reasonable depiction of the value of the function $f(x,y)$ as you move in time along the path from $t=1$ to $t=4$.  Use the graph paper to do this.
+
+```{r graphpaper1,eval=FALSE, echo = FALSE}
+graph.paper( xticks=1:4, yticks=seq(-10,10,by=2), xlab="time", ylab="f along the path.")
+```
+ 
+```{r echo=FALSE}
+knitr::include_graphics("/images/path-graphpaper1.png")
+```
+
+<!--begin-answer-->
+```{r path-answer1,eval=FALSE, echo = FALSE}
+graph.paper( xticks=1:4,yticks=seq(-10,10,by=2), xlab="time", ylab="f along the path.")
+tpts = seq(1,4,by=.025)
+funval = tpts
+for (k in 1:length(tpts) ) {
+  funval[k] = f(pathx(tpts[k]), pathy(tpts[k]) );
+}
+lines( tpts, funval, lwd=2 )
+```
+ 
+<!--end-answer-->
+
+# Exercise 34: Contour Plots and Interaction Plots
+
+
+```{r echo=FALSE}
+f1 = makeFun( 70 + (Age-30)*(Dose-225)/50 ~ Age & Dose)
+f2 = makeFun( 70 + (Age-20)*(Dose-275)/50 ~ Age & Dose)
+f3 = makeFun( 70 + (Age-40)/1-(Dose-255)/25 ~ Age & Dose)
+```
+
+The following graph shows a function of two variables, age and dose, in a format called an "interaction plot." The function output is on the y axis, while the age variable is represented by color.
+
+```{r f1interact,echo=FALSE, warning=FALSE}
+graphFun(f1(Age=20, Dose) ~ Dose, Doselim = c(200,300)) %>%
+  graphFun(f1(Age=30, Dose) ~ Dose, color = "blue") %>%
+  graphFun(f1(Age=40, Dose) ~ Dose, color = "red") %>%
+  gf_labs(title="Interaction plot: Black = age 20, blue age 30, red age 40")
+```
+
+In a contour plot version of the same data, of course, the function value is shown by the contours and age is on the y-axis.
+
+1. Which one of the following plots shows a function corresponding to the interaction plot?
+
+```{r f1contour,echo=FALSE, out.width="33%", warning=FALSE, fig.show="hold"}
+graphFun( f1(Age=Age,Dose=Dose)~Age&Dose,
+          Agelim=range(15,45),Doselim=range(200,300)) %>%
+  gf_labs(title = "Function 1")
+graphFun( f2(Age=Age,Dose=Dose)~Age&Dose,
+          Agelim=range(15,45),Doselim=range(200,300)) %>%
+  gf_labs(title = "Function 2")
+graphFun( f3(Age=Age,Dose=Dose)~Age&Dose,
+          Agelim=range(15,45),Doselim=range(200,300)) %>%
+  gf_labs(title = "Function 3")
+```
+ 
+# Exercise 35
+
+Figure \@ref(fig:fig1-35) is a contour diagram of a function $z$ of $x$ and $y$.  Three curves, $A$, $B$, and $C$ are drawn on the diagram.  
+
+```{r fig1-35, echo= FALSE, fig.cap="Contours show $z$-values."}
+knitr::include_graphics("/images/ContourQuestion.png")
+```
+
+1. Draw the corresponding curves on Figure \@ref(fig:fig2-35), which shows constant $y$ sections of the same function. 
+
+```{r fig2-35, echo= FALSE, fig.cap="Contours show $y$-values."}
+knitr::include_graphics("/images/ContourSectionQuestions.png")
+```
+
+<!--begin-answer-->
+```{r fig3-35, echo= FALSE, fig.cap="Solution"}
+knitr::include_graphics("/images/ContourSectionSolution.png")
+```
+<!--end-answer-->
+
+
+# Exercise 40
+
+An equation such as $pV = nRT$ describes the relationship between
+several variables.  This relationship can also be depicted in
+functional form, for instance $V = f(p,T) = nRT/p$ or $T = g(p,V) =
+pV/nR$, and so on.
+
+Below, there are several graphs.  Some of these graphs show functions
+corresponding to relationship named ``A''.  Others show functions
+corresponding to relationship ``B''.  Still others are from completely
+different relationships.
+
+Two of the graphs are labeled with
+the name of the relationship they depict.
+Your job is to label the other graphs either A or B or ``neither.''
+
+```{r echo = FALSE}
+fz = function(x,y) {x*sqrt(y)}
+fy = function(x,z) {(z/x)^2}
+fx = function(y,z) { z/sqrt(y)}
+
+gz = function(x,y) {x + sqrt(y)}
+gy = function(x,z) {(z-x)^2}
+gx = function(y,z) {z - sqrt(y)}
+
+hy = function(x,z) {3*(z-exp(-x/3))}
+jx = function(y,z) {z + .5*y^2}
+```
+ 
+
+```{r fz,echo=FALSE, fig.cap="Relationships A and B", fig.show="hold"}
+graphFun( fz(x,y) ~ x&y, x=c(0,5),y=c(0,5), tile=FALSE) %>%
+  gf_labs(x = "x", y ="y", title = "Relationship A: Contours show z values.")
+graphFun( gz(x,y)~x&y, x=c(0,5),y=c(0,5), tile=FALSE) %>% 
+  gf_labs(x="x", y="y",title="Relationship B: Contours show z values.")
+```
+ 
+Mark Each of the Following Graphs as "A" or "B" or "Neither."
+
+```{r fx, echo=FALSE}
+graphFun( fx(x,y)~x&y, x=c(1,5),y=c(0,10), tile=FALSE) %>%
+  gf_labs(x="y", y="z",title="1. Contours show x values.")
+``` 
+
+```{r fy, echo=FALSE}
+graphFun( fy(x,y)~x&y, x=c(1.5,5),y=c(0,4), tile=FALSE) %>% 
+  gf_labs(x="x", y="z",title="2. Contours show y values.")
+``` 
+
+```{r gx, echo=FALSE}
+graphFun( gx(x,y)~x&y, x=c(1,5),y=c(0,10), tile=FALSE) %>% 
+  gf_labs(x="y", y="z",title="3. Contours show x values.")
+``` 
+
+```{r gy, echo=FALSE}
+graphFun( gy(x,y)~x&y, x=c(1.5,5),y=c(0,4), tile=FALSE) %>% 
+  gf_labs(x="x", y="z",title="4. Contours show y values.")
+``` 
+
+```{r jx, echo=FALSE}
+graphFun( jx(x,y)~x&y, x=c(1,5),y=c(0,10), tile=FALSE) %>% 
+  gf_labs(x="y", y="z",title="5. Contours show x values.")
+``` 
+
+```{r hy, echo=FALSE}
+graphFun( hy(x,y)~x&y, x=c(1.5,5),y=c(0,4), tile=FALSE) %>% 
+  gf_labs(x="x", y="z",title="6. Contours show y values.")
+``` 
+
+**DO THIS ALSO...** Now, explain briefly in words the general strategy you used to decide which label to assign to each graph.
+
+
+# Exercise 10
+
+
+```{r echo = FALSE}
+f1 = rfun(seed=893)
+f2 = rfun(seed=899)
+f3 = rfun(seed=833)
+f4 = rfun(seed=843)
+```
+ 
+
+```{r f1surface,echo=FALSE, out.width="50%", fig.show="hold"}
+try(plotFun( f1(x,y)~x&y, x=range(-5,5), y=range(-5,5),surface=TRUE))
+graphFun( f4(x,y)~x&y, xlim=range(-5,5), ylim=range(-5,5)) %>%
+  gf_labs("A")
+
+try(plotFun( f2(x,y)~x&y, x=range(-5,5), y=range(-5,5),surface=TRUE))
+graphFun( f1(x,y)~x&y, xlim=range(-5,5), ylim=range(-5,5)) %>%
+  gf_labs(title="B")
+
+try(plotFun( f3(x,y)~x&y, x=range(-5,5), y=range(-5,5),surface=TRUE))
+graphFun( f3(x,y)~x&y, xlim=range(-5,5), ylim=range(-5,5)) %>%
+  gf_labs(title="C")
+
+try(plotFun( f4(x,y)~x&y, x=range(-5,5), y=range(-5,5),surface=TRUE))
+graphFun( f2(x,y)~x&y, xlim=range(-5,5), ylim=range(-5,5)) %>%
+  gf_labs(title="D")
+
+
+```
+ 
+
+Match the surface plot with the contour plot.  Write the letter from the contour plot by the corresponding surface plot. (In the contour plot, darker shading indicates a deeper depth.)  
+
+

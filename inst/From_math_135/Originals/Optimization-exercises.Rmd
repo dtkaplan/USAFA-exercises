@@ -1,0 +1,449 @@
+---
+title: "Optimization exercises"
+author: "Daniel Kaplan"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+
+
+# Problem 1
+
+Based on an extensive but fictive observation of activity and grades of college students, the model shown in the figure was constructed to give GPA as a function of the number of hours each weekday (Monday-Friday) spent studying and spent in social activity and play. (Activity during the weekend was not monitored.)
+
+```{r f-graph,echo=FALSE}
+f <- rfun( ~x&y, seed=294 )
+GPA = makeFun(pmax(0,-2+.08*(f(Play/3,Study/3) + 10*Play^.3*Study^.7 +pmin(0,11*(12-(Study+Play)))))~Study&Play)
+plotFun( GPA(Study/1.3,Play/1.5)~Study&Play,  
+  Study.lim=c(0,16), Play.lim=c(0,16), 
+  filled=FALSE,xlab="Study Time (hr/day)",ylab="Play Time (hrs/day)",
+  main="GPA versus Study and Play time", npts=300) 
+```
+
+a. According to the model, what's the optimal combination of Study and Play to achieve a high GPA?
+#. Show a place on the graph where the partial derivative of GPA with respect to Play is positive.  Mark this "P+".
+#. Show a place on the graph where the partial derivative of GPA with respect to Play is negative.  Mark this "P-".
+#. Is there any place where the partial derivative with respect to Study is negative?  If so, mark it "S-".
+#. There are only 24 hours in a day.  Draw in the budget constraint for 24 hours.  Assuming that the entire 24 hours is either Study or Play, find the point on the constraint with the highest GPA and mark it "24 best".
+
+#. Of course, Study and Play are not the only activities possible.  Sleep is important, too, as are meals, personal care, etc. In the study, students were observed who spent up to 22 hours per day in Study or Play.  Presumably, such students crashed on the weekend.
+
+Suppose you decide to budget 12 hours each weekday day in activities other than Study and Play.  Draw in the budget constraint and mark the point on it with optimal GPA with "12."  
+
+#. What is the "shadow price" of GPA with respect to the budget for a budget constraint of 12 hours?  Give both an estimated numerical value as well as units.
+
+#. Consider a student who budgets 22 hours per day for Study and Play.   Draw in the budget constraint and mark the optimal mixture of Study and Play with "22."  
+
+#. What is the "shadow price" of GPA with respect to the budget constraint of 22 hours?  Give both an estimated numerical value as well as units.
+
+#. The standard modeling polynomial here is $a_0 + a_1 S + a_2 P + a_3 S P + a_4 S^2 + a_5 P^2$.  Briefly explain what features shown in the figure would cause you to include or omit these terms if attempting to fit GPA data as a polynomial in $S$ and $P$:
+
+a. $a_3 S P$
+#. $a_4 S^2$
+#. $a_5 P^2$
+
+# Problem 2
+
+A school district is considering how to balance class size against teachers' salaries.  At issue, of course, is the elemental fact that you need to hire more teachers in order to have smaller classes, but since funding is fixed, you won't be able to pay those teachers as well.  On the other hand, by having large classes, you need fewer teachers who can be paid more. 
+
+A consulting firm has used national data on test scores $T$ as a function of teacher salary $S$ and class size $C$ to build a model of the function $T = f(C,S)$
+```{r echo = FALSE}
+score <- function(C,S) {
+  400*(C+ 10)^(-1.1) * S^(0.5) + 300
+}
+```
+ 
+Here is a contour plot of that model function: expected student test scores, $T$ as a function of class size $C$ and teacher salary $S$:
+
+```{r score1,echo = FALSE}
+graphFun(score(C, S) ~ C + S,
+         Clim=c(10,50),Slim=c(30,100),tile=FALSE) %>%
+gf_labs(x="Class Size (C)", 
+        y="Teacher Salary (S, in $1000s)",
+        title="Test Scores as function of Teacher Salary and Class Size")
+```
+ 
+
+1. What's the value $T$ of this function when class size $=20$ and   teacher salary  $=50$? 
+
+#. Give two different values of class size and teacher salary for which the resulting test score $T=400$.
+  
+#. This isn't a linear function.  But if you focus on a small region of the Salary/Class-size plane, it is approximately linear. Draw two  boxes on the graph. The first should enclose a region where the function is approximately linear and where the output depends weakly on class size.  The second should enclose a region where the function is approximately   linear and the output depends strongly on class size.  Label the regions "weak" and "strong'' respectively.
+
+For the school district, there is a straightforward relationship between salary (in $1000s) and class size.  $$S = 4.5 C - 80 .$$ (This is explained at the bottom of the problem, but you don't need to know about it to do the problem.)
+
+
+4. Two lines are shown on the figure.  Only one of them matches the  relationship given in the equation.  Mark clearly  which line is correct. (Use the label ``correct").
+
+#. Keeping in mind that the only allowed combinations of class size   and teacher salary that fit your budget lie on the line of the budget   constraint, choose the best possible class size to maximize the test   scores.  Mark this best-possible class size   with a $\star$ on the graph. Next to the $\star$, write the   (approximate) value of the output at this point.
+
+
+```{r scores2,echo = FALSE}
+graphFun(score(C, S) ~ C + S,
+         Clim=c(10,50), Slim=c(30,100), tile=FALSE) %>%
+  gf_labs(x="Class Size (C)", y="Teacher Salary (S, in $1000s)",
+          title="Test Scores as function of Teacher Salary and Class Size") %>%
+  gf_abline(slope=4.5, intercept = -80, alpha=.5, lwd=4) %>%
+  gf_abline(slope=2, intercept = -5, alpha=.5, lwd=4) 
+
+```
+ 
+
+
+*Just leisure reading for your edification at a later date.*  Here are the factors that go into shaping the relationship between class size and teacher salary:
+
+* The district receives $10,000 per year per student from the state.
+* They have non-teaching costs of $5500 per student for testing, registration, special education, bussing, etc.
+* It costs approximately $80,000 per year to provide a classroom -- this includes heating, the common spaces in the building, etc.
+* The rest goes to teacher salary, benefits (such as health insurance and retirement), etc.  Call all of this salary $S$, recognizing that the teacher doesn't receive all of it directly.
+
+Put together, the relationship between teacher salary $S$ (in thousands) and class size $C$ is $10 C = 5.5 C + 80 + S$.
+ 
+# Problem 3
+
+The graph shows a contour plot of a function $Y = f(K,L)$.  The dependent variable $Y$ is the output of a factory, and the independent variables are the amount of capital $K$ (machinery, etc.) and the amount of labor $L$ that goes into production.
+
+
+```{r cd1,echo=FALSE}
+cd <- function(K,L){
+  a = .6
+  14*(K^a)*(L^(1-a))
+}
+graphFun(cd(K, L) ~ K + L,
+         Klim=c(0,5),Llim=c(0,10),tile=FALSE) %>%
+  gf_labs(x="Capital", 
+          y="Labor",
+          title="Production as function of Capital and Labor")
+```
+ 
+
+1. What's the value $Y$ of this function when Capital $=2$ and Labor $=6$?
+
+\item Give two different values of Capital and Labor for which the output $Y$ is 70 units.
+
+2. This isn't a linear function.  But if you focus on a small region of the Capital-Labor plane, it is approximately linear. Draw on the graph two regions where the function is approximately linear. Choose one of the regions where the function is roughly independent of Capital (and label it, clearly, "capital independent") , and the other where the function is roughly independent of Labor (to be labeled, clearly, "labor independent.").
+  
+The two independent variables, $L$ and $K$, are often determined via a *budget*.  The idea is that there is a certain amount of money to spend, and the mixture of $L$ and $K$ is selected to maximize the output $Y$.
+
+Suppose that one unit of capital costs $100, and one unit of labor costs $45, and you have been given a total budget of $500.  This ``budget constraint" imposes a relationship between labor and capital: $$500 = 100*K + 45*L$$
+
+
+3. Two lines are shown on the figure.  Only one of them matches the  relationship given in the equation.  Mark clearly (using the label "correct") which line is correct.
+
+#. Keeping in mind that the only allowed combinations of capital and labor that fit your budget lie on the line of the budget constraint, choose the best possible combination of capital and labor to maximize the production $Y$.  Mark this best-possible point with a $\star$ on the graph.  Next to the $\star$, write the (approximate) value of the output at this point.
+
+
+```{r cd2,echo=FALSE}
+graphFun(cd(K, L) ~ K + L, Klim=c(0,5),Llim=c(0,10),tile=FALSE) %>%
+  gf_labs(x="Capital", y="Labor",
+          title="Production as function of Capital and Labor") %>%
+  gf_abline(intercept=500/45, slope = -100/45, lwd=4, alpha=0.5) %>%
+  gf_abline(intercept=700/35, slope = -100/35, lwd=4, alpha=0.5) 
+```
+ 
+#  Problem 4
+
+In a previous exercise, a graph of the hypothetical impact of three forms of health-care expenditures was presented.  Here is a similar exercise, which will explore a constrained optimization using slightly  hypothetical functions, $f_1$, $f_2$, and $f_3$:
+```{r fundef}
+f1 <- makeFun(500*pnorm(x, mean=m, sd=s) + .05*x - 11.375 ~ x,  m = 300, s =  150)
+f2 <- makeFun(350*pnorm(x, mean=m, sd=s) + 0.5*x - 175 ~ x,
+              m =  0, s  = 100)
+f3 <- makeFun( x/1.6 ~ x )
+```
+ 
+
+```{r qalyfuns,fig = TRUE,include = TRUE,echo = FALSE}
+Labels <-  tribble(
+  ~ x, ~ y, ~  label, ~ color,
+  1000, f1(1000) - 50, "f1", "black",
+  900, f2(1000), "f2", "red",
+  1050, f3(1000), "f3", "blue",
+)
+graphFun( f1(money)~money, moneylim=c(0,1000),lwd=3)  %>%
+  gf_lims(y=c(0,700)) %>%
+  gf_labs(x="Expenditure ($1000)", y="QALYs added") %>%
+  graphFun( f2(money)~money, color = "red") %>%
+  graphFun( f3(money)~money, color = "blue") %>%
+  gf_text(y  ~ x,  label = ~ label, data = Labels)
+```
+ 
+
+The problem is how to allocate the available funds, $1,000K, among the different health-care interventions.  
+
+One strategy for solving constrained optimization functions is to use the constraint to reduce the ``dimension" of the problem.  In the unconstrained problem, there are three quantities to be set: $x_1$, $x_2$, and $x_3$, the amount of money spent on each intervention.  The constraint imposes a relationship among the three quantities, namely that $x_1 + x_2 + x_3 = 1000$.  This means that there are really only two independent quantities, since setting two of the quantities determines the value of the third: a reduction in dimension from three to two.
+
+To see this, construct the overall output from any pattern of expenditure meeting the constraint and plot it out:
+```{r overall}
+graphFun( f1(x1) + f2(x2) + f3(1000-(x1+x2)) ~ x1 + x2, 
+        x1lim=range(0,1000), x2lim=range(0,1000) )
+```
+ 
+
+Make sure that you understand why the overall function has been constructed this way: $x_1$ is the amount spent on intervention one, $x_2$ is the amount spent on intervention two, leaving $1000-x_1-x_2$ to be spent on intervention three.
+
+The constraint, rather than being graphed, has been used to turn a function of three variables $x_1$, $x_2$, and $x_3$, into a function of just two variables. 
+
+From the graph you can read off the values of $x_1$ and $x_2$ that maximize the overall function subject to the constraint.  Then you can use the constraint to find the value of $x_3$.  To get a more precise estimate of the location of the maximum, remake the plot in a narrow region around the peak.
+
+1. What are the values of $x_1$ and $x_2$ at the optimum?
+    i. $x_1$: {494.25}{475.25,483.25,494.25,498.25}
+    #. $x_2$: {219.70}{219.70,221.70,223.70,225.70}
+
+2. The derivative of the functions tells how much the output changes for an additional dollar of expenditure.  Calculate the derivatives at the optimum point:
+    i. For function 1: $\frac{d f_1}{d x_1}$ {0.625}{0.000,0.500,0.523,0.625,1.20,1.37}
+    #. For function 2: $\frac{d f_2}{d x_2}$ {0.625}{0.000,0.500,0.523,0.625,1.20,1.37}
+    #. For function 3:$\frac{d f_3}{d x_3}$  {0.625}{0.000,0.500,0.523,0.625,1.20,1.37}
+
+NEED TO FIX BUG IN stats::D() which doesn't capture parameters to pnorm() when  differentiating.
+
+<!--begin-answer-->
+    ```{r }
+df1 <- numD( f1(x) ~ x) 
+df2 <- numD( f2(x) ~ x)
+df3 <- D( f3(x) ~ x )
+df1(x = 494.25)
+df2(x = 219.70)
+df3(x =  1000 - (494.25 + 219.70))
+```
+<!--end-answer-->
+
+#. Explain what aspect of your answer to the above questions about the derivative tells you that your values of $x_1$, $x_2$ and $x_3$ are optimum?
+
+<!--begin-answer-->
+    All the derivatives are the same at the optimal point.  This reflects the optimum in that any small reallocation of funds from one intervention to the next will result in no net change in output.  If the derivatives of the different interventions were not the same, it would be possible to improve the overall outcome by a reallocation.
+<!--end-answer-->
+
+## Toward a More Realistic Setting
+
+The optimization techniques described above are completely realistic, but it's not so realistic to have specific formulas for the relationship between expenditures and outcomes.  Somewhat more realistically, you might have the opinions of experts about the outcomes, in the form of a table like this.
+
+Expenditure | 0 | 10 | 20 | 30 | 40 | 50
+:----|----:|----:|----:|----:|----:|----:
+A | 0 | 4 | 10 | 15 | 18 | 24
+B | 0 | 3 | 8 | 19 | 25 | 30
+C | 0 | 6 | 12 | 18 | 26 | 31
+
+Such estimates from experts should be taken with a grain of salt, but they are often the best information you have to inform a model.
+
+You can turn the expert's opinions into functions by using splines. In this case, there is good reason to think that output will increase monotonically with expenditure, so a monotonic spline is a good choice.  You can construct the functions like this:
+
+```{r }
+expend=c(0,10,20,30,40,50)
+A = c(0,4,10,15,18,24)
+B = c(0,3,8,19,25,30)
+C = c(0,6,12,18,26,31)
+dat = data.frame(expend=expend,A=A,B=B,C=C)
+fA = spliner( A ~ expend, data=dat, monotonic=TRUE)
+fB = spliner( B ~ expend, data=dat, monotonic=TRUE)
+fC = spliner( C ~ expend, data=dat, monotonic=TRUE)
+```
+ 
+
+#. Find the best values of inputs $x_A$, $x_B$, and $x_C$ given the constraint that total expenditure is $x_A + x_B + x_C = 50$.
+    Choose the closest answer:
+        a. Input to A: $x_A$ {0}{0,5,10,15,21,24,30,34,39,43,50}
+        #. Input to B: $x_B$ {34}{6,11,16,19,25,29,34,41,43,50}
+        #. Input to C: $x_C$ {16}{7,11,16,19,21,25,29,34,39,41,44}
+
+
+<!--begin-answer-->
+```{r splineans,include = TRUE,fig = TRUE}
+overall <- makeFun(fA(A) + fB(B) + fC(50-A-B)  ~ A &  B)
+graphFun( 
+  overall(A,  B) ~ A  + B,
+  Alim=range(0,50), Blim=range(0,50)) %>%
+  gf_labs(x = "A (amount)", y  = "B (amount)")
+```
+ 
+The optimum is near $x_A=0$, $x_B=34$ and therefore $x_C = 50 - 34 - 0 = 16$.  This gives an output of about 31.4 units.
+```{r }
+overall( A=0, B=34 )
+```
+ 
+<!--end-answer-->
+
+The American Association of Allergy Activists (AAAA) has lobbied Congress to mandate that, of the 50 units of available funds,  funding for A must be at least $x_A \geq 30$ with only the remaining 20 units of expenditure available to be allocated to B and C.  
+
+#. How much would this constraint reduce the overall output for the three interventions combined? (Remember, if you're spending 30 on A, you can't spend more than 20 on B.)
+    #. Not at all.
+    #. About zero to 1 output unit
+    #. *About 4 to 5 output units*
+    #. About 10 to 12 output units
+    #. About 14 to 16 output units
+    #. It would actually **increase** the output.
+
+
+<!--begin-answer-->
+     Looking at the contour plot along the path $x_A = 30$ indicates that the best possible outcome will be about 28 units.  This is a reduction of about 3 units from the optimum when $x_A$ is not subject to the proposed Congressional constraint.
+<!--end-answer-->
+
+Good news and bad news.  You've defeated the AAAA initiative to force expenditure on A.  But, regretably, general budget cuts have just been announced!  Now there are only 20 units to spend on the three interventions.  
+
+#. What's the best mixture?
+    a. Input to A: $x_A$ {0}{0,5,10,15,20}
+    #. Input to B: $x_B$ {0}{0,5,10,15,20}
+    #. Input to C: $x_C$ 
+
+#. What's the output that corresponds to the best mixture? {12}{0,3,6,8,12,14,21,29,34,38}
+<!--begin-answer-->
+    The contour plot shows that the maximum occurs when $x_A=0$ and $x_B   = 0$. 
+    ```{r new20}
+overall <- makeFun(fA(xA) + fB(xB) + fC(20-(xA+xB))~xA&xB) 
+graphFun(overall(xA,  xB) ~ xA + xB,  
+xA=range(0,20), xB=range(0,20))
+overall( xA=0, xB=0 )
+```
+<!--end-answer-->
+
+#  Problem 5: Quality-adjusted life years
+
+In epidemiology, a QALY (quality-adjusted life year) is a measure of duration of life adjusted for the health condition of the person --- a year of a person in good health is 1 QALY, but a year in a person in very poor health is less than 1 QALY.
+
+The point of using QALYs is to count the extent to which a health intervention improves health. Interventions that improve the quality of life at the same time as they extend it are more valued than interventions that do not.
+
+The graph shows the number of Quality Adjusted Life Years added by three different interventions -- A, B, C -- as a function of the amount of money spent on each.
+
+```{r qaly,echo=FALSE}
+money <- seq(0,1000,length=1000)
+A <- 500*pnorm(money, mean=300, sd=150) + .05*money
+A <- A - min(A)
+B <- 350*pnorm(money,mean=0, sd=100) + .05*money
+B <- B - min(B)
+C <- money/1.6
+plot( money, A, ylim=c(0,700),type="l",lwd=3, xlab="Expenditure ($1000)",
+     ylab="QALYs added")
+lines( money, B, lwd=3,col="red" )
+lines( money, C, lwd=3,col="blue" )
+text( 1000, max(A), "A", xpd=TRUE,pos=4)
+text( 1000, max(B), "B", xpd=TRUE,pos=4,col="red")
+text( 1000, max(C), "C", xpd=TRUE,pos=4, col="blue")
+```
+ 
+
+You have $1,000,000 to allocate among the three interventions.  How much will you spend on each of A, B, and C in order to maximize the number of QALYs produced by the expenditure? 
+
+**Background:** The graphs are fictitious, but let's pretend they are:
+
+* **A** Surgical treatment of congenital heart defects in newborns.
+* **B** Treatment for hemophilia.
+* **C** In-home health assistance for the disabled.
+
+# Problem  6: QALYs
+
+You are a member of a health-care oversight committee that allocates funds for investment in health-care facilities.  The committee has two proposal before it and needs to decide how best to spend the available $50M budget:
+
+* **Proposal A**: Expansion of the pediatric organ transplant unit.
+* **Proposal B**: Creation of a new rehabilitation center for  traumatic injury patients.
+
+Experts have evaluated each proposal in terms of different cost options and the impact that each will have on health outcomes. Following a standard epidemiological method, the impact is estimated in terms of "Quality Adjusted Life-Years" (QALY), a measure that combines the number of people affected, the number of years of prolonged life, and the improvement in quality of life for those treated.
+
+Here are the expert estimates:
+
+**QALY Impact of the Proposals**
+
+Expenditure | 0 | 10 | 20 | 30 | 40 | 50
+:----|----:|----:|----:|----:|----:|----:
+Proposal A | 0 | 40 | 100 | 150 | 170 | 180
+Proposal B | 0 | 30 | 80 | 140 | 160 | 175
+
+Such estimates from experts should be taken with a grain of salt, but they are often the best information you have to inform a model.
+
+You can turn the expert's opinions into functions by using splines. In this case, there is good reason to think that output will increase monotonically with expenditure, so a monotonic spline is a good choice.  You can construct the functions like this:
+
+```{r }
+expend <- c(0,10,20,30,40,50)
+A <- c(0,40,100,150,170,180)
+B <- c(0,30,80,140,160,175)
+dat <- data.frame(expend=expend,A=A,B=B)
+fA <- spliner( A ~ expend, data=dat, monotonic=TRUE)
+fB <- spliner( B ~ expend, data=dat, monotonic=TRUE)
+```
+ 
+
+The problem is to find the best values for expenditures on Proposal A and B  --- call these expenditures  $x_A$ and $x_B$ -- given constraint that total expenditure is $x_A + x_B = 50$.
+
+A simple approach is to plot out the total benefit as a function of expenditures on each of A and B:
+```{r tbenefit}
+overall <- makeFun( fA(xA) + fB(xB) ~xA&xB)
+graphFun(overall(xA, xB) ~ xA  + xB, 
+         xA=range(0,50), xB=range(0,50))
+```
+ 
+
+1. What's the largest number of QALYs that can be produced from combining
+the two proposals with a total budget of \$50M? {240}{120,160,180,240,300,340,350,360}
+
+#. What are the inputs $x_A$ and $x_B$ that produce this optimal outcome?  Choose the closest answer:
+    i. Input to A: $x_A$ {0,6,12,22,34,41,50}
+    #. Input to B: $x_B$ {28}{50,44,38,28,16,9,0}
+
+    Another way to look at the problem is to find the total QALY outcome as a function of the amount $x_A$, recognizing that once $x_A$ is set, the remaining money will go to option B, so $x_B = 50-x_A$.
+
+#. Make a plot of total QALY outcome as a function of $x_A$.  Which value of $x_A$ produces the best outcome?  Zoom in on the graph around the maximum to find the location precisely.  
+
+<!--begin-answer-->
+```{r splineans2}
+with50 = makeFun( fA(xA) + fB(50-xA) ~xA)
+d50 = D(with50(xA)~xA)
+findZeros(d50(xA)~xA, xA=range(0,50))
+```
+ 
+<!--end-answer-->
+
+
+## Changing the Budget
+
+A broader social question is whether the budget is being set at an appropriate level.  One way to examine this is to look at how the QALY outcome changes as the budget changes. 
+
+i. What is the rate of change of $f_A(x_A)$ with respect to $x_A$?   Of course, this depends on the value of $x_A$, so evaluate the   derivative at the optimal expenditure.
+#. What is the rate of change of $f_B(x_B)$  with respect to $x_B$?   Again, evaluate this at the optimal expenditure (keeping in mind   that the expenditure on B is $50-x_A$).
+#. Using the chain rule, simplify the expression $f_A(x_A) +   f_B(50-x_A)$ and show that, if you are at the optimal values of   $x_A$ and $x_B$, it must be the case that    $\frac{\partial}{\partial  x_A} f_A( x_A) =   \frac{\partial}{\partial x_B} f_B (x_B)$
+
+This suggests another way to look at the optimum, plotting out the difference between the derivatives to find inputs $x_A$ and $x_B$ where they are equal.
+
+```{r deltaD}
+dfA = D(fA(xA)~xA)
+dfB = D(fB(xB)~xB)
+graphFun( dfA(xA) - dfB(xB) ~ xA&xB, 
+          xAlim=range(0,50), xBlim=range(0,50))
+```
+ 
+
+#. There are many pairs of values $(x_A, x_B)$ on this graph where the two derivatives are equal.  Find several.  Then explain how the optimal value given the budget constraint $x_A + x_B = 50$ corresponds to just one of these.
+
+<!--begin-answer-->
+The optimal point is at the intersection of the constraint (shown in
+red) and the set of points where the two derivatives are equal.
+```{r deltaD2}
+graphFun( dfA(xA) - dfB(xB) ~ xA&xB, 
+          xA=range(0,50), xB=range(0,50)) %>%
+  graphFun( 50-xA ~ xA, color="red")
+```
+ 
+<!--end-answer-->
+
+## Political Constraints: The Art of the Possible
+
+The American Association of Allergy Activists (AAAA) has lobbied Congress to mandate that, of the 50 units of available funds,  funding for A must be  $x_A \geq 40$. How much would this constraint reduce the overall output for the two interventions combined? (Remember, if you're spending, say, 45 on A, you can't spend more than the remaining 5 on B.)
+\begin{MultipleChoice}
+\wrong{Not at all.}
+\wrong{About 10-20 QALYs.}
+\correct{About 40-60 QALYs.}
+\wrong{About 100-120 QALYs.}
+\wrong{It would actually {\bf increase} the output.}
+\end{MultipleChoice}
+
+<!--begin-answer-->
+The best QALY value that satisfies both constraints $x_A \geq 40$ and $x_A + x_B = 50$ is about 200 QALYs: a reduction of about 40 QALYs from the case where there is no political constraint imposed.
+```{r political}
+overall = makeFun( fA(xA) + fB(xB) ~xA&xB)
+graphFun(overall(xA, xB) ~ xA + xB, 
+         xA=range(0,50), xB=range(0,50)) %>%
+  gf_vline(xintercept = 40) %>%
+  graphFun( 50-xA ~ xA, color = "red",lwd=2)
+```
+ 
+<!--end-answer-->

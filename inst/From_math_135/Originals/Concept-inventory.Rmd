@@ -1,0 +1,194 @@
+---
+title: "Concept inventory questions"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+# Question 1
+
+The derivative of a function is negative everywhere on the interval $x=2$ to $x=3$.  Where on this interval does the function have its maximum value?
+
+a. At $x=2$
+#. At $x=3$
+#. Somewhere between $x=2$ and $x=3$.
+#. It does not have a maximum, since the derivative is never zero.
+#. We cannot tell if it has a maximum since we don't know where the second derivative is negative.
+
+
+# Question 2
+
+
+The duration of daylight $L$ in minutes (sunrise to sunset), $x$ kilometers north of latitude 40 is given by the function $L = f(x)$.  What are the units of the second derivative $f\ '\ '(x)$?
+
+a. kilometers per minute
+#. minutes per kilometer
+#. kilometers per minute$^2$
+#. minutes per kilometer$^2$
+#. minutes$^2$ per kilometer$^2$
+
+
+# Question 3
+
+The figure shows the graph of a function $f(x)$.  
+
+```{r echo=FALSE}
+knitr::include_graphics("/images/cci-I-one.png")
+```
+
+
+
+Which of the following is the graph of $g$, where $g(x)$ is the area under $f(x)$ to the left of $x$?
+
+  A | B 
+:----:|:-----:
+![](/images/cci-I-A.png) | ![](/images/cci-I-B.png) 
+ C | D
+![](/images/cci-I-C.png) | ![](/images/cci-I-D.png) 
+
+
+
+
+# Question 4
+
+<!-- Author: Calculus Concept Inventory, Form 5 - August, 2006 -->
+
+Let $f$ be the function defined by $f(x) = x + 2$.  Let $g$ be the function $g(u) = u + 2$.  Then which of the following is true?
+
+a. $f$ and $g$ are exactly the same function.
+#. $f$ and $g$ are different functions because $x$ and $u$ are different variables.
+#. $f$ and $g$ are different functions whenever $x$ and $u$ are different numbers.
+#. Not enough information is given to determine if $f$ and $g$ are the same function.
+
+# Question 5
+
+<!-- Author: Calculus Concept Inventory, Form 5 - August, 2006 -->
+As water is drained out of a bathtub, the volume of water $V$ and its depth in the tub $h$ change with time $t$.
+
+Which of the following is true of $\frac{dV}{dh}$ and $\frac{dV}{dt}$?
+
+a. They must be equal.
+#. They must have opposite signs.
+#. They must be negative.
+#. Both must be positive.
+#. None of these.
+
+
+# Question 6
+
+<!-- Author: Calculus Concept Inventory, Form 5 - August, 2006 -->
+
+The derivative $f\ '(x)$ of function $f(x)$ is negative everywhere.  We also know that $f(0) = 0$.  What must be true about $f(-1)$?
+
+a. $f(-1)$ is negative.
+#. $f(-1)$ is positive.
+#. $f(-1)$ is zero.
+#. Not enough information to conclude anything about $f(-1)$.
+
+
+# Question 7
+
+<!-- Author: Calculus Concept Inventory, Form 5 - August, 2006 --> 
+
+Yesterday's temperature at $t$ hours past midnight was $T(t)$ degrees F.  At noon, the temperature was $5$ deg F.  The first derivative $T\ '(t)$ reached a low of $+1$ degrees/hour at 6:00 am, then increased for the rest of day.  Which of the following is correct?
+
+a. Temperature fell in the morning and rose in the afternoon.
+#. At 1pm, the temperature was $6$ deg F.
+#. At 1pm, the temperature was $4$ deg F.
+#. The temperature was lower at 6:00 am than at any other time.
+#. The temperature rose all day.
+
+
+# Question 8
+
+A graph of a moving object's velocity against time is shown.
+
+```{r echo=FALSE}
+knitr::include_graphics("/images/cci-D-accel.png")
+```
+
+The acceleration of the object is which of the following?
+
+a. Positive everywhere
+#. Negative everywhere
+#. Zero everywhere
+#. Zero at some times but not others
+#. It cannot be determined from the given information. 
+
+# Question 9
+
+The function $f(x)$ has derivative $f\ '(x)$.  Which of the following is an equation for a line that is tangent to $f(x)$ at a point $x_0$?
+
+a. $f(x_0) + f\ '(x)$
+#.  $f(x_0) + f\ '(x_0)$
+#.  $f(x_0) + f\ '(x_0) x$
+#.  $f(x_0) + f\ '(x_0) (x-x_0)$
+#. None of the above.
+
+# Question 10
+
+<!-- Author: Calculus Concept Inventory, Form 5 - August, 2006 -->
+
+If a function is always positive, what must be true about its derivative?
+
+a. The derivative is always positive.
+#. The derivative is never negative.
+#. The derivative is increasing.
+#. The derivative is decreasing.
+#. You can't conclude anything about the derivative. 
+
+# Question 11
+
+```{r one, echo=FALSE, warning=FALSE}
+Pts <- tibble::tibble(
+  x = c(3.2,4,-1,-3,-1.5),
+  y = c(1,3.5,-4, 1.5,-2),
+  label = c("M","N","O","P","S")
+)
+f = rfun( seed=79923 )
+graphFun(f(lat, long) ~ lat + long, 
+         latlim=c(-5,5), longlim=c(-5,5), tile=FALSE) %>%
+  gf_text(y ~ x, label = ~ label, data = Pts, inherit=FALSE)
+```
+ 
+1. Draw the gradient of the function at points M, N, O, and P.
+2. Water flows downhill.  Assuming that the graph reflects the elevation of a surface on which water can flow, draw a plausible path for water flowing out of a spring located at point S.
+
+
+# Question 12
+
+A function $f(x,y)$ has partial derivatives $\partial f/\partial x$ and $\partial f / \partial y$.  At point $x=0, y=0$, the partial $\frac{\partial f}{\partial x} (0,0) > 0$.  You also know that on the rectangle $x$ in $0$ to $1$ and $y$ in $0$ to $1$, the second derivatives $\frac{\partial^2 f}{\partial x^2} > 0$
+and $\frac{\partial^2 f}{\partial y^2} > 0$.
+
+
+1. What can you say about the value $f(1,0)$?
+    a. It must be the same as $f(0,0)$.
+    #. It must be greater than $f(0,0)$.
+    #. It must be less than $f(0,0)$.
+    #. No such definite statement can be made.
+
+2. What can you say about the value $f(0,1)$?
+    a. It must be the same as $f(0,0)$.
+    #. It must be greater than $f(0,0)$.
+    #. It must be less than $f(0,0)$.
+    #. No such definite statement can be made.
+
+3. What can you say about the value $f(1,1)$?
+    a. It must be the same as $f(0,0)$.
+    #. It must be greater than $f(0,0)$.
+    #. It must be less than $f(0,0)$.
+    #. No such definite statement can be made.
+
+# Question 13
+
+A function $f(x,y)$ is defined on the rectangular region $x$ in $(0,2)$ and $y$ in $(0,4)$.  The partial derivatives $\partial f / \partial x$  and $\partial f / \partial y$ are positive everywhere in the rectangular region.
+
+What can you say about the location of the maximum value of $f(x,y)$ in the region?
+
+a. It must be at the point $x =0, y=0$.
+#. It must be at the point $x= 2, y=4$.
+#. It can be anywhere along the border $x=0$.
+#. It can be anywhere along the border $x=2$.
+#. It can be anywhere in the rectangular region.

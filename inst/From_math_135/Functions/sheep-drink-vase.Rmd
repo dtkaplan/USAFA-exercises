@@ -1,0 +1,79 @@
+---
+chapter: "none yet"
+title: "Title for sheep-drink-vase"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "sheep-drink-vase"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [solving, findZeros, third]
+id: sheep-drink-vase
+---
+
+```{r sheep-drink-vase-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Use the sandbox to translate each of the following equations to the corresponding function and use `findZeros()` to locate a solution to the equation.
+
+```{r sheep-drink-vase-sandbox, exercise=TRUE, exercise.cap="Sandbox", exercise.lines = 6}
+```
+
+
+
+
+
+```{r sheep-drink-vase-Qinline1, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "a)      $4 + 2 x = 3$",
+  c(-1.5, "+-0.5+", 1.5, 3.5),
+  random_answer_order = FALSE
+)
+```
+
+```{r sheep-drink-vase-Qinline2, echo=FALSE}
+
+etude::choose_one(
+  prompt = "b)     $x^2 -7 x + 5 = 0$",
+  c(6.028, "+6.1926+", 6.347, 6.902),
+  random_answer_order = FALSE
+)
+```
+
+```{etude}
+g = makeFun(x^2 - 7*x + 5 ~ x)
+findZeros(g(x) ~ x)
+```
+
+
+```{r sheep-drink-vase-Qinline3, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "c)     $2 x^2 + 5 = 4 x$",
+  c(1.8463, "+2.871+", 2.942, 3.142),
+  random_answer_order = FALSE
+)
+```
+
+```{etude}
+g = makeFun( 2*x^2 - 5 - 4*x ~ x )
+findZeros(g(x) ~ x, x=range(-5,5) )
+```
+
+

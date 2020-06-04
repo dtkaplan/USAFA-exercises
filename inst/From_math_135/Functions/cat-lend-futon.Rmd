@@ -1,0 +1,64 @@
+---
+chapter: "none yet"
+title: "Title for cat-lend-futon"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "cat-lend-futon"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [power-law, functions, third]
+id: cat-lend-futon
+---
+
+```{r cat-lend-futon-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` 
+
+
+
+```{r cat-lend-futon-C1}
+etude::true_or_false(
+  prompt = "1. $2^x$ is a power-law function.", 
+  FALSE)
+```
+
+
+```{r cat-lend-futon-C2}
+etude::true_or_false(
+  prompt = "2.  True or false: $3/x^2$ is a power-law function. ", 
+  TRUE)
+```
+
+
+```{r cat-lend-futon-C3}
+etude::true_or_false(
+  prompt = "3. True or false: $5\\sqrt{x}$ is a power-law function. ", 
+  TRUE)
+```
+
+```{r cat-lend-futon-C4}
+etude::choose_one(
+  prompt = "4. The gravitational force, F, between two bodies is inversely proportional to the square of the distance $d$ between them. Then ...",
+  c("$F = kd^{2}$", "+$F = kd^{-2}$+", 
+  "$F = kd^{1/2}$", "$F = kd^{-1/2}$"),
+  inline=FALSE)
+```
+
+

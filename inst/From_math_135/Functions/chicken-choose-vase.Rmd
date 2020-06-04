@@ -1,0 +1,51 @@
+---
+chapter: "none yet"
+title: "Title for chicken-choose-vase"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "chicken-choose-vase"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [first, second, third]
+id: chicken-choose-vase
+---
+
+```{r chicken-choose-vase-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The Bargain Basement store wants to sell its goods quickly.  Consequently, their policy is that a product's price $P$ reduces by 5% per day. 
+
+```{r chicken-choose-vase-QA1, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "If a jacket costs $80 today, how much will it cost in $t$ days?",
+  choices = list(
+    "$P = 80 - 5t$" = "",
+    "$P = 80 - 4t$" = "",
+    "$P = 80 - 0.05t$" = "",
+    "$P = 80 (0.05)^t$" = "",
+    "+$P = 80 (0.95)^t$+" = ""
+  )
+)
+```
+
+
+
+
+

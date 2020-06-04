@@ -1,0 +1,38 @@
+---
+title: "Roster of Function exercises"
+author: "Danny Kaplan"
+date: 2020-06-03
+output: learnr::tutorial
+tutorial:
+  id: "Roster-functions"
+  version: 0.1
+runtime: shiny_prerendered
+
+tags: [Functions, roster, third]
+id: roster-functions
+---
+
+```{r roster-functions-default, include = FALSE}
+library(etude)
+```
+
+`r etude::include_etude("deer-rise-mug.Rmd")`
+`r etude::include_etude("shark-leave-canoe.Rmd")`
+`r etude::include_etude("horse-cost-blanket.Rmd")`
+`r etude::include_etude("chicken-choose-vase.Rmd")`
+`r etude::include_etude("wolf-lead-kitchen.Rmd")`
+`r etude::include_etude("eagle-speak-pan.Rmd")`
+`r etude::include_etude("giraffe-catch-pot.Rmd")`
+`r etude::include_etude("crow-mean-dress.Rmd")`
+`r etude::include_etude("cat-lend-futon.Rmd")`
+`r etude::include_etude("lamb-talk-gloves.Rmd")`
+`r etude::include_etude("snake-choose-kayak.Rmd")`
+`r etude::include_etude("cow-hang-closet.Rmd")`
+`r etude::include_etude("snail-hold-drawer.Rmd")`
+`r etude::include_etude("finch-feel-knob.Rmd")`
+`r etude::include_etude("sheep-drink-vase.Rmd")`
+`r etude::include_etude("wolf-hurt-blanket.Rmd")`
+`r etude::include_etude("goldfish-draw-plant.Rmd")`
+`fr etude::include_etude(".Rmd")`
+`fr etude::include_etude(".Rmd")`
+`fr etude::include_etude(".Rmd")`

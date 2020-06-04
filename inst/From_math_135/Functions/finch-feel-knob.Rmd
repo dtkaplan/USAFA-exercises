@@ -1,0 +1,74 @@
+---
+chapter: "none yet"
+title: "Title for finch-feel-knob"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "finch-feel-knob"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [functions, solving, third]
+id: finch-feel-knob
+---
+
+```{r finch-feel-knob-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Use the sandbox to translate each of the following equations to the corresponding function. By examining a plot of the function, find a zero of the function, which will also give solution to each of the equations.  Zoom in on the domain of the plot to locate the solution to 3 decimal places.
+
+```{r finch-feel-knob-sandbox, exercise=TRUE, exercise.cap="Sandbox", exercise.lines = 6}
+```
+
+
+```{r finch-feel-knob-Qinline4, echo=FALSE}
+etude::choose_one(
+  prompt = "a)     $1 = \\frac{1}{x} + \\frac{1}{x^2} + \\frac{1}{x^3} +
+  \\frac{1}{x^4}$ for $x \\in  [0,10]$.",
+  c(1.823, "+1.9275+", "8.342", 9.542),
+  random_answer_order = FALSE
+) 
+```
+
+```{etude}
+g = makeFun( 1 - (1/x + 1/x^2 + 1/x^3 + 1/x^4) ~ x )
+```
+
+
+```{r finch-feel-knob-Qinline5, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "b)     $| \\sin(x^2) | = 2 e^{-x^2}$ for $x \\in  [0,1]$.",
+  c( "0.9483", "+0.9597+", "0.9652", "0.9918"),
+  random_answer_order = FALSE
+)
+```
+
+```{etude}
+g = makeFun( abs(sin(x^2)) - 2*exp(-x^2) ~ x )
+```
+
+```{r finch-feel-knob-Qinline6, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "c)     $\\sin(\\sqrt{5+7x}) = \\cos( x^2)$ for $x \\in  [-1,2]$.",
+  c("+1.5536+", "1.6573", "+1.8926+", "1.9342" ),
+  random_answer_order = FALSE
+)
+```
+
+

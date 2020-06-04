@@ -1,0 +1,51 @@
+---
+chapter: "none yet"
+title: "Title for crow-mean-dress"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "crow-mean-dress"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [power-law, allometrics, third]
+id: crow-mean-dress
+---
+
+```{r crow-mean-dress-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The surface area $S$ of a mammal satisfies the equation $S = k M^{2/3}$ where $M$ is the body mass and the constant $k$ depends on the particular species under consideration. 
+
+etudeQinline()
+
+```{r crow-mean-dress-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "1. Consider a baby and an adult. The adult's mass is $8$ times greater than the baby's. Then the adult's surface area is ...?",
+  c("The same as the baby's", "1.5 times of the baby's", "+4 times the baby's+", "8 times the baby's"),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+```{r crow-mean-dress-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "2. A human of body mass 70 kg has a surface area of 18,600  cm^3^. The constant of proportionality for humans is closest to ...?",
+  c(1, 10, 100, "+1000+"),
+  random_answer_order = FALSE
+)
+```

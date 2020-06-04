@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+inst/From_math_135/*.html
+inst/From_math_135/*_files
+inst/Exercises/*/*.html
+inst/Exercises/*_files
+
+

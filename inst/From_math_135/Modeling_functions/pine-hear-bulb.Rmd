@@ -1,0 +1,57 @@
+---
+chapter: "none yet"
+title: "Title for pine-hear-bulb"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "pine-hear-bulb"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [sines, parameters, third]
+id: pine-hear-bulb
+---
+
+```{r pine-hear-bulb-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Sales $S$ of a product oscillate seasonally between a high of $1000$ and a low of $200$. The period is 12 months and time $t$ is measured in months since January 1. Sales are at their peak in the summer and at their lowest in the winter (on January 1). 
+
+
+```{r pine-hear-bulb-Qinline1, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "Which is the best formula for $S(t)$.",
+  list(
+   "$S=600-400\\cos t$" = '',
+   "$S=-1000+\\frac{\\pi}{6}\\cos t$" = '',
+   "$S=400+600\\sin\\left(\\frac{\\pi}{6}t\\right)$" = '',
+   "$S=400-600\\cos\\left(\\frac{\\pi}{6}t\\right)$" = '',
+   "+$S=600-400\\cos\\left(\\frac{\\pi}{6}t\\right)$+" = '',
+   "$S=-\\cos\\left(\\frac{\\pi}{6}t\\right)+1000$" = ''
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+
+
+
+

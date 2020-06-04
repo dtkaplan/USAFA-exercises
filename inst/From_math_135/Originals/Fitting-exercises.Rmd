@@ -1,0 +1,116 @@
+---
+title: "Function fitting exercises"
+author: "Daniel Kaplan"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+# Exercise 1
+
+Polynomials serve as general-purpose "modeling clay," they can be set up to approximate locally a wide range of functions. One of the most common uses for this occurs when you don't actually know what function you are approximating, but where you have some data that implicitly describe a function.  Rather than trying to design a special-purpose function to match the data, it's common just to fit a polynomial to the data.  You can use the tools of linear algebra to do this. 
+
+As an example, consider the following table giving the approximate number of calories burned per minute for someone roller-blading, as a function of their weight and speed.
+
+|$s=8$ mph|$s=9$ mph|$s=10$ mph|$s=11$ mph
+:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
+$w=120$ lb| 4.2|5.8|7.4|8.9
+$w=140$ lb|5.1|6.7|8.3|9.9
+$w=160$ lb|6.1|7.7|9.2|10.8
+$w=180$ lb|7.0|8.6|10.2|11.7
+$w=200$ lb| 7.9|9.5|11.1|12.6
+
+What's nice about this format for data is that its layout is similar to that of a graph of the function, with each of the variables along one axis.  However, this format is not so convenient for the computer processing of data, so the data have been re-arranged into a case-variable format, stored in the file `rollerblade-calories.csv`.
+
+```{r}
+cals <- read.csv("http://www.mosaic-web.org/datasets/rollerblade-calories.csv")
+```
+ 
+
+Verify that the data in the CSV file are the same as those shown above.  You can do this simply by displaying the value of the data frame:
+```{r results = "hide"}
+cals
+```
+ 
+Suppose that the three variables in the file are denoted $C$, $s$, and $w$ (although in the data file they are `cals`, `speed`, and `weight`, respectively).
+
+1. Find the best fitting polynomial model $C(s,w) = a s + b$.  
+    <!--begin-answer-->
+    ```{r }
+project(cals ~ speed, data=cals)
+```
+    <!--end-answer-->
+    i. According  to this model, what is the value of $\frac{\partial C}{\partial s}$? {1.57}{0,0.0464,0.464,1.57,1.58}
+    #. What are the units of $\frac{\partial C}{\partial s}$?
+        a. There are no units
+        #. pounds per calories
+        #. mph per calories
+        #. calories per pound
+        #. *calories per mph*
+        #. mph per pound
+    #. According to this model, what is the value of $\frac{\partial C}{\partial w}$?  {0}{0,0.0464,0.464,1.57,1.58}
+
+#. Find the best fitting polynomial model $C(s,w) = a s + b w + c$.  
+    <!--begin-answer-->
+    ```{r}
+project(cals ~ speed+weight+1, data=cals)
+```
+    <!--end-answer-->
+    i. According   to this model, what is the value of $\frac{\partial C}{\partial s}$? {1.57}{0,0.0464,0.464,1.57,1.58}
+    #. According to this model, what is the value of $\frac{\partial C}{\partial w}$? {0.0464}{0,0.0464,0.464,1.57,1.58}
+    #. What are the units of $\frac{\partial C}{\partial s}$?
+        a. There are no units
+        * pounds per calories
+        * mph per calories
+        * *calories per pound*
+        * calories per mph
+        * mph per pound
+    #. According to this model, what is the value of $\frac{\partial^2 C}{\partial w^2}$?  {0}{0,0.0464,0.464,1.57,1.58}
+    #. According to this model, what is the value of $\frac{\partial^2 C}{\partial s^2}$?  {0}{0,0.0464,0.464,1.57,1.58}
+    #. According to this model, what is the value of $\frac{\partial^2  C}{\partial s \partial w}$? {0}{0,0.0464,0.464,1.57,1.58}
+
+#. Find the best fitting polynomial model $C(s,w) = a s + b w + c s w + d$.  
+    <!--begin-answer-->
+    ```{r}
+project(cals ~ speed+weight + speed*weight  + 1, data=cals)
+```
+    <!--end-answer-->
+    i. According   to this model, what is the value of $\frac{\partial C}{\partial s}$ at a speed of 10 mph and a weight of 100 pounds?
+        a. $1.598$
+        * -$0.00015$
+        * $1.598 - 0.00015$
+        * *$1.598 - 0.00015  \times 100$*
+        * $1.598 - 0.00015 \times 10$
+    #. According to this model, what is the value of $\frac{\partial C}{\partial w}$ at a speed of 10 mph and a weight of 100 lbs?
+        a. $0.0478$
+        * -$0.00015$
+        * $0.0478 - 0.00015$
+        * $0.0478 - 0.00015  \times 100$
+        * *$0.0478 - 0.00015 \times 10$*
+    #. What are the units of $\frac{\partial C}{\partial s}$?
+        a. There are no units
+        * pounds per calories
+        * mph per calories
+        * *calories per pound*
+        * calories per mph
+        * mph per pound
+    #. According to this model, what is the value of $\frac{\partial^2 C}{\partial s^2}$? {0}{0,0.0464,0.464,1.57,1.58}
+    #. According to this model, what is the value of $\frac{\partial^2  C}{\partial s \partial w}$?
+        a. $1.598$
+        * *-$0.00015$*
+        * $1.598 - 0.00015$
+        * $1.598 - 0.00015  \times 100$
+        * $1.598 - 0.00015 \times 10$
+    #. What are the units of $\frac{\partial^2 C}{\partial s \partial w}$?
+        a. There are no units
+        * pounds per square calories
+        * calories per square pound
+        * *calories per mph per pound*
+    #. What are the units of $\frac{\partial^2 C}{\partial w^2}$?
+        a. There are no units
+        * pounds per square calories
+        * calories per square pound
+        * *calories per mph per pound*
+ 

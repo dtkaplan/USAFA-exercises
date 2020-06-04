@@ -1,0 +1,634 @@
+---
+title: "Exercises on Units"
+author: "Daniel Kaplan"
+---
+
+# Physical units
+
+Physical quantities such as distance, velocity, and so on have specific dimensions.  The dimensions of $L$, $T$, and $M$ are fundamental, and other quantities have dimensions that are derived from these. 
+
+NOTE: To save space, dimensions such as $T/L^2 M^3$ are written as T/(L2.M3).
+    
+1. What is the dimension of distance? {*L*,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Velocity is (change in) distance per unit time.  What is the dimension of velocity?{L,T,M,L2,L/M,(M.L)/T,M/(T2.L),*L/T*,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Momentum is velocity times mass.  What is the dimension of   momentum? {L,T,M,L2,L/M,*(M.L)/T*,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Acceleration is (change in) velocity per unit time.  What is the   dimension of acceleration? {L,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*L/(T2*)}
+#. Force is acceleration times mass: $F = MA$ is the famous   formula.  What is the dimension of force? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*(M.L)/(T2)*,(M.L2)/(T3),L/(T2)}
+#. Kinetic Energy is often given as $\frac{1}{2} m v^2$, where $m$ is the   object's mass and $v$ is the object's velocity.  What is the   dimension of kinetic energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
+#. Potential energy of an object of {\bf mass} $m$ at a {\bf height} of $h$   with {\bf acceleration} due to gravity of $g$ is given by the   formula $m h g$.  What is the dimension of this potential energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),T/(L2),L/(T2)}
+#. Work is force times distance.  What is the dimension of work?   (Hint: you've already seen this dimension, but in another form.) {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
+#. Power is energy per time.  What is the dimension of power? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),(M.L)/(T2),*(M.L2)/(T3)*,T/(L2),L/(T2)} 
+#. Pressure is force per unit area (as in pounds per square inch).   What is the dimension of pressure? {L2,L/M,(M.L)/T,*M/(T2.L)*,L/T,(M.L2)/(T2),(M.L)/(T2),(M.L2)/(T3),L/(T2)} 
+#. Einstein famously wrote $E = m c^2$, a formula that relates the energy   content of an object to its mass $m$ and the   speed of light $c$.   What   is the dimension of $m c^2$? {M,L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),L/(T2)} 
+
+# The size of conversion factors
+
+When doing a conversion between units, it helps to know which unit is larger.  Converting from a larger to a smaller unit will mean multiplying by a conversion factor that is a flavor of 1 whose numerical value looks larger than 1.  For instance, when converting from minutes to seconds, a minute is larger and so the conversion factor will have a numerical value larger than one.  (The conversion factor is $60 \mbox{sec} / 1 \mbox{min}$, which is 1 because the top and bottom are equal but has a numerical value of 60.
+
+For each of the following, use your knowledge of units to say whether the conversion factor should have a numerical value that is **larger or smaller than one**.
+
+1. Convert seconds to hours.{smaller}{larger,smaller} 
+#. Convert meters to cm. {larger}{larger,smaller} 
+#. Convert barrels to teaspoons. {larger}{larger,smaller} 
+#. Convert grams to kilos. {smaller}{larger,smaller} 
+#. Convert acres to square inches. {larger}{larger,smaller} 
+
+# Benjamin Franklin and oil
+
+Benjamin Franklin (Publisher, scientist, and American statesman,
+1706-1790) put one teaspoon of oil on Clapham Common Pond on a windy
+day to see how it reduced the size of waves.  He observed that the oil spread out to cover about one-half acre.  
+
+In Franklin's time, no one knew about molecules.  We now know that such oil spreads out in a layer that is one molecule thick.  
+
+1. Based on Franklin's measurements, how large is an oil molecule   in nanometers.  (A nanometer is $10^{-9}$ meters.)
+    a. 0.25 nm
+    #. *2.5 nm*
+    #. 25 nm
+    #. 250 nm
+    #. 2500 nm
+
+2. How does this compare to modern estimates of the size of an oil molecule?
+    a. Franklin's estimate was much too big.
+    #. *Franklin's estimate was just about right.*
+    #. Franklin's estimate was much too small.
+
+ANSWER:
+Half an acre is 2023 square meters or 20230000 square cm.
+
+One teaspoon is 4.93 ml, that is, 4.93 cc.  
+
+The area times depth will give the volume, so 20230000*d = 4.93, so the depth in cm is 
+```{r }
+4.93 / 20230000
+```
+ 
+
+One nm is $10^7$ nm, so the depth of the oil layer is 
+```{r }
+1e7*4.93 / 20230000
+```
+
+[Motivated by ``Measuring Molecules'' in Harte (1985) \cite{harte-1985}.]
+
+# Spacing between water molecules
+
+Estimate the average spacing between H$_2$O molecules in liquid water by making use of two pieces of information: (a) liquid water has a density of 1 g/cm$^3$, and (b) every 18 g of water contain Avogadro's number ($6.02 \times\ 10^{23}$) of H$_2$O molecules.
+
+Hint: First, calculate the number $n$ of molecules in 1 cubic cm.  The average spacing will be $1/n^{1/3}$ --- the reciprocal of the cube-root of $n$.  (Why?  Imagine laying the molecules out on a 3-d grid of evenly spaced points.  If there were $m$ grid points along an edge, the total number of grid points in the volume would be $n = m^3$.  Now if there are $m$ points on an edge of length 1 cm, the spacing between points is $1/m$.)
+
+
+The choices are given in microns: a micron is 1/1000 of a millimeter.
+
+a. 0.03 microns
+#. 0.003 microns
+#. *0.0003 microns*
+#. 0.00003 microns
+#. 0.000003 microns
+#. 0.0000003 microns
+
+# Gasoline usage in the US
+
+Estimate how many gallons of gasoline are used by automobiles in the US each year.  Make this estimate from some basic information: how many passenger cars there are in the US (about 250 million), how far they are driven each year (about 10000 miles) , how much gasoline is used per mile (about 15-20 miles per gallon). 
+
+Then find a source for gasoline use data and compare your estimate to that of the source.
+
+# Converting speed
+
+
+1. Which of these is a flavor of 1 to change ft to miles?
+    a. $\frac{5280 mi}{1 ft}$
+    #. *$\frac{1 mi}{5280 ft}$*
+    #. $\frac{5280 ft}{1 mi}$
+    #. $\frac{1 ft}{5280 mi}$
+
+#. Which of these is a flavor of 1 to change $\frac{1}{s}$ to $\frac{1}{hr}$?
+    a. $\frac{1 hr}{3600 s}$
+    #. $\frac{3600 hr}{1 s}$
+    #. $\frac{1 s}{3600 hr}$
+    #. *$\frac{3600 s}{1 hr}$*
+
+#. What's the value of $58.8 ft/s$ converted to miles per hour? {40.1}{28.3,39.4,40.1,47.1,58.8,86.2,1.12e9 } miles per hour.
+
+# Converting money
+
+When converting dimensionally compatible unit $A$ to unit $B$ , you multiply by a flavor of the number 1 arranged to be in units that cancel out the $A$ and leave the $B$.  
+
+For example, if you are converting US Dollars (USD) to Japanese Yen (JPY) , you are going to multiply by a flavor of 1 that has JPY in the numerator and USD on the denominator.  
+
+In the case of money, the exchange rate is a reasonable way to do the conversion.  This changes from day to day (and minute to minute!), but you can easily find the current value on the web.  As this is being written, (Tues 27 Aug, 2019 at 12:03 pm CDT), the exchange rate is 105.7 JPY to 1 USD, so the conversion factor will be 105.7 JPY/USD.
+
+
+In doing such a conversion, it's easy to make the mistake of inverting the conversion ratio, putting the wrong units on top.  So, if I am converting \$1000 USD to Yen, the correct conversion is $1000 \mbox{USD} \times 105.7 \mbox{JPY}/\mbox{USD} = 105,700 \mbox{JPY}$.  The common mistake would be to look up 1 JPY as 0.0095 USD and do the conversion as $1000 \times 0.0095 = 9.5$.  The multiplication is quite fine in terms of pure numbers, but the resulting unit will be $\mbox{USD} \times \mbox{USD}/\mbox{JPY}$.
+
+1. When you convert USD to JPY, what should be the units of the result? 
+    a. USD
+    #. *JPY*
+    #. $\mbox{USD}^2/\mbox{JPY}$
+    #. $\mbox{USD}/\mbox{JPY}^2$
+    #. unitless
+
+#. What are the **units** of the amount $11.8 \mbox{USD} \times \mbox{USD}/\mbox{JPY}$.
+    a. USD
+    #. JPY
+    #. *$\mbox{USD}^2/\mbox{JPY}$*
+    #. $\mbox{USD}/\mbox{JPY}^2$
+    #. unitless
+
+#. What is the **dimension** of the amount $11.8 \mbox{USD} \times \mbox{USD}/\mbox{JPY}$.
+{money}{dimensionless,USD,JPY,money}
+
+# Air drag
+
+A very common model for the force of fluid resistance on a moving object (a bike, a car, a plane) is
+$$F_D = \frac{1}{2} \rho v^2 C_d A$$
+where $\rho$ is the density of the fluid (dimension $M L^{-3}$), $v$ is the speed of the object relative to the fluid (dimension $L T^{-1}$), $A$ is the cross-sectional area of the object (dimension: it's an area, so you figure it out!), and $C_d$ is a drag coefficient that characterizes the "efficiency" of shape --- in other words how "streamlined" the shape is.  
+
+What is the dimension of the drag coefficient $C_d$?
+
+a. *Dimensionless*
+#. $M T^{-1}$, that is, $M/T$
+#. $L T^{-1}$, that is, $L/T$
+#. $L^{-2}$, that is, $1/L^2$
+
+# Raindrops
+
+Raindrops fall from several thousand feet, yet they are not travelling very fast when they hit the ground.  This is because of air resistance -- an upward force -- while they fall.
+
+In building a model of air resistance on raindrops, you decide that the important factors are the viscosity of air $\mu$, the velocity $v$ of the drop, and the radius $r$ of the drop.  Find the exponents $a$, $b$, and $c$ to make this expression for force $F$ dimensionally consistent: $$ F = k \mu^a v^b r^c$$ where $k$ is a dimensionless constant.
+
+1. $a = $ {0}{-4,-3,-2,-1,0,1,2,3,4}
+2. $b = $ {0}{-4,-3,-2,-1,0,1,2,3,4}
+3. $c = $ {0}{-4,-3,-2,-1,0,1,2,3,4}
+
+From Question 8.8 in Giordano, Weir, and Fox, {\em A First Course in Mathematical Modeling} 3/e.
+
+# Gravity and location
+
+Newton's law of gravitation states that the force of attraction between bodies of mass $m_1$ and $m_2$ is inversely proportional to the square of the distance $r$ between them:
+$$ F = \frac{G m_1 m_2}{r^2} .$$
+
+The universal gravitational constant describes the size of the gravitational force.  
+
+1. What must be the dimensions of $G$ to make the expression for force dimensionally consistent?
+
+a. *T$^{-2}$ L$^{3}$ M$^{-1}$*
+#. T$^{-1}$ L$^{2}$ M$^{1}$
+#. T$^{-1}$ L$^{2}$ M$^{-1}$
+
+
+The equation for the position $s$ of an object being acted on by gravity is a familiar formula to physics students:
+$$s = s_0 + v_0 t - 0.5 g t^2$$
+where $t$ is time, $s_0$ is the initial position (that is, position at $t=0$) , $v_0$ is the initial velocity, and $g$ is the acceleration due to gravity.
+
+2. Using the dimensions of position, velocity, acceleration, and time,  answer the following questions:
+    i. The equation for position is dimensionally consistent. \TrueOrFalse{T}
+    #. Which of these possible equations for the velocity of the object is dimensionally consistent?
+    #. $v = s_0^2 + g t^2$
+    #. $v = v_0 + g t^2$
+    #. *$v = v_0 + g t$*
+
+From Questions 8.1 and 8.3 in Giordano, Weir, and Fox, {\em A First Course in Mathematical Modeling} 3/e.
+
+# What's pi?
+
+Everybody learns that $\pi \approx 3.14159\ldots$  But what are the dimensions?  What are the units?
+
+Of course, $\pi$ is a number.  But it also has physical meaning: among
+other things, $\pi$ is the ratio of the circumference of a circle to the diameter.  Each of these is a quantity that can be measured and has dimension $L$.  
+
+Let's take a particular circle, say one that is $10cm$ in diameter.  The circumference is $31.4159\  cm$ and the ratio is $\frac{31.4159 cm}{10 cm} = \pi$.
+
+#. What is the dimension of the ratio of the circumference to the diameter?
+    a. *It's dimensionless.*
+    #. $L^{-2}$, that is, $1/L^2$
+    #. $L^{-1}$, that is, $1/L$
+    #. $L^1$, that is, $L$
+    #. $L^2$
+
+Now suppose that you measured the circumference of the circle in cm, and the diameter in inches.  (Admittedly, this would be an odd thing to do.)  For the circle with a circumference of $31.4159 cm$, the diameter will be $3.937 in$, which is the equivalent of $10cm$.  Taking the ratio of circumference to diameter gives
+$$\frac{31.4159 cm}{3.937 in} = 7.980 \frac{cm}{in}.$$
+
+This too is $\pi$, but it has a different numerical value because it is being expressed in different units.  So, just as your own height has different numerical values depending on whether you measure it in meters or inches, the number that is the ratio of circumference to radius can have different numerical values depending on the units chosen.
+
+1. What's the dimension of the quantity $7.980 \frac{cm}{in}$?
+    a. *It's dimensionless.*
+    #. $L^{-2}$, that is, $1/L^2$
+    #. $L^{-1}$, that is, $1/L$
+    #. $L^1$, that is, $L$
+    #. $L^2$
+
+#. What's the value of $\pi$ when in units of $\frac{mm}{cm}$? ($mm$ stands for millimeters,  $cm$ for centimeters.) {31.4159}{0.314159,3.14159,31.4159,314.159}
+
+ANSWER:
+Think of a circle that is $1 cm$ in diameter.  Its circumference will be $3.14159 cm$ or $31.4159 mm$.  So the ratio of circumference to diameter is
+$\frac{31.4159 mm}{1 cm}$.
+
+#. What's the value of $\pi$ when in units of $\frac{m}{mi}$? ($m$ stands for meters, $mi$ for miles.) {5055.9}{0.0001977,3.14159,204.56,5055.9,75426}
+
+ANSWER:
+Think of a circle with a diameter of $1 mi$.  It will have a circumference of $3.14159 mi$, or, converting to meters at a rate of $1 mi = 1609.344 m$ gives a circumference of $5055.903 m$.  So, $\pi = 5055.903 \frac{m}{mi}$.
+
+
+#. How come nobody sensible ever uses a numerical value for $\pi$ other than $3.14159\ldots$?
+    #. There's a massive international conspiracy, as documented by Dan Brown.
+    #. *It's nice to express things so that units cancel out whenever possible.*
+    #. Metric units should always be used.
+
+ANSWER:
+If there is a conspiracy, it's a conspiracy of common sense.  No point in remembering many different values for $\pi$ when they all say the same thing.  There's no reason to measure the circumference and the diameter in different units.  This is particularly true because each has dimension $L$ and the two measurements are approximately the same scale.  Still, if there was a good reason to make the measurements in different units, you could always convert on measurement to the units given by the other.
+
+#. Just for fun, let's explore the relationship between the area of a circle and the radius: $A = \pi r^2$.  In other words, $\pi = A / r^2$.
+
+What's the value of $\pi$ when in units of $\frac{acres}{m^2}$. (That is, acres per square-meter.{0.0007763}{0.00000001392,0.0007763,3.14159,276.4,1288}
+ 
+ANSWER:
+Think of a circle with a radius of $1 m$?  It will have an area of 
+$3.14159 m^2$.  Since one square meter is 0.0002471 acres, the area will be $0.0007763 m^2$.  So $\pi = 0.0007763 \frac{acres}{ m^2}$.
+
+# Globalization and power
+
+Critics of globalization often make the following comparison to prove the excessive power of multinational corporations:
+
+In Nigeria, a relatively economically strong country, the annual GDP [gross domestic product] is $99 billion. The net worth of Exxon is $119 billion. "When multinationals have a net worth higher than the GDP of the country in which they operate, what kind of power relationship are we talking about?" asks Laura Morosini. 
+
+There are many objections one might raise to this simple comparison in terms of economics and ethics. For instance, is the suggestion that no company be larger than any country?  That might be very limiting, considering that even  relatively rich countries such as Luxembourg have very small populations and correspondingly small GDPs.
+
+The question here concerns a basic error in the mathematical logic of the comparison made above.  What is it?
+
+
+ANSWER:
+The two quantities being compared, Exxon's net worth and Nigeria's GDP,  have different dimensions. One is in dollars, the other is in dollars per year. 
+
+Exxon's worth was accumulated over decades.  Why compare this to just one year's projection in Nigeria.
+
+[Suggested by Chad Topaz, adopted from Sanjoy Mahajan]
+
+
+# Units in formulas
+
+Consider a triangle with sides of length $a$, $b$, and $c$.  Heron's formula for the area $A$ of the triangle is  $$ A = \sqrt{s (s-a) (s-b) (s-c)}$$ where $s$ is the semiperimeter of the triangle: $s=(a+b+c)/2$, called such because it's half the perimeter $a+b+c$.
+
+1. What is the dimension of the side lengths $a$ or $b$ or $c$? {*L*,T,M,L2,L3,L41/L,1/L2,dimensionless}
+#. What is the dimension of the semiperimeter $s$? {*L*,T,M,L2,L3,L41/L,1/L2,dimensionless}
+#. What is the dimension of the area $A$? {L,T,M,*L2*,L3,L4,1/L,1/L2,dimensionless}
+#. What is the dimension of $s(s-a)(s-b)(s-c)$? {L,T,M,*L2*,L3,L4,1/L,1/L2,dimensionless}
+#. Does the formula make sense in terms of units? {*yes*,no}
+#. For a triangle with edge lengths $a=3$, $b=4$, $c=5$, what does the formula say the area is? {3,*6*,9,12,15}
+
+# Energy and Power
+
+A joule is an amount of energy and a watt is a rate at which energy is used, defined as $1 \hbox{W} = 1 \hbox{J}/\hbox{s}$.  How many joules of energy are required to run a 100 W light bulb for one day?  Burning coal yields about $30\cdot 10^6$ J of energy per kilogram of coal burned.  Assuming that the coal power plant is 30% efficient, how much coal has to be burned to light the bulb for a day?^[from Archer]
+
+# What is the efficiency of energy production from growing corn?
+
+Assume that sunlight deposits $250 \hbox{W}/\hbox{m}^2$ of energy on a corn field, averaging over the day/night cycle.  There are 4.186 in a calorie.  How many calories of energy are deposited on a square meter of field over the growing season?  Now guess how many ears of corn grow per square meter, and guess what is the number of calories you get from eating an ear of corn.  The word "calorie," when you see it on a food label, actually means "kilocalories." thousands of calories, so if you guess 100 food-label calories, you are actually guessing 100,000 true calories or 100 kcal.  Compare sunlight energy with the corn energy to get efficiency.^[from Archer]
+
+# Electricity from the Hoover Dam
+
+The Hoover Dam produces $2\cdot 10^9$W of electricity.  It is composed of $7\cdot 10^9$kg of concrete.  To produce 1 kg of concrete requires 1 MJ of energy.  How much energy did it take to produce the dam?  How long is the "energy payback time" for the dam? 
+
+The area of Lake Mead, formed by Hoover Dam, is roughly 200 mi^2^ (depending on drought conditions).  Assuming that $250 \hbox{W}/\hbox{m}^2$ of sunlight falls on Lake Mead, how much energy could you produce if instead of the lake you installed solar cells that were 12% efficient? ^[from Archer]
+
+# Payback from solar 
+
+It takes approximately 600 kWh (kilo-watt hours) of energy to manufacture 1 $\hbox{m}^2$ of crystalline silicon photovoltaic cell.  Assume the solar cell is 12% efficient, and calculate how long it would take, given $250 \hbox{W}/\hbox{m}^2$ of sunlight, for the solar cell to repay the energy it cost for its manufacture.^[from Archer]
+
+# Waterfallsl and energy DRAFT
+
+DRAFT DRAFT DRAFT
+
+The power in a waterfall.  Give some heights and volume flows of some famous ones and ask students to compute the power in watts.  If we give heights in feet and flows in cubic feet per second (as might be done in some American tables) there is even a conversion to be done.   Or - just have students figure out how much coal per second has to be burnt to get the equivalent of these waterfalls.
+
+# Curved railroad tracks
+
+The sharpness of turn in a path can be measured by the radius of curvature, which is the radius
+of a circle that grazes the curving path.  
+
+\medskip
+
+![](/images/traincurve.jpg}}
+<!-- Source: http://www.panoramio.com/photo/40571470 -->
+
+Railroads typically have very gradual curves, that is, curves with a large radius of curvature.  A formula for the minimum acceptable radius of curvature $r$ for the track of a high-speed train is:
+$$ r =\beta \frac{G v^2}{g(ha + hb)}$$
+where $G$ is the rail gauge (the distance between the two rails), $v$ is speed of the train, $g$ is the gravitational acceleration, and $ha$ and $hb$ are ``cant" and ``cant deficiency" respectively.  $\beta$ is a dimensionless number.  ``Cant" is the amount by which the track is banked or sloped, measured as the difference in elevation between the two rails at the curve ---  160mm is a typical value.  ``Cant deficiency" is the amount by which cant would need to be raised to offset the centrifugal force on the train --- 100 mm is a typical value.
+
+1. Show that the formula for $r(v)$ is dimensionally consistent.
+2. The standard gauge (used in North America, most of Europe, China, North Africa and Australia) is 4 feet 8.5 inches.  Convert this to mm for use in the formula.
+3. On a standard-gauge track, using the typical values of 160mm for cant and 100mm for cant deficiency, and the standard value for the acceleration due to gravity at the surface of the Earth (look it up!), the minimum acceptable radius for a train travelling at up to 200 km/h works out to be 1800 m.  Use this information to calculate a numerical value for $\beta$.  State what are the units of your $\beta$ and explain how $\beta$ might have units even though it is dimensionless.
+
+# Engines big and small
+
+Internal combustion engines come in a wide range of size.  There are thumb-sized gasoline engines for model airplanes, suitcase-sized automobile engines, and house-sized engines for ships and electrical power plants.  Small engines tend to run very fast (they whine),  whereas large engines are much slower (they rumble).   The speed that an engine runs at is usually measured by ``revolutions per minute'': rpm, denoted by the Greek letter ``omega'', $\omega$.
+
+```{r echo=FALSE, fig.cap="A cross section of  one cylinder in an internal combustion engine"}
+knitr::include_graphics("/images/engine-cylinder.png")
+```
+
+<!--% Source http://www.howstuffworks.com/engine1.htm accessed on March 22, 2012-->
+
+
+In this mini-modeling project, you are going to build a simple, first-principle model of how the power generated by an engine relates to the rpm speed.
+
+Here are the basic principles:
+
+* Pistons reciprocate up-and-down in a sine-wave motion.  The ``rpm'' $\omega$ is inversely related to the period.
+* The power generated by an engine is the product of the ``displacement'' and the ``rpm.''  The displacement is a volume.
+* The engine must be strong enough to hold together.  An important component is the connecting rod.  The connecting rod must be strong enough to withstand the force on the piston as it goes through the cycle.
+* The force on the connecting rod generated by the piston is the product of its acceleration and its mass: $F=ma$.
+
+
+Imagine two different size engines with the same shape.  To measure the size, let $L$ be the length of the piston stroke --- how far it moves up and down.  The {\bf position} of the piston at time $t$ is
+$$ x(t) = \frac{L}{2} \sin( 2 \pi \omega t )  .$$
+
+1. Find a formula for the {\bf acceleration} of the piston.
+#. Find the peak acceleration of the piston in terms of $L$ and rpm $\omega$.
+#. The mass of the piston is proportional to its volume, that is, proportional to $L^3$. Find the peak {\bf force} of the piston, using $F=ma$.
+#. The breaking strength of the connecting rod is proportional to the cross sectional area of the rod, that is $L^2$.   Set the peak force proportional to the strength to get a relationship between $L$ and rpm $\omega$.
+#. The volume of the cylinder is proportional to $L^3$.  The power of the engine is therefore proportional to $L^3 \times \omega$.  Use the relationship between $\omega$ and $L$ to find how power is related to $L$.
+#. An important measure of engines is the power per mass.  The mass of the engine is proportional to $L^3$.  Use this to find how the power per mass depends on $L$. 
+#. Based on your answer to the previous question, do smaller or larger engines have more power per mass?
+
+
+# Short Questions
+
+1. Which of the following is not a primary dimension?
+    a. Length
+    #. *Force*
+    #. Amount of substance
+    #. Time
+
+#. Which of the following is not a dimension?
+    a. Mass
+    #. Time
+    #. *Meters*
+    
+#. Which of these is a flavor of 1 to change 1 second to one hour?
+
+    a. $\frac{1\,hr}{3600\,s}$
+    #. $\frac{3600\,hr}{1\,s}$
+    #. $\frac{1\,s}{3600\,hr}$
+    #. *$\frac{3600\,s}{1\,hr}$*
+    
+#. Which of these is a flavor of 1 to change feet to miles?
+
+    a. $\frac{5280\,mi}{1\,ft}$
+    #. *$\frac{1\,mi}{5280\,ft}$*
+    #. $\frac{5280\,ft}{1\,mi}$
+    #. $\frac{1\,ft}{5280\,mi}$
+    
+#. What's the value of 58.8 feet/sec$ converted to miles per hour? You should know that there are 5280 feet per mile and 3600 seconds per hour.
+
+    a. $28.3$
+    #. $39.4$
+    #. *$40.1$*
+    #. $47.1$
+    #. $58.8$
+    #. $86.2$
+    #. $1.12\cdot 10^9$
+    
+#. Converting from minutes to seconds can be done by multiplying a quantity in minutes by a conversion factor seconds / minute. Of course you can't just divide a second by a minute to get the conversion factor: conversion factors always have to be flavors of one. So the conversion factor will be a number of seconds equivalent to a minute, divided by a minute., a minute is larger and so the conversion factor will have a numerical value larger than one. Nevertheless, the conversion factor itself is a flavor of 1 because the top and bottom are equal, but is written of 60 sec/min. 
+
+    1. For converting acres to square inches, the conversion factor is XX inches^2^ / acres. Is the number XX larger than one or smaller than one?
+
+        a. *Larger than one*
+        #. Smaller than one
+        
+    2. For converting teaspoons to barrels, the conversion factor will be YY barrels / teaspoon? Is the number YY larger than one or smaller than one?
+    
+        a. Larger than one
+        #. *Smaller than one*
+
+#. Pressure is force per unit area. What are the dimensions of pressure?
+
+    a. $L M^{-1}$
+    #. $M L T^{-1}$
+    #. *$M L^{-1} T^{-2}$*
+    #. $L T^{-1}$
+    #. $M L^2 T^{-2}$
+    #. $M L T^{-2}$
+    #. $M L^2 T^{-3}$
+    #. $L T^{-2}$
+
+#. The kinetic energy of an object is proportional to $m v^2$ where $m$ is mass and $v$ is velocity. What are the dimensions of energy?
+
+    a. $L M^{-1}$
+    #. $M L T^{-1}$
+    #. $M L^{-1} T^{-2}$
+    #. $L T^{-1}$
+    #. *$M L^2 T^{-2}$*
+    #. $M L T^{-2}$
+    #. $M L^2 T^{-3}$
+    #. $L T^{-2}$
+    
+#. The position of a car along a road can be specified by the positive-or-negative distance from a given point. What are the dimensions of position? 
+
+    a. $L$
+    #. $T$
+    #. $M$
+    
+#. Velocity is the derivative of position with respect to time. What are the dimensions of velocity?
+
+    a. $L$
+    #. $T$
+    #. $M$
+    #. $L M^{-1}$
+    #. $M L T^{-1}$
+    #. $M L^{-1} T^{-2}$
+    #. *$L T^{-1}*$
+    #. $M L^2 T^{-3}$
+    #. $T L^{-2}$
+    #. $L T^{-2}$
+    
+#. Acceleration is the derivative of velocity with respect to time. What are the dimensions of acceleration?
+
+    a. $L$
+    #. $T$
+    #. $M$
+    #. $L M^{-1}$
+    #. $M L T^{-1}$
+    #. $M L^{-1} T^{-2}$
+    #. $L T^{-1}$
+    #. $M L^2 T^{-3}$
+    #. $T L^{-2}$
+    #. *$L T^{-2}$*
+
+## Words and Units
+
+
+Identify each of the following dimensions with the appropriate English
+word.
+
+
+1. M$^0$ L$^1$ T$^{-2}$: 
+{acceleration}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^1$ L$^1$ T$^{-2}$: 
+{force}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^0$ L$^1$ T$^{-1}$: 
+{velocity}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^1$ L$^2$ T$^{-3}$: 
+{power}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^0$ L$^1$ T$^{0}$: 
+{position}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^1$ L$^{-1}$ T$^{-2}$: 
+{pressure}{acceleration,energy,force,position,power,pressure,velocity}
+
+#. M$^1$ L$^2$ T$^{-2}$: 
+{energy}{acceleration,energy,force,position,power,pressure,velocity}
+
+## Physical  units
+
+
+Each of the following units on the left can be converted to one of the units on the right.  Circle the commensurate unit on the right.
+
+Keep in mind that units like "foot$\cdot$pound" and "acre$\cdot$feet" involve multiplication, whereas "acre/foot" involves division.
+
+1. Watt to {Horsepower}{Joule.sec,BTU,Horsepower}
+#. Foot$\cdot$pound to {Joule}{Newton,Joule,Horsepower}
+#. Kwh to {Food.Pound}{Foot.Pound,Horsepower,Meter}
+#. Newton to {Pound}{Kilogram,Pound,Yard}
+#. Radian to {Degree}{Meter,Acre,Degree}
+#. Parsec to {Mile}{Year,Mile,Degree}
+#. Light-year to {Mile}{Mile,Year,Foot.Pound}
+#. Pascal$\cdot$liter to {Joule}{Joule, Watt, Meter}
+#. Acre$\cdot$foot to  {Liter}{Yards,Square Meter,Liter}
+#. Liters per 100 km (which is used for fuel economy in Europe) to {Acre}{Miles per gallon,Acre,Meter}
+
+## Everyday units
+
+
+Each of the following units on the left can be converted to one of the units on the right.  Circle the commensurate unit on the right.
+
+Keep in mind that units like "foot$\cdot$pound" and "acre$\cdot$feet" involve multiplication, whereas "acre/foot" involves division.  Pascal is the metric unit of pressure.  BTU is a traditional unit of energy; it stands for "British Thermal Unit."
+
+1.  Newton to {Pound}{Kilogram,Pound,Yard}
+#.  Foot$\cdot$pound to {Joule}{Newton,Joule,Horsepower}
+#.  Watt to {Horsepower}{Joule.sec,BTU,Horsepower}
+#.  Kwh to {BTU}{BTU,Horsepower,Meter}
+#.  Pascal$\cdot$liter to {Joule}{Joule, Watt, Meter}
+#.  Acre$\cdot$foot to {Liter}{Yards,{Square Meter},Liter}
+
+
+## Not your everyday units
+
+Here are a few fanciful units that are physically meaningful, but not widely used, if at all.  Choose the corresponding commensurate unit.
+
+Keep in mind that units like "liter$\cdot$feet" and "PSI$\cdot$hectare" involve multiplication, whereas "acre/foot" involves division.  A PSI is a unit of pressure: ``pounds per square inch".  An acre is a unit of area, as is a hectare.
+
+
+1. Acre/Foot is commensurate with {Meter}{Hour,Hectare,Meter}
+#. Liter$\cdot$feet is commensurate with {Square-Acres}{Meters,Gallons,Square-Acres}
+#. PSI$\cdot$hectare is commensurate with
+  {Newton}{Yard,Kilogram,Newton}
+
+## Fermi problems
+
+See `ash-catch-painting.Rmd`.
+
+## Rocket science
+
+%% Author: Daniel Kaplan
+%% Subject: Exam problem on integration and units
+
+On April 12, 2012, North Korea launched its three-stage Unha-3 rocket.  According to news reports, the rocket broke up at an altitude of 100 miles after about 1 minute of flight.  
+
+```{r missle, fig.cap="Photo credit: Bobby Yip/Reuters", echo=FALSE}
+knitr::include_graphics("/images/unha3.jpg")
+```
+
+This is background to help you understand the setting of the problem.  
+
+The thrust (force) of the first stage engine is estimated to be 1,200,000 Newtons, while the mass of the entire rocket is 85,000 kg. On its own, the upward 1,200,000 N force on 85,000 kg mass would give an acceleration of 14.1 m/s$^2$.  But there is also the downward force of gravity, corresponding to an acceleration of 9.8 m/s$^2$.  Taken together,  the initial acceleration of the rocket, at the moment of launch, is $14.1 - 9.8$ m/s$^2$, or roughly 4 m/s$^2$ upward.  
+
+As the fuel burns, the rocket mass is reduced while the engine thrust remains constant, so acceleration increases in a steady fashion. (The burn time for the first stage of the rocket is approximately 120 seconds, so the break up occurred during the first-stage burn.)
+
+Now, to the problem itself ...
+
+The acceleration versus time of the rocket can be approximated by a linear function:
+
+```{tikz, second, echo=FALSE, fig.cap = "For Problem 1", fig.ext = 'png', cache=TRUE}
+\begin{tikzpicture}[y=.7cm, x=.7cm,font=\sffamily]
+ 	%axis
+	\draw (0,0) -- coordinate (x axis mid) (8,0);
+    	\draw (0,0) -- coordinate (y axis mid) (0,8);
+    	%ticks
+        \draw (.5cm,1pt) -- (.5cm,-3pt) node[anchor=north] {0};
+        \draw (5cm,1pt) -- (5cm,-3pt) node[anchor=north] {60};
+        %\draw (1pt,.5cm) -- (-3pt,.5cm) node[anchor=east] {0};
+        \draw (1pt,1cm) -- (-3pt,1cm) node[anchor=east] {4};
+        \draw (1pt,5cm) -- (-3pt,5cm) node[anchor=east] {$a_{breakup}$};
+        %labels      
+	\node[below=0.8cm] at (x axis mid) {Time (s)};
+	\node[rotate=90, above=0.8cm] at (y axis mid) {Accel (m/s$^2$)};
+        %function
+       \draw[line width=.8mm,cap=round] (.5cm,1cm) -- (5cm,5cm);
+\end{tikzpicture}
+```
+% $$ a(t) = 4 + b t .$$
+
+The goal of this problem is to find the acceleration at the time of the rocket's break-up at $t=60$s.
+
+What we know is that the position, $p(t)$ was 100 mi at $t=60$s.
+
+1. Convert 100 mi to meters.  There are 1609 meters in a mile.
+
+<!-- begin-answer -->
+There are 1,609,000 meters in 100 miles.
+<!-- end-answer -->
+
+#. Here is a chain of functions and their derivatives.  Note that   the coefficients like $\frac{2}{3}$ carry units, so that each   quantity is dimensionally consistent.  When $t$ is in seconds, the   units of position will be $m$, velocity $m/s$, and so on.
+$$ \frac{2}{3} t^3 + \frac{1}{24} b t^4 \Rightarrow 2 t^2 + \frac{1}{6} b t^3 \Rightarrow 4 t + \frac{1}{2} b t^2 
+\Rightarrow  4 + b t \Rightarrow b \Rightarrow 0$$
+
+1. Circle the function that corresponds to the model of the Unha-3 rocket acceleration.  Label it clearly "accel."
+#.  Circle the function that corresponds to the position of the Unha-3 rocket.  Label it clearly "pos."
+<!-- begin-answer -->
+The graph of acceleration versus time corresponds to  $4 + b t$.
+
+Acceleration is the 2nd derivative of position with respect to time, so the formula that corresponds to an acceleration of $4 + b t$ is $2 t^2 + \frac{1}{6} b t^3$.
+<!-- end-answer -->
+
+
+#.  Using the fact that the position was 100 miles at the breakup time $t=60$s, find a numerical value of the parameter $b$.  Make sure to state clearly what are the units of $b$.  Write down the numerical value in a form such that ``meters'' and not ``miles'' are involved.
+
+
+
+<!-- begin-answer -->
+Break-up occurred at $t=60$s, at which time the position was 1,600,000 m.  So, $2 \cdot 60^2 + \frac{1}{6} b \cdot 60^3 = 1609000$, giving $b \approx 6 \cdot 1600000/ 60^3 \approx 44.4$.  The units of b are m/ s$^3$.
+<!-- end-answer -->
+
+#.  Using the numerical value for $b$, find the acceleration $a_{breakup}$ of the rocket at the time of break-up.
+
+
+<!-- begin-answer -->
+Plugging in the value $b = 44.4$ m/s$^3$ into the formula for acceleration $4 + b t$ at $t=60$ gives $a_{breakup} = 4 + 44.4 \cdot 60 = 2668$m/s
+<!-- end-answer -->
+
+#. A standard way to measure acceleration of planes and rockets is   in terms of ``g", the acceleration due to gravity.  An acceleration   of 30 m/s$^2$ corresponds to $30/9.8 = 3.06$ g.  Untrained people   loose consciousness at around 5 g, while trained pilots can stay   conscious at up to 10 g.  A sustained   acceleration    of around 20 g is considered life-threatening.  How many g's was the   acceleration of the    Unha-3 missile at the time of break-up?
+
+
+<!-- begin-answer -->
+$2668/9.8 \approx 276$ g.  This is much larger than could be survived by a person.
+<!-- end-answer -->
+
+
+<!-- begin-answer -->
+COMMENTS IN DRAFT.  The acceleration function will likely not be linear, since mass is decreasing linearly and acceleration goes as $F/m$.  This might lead to a modeling problem: how important is this nonlinearity?  How good an approximation to the actual $1/m$ function is the linear function?
+<!-- end-answer -->
+
+
+
+
+ 
+
+
+## Sources
+
+1. David Archer, *Global Warming:  understanding the forecast*, Blackwell, 2007.
+

@@ -1,0 +1,222 @@
+---
+chapter: "Chapter 1"
+title: "R Techniques for KM Chapter 1"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "cheetah-chew-stove"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-05-21 
+tags: [first, second, third]
+id: cheetah-chew-stove
+---
+
+```{r cheetah-chew-stove-setup, include = FALSE}
+SDSdata::sds_setup()
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+data("Chapter1", package = "mosaicUSAFA")
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+## Talking about computer expressions
+
+As you know, *names* are very important in R: function names, argument names, variable names, etc.
+
+When we want to show you how to form a command for a given purpose, there will often be places where we want to say, "Put your own value here." Traditionally, this is called "fill in the blank." The notation we'll use for this involves pairs of doubled angle brackets: `<<like_this>>`. We'll call this a *blank*. You can take literally any parts of the expression outside of blanks. 
+
+- `slice_plot(sin(t) ~ t, domain(t = <<your_domain>>))`. There just one blank here, which you could replace with something like `range(0, 10)`.
+- `slice_plot(<<tilde_expression_in_t>>, domain(t = <<your_domain>>))`. There are two blanks, you would need to fill in both to have a valid command.
+
+## Creating a function with tilde expressions
+
+## Graphing a function
+
+## Basics of data
+
+Calculus textbooks have an unfortunate habit of treating data without respecting universal conventions of data science. We're not going to do that. On the other hand, we'll keep things as simple as possible, so there are just a few things you'll need to know about data at this point:
+
+1. Data is stored in *data frames*, a spreadsheet like organization.
+2. It's helpful to give each data frame a name. We've done that for you already, so you can refer to them simply by name.
+    - Our convention is that names of data frames will start with upper-case levels, like `Coal_prices`.
+    - The variables in data will also have names. Our convention is to start the variable names with lower-case letters, like `year`.
+    - In typical uses, names of variables and data frames are never quoted: you just give the unquoted name.
+3. When calling a graphics function (or the other kinds of functions we'll encounter in later chapters), you'll usually see the name of the data frame appear in the `data = ` argument, while variable names usually appear in tilde expressions.
+
+Simple operations to look at data:
+
+- `<<frame_name>>` will return the data frame.
+- `head(<<frame_name>>, n = <<#>>)` will return the first # lines of the data frame.
+- `nrow(<<frame_name>>)` will return the number of rows in the data frame.
+
+
+
+
+<!------------------ Start learnr exercise: cheetah-chew-stove-E1 -->
+
+```{r cheetah-chew-stove-E1-setup}
+data("Chapter1", package = "mosaicUSAFA")
+```
+
+Use the following sandbox to find the number of rows and names of the variables in the `Coal_prices` data frame.
+
+```{r cheetah-chew-stove-E1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="cheetah-chew-stove-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+<<function_name>>(<<data_frame>>)
+```
+
+```{r cheetah-chew-stove-E1-solution}
+nrow(Coal_prices)
+names(Coal_prices)
+```
+
+```{r cheetah-chew-stove-E1-check}
+7
+```
+
+<!-------------------- End of learnr exercise: cheetah-chew-stove-E1 -->
+
+```{r cheetah-chew-stove-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "How many rows in `Coal_prices`?",
+  choices = list(
+    "2" = "",
+    "+4+" = "B's a consonant, Bub.",
+    "6" = "C is a consonant, Chub",
+    "8" = "D is a consonant, Dear"
+  )
+)
+```
+
+
+```{r cheetah-chew-stove-QA2, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "Which of these are variables in `Coal_prices`?",
+  choices = list(
+    "Year" = "`Year`? Notice the capitalization in the actual names.",
+    "+price+" = "",
+    "prices" = "'prices' is not the exact spelling.",
+    "month" = "month? Look more carefully",
+    "+year+" = ""
+  )
+)
+```
+
+---
+
+<!------------------ Start learnr exercise: cheetah-chew-stove-E2 -->
+
+```{r cheetah-chew-stove-E2-setup}
+# Setup code goes here
+"setup"
+```
+
+```{r cheetah-chew-stove-E2, exercise=TRUE, exercise.cap="Fix this incorrect R expression.", exercise.setup="cheetah-chew-stove-E2-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_point("year", "price", data = "Coal_prices")
+```
+
+```{r cheetah-chew-stove-E2-solution}
+gf_point(year ~ price, data = Coal_prices)
+```
+
+```{r cheetah-chew-stove-E2-check}
+grade_conditions(
+  pass_if(~ inherits(.result, "ggplot"), "The expression was supposed to make a plot."),
+  pass_if(~ names(.result$data) == c("year", "price"), "`year` and `price` should be the variables in the tilde expression.")
+)
+```
+
+<!-------------------- End of learnr exercise: cheetah-chew-stove-E2 -->
+
+## Graphing data
+
+You probably figured out from the last exercise that the command for making a point-plot of data is
+
+`gf_point(<<y_var>> ~ <<x_var>>, data = <<data_frame>>)`
+
+where the blanks mean
+
+- `<<yvar>>` -- name of the variable to go on the y-axis
+- `<<xvar>>` -- same, but for the x-axis variable
+
+Remember that the y-variable goes on the left and the x-variable on the right in the tilde-expression. In English, this is pronounced "`<<y>>` versus `<<x>>`.
+
+<!------------------ Start learnr exercise: cheetah-chew-stove-E3 -->
+
+```{r cheetah-chew-stove-E3-setup}
+# Setup code goes here
+"setup"
+```
+
+```{r cheetah-chew-stove-E3, exercise=TRUE, exercise.cap="Plot concentration vs day for the `Prozac` data.", exercise.setup="cheetah-chew-stove-E3-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_point(<<tilde_expression>>, data = <<data_frame>>)
+```
+
+```{r cheetah-chew-stove-E3-solution}
+gf_point(concentration ~ day, data = Prozac)
+```
+
+```{r cheetah-chew-stove-E3-check}
+grade_conditions(
+  pass_if(~ is_ggplot(.result), "The expression was supposed to make a plot."),
+  pass_if(~ names(.result$data) == c("day", "concentration"), "`year` and `price` should be the variables in the tilde expression.")
+)
+```
+
+<!-------------------- End of learnr exercise: cheetah-chew-stove-E3 -->
+
+## Putting graphic layers together
+
+The graphics system makes it easy to overlay one type of plot over another. You use the same graphics commands as always, but string them together with the `%>%` symbol (which must always come at the **end of a line**).  Like this:
+
+```{r}
+gf_point(concentration ~ day, data = Prozac) %>%
+  slice_plot(76 * exp(-0.128 * day) ~ day)
+```
+
+Some things to notice:
+
+1. As stated before, `%>%` always comes at the end of a line, to signal that the next line will be part of the overall command.
+2. `slice_plot()` is reasonably smart. When `slice_plot()` sees that it is being added on top of a previous layer, and that the previous layer has axes that correspond to the input to the plot function (that's `day` in this example), you don't need to specify the `domain()` for the slice plot. (But you're welcome to do so if you want.)
+
+In the next section you'll see the same `%>%` being used to add refinements to a graph, like labeling the axes or specifying the use of a log scale.
+
+## Semi-log and log-log plots
+
+Often you need to make a graphic where one or both of the axes are showing the *logarithm* of a variable. It is, of course, always possible to take the logarithm of that variable in the plotting command, like this:
+
+```{r take_log, echo=FALSE, out.width="50%", fig.show="hold"}
+gf_point(log(concentration) ~ day, data = Prozac)
+```
+
+This is fine when you are going on to use the logarithm values shown on the graph, for instance when you're finding the slope of a line segment  in semi-log or log-log coordinates.
+
+The semi-log or log-log graph will be easier for people to interpret if, instead of the axis being marked off in the log of the value it is marked off in the value itself. Here's the same data as shown above but with the axis remaining in the original units. The second version shows an increased number of tick marks.
+
+
+```{r log_scale, echo=FALSE, out.width="50%", fig.show="hold"}
+gf_point(concentration ~ day, data = Prozac) %>%
+  gf_refine(scale_y_log10())
+gf_point(concentration ~ day, data = Prozac) %>%
+  gf_refine(scale_y_log10(), 
+            annotation_logticks(sides = "l"))
+```
+
+You can tell the plotting system to use such logarithmically spaced ticks by using `gf_refine()`. The idea is to pipe your ordinary graph into a "layer" of `gf_refine()` and put instructions within `gf_refine()` to say what scales you want to use.
+
+For instance, the semi-log plot with the extra tickmarks was made with this command:
+
+```r
+gf_point(concentration ~ day, data = Prozac) %>%
+  gf_refine(scale_y_log10(), 
+            annotation_logticks(sides = "l"))
+```
+

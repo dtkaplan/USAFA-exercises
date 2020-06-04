@@ -1,0 +1,221 @@
+---
+title: "Dynamics exercises"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+# Exercise 1
+
+Morphine is administered to a patient intravenously at a rate of 2.5 mg/hr. About 34.7% of the morphine is metabolized and leaves the body each hour. 
+
+1. Which differential equation best describes the amount of morphine in the body as a function of time ($M$ is in mg; $t$, in hr)?
+    a. $dM/dt = 2.5 - 0.347$
+    b. $dM/dt = 2.5 - 34.7$
+    c. *$dM/dt = 2.5 - 0.347M$*
+    d $dM/dt = 2.5 - 35.7M$
+
+2. The intravenous drip has been going for about a day so that the blood level of morphine is now constant. What is the value of M?
+    a. *2.5 / 0.347* 
+    #. 0.347 / 2.5
+    #. 2.5 $\times$ 0.347
+    #. Not enough information
+    #. None of the above
+
+# Exercise 2
+
+In mathematics, a proposed but not yet proved answer to a question is called an *ansatz*. Starting with an ansatz is very powerful, since you can use substitution to check. With experience, mathematicians learn the likely ansatze (plural) for simple differential equations.
+
+#. Consider the differential equation $y^\prime = 3 y$. Is the ansatz $y = 10 \times 3^t$ correct?
+
+    a. Yes
+    #. *No*
+    #. Not enough information
+
+
+#. Consider the differential equation $t y^\prime - 2y = 0$. Is the ansatz $y=t^2$ correct?
+
+    a. *Yes*
+    #. No
+    #. Not enough information
+
+# Exercise 2
+
+The table gives data on the force $f$ applied to an object at various times $t$. The object has mass = 1.
+
+```{r echo = FALSE}
+forcedata = data.frame( f=c(1,2,-2,0,0), t=c(0,1,5,7,8))
+force.line = connector(f~t, data=forcedata)
+force.spline = spliner(f~t, data=forcedata)
+SDSdata::sds_table(forcedata)
+```
+
+Assuming that the object starts with zero velocity and position zero at $t=0$, make a reasonable estimate of the position at time $t=10$.
+
+ANSWER:
+Create an interpolating function for force as a function of time, then integrate it twice.
+
+```{r}
+vel <- antiD(force.line(t)~t)
+pos <- antiD(vel(t=t)~t )
+graphFun( vel(t=t)~t, tlim=range(0,10)) %>%
+  gf_labs("Velocity")
+graphFun( pos(t=t)~t, tlim=range(0,10)) %>%
+  gf_labs("Position")
+```
+
+# Exercise 3
+
+The SIR model of epidemics has these dynamics, where the state is the number $S$ of susceptibles and the number $I$ of infectives at any given time:
+$$ \frac{d}{dt} S = - a S I \ \ \ \ \frac{d}{dt} I = a S I - b I  .$$
+
+```{r echo=FALSE}
+epi <- integrateODE( 
+    dS ~ -a*S*I, dI ~ a*S*I - b*I,
+    a=0.001, b=0.5, S=999, I=1, tdur=40 )
+```
+
+
+Here is a trajectory of an epidemic. Note that neither axis is time. Instead, the axes are the state variables $I$ and $S$.
+```{r epi-traj,echo=FALSE}
+times <- seq(0,40,length=1000)
+xyplot( epi$I(times)~epi$S(times), xlim=range(0,1100), ylim=range(0,200),
+  xlab="Susceptibles (# of people)",ylab="Infectives (# of people)",
+  type="l", lwd=3)
+```
+
+
+And here are the solutions that correspond to the trajectory:
+```{r epi-soln,echo=FALSE, fig.keep="hold"}
+plotFun( epi$S(t)~t, tlim=range(0,40), xlab="Time (days)", ylab="S and I",
+ylim=c(0,1050), lwd=3)
+plotFun( epi$I(t)~t, add=TRUE, col="red", lwd=3)
+```
+
+
+
+a. Draw an arrowhead on the trajectory to indicate which way the state is moving as time increases.
+#. Label each of the graphs in the solution plot.
+#. Estimate the location of the state at time 10 days and mark this on the trajectory plot.
+#. Estimate the size of this population at the start of the epidemic.
+#. How many people were never infected during this epidemic?
+#. (DIFFICULT) Given the curves in the solution plot, explain how to use calculus operations and arithmetic to estimate the values of parameters $a$ and $b$ in the dynamical equations.  You don't have to make the estimate, just describe how you would make it.
+#. (EXTRA CREDIT) Estimate the parameter $a$ from the given data.
+
+# Exercise 4
+
+NOTE IN DRAFT: See `math135-local.r` for file names for the various graphing functions.
+
+Lewis Fry Richardson (1881-1953) was an English scientist who worked
+in many areas, including weather prediction.  This problem concerns a
+model Richardson built to account for arms races between countries.
+
+In the model, $x$ and $y$ respectively refer to the size of the
+military of the two countries.  The equations model how the size of
+the militaries change in time:
+$$\begin{eqnarray*}
+\frac{dx}{dt} & = & a y - m x + r\\
+\\
+\frac{dy}{dt} & = & b x - n y + s\\
+\end{eqnarray*}$$
+
+The terms $r$ and $s$ represent the basic grievances between the two countries.
+
+The parameters $a$ and $b$ represent "fear," that is, the extent to which one country feels the need to build up arms in response to the other country's arms.
+
+The parameters $m$ and $n$ are about the internal dynamics of the
+country: its ability/desire to sustain a large military.
+
+1. What should the signs of $r$ and $s$ be  if the countries have substantial grievances against each other.  {positive}{positive,negative,zero}
+2. What should be the signs of $a$ and $b$, given that they represent "fear?" {positive}{positive,negative,zero}
+3. What should be the signs of $m$ and $n$, in a country which, on its own, would not like to build a large military?  {positive}{positive,negative,zero}
+
+```{r echo = FALSE}
+scenario1 = function(x,y) {
+  dx = 2*y - 5*x + 5
+  dy = 2*x - 3*y + 5
+  return( c(dx=dx,dy=dy) )
+  }
+scenario2 = function(x,y) {
+ dx = 2*y - 1*y + 3
+ dy = 2*x - 2*y + 3
+ return( c(dx=dx,dy=dy) )
+ }
+wrong.scenario2 = function(x,y) {
+ dx = -2*y - 1*x + 3
+ dy = 2*x - 2*y + 3
+ return( c(dx=dx,dy=dy) )
+ }
+```
+ 
+
+```{r scen1b,echo = FALSE, out.width="30%", fig.show="keep"}
+library(calcbook)
+#wrong scenario
+flow_plot( dx ~ -2*y - x + 3,
+           dy ~ 2*x - 2*y + 3, 
+           xlim=c(0,4), ylim=c(0,4))
+# scenario 2
+flow_plot( dx ~ 2*y - 1*y + 3,
+           dy ~ 2*x - 2*y + 3,
+           xlim=c(0,4), ylim=c(0,4))
+# scenario 1
+flow_plot( dx ~ -2*y - 5*x + 5,
+           dy ~ 2*x - 3*y + 5,  
+           xlim=c(0,4), ylim=c(0,4))
+```
+ 
+Depending on the values of the parameters $a$, $b$, $m$, $n$, $r$, and $s$, the Richardson dynamics can produce different outcomes.  Two of the following three plots show Richardson Arms Race dynamics for two mutually fearful countries with  mutual grievances.  The third plot does not; the signs of one of the coefficients has been reversed and so the dynamics don't make sense for modeling an arms race.
+
+a. In each of the three plots, start from initial point $x=2,y=1$,   that is, a situation where Country X is more armed than Country Y,    and trace out the trajectory over time.    
+#. For each of the three plots, mark any equilibrium point and say   whether it is stable or unstable.  If there is no equilibrium, write "none."    
+#. Identify which of the three plots is NOT the Richardson   dynamics.  
+#. In the non-Richardson flow, which coefficient has been reversed: it's one of $a$, $b$, $m$, $n$, $r$, or $s$.
+
+# Exercise 5
+
+A mathematical model of guerilla warfare involves the number of combatants on each side: $x$ and $y$.  The number is reduced over time by self-attrition: sickness, accidents, and desertion.  It's also reduced when combatants from the two sides meet and fight.  
+$$\begin{eqnarray*}
+\frac{dx}{dt} & = & a x + b x y\\
+\frac{dy}{dt} & = & c y + d x y\\
+\end{eqnarray*}$$
+
+The coefficients $a$, $b$, $c$, and $d$ take on numerical values that reflect the rate of self-attrition and the combat effectiveness of the two sides. The units of $x$ and $y$ are "people."  The unit of $t$ is   "months."
+
+1. Circle the terms in the model that reflect the interaction
+  between combatants on the two sides.  
+  
+#.  What are the units of coefficient $a$?
+  
+#. What are the units of coefficient $b$?
+
+#. What should be the sign of coefficients $a$ and $c$? {negative}{positive,negative,zero}
+
+#. What should be the sign of coefficients $b$ and $d$? {negative}{positive,negative,zero}
+
+#. The two graphs show different situations. Mark them with the appropriate letter.
+    a. The two sides are evenly matched in terms of ability rates and self-attrition rates.
+    b. The two sides are not evenly matched in terms of rates.
+
+
+```{r scen1,echo = FALSE,out.width="50%", fig.show="hold"}
+library(calcbook)
+Paper <- graph_paper(xticks = 25*(0:4), yticks = 25*(0:4),
+            xlim = c(0,100), ylim = c(0, 100),
+            extendx = 5, extendy = 5)
+Paper %>% flow_plot( dx ~ -0.15*x - 0.1*x*y,
+           dy ~ -0.1*y - 0.3*x*y, 
+           xlim=c(5,110), ylim=c(5,110))
+ 
+Paper %>% flow_plot(., dx ~ -0.1*x - 0.1*x*y,
+           dy ~ -0.1*y - 0.1*x*y,
+           xlim=c(5,110), ylim=c(5,110)) 
+  
+```
+
+
+
+#. For the unevenly matched scenario that's graphed, which side is superior?
+

@@ -1,0 +1,79 @@
+---
+chapter: "none yet"
+title: "Title for wolf-hurt-blanket"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "wolf-hurt-blanket"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [first, second, third]
+id: wolf-hurt-blanket
+---
+
+```{r wolf-hurt-blanket-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Many athletes find it helpful when doing aerobic exercise to adjust their exertion to bring their heart rate to a target level. Heart rate is measured in beats/minute, abbreviated *bpm*. Usually the heart rate targets are set with respect to "Maximum Heart Rate," denoted *HRmax*. 
+
+The precise measurement of maximum heart rate uses a cardiac stress test. This test forces the subject to increase exertion until an electrocardiogram shows abnormalities in the heart beat. The test is conducted in a clinical setting just in case the test causes a medical problem.
+
+To avoid the difficulties of the cardiac stress test, most people estimate HRmax using a formula.  Different formulas have been proposed by researchers over the years.  The most commonly used formula is the simplest to calculate:
+
+- **H-F formula**: HRmax $= 220 - $age.
+
+Other formulas are based on fits to observed data: 
+
+- **R-L formula**  HRmax $= 205.8 - 0.685$ age.
+- **W-F formula** HRmax $= \frac{203.7}{1 + \exp(0.033 (\mbox{age} - 104.3))}$ 
+
+
+
+Keep in mind that the purpose of these models of maximum HR is to guide an individual in setting levels of exertion.  There is some spread of individuals from the model value for his or her age.
+
+Based on one careful study,  there is a range of values in which most people fall: about 90% of people will have HRmax somewhere between 80% and 120% of the W-F formula value for their age. (see Wohlfart and Farazdaghi, *Clinical Physiology and Functional Imaging*, 2003)
+
+Here is a graph of the values from the three formulas.
+
+
+```{r wolf,echo=FALSE}
+wolf = makeFun( 203.7/(1 + exp(0.033*(a-104.3)))~a)
+slice_plot(wolf(a)~a, domain(a = range(20,80)), label_text = "(B)", label_x=0.5, label_vjust="bottom") %>% 
+slice_plot( 220 - a~a, color="red", label_text = "(A)", label_x=0, label_vjust="bottom") %>%
+slice_plot( 205.8 - 0.685*a~a, color="blue", label_text="(C)") %>%
+gf_lims(y=c(135,205)) %>%
+gf_labs(x="Age (yrs)",y="HRmax from Formula (bpm)") 
+```
+The three models have been labeled (A), (B), and (C) in the graph.
+
+```{r wolf-hurt-blanket-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "a) Which label corresponds to the W-F model?",
+  c("A", "+B+", "C"),
+  random_answer_order = FALSE
+)
+```
+
+```{r wolf-hurt-blanket-Qessay1, echo=FALSE}
+etude::essay_response("b) For the purpose of predicting an individual's HRmax, which might   be anywhere in the 80% to 120% band described above, is the   simple H-F formula an adequate approximation to the relationship   between HRmax and age indicated by the other formulas?  Explain what   specific features of the graphs guide your answer."
+)
+```
+
+
+
+

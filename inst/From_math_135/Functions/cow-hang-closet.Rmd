@@ -1,0 +1,66 @@
+---
+chapter: "none yet"
+title: "Title for cow-hang-closet"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "cow-hang-closet"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [first, second, third]
+id: cow-hang-closet
+---
+
+```{r cow-hang-closet-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` A patient's heart rate, R, in beats per minute, is a function of the dose, $D$ of a drug, in mg. We have $R = f(D)$. 
+
+
+
+```{r cow-hang-closet-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "a) The statement $f(50) = 70$ means ...",
+  list(
+   "The patient's heart rate goes from 70 beats per minute to 50 beats per minute when a dose is given." = '',
+   "+When a dose of 50 mg is given, the patient's heart rate is 70 beats per minute.+" = '',
+   "The does ranges from 50 mg to 70 mg for the patient." = '',
+   "When a dose of 70 mg is given, the patient's heart rate is 50 beats per minute." = ''
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+```{r cow-hang-closet-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "b) The y-intercept for the graph of this function represents ...",
+  list(
+   "The maximum dose of the drug." = '',
+   "The maximum heart rate." = '',
+   "The dose of the drug at which the patient's heart stops beating." = '',
+   "+The patient's heart rate if none of the drug is administered.+" = ''
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+

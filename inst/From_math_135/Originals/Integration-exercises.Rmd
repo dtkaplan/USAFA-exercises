@@ -1,0 +1,473 @@
+---
+title: "Integration exercises"
+author: "Daniel Kaplan"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+# Problem 1
+
+The graph below, from the New York *Times* on Feb. 21, 2012, shows three curves relating to H.I.V./AIDS prevalence and incidence over time.
+
+![](/images/HIV-AIDS-NYTimes.jpg)
+
+a. What is the relationship between the three curves?
+#. The units on the $y$ axis are "millions of people."  That corresponds to the dimension of the top curve.  The two bottom curves have a different dimension.   What would be a sensible unit for the lower two curves?
+#.  Use the appropriate calculus operations to show whether or not the graph represents the relationship between the three curves in a quantitatively correct manner.
+
+# Problem 2: One step at a time
+
+```{r include=FALSE}
+f <- function(x) {
+  ifelse( x<1.5, 1, 
+         ifelse( x<2.5, 0,
+                ifelse( x<3.5, -.5, .5)))
+}
+```
+ 
+
+```{r steps,echo=FALSE, out.width="100%"}
+graphFun( f(x) ~ x, xlim=range(0,4), 
+         ylim=c(-1.5,1.5), lwd=2 )
+```
+ 
+
+The graph above shows the graph of a "piecewise-constant" function $f(x)$.  
+
+a.  On the grid below, sketch $F(x)$, an anti-derivative function of $f(x)$.  Your sketch should be quantitatively correct (allowing for the natural imprecision of sketching by hand).  To help guide yourself, you should first mark out the axis values and tick marks. (You have two copies of the graph paper in case you make a mistake!  Make sure to show clearly what is your final answer.)
+
+![](/images/200px-Graph-paper.png) ![](/images/200px-Graph-paper.png)
+
+
+ANSWER:
+```{r antisteps, echo = FALSE, out.width="100%"}
+F = antiD( f(x) ~ x )
+graphFun( F(x=x)~x, xlim=c(0,4), 
+          lwd=2, color="black") %>%
+  gf_lims(y=range(-1,2) )
+```
+
+#. Use your graph of $F(x)$ to find the signed area under $f(x)$ for $x=1$ to $x=3.5$.  Write your numerical value here and indicate   clearly on your graph of $F(x)$ what information you used to find   your numerical value. (Hint: Remember, it's the area under $f(x)$   -- lower case $f$ --   that you are finding.  To find this, use $F$ --- upper case.)
+  
+
+#. On the graph paper above, sketch another anti-derivative of $f(x)$, different from the one you drew in (a).  (Hint: This is easy once you've done (a).)
+
+ANSWER:
+Just shift the curve drawn in (a) up or down by a constant amount.
+
+# Problem 3
+
+Choose the correct term for xxxx in each of the following:
+
+
+1. Velocity is the xxxx of acceleration (w.r.t. time): {deriv}{2nd deriv,deriv,anti Deriv,none of these }
+#. Position is the xxxx of velocity (w.r.t. time): 
+{anti Deriv}{2nd deriv,deriv,anti Deriv,none of these}
+#. Acceleration is the xxxx of position (w.r.t. time): {2nd deriv}{2nd deriv,deriv,anti Deriv,none of these}
+#. Energy is the xxxx of force (w.r.t. time): 
+{none of these}{2nd deriv,deriv,anti Deriv,none of these}
+#. Energy is the xxxx of force (w.r.t. distance): 
+{anti Deriv}{2nd deriv,deriv,anti Deriv,none of these}
+#. Cash is the xxxx\ of cash flow (w.r.t. time): {anti Deriv}{2nd deriv,deriv,anti Deriv,none of these}
+  
+# Problem 4
+
+Each question is about the relationship between two quantities.  
+
+
+1. Position is the ............. of velocity with respect to time.
+{antiderivative}{deriv, 2nd deriv, antideriv, none of these}
+
+#. Acceleration is the ............. of velocity with respect to time. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+#. Acceleration is the ............. of position with respect to time. {2nd deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+<!--begin-answer-->} 
+<!-- Really this should be "for the homework version"-->
+#. Density is the ............. of mass with respect to position. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+<!--end-answer-->
+
+# Problem 5
+
+Here's a contour diagram showing the depth of a lake and the landscape around it.  **Negative values** are underwater. 
+
+```{r echo=FALSE}
+knitr::include_graphics("/images/lake-one.png")
+```
+
+The axis scales and contour units are in feet.
+
+1. Take just a few moments to estimate the volume of the lake.Your estimate should be accurate to within about 10 or 20% of the true value. It should include both a numerical value and the units.
+
+2. Describe a strategy that you would use, if you had substantially   more time, to make a more accurate estimate of the lake volume.  You   **do not** need to implement this strategy, just describe it.
+
+
+#. Energy is the ............. of force with respect to distance. {antideriv}{deriv, 2nd deriv, antideriv, none of these}
+
+#. Power is the ............. of energy with respect to time. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+#. Total cost is the ............. of marginal cost with respect to quantity. {antideriv}{deriv, 2nd deriv, antideriv, none of these}
+
+<!--begin-answer-->  
+<!--Really this should be "for the homework version"-->
+#. Births per year is part of the ............. of population size with respect to time. (The other parts relate to deaths, immigration, and emigration.)
+{deriv}{deriv, 2nd deriv, antideriv, none of these}
+<!--end-answer-->
+
+# Problem 6
+
+Find the area to the right of a specified velocity in a Maxwell-Boltzman distribution.  This will be the fraction of molecules that have sufficient energy to get over the activation barrier.   Here it is in terms of speed:
+
+$$f(v) = \sqrt{\frac{2}{\pi} \left( \frac{m}{kT} \right)^3} v^2
+exp\left( - \frac{m v^2}{2 k T} \right) $$
+
+#  Problem 7: A short table of integrals
+
+$\frac{df}{dt}$ | | $f(t)$ | | $\int f(t) dt$
+---------------:|:----:|:--------:|:---:|:---------
+ | Power Law (and Logs) |
+0  | $\leftarrow$ | $A$ | $\rightarrow$ | $A + const$
+$A$  | $\leftarrow$ | $At$ | $\rightarrow$ | $\frac{1}{2} A t^2 + const$\\
+$A n t^{n-1}$  | $\leftarrow$ | $At^n$ | $\rightarrow$ | $\frac{1}{n} A t^{n+1} + const$
+$-\frac{1}{t^2}$ | $\leftarrow$ | $A\frac{1}{t}$ | $\rightarrow$ | $A \ln(t) + const$
+$A b \frac{1}{t}$ | $\leftarrow$ | $A \ln(b t)$ | $\rightarrow$ | $A t \left(\ln(bt) - 1\right) + const$
+   |  Exponentials   |
+$k A e^{kT}$  | $\leftarrow$ | $A e^{kt}$ | $\rightarrow$ | $A \frac{1}{k} e^{kt} + const$
+   | Sines and Cosines | 
+$\frac{2 \pi}{P} A \cos(\frac{2\pi}{P} t)$  | $\leftarrow$ | $A \sin( \frac{2 \pi}{P} t )$ | $\rightarrow$ | $-\frac{P}{2 \pi} A \cos(\frac{2\pi}{P} t) + const$
+$-\frac{2 \pi}{P} A \sin(\frac{2\pi}{P} t)$  | $\leftarrow$ | $A \cos( \frac{2 \pi}{P} t )$ | $\rightarrow$ | $\frac{P}{2 \pi} A \sin(\frac{2\pi}{P} t) + const$
+    | Bumps and S-functions|
+ up-and-down  | $\leftarrow$ | bump | $\rightarrow$ | 
+   | General Rules | 
+linear comb. of derivs.  | $\leftarrow$ | linear combination | $\rightarrow$ | linear comb. of integrals $+ const$
+$b A \frac{d}{dt} f(bt)$  | $\leftarrow$ | $Af(bt)$ | $\rightarrow$ |  $A \frac{1}{b} \int f(t) dt + const$
+
+# Problem 8: Summing to pi
+
+A central strategy in calculus is to divide things up into little, simple bits, do a calculation on each bit, then add up the bits. Often, this logic is hidden behind the mechanics of differentiation and integration.  
+
+To let you see the limiting process at work, here's a simple calculation to find the value of a familiar, if mysterious, number: $\pi$.
+
+As you know, the circumference of a circle is $2 \pi r$.  The length of a semi-circle is half that, and a semi-circle of radius $r=1$ has length $\pi$.
+
+You can easily plot a semi-circle in R; it's the function $f(x) = \sqrt{1-x^2)}$. 
+```{r }
+f <- makeFun(sqrt(1 - x ^ 2)  ~ x)
+graphFun(f(x) ~ x, xlim=range(-1,1),  color="red")
+```
+ 
+
+It's easy to generate a series of points on the circle: define a sequence of $x$ values and then calculate the corresponding $y$ values:
+```{r }
+Pts <- tibble(x = seq(-1,1,length=6),  y = f(x))
+```
+ 
+```{r semicirc,echo=FALSE}
+graphFun(sqrt(1-x^2) ~ x, x = range(-1,1), color = "red") %>%
+  gf_point(y ~ x, data = Pts) %>%
+  gf_line(y ~ x, data  = Pts)
+``` 
+
+Notice that between each of the points, the chord of the ideal circle can be approximated by a straight line.  The length of the straight-line segment is easy to calculate from the pythagorean theorem.  Find the difference $\Delta x$ between successive $x$ points. Then find the difference $\Delta y$ between successive $y$ points.  The length of segment is $\sqrt{\Delta x^2 + \Delta y^2}$. Like this:
+```{r }
+Pts %>% 
+  mutate(delta.x = x - lag(x),
+         delta.y = y - lag(y)) %>%
+  na.omit() %>%
+  summarize(total_length = sqrt(sum(delta.x^2 +  delta.y^2)))
+```
+ 
+
+The length of the semi-circle is approximately the sum of the lengths of the segments.
+
+The answer should be $\pi  / 2$, but it's not.  The straight-line segments are systematically shorter than the chord.
+
+ 1. Repeat the calculation for the length of the semi-circle, but   use a larger number of segments.  As the number of segments gets   larger, the straight lines come closer and closer to the chords, and   the total length should get closer and closer to $\pi / 2$.
+  
+    a. What's the smallest number of segments needed before the estimate you get is better than $3.14 /  2 = 1.57$? {5000}{20,50,100,500,2500,5000,10000,20000,100000,1000000}
+
+    #. Which number of segments will give a result that matches $\pi$ to   the 6th decimal point, that is, an approximation that gets the 9   right in 3.14159265.  Choose the number among the choices that is the   smallest one to place correctly the 9 in the 5th decimal place. {5000}{20,50,100,500,2500,5000,10000,20000,100000,1000000}
+  
+<!--begin-answer-->
+A reasonable approach is to write a function for the length of the
+semi-circle with $n$ segments:
+<<>>=
+semi.circle.length=function(n){
+  x = seq(-1,1,length=n)
+  y = sqrt(1 - x^2)
+  dx = diff(x)
+  dy = diff(y)
+  sum( sqrt(dx^2 + dy^2))
+}
+@ 
+<!--end-answer-->
+
+##  From Addition to Integration
+
+The integral is a way if putting together the limiting sum automatically. Recall that the length of each infinitesimal segment is a function of $x$, namely $dx \sqrt{1^2 + (\frac{dy}{dx})^2}$.  This is just the Pythagorean length of the hypotenuse of a right triangle -- for an infinitesimal step $dx$,  the horizontal leg has length $dx$, the vertical leg has length $dx \frac{dy}{dx}$, and therefore the hypotenuse has length $dx \sqrt{1^2 + (\frac{dy}{dx})^2}$.
+
+The integral of a function $s(x)$ is written $\int s(x) dx$ -- the notation reminds you that the $dx$ is already built in to the integration process.  You just need to define the function $s(x)$ and integrate it.
+```{r }
+dy <- D(sqrt(1-x^2) ~ x)
+s <- makeFun(sqrt(1 + dy(x)^2) ~ x)
+S <- antiD(s(x)~x)
+S(1) - S(-1)
+```
+ 
+
+## The Circumference of an Ellipse
+
+As you may know, one way to describe an ellipse is as the set of points $x,y$ such that $$ \frac{x^2}{a^2} + \frac{y^2}{b^2} =  1.$$ It's easy to put this equation into the form of a function $y(x)$: $$y(x) = b \sqrt{1 -  \frac{x^2}{a^2}}$$ which can be implemented like this
+```{r }
+yEllipse <- makeFun(b*sqrt(1 - x^2/a^2) ~ x)
+dyEllipse <- D(b*sqrt(1 - x^2/a^2) ~ x)
+```
+
+The circumference of the full ellipse will be twice the length of the semi-ellipse: 
+$$ \int^{a}_{-a} \sqrt{1 + (\frac{dy}{dx})^2} dx .$$
+
+1. Using integration, find the circumference of an ellipse with $a=1$, and $b=2$.   {9.688}{3.784,4.488,5.132,7.568,9.688,10.264}
+    HINT: Remember that `dyEllipse` is a function of $x$, but also $a$ and $b$, so you can specify the values of $a$ and $b$ when you use `dyEllipse`.
+```{r }
+ds <- makeFun(sqrt(1+dyEllipse(x,a=1,b=2)^2) ~ x)
+```
+ 
+
+<!--begin-answer-->
+```{r }
+S = antiD( ds(x)~x )
+2*(S(1) - S(-1))
+```
+ 
+<!--end-answer-->
+
+The integral that results from this circumference problem has a special name: the "Complete elliptic integral of the second kind." The name is important because there is no algebraic form for the integral: it needs to be calculated on numerically the computer, as you have just done.
+
+However, there is a reasonably compact approximation to the circumference of the ellipse:
+$$ C \approx \pi (a+b) 
+\left( 1 + \frac{3
+    \left(\frac{a-b}{a+b}\right)^2}{10 + \sqrt{4 - 3
+      \left(\frac{a-b}{a+b}\right)^2}} \right) .$$
+As you can see, this is a function of both $a$ and $b$.  Implement it on the computer to produce a function that gives circumference as a function of $a$ and $b$.
+
+Compare the output of this function to the value you get when doing the integral.
+
+```{r echo = FALSE}
+cir <- makeFun(pi*(a+b)*
+                 (1 + (3*((a-b)/(a+b))^2)  / 
+                    (10 + sqrt(4-3*((a-b)/(a+b))^2))) ~ a & b)
+```
+ 
+
+How close is the integral to the value of `cir` for the following two ellipses?  To help find the answer, you can increase to 10 the number of digits displayed by R with this command:
+```{r }
+options( digits=10 )
+```
+ 
+
+a. The ellipse with $a=1$, $b=2$.
+    They agree through this digit: {8th}{3rd,5th,6th,7th,8th}
+#. The ellipse with $a=100$, $b=0.01$.
+    They agree through this digit: {3rd}{3rd,6th,7th,8th}
+
+
+```{r echo = FALSE}
+options(digits=5)
+```
+ 
+
+<!--begin-answer-->
+For the more highly elliptical integral, the circumference is
+```{r }
+ds = makeFun(sqrt(1+dyEllipse(x,a=100,b=0.01)^2) ~ x)
+S = antiD( ds(x)~x )
+2*(S(100) - S(-100))
+```
+ 
+In contrast, the value of `cir` is:
+```{r }
+cir <- makeFun( pi*(a+b)*(1 + (3*((a-b)/(a+b))^2)/(10 + sqrt(4-3*((a-b)/(a+b))^2)))~a&b)
+cir(a=100, b=0.01)
+```
+ 
+<!--end-answer-->
+
+
+# Problem 9
+
+
+
+
+```{r echo = FALSE}
+show.function.area = function(f, xlim=c(0,1), area.bound = c(.2,.8),nticks=6,area.colors=rep(rgb(0,0,0,.3), length(area.bound)) ) {
+  vals = f( seq(xlim[1],xlim[2],length=100) )
+  graph.paper( xticks=pretty(xlim,n=nticks), yticks=pretty(vals,n=nticks-1) )
+  if (!is.list(area.bound) ) area.bound = list(area.bound)
+  for (k in 1:length(area.bound) ){
+    foo = area.bound[[k]]
+    pts = seq(foo[1],foo[2],length=300)
+    xpts = c(foo[1],pts, foo[2])
+    ypts = c(0,f(pts),0)
+    polygon(xpts,ypts,col=area.colors[k])
+  }
+  curve( f(x), add=TRUE,lwd=4)
+}
+```
+ 
+ 
+## Drill on Integrals
+
+As you know, the ``definite integral" of a function $f(x)$ from $a$ to $b$ is written as $$\int_a^b \ f(x) dx .$$ This definite integral can be interpreted as the area under the graph of the function from the ``lower limit" $a$ to the ``upper limit" $b$.   
+
+THE NEXT CHUNK IS  NOT  EVALUATING
+```{r example1,eval=FALSE,  echo=FALSE}
+ff = function(x){0.2*(0.01*(322 + 3*x*(98 + x*(37 +x))) - 24*x/(1+x^2))}
+show.function.area( ff, xlim=c(-2.5,3.5), nticks=6, 
+                   area.bound=list(c(-2,0.2),c(0.2,1.6),c(1.6,3)), 
+                   area.colors = c("gray", "yellow", "gray") )
+                   #area.colors = c(rgb(0,0,0,.3), rgb(1,1,0,.5), rgb(0,0,0,.3)))
+text(0.75, -.5, "-", cex=3)
+text(-1.25, 1, "+", cex=3)
+text(2.5, 1, "+", cex=3)
+```
+ 
+
+The figure shows a function $f(x)$ and shades in the areas involved in the integral $$\int_{-2}^{3} \ f(x) dx$$.
+
+
+When thinking of an integral as an area, keep in mind the following:
+
+* It's a **directed area**.  That is, it matters whether $a$ is greater than $b$ or vice versa.  Reversing the order of the limits makes a difference. $$ \int_a^b f(x) dx = - \int_b^a f(x) dx .$$
+* It's a **signed area**.  That is, when the function value is less than zero, the "area"  counts negatively compared to when the function is greater than zero.  In the above graph, the yellow zone shows where the signed area will be negative.   The negative area cancels out the positive area in the overall integral.
+
+
+There are several ways to calculate an integral:
+
+i. Find the signed and directed area directly, for instance by   counting grid squares on a graph of the function.  Indeed, one of   the names for integration is "quadrature," referring to the   process of drawing grid squares on the graph.
+#. Using symbolic techniques to find the anti-derivative, then   evaluating the anti-derivative at the limit points of the integral.   For example, the anti-derivative of  $g(x) = A \sin(2 \pi x / 5) + C$ is   $$G(x) = \int (A \sin( 2 \pi x / 5) + C ) dx = -\frac{5}{2\pi}A \cos(2 \pi   x/5) + C x + const ,$$   where $const$ is an arbitrary constant.  Nowadays, such symbolic   operations can be carried out by calculators and computers.  There   is even a web service that does this:   [WolframAlpha](http://www.wolframalpha.com/).  In the following example, a command has been given in the yellow box and the response  is shown below.  The syntax of the command is in the Mathematica  language, which uses square braces for arguments and typically names operators   with capital letters, such as `Sin`.  The operator   `Integrate` is being used.  The first argument is the   function to the integrated, the second argument, `x`, is the   name of the variable with respect to which the integral is taken.
+  
+```{r echo=FALSE}
+knitr::include_graphics("/images/WolframAlpha2.png")
+```
+
+Once the formula for the anti-derivative is known, it can be evaluated at the lower and upper limits of the integration interval.  This is a matter of plugging in the upper and lower limits of integration in the argument to the anti-derivative and subtracting them: 
+$$ \int_a^b f(x) dx = F(b) - F(a) . $$
+
+Naturally, such plugging in can be done in the software.  In the
+example below, notice how the second argument to \texttt{Integrate} is
+now `{x, -2, 5}`
+
+```{r echo=FALSE}
+knitr::include_graphics("/images/WolframAlpha3.png")
+```
+
+The availability of such services suggests that it is important for students to learn how to translate between traditional mathematical notation and the variety of computer notations.
+
+1. Using numerical techniques to find the anti-derivative, as in
+  the `antiD` operator in R.  For example:
+     ```{r }
+g <- makeFun(1.7*sin(2*pi*x/5) + 0.8 ~ x)
+G <- antiD(g(x)~x)
+G(5) - G(-2)
+```
+ 
+     Notice that all parameters in the function need to be specified as numerical values, rather than as symbols.  This is a limitation of the numerical techniques, which is why it is often advantageous to be able to use the symbolic techniques particularly when deriving general-purpose formulas.
+
+     On the other hand, the symbolic techniques are balky for many functions, even those that seem on the surface quite straightforward (such as $e^{-x^2}$).  They are also not well suited for functions that are defined by data.
+
+    Aside: The numerical techniques typically are based on approximating the function very closely by a polynomial over a narrow domain, and using the simple symbolic rules for integrating polynomials.
+  
+a. Consider the function $f(x) = \sin(x)$ and the upper and lower
+  limits of integration shown in the figure.  
+
+THIS  CHUNK  DOESN'T RUN  EITHER
+```{r exer1a,echo=FALSE, eval=FALSE}
+f < function(x){sin(x)}
+show.function.area(f, xlim=c(-3,6), nticks=10, area.bound=c(-2,4),area.colors=c("gray"))
+```
+ 
+    a. Count grid squares in the shaded zone.  Roughly how many grid squares are    there?  (Choose the closest answer.) {18}{4,9,18,25,36}
+    #. What is the area of a single grid square? {0.2}{0.1,0.2,0.4,0.5,1.0,1.5,2.0}
+    #.  Combining the number of grid squares and the area of each grid   square, what is the area (unsigned, undirected) in the shaded zone? {18}{2.2,3.6,4.8,6.2,8.4}   
+   
+1. Use the \texttt{antiD} operator in R to find the signed,     directed area shown in the graph, from $a=-2$   to $b=4$.  {0.237}{-3.6,-0.459,-0.450,-0.237, 0, 0.200,0.237,0.450,0.459,3.600,3.673,3.712}
+
+<!--begin-answer-->
+```{r }
+SINE <- antiD(sin(x)~x)
+SINE(4) - SINE(-2)
+```
+ 
+<!--end-answer-->
+
+#. Use the `antiD` operator to find the integral of
+  $\sin(x)$ from $a=4$ to $b=-2$. {-0.237}{-3.6,-0.459,-0.450,-0.237, 0, 0.200,0.237,0.450,0.459,3.600,3.712,3.763}
+
+<!--begin-answer-->
+The integral from $4$ to $-2$ is just the negative of the integral
+from $-2$ to $4$.
+<<>>=
+SINE(-2) - SINE(4)
+@ 
+<!--end-answer-->
+
+#. Find the **unsigned, undirected** area in the graph.  (Hint: Define a
+  function using the absolute value operator, `abs(sin(x))`.) {3.763}{-3.6,-0.459,-0.450,-0.237, 0, 0.200,0.237,0.450,0.459,3.600,3.712,3.763}
+
+<!--begin-answer-->
+The integral from $4$ to $-2$ is just the negative of the integral
+from $-2$ to $4$.
+```{r }
+F = antiD( abs(sin(x))~x)
+F(4) - F(-2)
+```
+ 
+<!--end-answer-->
+
+
+# Consider the function $g(x) = exp(-x^2/8)$ and the upper and lower limits of integration shown in the figure.  
+
+THIS CHUNK DOESN'T RUN
+```{r exer2a, eval=FALSE, echo=FALSE}
+fgauss <- function(x){exp(-x^2/8)}
+show.function.area(fgauss, xlim=c(-6,6), nticks=7, area.bound=c(1,4),area.colors=c("gray"))
+```
+
+#. Using the `antiD` operator in R, what is $\int_1^4 \ f(x) dx$? {1.43}{-1.32,-0.46,0.15,0.32,0.48,0.68,0.72,0.94,1.43,1.85,3.76,4.79,5.23}
+
+#. Using the `antiD` operator in R, what is $\int_3^2 \  f(x) dx$?  {-0.46}{-1.32,-0.46,0.15,0.32,0.48,0.68,0.72,0.94,1.43,1.85,3.76,4.79,5.23}
+
+#. Using the `antiD` operator in R,  what is $\int_{-4}^{4} \  f(x) dx$, that is, the integral from lower limit $a=-4$ to upper limit $b=4$? {4.79}{-1.32,-0.46,0.15,0.32,0.48,0.68,0.72,0.94,1.43,1.85,3.76,4.79,5.23}
+
+
+
+#. The function shown in the very first example at the top of this document is
+$$f(x) = \frac{1}{5} \left( \frac{1}{100} (322 + 3x(98 + x(37+x)))-24
+  \frac{x}{1+x^2} \right) .$$
+  
+    Implement this function in R and find the signed, directed area shown in the figure, from $a=-2$ to $b=3$.  Choose the closest answer.{5.71}{4.92,5.71,6.13,6.48,6.71,7.15,7.72}
+
+    Now find the unsigned, undirected area.{7.72}{4.92,5.71,6.13,6.48,6.71,7.15,7.72}
+
+
+
+<!--begin-answer-->
+```{r }
+f <- makeFun(0.2*(0.01*(322 + 3*x*(98 + x*(37 +x))) - 24*x/(1+x^2))~x)
+F <- antiD(f(x)~x)
+F(3) - F(-2)
+ABSF = antiD(abs(f(x))~x)
+ABSF(3) - ABSF(-2)
+```
+   
+<!--end-answer-->
+
+
+  
+
+
+
+

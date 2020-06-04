@@ -1,0 +1,43 @@
+---
+chapter: "none yet"
+title: "Title for spruce-forgive-magnet"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "spruce-forgive-magnet"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [units, partial derivatives, third]
+id: spruce-forgive-magnet
+---
+
+```{r spruce-forgive-magnet-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The cost of renting a car from a certain company is $40 per day plus 15 cents per mile, which we write as
+$$C = 40d + 0.15m.$$ 
+
+
+```{r spruce-forgive-magnet-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "What are the units of $\\partial C/ \\partial m$?",
+  c("miles", "+dollars per mile+", "dollars per mile$^2$", "miles per dollar"),
+  random_answer_order = FALSE
+)
+```
+

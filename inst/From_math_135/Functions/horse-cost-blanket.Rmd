@@ -1,0 +1,71 @@
+---
+chapter: "Functions"
+title: "Title for horse-cost-blanket"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "horse-cost-blanket"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [functions, inverses, half-life]
+id: horse-cost-blanket
+---
+
+```{r horse-cost-blanket-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Consider this exponential function.
+
+```{r echo=FALSE}
+slice_plot(100* exp(-t/1.75) ~ t, domain(t = c(0,5)))
+```
+
+```{r horse-cost-blanket-Qinline1, echo=FALSE}
+explain <- "How long does it take for the function to fall from, say, 100 to 50?"
+etude::choose_one(
+  prompt = "At what value of $t$ does the function reach a value of $25$?",
+  list("+1.25+" = "", "2.4"=explain, "3.4"=explain, "4.4"=explain),
+  random_answer_order = FALSE
+)
+```
+
+
+```{r horse-cost-blanket-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "What is the half-life of the exponential?",
+  c(0.5, "+1.75+", 2.25, 10, 50),
+  random_answer_order = FALSE
+)
+```
+
+
+```{r horse-cost-blanket-Qinline3, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of these statements is correct about the shape of the graph?",
+  c("Falls at a constant slope.",
+    "Falls rapidly for small $x$ then suddenly levels out.",
+    "+Falls rapidly for small $x$, smoothly decreasing in slope as $x$ gets bigger.+"),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+
+

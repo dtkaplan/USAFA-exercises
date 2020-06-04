@@ -1,0 +1,143 @@
+---
+chapter: "none yet"
+title: "Title for goldfish-draw-plant"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "goldfish-draw-plant"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-04 
+tags: [first, second, third]
+id: goldfish-draw-plant
+---
+
+```{r goldfish-draw-plant-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+```
+
+
+`r etude::exercise_title()` A useful graphical technique is to display values on an axis with a logarithmic spacing. This exercise provides some practice on how to find a position on a logarithmic axis.
+
+
+```{r echo=FALSE}
+# maps a logarithmically spaced sequence onto 0-1, with tick marks
+# and labels given and a transformation function that will map
+# data onto the same scale
+decades = function(from,to,base=10,steps=2:10,labs=c(5,10) ){
+  tfun = function(x){
+    (log(x,base=base)- log(from,base=base))/
+      (log(to,base=base)-log(from,base=base))
+  }
+  steps = sort(steps)
+  labs = unique(labs[ labs %in% steps ])
+  labels = rep(NA,length(steps))
+  labels[steps %in% labs] = labs # still a number!
+  smallest = floor( log(from,base=base) )
+  biggest = ceiling( log(to,base=base) )
+  sequence = smallest:biggest
+  labels=as.character(outer(labels,base^sequence,"*"))
+  all = tfun(c(outer(steps,base^sequence,"*")))
+  keepinds = all >=0 | all <= 1
+  return(list(labels=labels[keepinds],at=all[keepinds],fun=tfun))
+}
+```
+
+
+
+```{r two,echo=FALSE, crop=TRUE}
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+fives = decades(.099,1010,base=5,steps=1:5, labs=c(1,5))
+axis(side=1,pos=0,at=fives$at, labels=fives$labels,las=2)
+text(.67, .05, "(a)")
+text(.315, .05, "<------------>")
+```
+
+
+```{r goldfish-draw-plant-Qinline1, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "a) What is the value along the scale of the tick mark labeled (a)?",
+  c(35, 40, 45, "+50+", "60", 80),
+  random_answer_order = FALSE
+)
+```
+
+```{r goldfish-draw-plant-Qinline2, echo=FALSE}
+etude::true_or_false(
+  prompt = "b) Is there a tick mark at the value 100?",
+  TRUE)
+```
+
+
+```{r goldfish-draw-plant-Qinline3, echo=FALSE}
+etude::choose_one(
+  prompt = "c) What is the value corresponding to the right-most tick mark on the scale?",
+  c("800", "1000", "+1250+", "1500"),
+  random_answer_order = FALSE
+)
+```
+
+```{r goldfish-draw-plant-Qinline4, echo=FALSE}
+etude::choose_one(
+  prompt = "d) What is the length of the interval marked <---->?",
+  c("1", "0.8", "1.6", "3", "+3.2+", "5", "6"),
+  random_answer_order = FALSE
+)
+```
+
+<!-- Some other scales for other problems? -->
+```{r eval=FALSE, echo=FALSE}
+tvals = seq(0,1000,length=11)
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+axis(side=1,pos=0,at=tvals/max(tvals), labels=tvals,las=2)
+points( vals/1000, 0*vals, pch=20)
+```
+
+```{r eval=FALSE,echo=FALSE}
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+fives = decades(.099,1010,base=5,steps=1:5, labs=c(1,2))
+axis(side=1,pos=0,at=fives$at, labels=fives$labels,las=2)
+points( fives$fun(vals), 0*vals, pch=20)
+```
+
+```{r eval=FALSE, echo=FALSE}
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+tvals = round(sqrt(c(1,5,10,20,50,100,150,200,300,400,500))^2)
+axis(side=1,pos=0,at=sqrt(tvals)/sqrt(500), labels=tvals,las=2)
+points( sqrt(vals)/sqrt(500), 0*vals, pch=20 )
+```
+
+
+```{r eval=FALSE,echo=FALSE}
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+fives = decades(.099,1010,base=10,steps=2:10, labs=c(2,5,10))
+axis(side=1,pos=0,at=fives$at, labels=fives$labels,las=2)
+points( fives$fun(vals), 0*vals, pch=20)
+```
+
+
+
+
+
+```{r eval=FALSE,echo=FALSE}
+plot(1:2,type="n",xlab="", ylab="",axes=FALSE, ylim=c(0,1),xlim=c(0,1))
+fours = decades(.5,1010,base=4,steps=2:4, labs=c(2,3,4))
+axis(side=1,pos=0,at=fours$at, labels=fours$labels,las=2)
+```
+
+
+

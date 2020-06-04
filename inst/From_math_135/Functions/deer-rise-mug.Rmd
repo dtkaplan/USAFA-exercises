@@ -1,0 +1,52 @@
+---
+chapter: "Functions"
+title: "Title for pine-let-linen"
+author: "Danny Kaplan"
+date: 2020-06-03 
+output: learnr::tutorial
+tutorial:
+  id: "deer-rise-mug"
+  version: 0.1
+runtime: shiny_prerendered
+
+tags: [first, second, third]
+id: deer-rise-mug
+---
+
+```{r deer-rise-mug-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()` Suppose $y$ is the percent increase in annual US national production during a year when the unemployment rate changes by $u$ percentage points. For example, $u=2$ if unemployment increases from $4%$ to $6%$. The economist Arthur Melvin Okun found that $y = 3.5 - 2u$. This is called "[Okun's Law](https://en.wikipedia.org/wiki/Okun%27s_law)."
+
+```{r deer-rise-mug-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "1. What is the effect on national production of a year when unemployment rises from 5% to 8%? National production will ...",
+  c("+Go down by 2.5 percent+", "Go up by 3.5 percent", "Go down by 3.5 percent", "Go up by 2.5 percent"),
+  random_answer_order = TRUE
+)
+```
+
+```{r deer-rise-mug-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "2. What change in unemployment rate corresponds to a year when production is the same as the year before? Unemployment rate will go ...",
+  c("+Up by 1.75+", "Down by 1.75", "Up by 3.5", "Down by 3.5"),
+  random_answer_order = TRUE
+)
+```
+    
+
+```{r deer-rise-mug-Qinline3, echo=FALSE}
+etude::choose_one(
+  prompt = "3. What is the meaning of the number 3.5 in Okun's law?",
+  c("+The yearly percentage increase in production when unemployment does not change from the previous year.+",
+  "The yearly percentage increase in production when unemployment is zero.", 
+  "The unemployment rate when production does not grow.", 
+  "The typical unemployment rate."),
+  random_answer_order = TRUE,
+  inline = FALSE
+)
+```
+
+
+

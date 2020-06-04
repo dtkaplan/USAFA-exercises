@@ -1,0 +1,12 @@
+---
+title: "Estimation exercises"
+author: "Daniel Kaplan"
+---
+
+# Exercise 1
+
+In late September, 2011, the re-entry of a satellite was [in the news](http://www.nytimes.com/2011/09/23/science/space/23satellite.html?_r=1&scp=3&sq=nasa%203200%20satellite&st=cse). Make your own estimation to compare to NASA's of 1/3200 as the probability of a person being hit by one of the items of space debris in the recent uncontrolled satellite re-entry.
+
+# Exercise 2
+
+At the very beginning of [this video](http://www.ukclimbing.com/news/item.php?id=49981), the climber, Catherine Destivelle, is dangling from a rope. Make an estimate of how long the rope is, based on principles of dimensional analysis. (Hint: You might have to do an measurement with a short string and a small mass in your room. No rock climbing required or recommended!)

@@ -1,0 +1,41 @@
+---
+chapter: "none yet"
+title: "Title for giraffe-catch-pot"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "giraffe-catch-pot"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [exponentials, half-life, third]
+id: giraffe-catch-pot
+---
+
+```{r giraffe-catch-pot-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The half-life of nicotine in the blood is 2 hours. A person absorbs 0.4 mg of nicotine by smoking a cigarette. 
+
+```{r giraffe-catch-pot-Qinline1, echo=FALSE}
+# indicate correct choices with +_+ in the item.
+etude::choose_one(
+  prompt = "Approximately how long does it take for the amount of nicotine in the blood to be reduced to 0.04 mg?",
+  c("2 hr", "4 hrs", "+6 hrs+", "8 hrs", "10 hrs"),
+  random_answer_order = FALSE
+)
+```

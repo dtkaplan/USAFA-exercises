@@ -1,0 +1,169 @@
+---
+title: "Exercises on sigmoidal functions"
+author: "Daniel Kaplan"
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicCalc)
+```
+
+# Exercise 1
+
+The graph shows length versus age for baby girls in the US. ("Length" corresponds to what we call "height" in older children and adults.)  The dark line in the middle gives the median length: the 50th percentile. 
+
+
+![](/images/baby-growth.png)
+
+NOTE: There's also another graph
+
+![](/images/girl-growth.png)
+
+Consider a sigmoidal-form model of median length versus age.  In particular, consider a model based on the  `pnorm` function.  Some facts to remember about `pnorm`:
+
+a. There are two parameters, the "mean" and the "standard deviation" (sd).
+#. The derivative of pnorm function is the bell-shaped "normal" curve.  The mean tells the location of the center of the normal curve, the sd tells (roughly) the half-width at half-height.
+#. Another way to think about the mean is that it is the input where `pnorm` crosses halfway from its minimum to its maximum value.  The sd is roughly the change in input that makes pnorm grow from it's halfway value to about 5/6ths of the way to its maximum value.
+
+
+
+1. $A \exp(-k t) + C$
+#. $A\ \mbox{pnorm}(t, \mbox{mean=M, sd=S}) + C$
+
+For each of the graphs, choose the one of the two forms of model that you think is most appropriate to describe the median growth function. Make numerical estimates of the parameters: $A$, $k$, and $C$ for the first model form, $A$, $M$, $S$, and $C$ for the second form.
+
+a. Birth to 36 months
+#. 2 to 20 years
+
+After you have made your numerical parameter estimates, write a sentence or two describing why you selected each model form: what features of the graph motivated you.  
+
+# Exercise 2
+
+There are many different possible forms of sigmoidal curves. The overall shape is so important in modeling that people over the years have re-invented new mathematical representations using many different formulas.
+
+For our course, the two most important forms are:
+
+* **Logistic**: A historically favored form
+ $$ S(t) = \frac{1}{1 + C e^{-kt}} $$
+    The parameters, as you can see plainly from the formula, are  $C$, and $k$.
+ 
+* **Pnorm**: The form introduced in class, which is the integral of   the normal (bell-shaped) bump function.  The parameters are "mean"   and "sd" (short for "standard deviation").
+
+
+It's natural to ask whether one form is better than the other.  To some extent, the issue is similar to the different ways of writing exponential functions, namely, $e^{kt}$ or $(1+r)^t$ or $2^{t/\tau_2}$.  Of course, it's possible to choose parameters $k$, $r$, and $\tau_2$ so that these three exponential functions are exactly the same.  For the sigmoidal curves, however, the functions are very similar but not exactly the same. 
+
+A good reason to prefer the pnorm curve is that the parameters are pretty easy to interpret.  "Mean" tells you when the curve is at mid-range.  "SD" tells you how quickly the curve transitions from it's low value to its high value. 
+
+Calculus textbooks have traditionally favored the logistic function. The reason is that there is a pretty simple formula for it.  In contrast, there is no formula for the pnorm curve.  Or, rather, the formula involves an integral: 
+$$S(t) = \frac{1}{\sqrt{2 \pi \sigma^2}}
+\int^t_{-\infty} \exp( -\frac{(t-\mu)^2}{2 \sigma^2}) dt , $$ where $\mu$ is the mean and $\sigma$ is the standard deviation.  This is so difficult looking that people mistakenly think that the pnorm function itself is difficult.  
+
+But even if there is no simple formula, there is no problem computing the value of pnorm.  It's just that not all computations are about evaluating algebraic formulas.  For modeling purposes, the pnorm form may be easier to interpret. 
+
+Here you are going to explore the similarities and dissimilarities  of the pnorm and logistic sigmoidal curves.
+
+To start, let's take a pnorm curve with mean=5 and sd=3.
+```{r pnorm1}
+graphFun(pnorm(t, mean=5, sd=3) ~ t,
+         tlim=range(-15,15) )
+```
+
+What's the corresponding logistic curve?  To figure it out, you have find values for the logistic parameters $C$ and $k$ to come as close as possible to the pnorm curve.  Unfortunately, both $C$ and $k$ have an effect on the location of the mid-point and the slope at the mid-point.  For example, to find the mid-point $T_{mid}$, given $C$ and $t$, you need to solve  $C \exp(-k T_{mid}) = 1$ for $T_{mid}$.  That's not too daunting: $T_{mid} = \ln(C)/k$.  But, still, it's hard to read off the slope at the mid-point and translate it to appropriate values for $C$ and $k$.
+
+We're going to use fitting to find the values of $C$ and $k$ that correspond to a given mean and sd.  Here's how:
+
+1. Draw a sample from the pnorm curve
+```{r }
+times <- seq(-15, 15, length=50)
+Samples <- tibble( 
+  t=times, 
+  y=pnorm(times, mean=5, sd=3) + rnorm(length(times), sd=0.01)
+  )
+```
+ 
+
+#. Use nonlinear parameter estimation to find the matching $C$ and $k$:
+
+SOMETHING IS WRONG HERE. THE DATA ISN"T GETTING PASSED
+```{r eval=FALSE}
+#f <- fitModel(y ~ 1 / (1 + C * exp(-k * (t - t0) )), 
+f <- fitModel(y ~   (h + a*exp( t / k)) , 
+              data = Samples)
+
+,
+              start = list(t0 = 5, k = 5, C = 2))
+```
+
+By examining the resulting function, you can find the values of $C$ and $k$ to match the logistic curve to the pnorm curve.  You can also just evaluate or plot out the function, e.g.
+```{r log1, eval=FALSE}
+graphFun( f(t) ~ t, tlim=range(-15,15) )
+```
+ 
+Your tasks: 
+a.  Plot out both the pnorm curve with mean=5 and sd=3 and the   corresponding logistic curve.  How are they different?
+  
+#. Plot out the derivative w.r.t. $t$ of both the pnorm curve with mean=5 and sd=3 and the   corresponding logistic curve.  Are the differences more apparent   than in (a).
+  
+#. Change the value of mean to 7 while holding sd at 3.  Which   changes in the corresponding logistic curve, $C$ or $k$ or both?
+
+#. Change the value of sd to 2 while holding mean=7.  Which   changes in the corresponding logistic curve, $C$ or $k$ or both?
+
+
+# Exercise 3
+
+The basic modeling functions -- power-law, exponential, sine, log -- provide a small set of idealized forms for modeling a variety of phenomena.  A very important phenomenon in practice is ``limited growth.''   In this exercise, you're going to explore the extent to which the basic functions provide an effective way of modeling limited growth.
+
+First, depict the pattern of growth, based on your understanding of the real world.
+
+Pick one of the quantities below and sketch a function of time that is a realistic model.  (Your function of time doesn't need to be one of the basic modeling functions. It should reflect the observed patterns in the real world.)
+
+
+
+1. The height of a person from birth to middle-age.
+#. The fraction of households in the US with Internet connectivity.
+#. The biomass of a bacterial culture in a petri dish.
+#. The biomass of an "invasive," newly introduced species in an environment without predation.
+#. Accumulated retirement savings of an employee from the start of a career to the start of retirement.
+#. The speed of an automobile starting from a dead stop as it enters a highway from on a ramp.
+#. The height of a tree from seedling to maturity.
+#. Electricity use from very early morning to noon.
+#. The depth of a submarine as it dives from the surface to its cruising depth.
+
+
+
+```{r echo = FALSE}
+knitr::include_graphics("/images/200px-Graph-paper.png")
+```
+
+In sketching your graph, try to be quantitatively correct on both axes.  Get the time scale approximately right, and similarly get the range on the vertical axis approximately right. 
+
+
+Remember, label the axes and give physically meaningful values to the tick marks.
+
+Second, spend a few minutes on the computer trying to construct a function from the basic modeling functions that has the right shape.  Some possibilities you might consider: 
+
+a. $A e^{-k t} + C$ 
+#. $A t^\alpha + C$ with $0 < \alpha  < 1$.
+
+
+Third, consider what aspects of the function you created with the basic modeling functions are a good match to the growth function you sketched out, which aspects are a poor match.
+
+Fourth, try to parameterize your sketched function.  That is, find two, three, or perhaps four numbers that give a pretty detailed summary of the shape of your function, just as the parameters amplitude, period, and offset (that is, $A$, $P$, and $C$) give a detailed summary of a sine function, or half-life and initial condition give a detailed summary of exponential decay.  Mark down on your graph the quantities you come up with.
+
+Finally, sketch, by eye, the derivative w.r.t. time of your limited growth function.
+
+```{r echo = FALSE}
+knitr::include_graphics("/images/200px-Graph-paper.png")
+```
+
+
+# Other ideas for exercises
+
+
+CUMULATIVE CASES IN SARS, modeled by both pnorm and logistic.  Explain
+that pnorm gives a time scale for the event.
+
+State the mean and sd for several curves.
+
+
+FIT BOTH THE LOGISTIC AND PNORM CURVES to the population data.

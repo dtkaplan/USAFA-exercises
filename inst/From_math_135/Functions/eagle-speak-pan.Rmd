@@ -1,0 +1,51 @@
+---
+chapter: "none yet"
+title: "Title for eagle-speak-pan"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "eagle-speak-pan"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-03 
+tags: [exponentials, exponential base, third]
+id: eagle-speak-pan
+---
+
+```{r eagle-speak-pan-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Put the function $P(t) = 2 e^{-0.5 t}$  in the form $P(t)=P_0 a^t$. 
+
+```{r eagle-speak-pan-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "1. What is the value of $a$?",
+  c("+0.607+", 1.213, 1.648, 2.000, 3.297),
+  random_answer_order = FALSE
+)
+```
+
+
+```{r eagle-speak-pan-Qinline2, echo=FALSE}
+etude::choose_one(
+  prompt = "2. What is the value of $P_0$?",
+  c(0.607, 1.213, 1.648, "+2.000+", 3.297),
+  random_answer_order = FALSE
+)
+```
+
+

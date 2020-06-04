@@ -1,0 +1,80 @@
+---
+chapter: "Functions"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "spruce-think-plate"
+  version: 0.1 DRAFT
+runtime: shiny_prerendered
+date: 2020-05-07 
+tags: [R syntax, math notation, makeFun, sine, exp]
+id: "spruce-think-plate" 
+title: "Oscillations as they die out"
+---
+
+(ref:spruce-think-plate) Exercise in file spruce-think-plate
+
+```{r spruce-think-plate-default, include = FALSE}
+SDSdata::sds_setup()
+library(learnr)
+library(mosaicCalc)
+library(gradethis)
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+TITLE GOES HERE: Here is a function of time, $t$, that gives a simple model of the vibrational response of an object when struck. (For instance, the plucking of a guitar string or the oscillations in a car's suspension after going over a bump.)
+
+$$\sin( 2 \pi t / P ) e^{-k t}$$
+
+Your job is to use `makeFun()` to create an R function that corresponds to the above expression. Give the function the name `wave`.
+
+Some things to think about:
+
+1. Multiplication must be explicitly written in R statements. The multiplication implicit in mathematical notation expressions like $2 \pi t$ does not apply in R.
+2. In R (and most other computer languages), the exponential function is called `exp()`.
+3. We said that the expression is a function of time $t$. Put there are also *parameters* and *constants* in the expression. When evaluating the function or making a graph, numerical values must be assigned to each parameter.
+
+
+```{r spruce-think-plate-box-setup}
+
+```
+
+```{r spruce-think-plate-box, exercise=TRUE, exercise.setup="spruce-think-plate-box-setup", exercise.cap="Code box", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=FALSE }
+# Define your "wave" function here.
+waave <- function(t) {t^2}
+
+```
+
+```{r spruce-think-plate-box-check, echo = FALSE}
+# Checking code goes here.
+TRUE
+```
+
+```{r spruce-think-plate-box-code-check-inactive, echo = FALSE}
+# Code checking prior to execution of code
+
+```
+
+
+```{r spruce-think-plate-box-solution, echo = FALSE}
+wave <- sin(2 * pi * t / P) * exp(- k * t)
+```
+
+1. Graph the `vibration()` function over a domain from t=0 to t = 10. Set the parameter $P$ to 1.5 and the parameter $k$ to 0.1. 
+
+MULTIPLE CHOICE QUESTION HERE.
+
+2. Leaving $k$ at 0.1, make a contour plot of `vibration()` as a function of $t$ and $P$. The domain for $P$ in the graphic should be 0.1 to 2. 
+
+MULTIPLE CHOICE QUESTION about contour plot.
+```{r spruce-think-plate-Q1, echo=FALSE}
+question(
+  text = "The prompt for the question",
+  answer("First choice", correct = TRUE, message = "The first one is *always* correct."),
+  answer("Second choice", message = "The second choice is *never* correct."),
+  answer("Third choice", correct = TRUE, message = "More than one answer can be true."),
+  allow_retry = TRUE,
+  random_answer_order = TRUE)
+```
+
