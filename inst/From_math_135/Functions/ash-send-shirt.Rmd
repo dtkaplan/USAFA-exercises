@@ -1,0 +1,64 @@
+---
+chapter: "none yet"
+title: "Title for ash-send-shirt"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "ash-send-shirt"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [first, second, third]
+id: ash-send-shirt
+---
+
+```{r ash-send-shirt-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` Finding the zeros of a function of two variables is easy graphically: make a contour plot and find the zero contour! Any point on the zero contour is a solution.
+
+For each of the following equations involving two variables, find a solution by constructing an appropriate function, making a contour plot, and locating a point on the zero contour. Plug your solution into the function to demonstrate that it is correct. (Of course, reading coordinates off a graph is not necessarily precise, so even if your coordinates are reasonable, the function value at those coordinates may not be exactly zero. But make sure that it is small.)
+
+
+```{r ash-send-shirt-C1, exercise=TRUE, exercise.cap="Sandbox"}
+
+```
+
+a. $3 x + y = 7$ for $x \in [-5, 5]$ and $y \in [-5, 5]$.
+b. $4 x^2 = 5 - y$ for $x \in [-5, 5]$ and $y \in [-5, 5]$.
+c. $\sin x = \tan y^3$ for $x \in [-5, 5]$ and $y \in [-1, 1]$.
+
+
+```{r ash-send-shirt-C3}
+etude::essay_response(
+  "Enter the coordinate you found for each of functions (a), (b), and (c)."
+)
+```
+
+```{r ash-send-shirt-C2}
+etude::choose_one(
+  "In deciding whether coordinates you read off the graph for a function zero are reasonable, to what should you compare the function output at those coordinates?",
+  list(
+    "to zero" = "Obvious though this answer is, it's not useful. The same non-zero value can be either very close to zero or very far from zero depending on the context. For example, the distance from the Earth to the Sun is about $1.5 \\times 10^{-5}$ light years. That's a small number, but you wouldn't be alive if the number were close to zero!",
+    "to one" = "One nanometer is a distance that's small on a human scale but large on an atomic scale.",
+    "+small compared to the value of the nearest non-zero contour+" = "",
+    "no way to know" = "You can know. But the answer is not a matter of arithmetic but of knowing what's important in the appropriate context of your problem."
+  ),
+  random_answer_order = FALSE
+)
+```
+

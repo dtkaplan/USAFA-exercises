@@ -1,0 +1,140 @@
+---
+chapter: "none yet"
+title: "Title for fox-make-stove"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "fox-make-stove"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [functions, approximation, third]
+id: fox-make-stove
+---
+
+```{r fox-make-stove-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The figure below shows a function $f(x)$, drawn as a thick, gray curve.  In addition, there is a second function overlaid in blue.
+
+Your task is to decide how good a match the blue function is to the gray one, according to several different criteria. Keep in mind, a function that is a good match according to one criterion may be a bad match in terms of another criterion.
+
+Your answers will be chosen from among:
+
+* Good.  Overall, the approximation matches to better than, say, 10%.
+* OK.  The approximation matches to about 20-30%.
+* Horrible.  It would make no sense to use such an approximation.
+
+```{r echo = FALSE}
+xpts = c(10,21,33,45,68,82,93)
+ypts = c(4,6,7,2,3.5,5.5,6.5)
+f = splinefun(xpts,ypts)
+g1 = function(x){f(x) + .3*sin(2*pi*x/9)}
+newx = seq(10,93,by=10)
+set.seed(65)
+g2 = approxfun(newx,f(newx))
+g3 = splinefun( newx, f(newx)+rnorm(length(newx),mean=0,sd=.3) )
+g4 = splinefun( newx, f(newx)+rnorm(length(newx),mean=2.3,sd=.3) )
+```
+ 
+
+```{r echo=FALSE}
+slice_plot(f(x) ~ x, domain(x=c(0,100)), color="gray", size=3) %>%
+  slice_plot(g1(x) ~ x, color = "blue" ) 
+```
+
+
+
+```{r fox-make-stove-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "The function value",
+  c("+Good+", "+OK+", "Horrible"),
+  random_answer_order = FALSE
+)
+```
+
+```{r fox-make-stove-Qinline2, echo=FALSE}
+message <- "Note that the derivative of the blue function often has a different sign than the derivative of the gray function."
+etude::choose_one(
+  prompt = "The function's derivative",
+  list("Good" = message, 
+       "OK" = message,
+       "+Horrible+" = 0),
+  random_answer_order = FALSE
+)
+```
+
+```{r fox-make-stove-Qinline3, echo=FALSE}
+message <- "If the derivative is a horrible approximation, the second derivative won't generally be better."
+etude::choose_one(
+  prompt = "The function's second derivative",
+  list("Good" = message, 
+       "OK" = message, 
+       "+Horrible+"),
+  random_answer_order = FALSE
+)
+```
+
+```{r fox-make-stove-Qinline4, echo=FALSE}
+message <- "Perhaps this is surprising. The difference between the gray function and the blue function is sometimes positive and sometimes negative. In the integral, those positive differences cancel out the negative differences."
+etude::choose_one(
+  prompt = "The function's integral from 10 to 90",
+  list("+Good+" = message, 
+       "OK" = "", 
+       "Horrible" = ""),
+  random_answer_order = FALSE
+)
+```
+
+#. Approximation $g2$
+
+
+
+
+    a. The function value: {OK}{Good,OK,Horrible}
+    #. The function's derivative: {OK}{Good,OK,Horrible}
+    #. The function's second derivative: {OK}{Good,OK,Horrible}
+    #. The function's integral from 10 to 90: {OK}{Good,OK,Horrible}
+
+#. Approximation $g3$
+
+
+    ```{r echo=FALSE}
+graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
+  graphFun(g3(x) ~ x, color = "blue" ) %>%
+  gf_labs(title = "Approximation g3")
+```
+
+    a. The function value: {OK}{Good,OK,Horrible}
+    #. The function's derivative: {OK}{Good,OK,Horrible}
+    #. The function's second derivative: {OK}{Good,OK,Horrible}
+    #. The function's integral from 10 to 90: {OK}{Good,OK,Horrible}
+
+#. Approximation $g4$
+
+    ```{r echo=FALSE}
+graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
+  graphFun(g1(x) ~ x, color = "blue" ) %>%
+  gf_labs(title = "Approximation g1")
+```
+
+    a. The function value: {OK}{Good,OK,Horrible}
+    #. The function's derivative: {OK}{Good,OK,Horrible}
+    #. The function's second derivative: {OK}{Good,OK,Horrible}
+    #. The function's integral from 10 to 90: {Good,OK,Horrible}
+
+

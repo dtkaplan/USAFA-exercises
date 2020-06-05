@@ -57,8 +57,8 @@ etude::choose_one(
 ```
 
 ```{etude}
-g = makeFun(x^2 - 7*x + 5 ~ x)
-findZeros(g(x) ~ x)
+    g = makeFun(x^2 - 7*x + 5 ~ x)
+    findZeros(g(x) ~ x)
 ```
 
 
@@ -72,8 +72,8 @@ etude::choose_one(
 ```
 
 ```{etude}
-g = makeFun( 2*x^2 - 5 - 4*x ~ x )
-findZeros(g(x) ~ x, x=range(-5,5) )
+    g = makeFun( 2*x^2 - 5 - 4*x ~ x )
+    findZeros(g(x) ~ x, x=range(-5,5) )
 ```
 
 

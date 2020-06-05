@@ -1,0 +1,105 @@
+---
+chapter: "none yet"
+title: "Title for beech-sleep-drawer"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "beech-sleep-drawer"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [contours, slice-plots, wind chill]
+id: beech-sleep-drawer
+---
+
+```{r beech-sleep-drawer-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` The graphic below is about wind chill, temperature and wind speed. 
+
+```{r echo=FALSE}
+knitr::include_graphics("images/wind-chill.png")
+```
+
+
+
+
+```{r beech-sleep-drawer-C1}
+etude::true_or_false(
+  "Interpreted as a contour plot, it shows wind chill as a function of temperature and wind speed.",
+  TRUE
+)
+```
+ 
+
+```{r beech-sleep-drawer-C2}
+etude::true_or_false(
+  "Interpreted as a series of slice plots it shows wind speed as a function of wind chill and temperature.",
+  TRUE
+)
+```
+
+```{r beech-sleep-drawer-C3}
+etude::true_or_false(
+  "For a wind speed of 15 and a temperature of 0, the wind chill is -10.",
+  FALSE
+)
+```
+
+```{r beech-sleep-drawer-C4}
+etude::true_or_false(
+  "For a wind speed of 30 and a temperature of 20, the wind chill is 0.",
+  TRUE
+)
+```
+
+```{r beech-sleep-drawer-C5}
+etude::true_or_false(
+  "For a wind *chill* of -40 and a temperature of -20, the wind *speed* is 10.",
+  TRUE
+)
+```
+
+```{r beech-sleep-drawer-C6}
+etude::true_or_false(
+  "For a wind speed of 20 and a wind chill of 0, the temperature is 0.",
+  FALSE
+)
+```
+
+```{r beech-sleep-drawer-C7}
+etude::true_or_false(
+  "For a wind speed of 15 and a temperature of 0, the wind chill is -10.",
+  FALSE
+)
+```
+
+```{r beech-sleep-drawer-C8}
+etude::true_or_false(
+  "For a temperature of 20 and a wind chill of 0, the wind speed is -30.",
+  TRUE
+)
+```
+
+```{r beech-sleep-drawer-C9}
+etude::true_or_false(
+  "For a wind speed of 10 and a wind chill of -70, the air temperature is -30.",
+  FALSE
+)
+```
+
+

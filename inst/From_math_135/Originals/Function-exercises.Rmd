@@ -195,36 +195,7 @@ knitr::include_graphics("/images/humidityfluctuations.png")
 
 # Exercise 32
 
-You probably know that the air pressure drops as you go up in altitude.  At sea level, ``zero'' elevation, pressure is around 1.0 kg per square cm (that's the same as 14.7 pounds per square inch).  The altitude of Denver, Colorado is 5000 feet above sea level, and a typical air pressure is 0.8 kg per square cm.  Think about air pressure as a function of altitude above sea level.  The given pressures at sea level and Denver give two points on this function.
 
-1. Assuming an **linear model**, what will be the air pressure at an altitude at which airplanes fly, 30,000 feet above sea level, or six times as high as Denver?
-
-<!--begin-answer-->
-Air pressure is a linear function of altitude.  We know the pressure is 1 (kg/cm$^2$) at altitude 0, and 0.8 at altitude 5000 ft, so the function is
-$$ P(h) = 1 - 0.2 h/5000 .$$
-Plugging in $h=30000$ gives $P(30000) = -0.2$.
-
-Another way to think about this is that, in the linear model, the pressure goes down by 0.2 per 5000 ft, so going from 0 to 30000 feet makes the pressure go down by $1.2$.  Since pressure is 1 at altitude zero, the pressure at 30000 feet is $-0.2$.
-<!--end-answer-->
-
-2. Assuming an {\bf exponential model}, what will be the air pressure at 30,000 feet?
-
-<!--begin-answer-->
-In an exponential model, the pressure changes by a constant multiplicative factor for each unit of elevation.  From the data, we know that this factor is 0.8 for a unit change of 5000 ft.  In going from 0 to 30000 ft, there are 6 such unit changes, so the decrease is $0.8^6 = 0.8 \times 0.8 \times 0.8 \times 0.8 \times 0.8 \times 0.8 = 0.26$.  (Just writing $0.8^6$ is fine.)  Therefore the pressure at 30000 feet is $1 \times 0.26$.
-<!--end-answer-->
-
-3. Which of the two models seems more reasonable?  Say why.
-\answerSpace{.5in}
-
-<!--begin-answer-->
-The linear model shows the pressure becoming negative at 30,000 feet. 
-We know that pressure can't become negative.  As altitude goes up, air pressure decreases toward zero.  This suggests an exponential model. 
-<!--end-answer-->
-
-
-*Not part of the problem*: Just for interest, note that the numbers have been rounded a bit.  The actual pressure at sea level is 1.03 kg per square cm, and at 5000 ft altitude it's 0.86 kg per square cm.  But use the round numbers in your calculations. Denver is really at an altitude of about 5200 feet above sea level.)
-
-[Contributed by Prof. Dan Flath]
 
 # Exercise 33
 
@@ -334,81 +305,6 @@ knitr::include_graphics("/images/bank-paper.png")
 
 # Exercise 38
 
-The figures below all show the same relationship $f(x)$, drawn as a thick, gray curve.  In addition, each figure shows a modeling approximation -- g1, g2, g3, or g4 -- to $f(x)$.  Your task is to decide how good an approximation each one is, according to several different criteria.
-
-Your answers will be chosen from among:
-
-* Good.  Overall, the approximation matches to better than, say, 5%.
-* OK.  The approximation matches to about 20-30%.
-* Horrible.  It would make no sense to use such an approximation.
-
-```{r echo = FALSE}
-xpts = c(10,21,33,45,68,82,93)
-ypts = c(4,6,7,2,3.5,5.5,6.5)
-f = splinefun(xpts,ypts)
-g1 = function(x){f(x) + .3*sin(2*pi*x/9)}
-newx = seq(10,90,by=10)
-set.seed(65)
-g2 = approxfun(newx,f(newx))
-g3 = splinefun( newx, f(newx)+rnorm(length(newx),mean=0,sd=.3) )
-g4 = splinefun( newx, f(newx)+rnorm(length(newx),mean=2.3,sd=.3) )
-```
- 
-
-1. Approximation $g1$
-
-    ```{r echo=FALSE}
-graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
-  graphFun(g1(x) ~ x, color = "blue" ) %>%
-  gf_labs(title = "Approximation g1")
-```
-
-    a. The function value: {OK}{Good,OK,Horrible}
-    #. The function's derivative: {OK}{Good,OK,Horrible}
-    #. The function's second derivative: {OK}{Good,OK,Horrible}
-    #. The function's integral from 10 to 90: {OK}{Good,OK,Horrible}
-
-
-#. Approximation $g2$
-
-
-    ```{r echo=FALSE}
-graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
-  graphFun(g2(x) ~ x, color = "blue" ) %>%
-  gf_labs(title = "Approximation g2")
-```
-
-    a. The function value: {OK}{Good,OK,Horrible}
-    #. The function's derivative: {OK}{Good,OK,Horrible}
-    #. The function's second derivative: {OK}{Good,OK,Horrible}
-    #. The function's integral from 10 to 90: {OK}{Good,OK,Horrible}
-
-#. Approximation $g3$
-
-
-    ```{r echo=FALSE}
-graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
-  graphFun(g3(x) ~ x, color = "blue" ) %>%
-  gf_labs(title = "Approximation g3")
-```
-
-    a. The function value: {OK}{Good,OK,Horrible}
-    #. The function's derivative: {OK}{Good,OK,Horrible}
-    #. The function's second derivative: {OK}{Good,OK,Horrible}
-    #. The function's integral from 10 to 90: {OK}{Good,OK,Horrible}
-
-#. Approximation $g4$
-
-    ```{r echo=FALSE}
-graphFun(f(x) ~ x, xlim=c(0,100), color="gray", lwd=3) %>%
-  graphFun(g1(x) ~ x, color = "blue" ) %>%
-  gf_labs(title = "Approximation g1")
-```
-
-    a. The function value: {OK}{Good,OK,Horrible}
-    #. The function's derivative: {OK}{Good,OK,Horrible}
-    #. The function's second derivative: {OK}{Good,OK,Horrible}
-    #. The function's integral from 10 to 90: {Good,OK,Horrible}
 
 # Exercise 39
 
@@ -442,6 +338,4 @@ This will be the wind speed at which a given contour line crosses the vertical l
 <!--end-answer-->
 
 
-
-# Exercise 41
 

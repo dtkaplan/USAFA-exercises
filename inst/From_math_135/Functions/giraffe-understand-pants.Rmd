@@ -1,0 +1,78 @@
+---
+chapter: "Functions"
+title: "Title for giraffe-understand-pants"
+author: "Dan Flath"
+output: learnr::tutorial
+tutorial:
+  id: "giraffe-understand-pants"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [exponentials, linear, air pressure]
+id: giraffe-understand-pants
+---
+
+```{r giraffe-understand-pants-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` You probably know that the air pressure drops as you go up in altitude.  At sea level, "zero" elevation, pressure is around 1.0 kg per square cm (that's the same as 14.7 pounds per square inch).  The altitude of Denver, Colorado is 5000 feet above sea level, and a typical air pressure is 0.8 kg per square cm.  Think about air pressure as a function of altitude above sea level.  The given pressures at sea level and Denver give two points on this function.
+
+
+
+```{r giraffe-understand-pants-Qinline1, echo=FALSE}
+etude::choose_one(
+  prompt = "A) Assuming a **linear model**, what will be the air pressure at an altitude at which airplanes fly, 30,000 feet above sea level, or six times as high as Denver?",
+  list("+-0.2 kg/m^2+" = "Right. There's no such thing as negative air pressure. That the model generates such a thing shows that the linear model is inappropriate for extrapolating from 5000 ft to 30,000 ft.", 
+       "0" = "", 
+       "0.13 kg/m^2" = "",
+       "0.26 kg/m^2" = "", 
+       "0.52 kg/m^2" = ""),
+  random_answer_order = FALSE
+)
+```
+
+
+```{etude}
+Air pressure is a linear function of altitude.  We know the pressure is 1 (kg/cm$^2$) at altitude 0, and 0.8 at altitude 5000 ft, so the function is
+$$ P(h) = 1 - 0.2 h/5000 .$$
+Plugging in $h=30000$ gives $P(30000) = -0.2$.
+
+Another way to think about this is that, in the linear model, the pressure goes down by 0.2 per 5000 ft, so going from 0 to 30000 feet makes the pressure go down by $1.2$.  Since pressure is 1 at altitude zero, the pressure at 30000 feet is $-0.2$.
+```
+
+```{r giraffe-understand-pants-Qinline2, echo=FALSE}
+
+etude::choose_one(
+  prompt = "B. Assuming an **exponential model**, what will be the air pressure at 30,000 feet?",
+  list("-0.2 kg/m^2" = "", 
+       "0" = "", 
+       "0.13 kg/m^2" = "",
+       "+0.26 kg/m^2+" = "", 
+       "0.52 kg/m^2" = ""),
+  random_answer_order = FALSE
+)
+```
+
+
+```{etude}
+In an exponential model, the pressure changes by a constant multiplicative factor for each unit of elevation.  From the data, we know that this factor is 0.8 for a unit change of 5000 ft.  In going from 0 to 30000 ft, there are 6 such unit changes, so the decrease is $0.8^6 = 0.8 \times 0.8 \times 0.8 \times 0.8 \times 0.8 \times 0.8 = 0.26$.  (Just writing $0.8^6$ is fine.)  Therefore the pressure at 30000 feet is $1 \times 0.26$.
+```
+
+*Not part of the problem*: Just for interest, note that the numbers have been rounded a bit.  The actual pressure at sea level is 1.03 kg per square cm, and at 5000 ft altitude it's 0.86 kg per square cm.  For simplicity, we've used round numbers in your calculations. Denver is really at an altitude of about 5200 feet above sea level. The US Air Force Academy airport is at about 6200 feet.)
+
+[Contributed by Prof. Dan Flath]
+

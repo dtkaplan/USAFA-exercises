@@ -1,0 +1,88 @@
+---
+chapter: "none yet"
+title: "Title for seaweed-drink-gloves"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "seaweed-drink-gloves"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [first, second, third]
+id: seaweed-drink-gloves
+---
+
+```{r seaweed-drink-gloves-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` "Solving simultaneous equations" is the process of finding solutions that make more than one equation true at the same time. 
+
+Translating to a functions perspective, there is always a function whose zeros give the solution to an equation. When the function has two inputs, you can see the solutions by making a contour plot of the function. *Any* point on the zero contour is a solution.
+
+It's common in science and technology for there to be many solutions to the same equation--that is, many zeros for a function. Sometimes one of these solutions is to be preferred. Which one it is depends on other criterion. For instance, a rectangular cross-section structural beam is characterized by, among other things, the width and height of the cross section. From the width and height, you can calculate the load-carrying capacity of the beam. There are many combinations of width and height that give the same load-carrying capacity.
+
+The combination of beam width and height that is to be preferred might be the one that uses the least overall material. 
+
+One situation that arises is to find a zero of one function, that is also a zero of another function. That is, the input found should *simultaneously* be a zero of both functions. Each of the two functions might independently have many solutions--all the points that lie on the zero contour of each function. The requirement that the solution to the system of two functions have a value for the inputs that gives zero for *both* functions will, in general, produce solutions that are isolated points, rather than points along a continuous curve. 
+
+As an example, consider the problem of finding a simultaneous solution to two straight-line equations. This is the sort of problem encountered in many high-school algebra classes and you, no doubt learned a solution algorithm involving adding and subtracting equations. For instance:
+
+$$\begin{array}{rcrcc}
+ 3  x & + & 7 y & = & 4\\
+    x & - &2   y & = & 3\\
+\end{array}$$
+
+To solve the problem using functions, construct one function whose zeros solve the top equation and another function whose zeros solve the lower equation. Make a contour plot of each function, paying particular attention to the zero contour. Where the zero contours of the two functions cross, that's where you have a solution.  Like this:
+
+
+```{r seaweed-drink-gloves-C1, exercise=TRUE, exercise.cap="Finding solutions via contours", exercise.lines=7}
+contour_plot(3*x + 7*y - 4 ~ x + y, 
+             domain(x = -3:3, y = -3:3), 
+             contours_at = c(-10, 0, 10), skip = 0) %>%
+  contour_plot(x - 2*y - 3 ~ x + y, 
+               contours_at = 0, 
+               filled = FALSE, contour_color = "red")
+```
+If there are two equations that need to be satisfied simultaneously, you can start by finding a solution to one of the equations and tracing out that contour line. Then do the same for the other equation. The simultaneous solution will be a point that is on both of the solution contour lines: the place where the contours cross.
+
+Hint: Plot out the first function in the normal way. When adding on the second function to the plot, you will find it easier to read if you do not fill the space between the contour lines, and if you color the contour lines, say, red. You may also want to simplify the graphic by drawing only the zero contour. The argument `contours_at = ` does this.
+
+
+Find a simultaneous solution to each of the following pairs of equations:
+
+For each of the following pairs of functions, find out how many zeros there are in the domain indicated and write this in the text box. In addition, if there is at least one zero, enter the coordinates of that zero into the text box.
+
+```{r seaweed-drink-gloves-Ca}
+etude::essay_response(
+  "a) $3 x + y = 7$ and $x^2 + y^2 = 3$ for $x \\in [-5, 5]$ and $y \\in [-5, 5]$."
+)
+```
+
+
+
+```{r seaweed-drink-gloves-Cb}
+etude::essay_response(
+  "b) $4 x^2 = 5 - y$ and  $2 x^2 - y^2 = 1$ for $x \\in [-5, 5]$ and $y \\in [-5, 5]$."
+)
+```
+
+```{r seaweed-drink-gloves-Cc}
+etude::essay_response(
+  "c) $\\sin x = \\tan y$ and $x^2 + y^2 = 3$ for $x \\in [-5, 5]$ and $y \\in [-1, 1]$."
+)
+```
+

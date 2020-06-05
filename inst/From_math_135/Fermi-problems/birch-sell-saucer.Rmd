@@ -1,0 +1,41 @@
+---
+chapter: "none yet"
+title: "Title for birch-sell-saucer"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "birch-sell-saucer"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [fermi problem, pendulum, rock climbing]
+id: birch-sell-saucer
+---
+
+```{r birch-sell-saucer-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` At the very beginning of [this 1987 video](http://www.ukclimbing.com/news/item.php?id=49981), the climber, [Catherine Destivelle](https://en.wikipedia.org/wiki/Catherine_Destivelle), is dangling from a swinging rope. Make an estimate of how long the rope is, based on principles of dimensional analysis. (Hint: You might have to do an measurement with a short string and a small mass in your room. No rock climbing required or recommended!)
+
+```{r birch-sell-saucer-C1}
+etude::essay_response(
+  "Give your estimate of the length of the rope, explaining the reasoning that went into it."
+)
+```
+
+PS. Glad to report that as of July 2020, Catherine is 60 years old.
+

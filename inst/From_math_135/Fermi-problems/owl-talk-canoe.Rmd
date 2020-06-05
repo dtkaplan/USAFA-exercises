@@ -1,0 +1,41 @@
+---
+chapter: "none yet"
+title: "Title for owl-talk-canoe"
+author: "Danny Kaplan"
+output: learnr::tutorial
+tutorial:
+  id: "owl-talk-canoe"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-06-05 
+tags: [fermi problem, satellite, third]
+id: owl-talk-canoe
+---
+
+```{r owl-talk-canoe-setup, include = FALSE}
+SDSdata::sds_setup()
+library(etude)
+library(learnr)
+library(gradethis)
+library(QandA)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+library(mosaicUSAFA)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = QandA::save_check_inputs)
+```
+
+
+`r etude::exercise_title()` In late September, 2011, the re-entry of a satellite was [in the news](http://www.nytimes.com/2011/09/23/science/space/23satellite.html?_r=1&scp=3&sq=nasa%203200%20satellite&st=cse). NASA estimated that there was a 1/3200 chance that one or more people would be hit by debris from the satellite.
+
+```{r owl-talk-canoe-C1}
+etude::essay_response(
+  "Make your own estimation to compare to NASA's claim that the probability is 1/3200. Make sure to explain the logic behind your estimate and give rough numerical values for each of the parameters that enter in to the problem. The spirit of your answer should be to give a probability that would be no more than 10 times the actual probability (whatever that is) and no less than one-tenth the actual probability."
+)
+```
+
+
+
