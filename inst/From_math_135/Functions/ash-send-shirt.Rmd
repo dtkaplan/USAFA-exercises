@@ -31,7 +31,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 `r etude::exercise_title()` Finding the zeros of a function of two variables is easy graphically: make a contour plot and find the zero contour! Any point on the zero contour is a solution.
 
-For each of the following equations involving two variables, find a solution by constructing an appropriate function, making a contour plot, and locating a point on the zero contour. Plug your solution into the function to demonstrate that it is correct. (Of course, reading coordinates off a graph is not necessarily precise, so even if your coordinates are reasonable, the function value at those coordinates may not be exactly zero. But make sure that it is small.)
+For each of the following equations involving two variables, find a solution by constructing an appropriate function, making a contour plot, and locating a point on the zero contour. Plug your solution into the function to demonstrate that it is correct. 
 
 
 ```{r ash-send-shirt-C1, exercise=TRUE, exercise.cap="Sandbox"}
@@ -42,6 +42,8 @@ a. $3 x + y = 7$ for $x \in [-5, 5]$ and $y \in [-5, 5]$.
 b. $4 x^2 = 5 - y$ for $x \in [-5, 5]$ and $y \in [-5, 5]$.
 c. $\sin x = \tan y^3$ for $x \in [-5, 5]$ and $y \in [-1, 1]$.
 
+
+Of course, reading coordinates off a graph is not necessarily precise, so even if your coordinates are reasonable, the function value at those coordinates may not be exactly zero. But make sure that it is small.
 
 ```{r ash-send-shirt-C3}
 etude::essay_response(

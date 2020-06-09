@@ -16,100 +16,44 @@ library(etude)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
-vfun <- basket::check_valid
 knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+<!-- Start login block 
+# Another possibility
+storage_actions <- in_local_file("submissions.csv")
+-->
+
+```{r} 
+submitr::login_controls()
+```
+
+
+```{r context = "server", echo = FALSE}
 options(tutorial.storage = "none")
 learnr::tutorial_options(exercise.timelimit = 60, 
                  exercise.checker = QandA::save_check_inputs)
-```
-
-<!-- Start login block -->
-```{r __login__, context = "server", echo=FALSE}
-# But in this example, we'll replace these to
-# make the password and storage local
-#storage_actions <- in_local_file("submissions.csv")
+vfun <- basket::check_valid
 storage_actions <- 
         in_google_sheets(
           "1w3fEld2rZlR_6FuzvkA-viOLBA5JdqD3xHl-LuLX3-Y",
           "statprep.annie@gmail.com",
           vfun)
-# Local memory
-
-```
-
-`r shiny::textOutput("login_message")` 
-
-`r submitr::login_controls()`
-
-```{r context = "server", echo = FALSE}
 submitr::shiny_logic(input, output, session, vfun,
                      storage_actions)
 ```
 
-```{r context = "server", echo = FALSE}
-# observe({
-#   if (vfun(input$userID,  "i", input$password)) {
-#     output$download <- renderUI(downloadLink("get_submissions",  
-#                                              label="Download submissions"))
-#   } else {
-#     output$download <- renderUI(tagList())
-#   }
-# }
-# )
-```
-
-```{r context = "server"}
-# valid_id <- reactive({
-#   if (!isTruthy(input$userID)) return(FALSE)
-#   vfun(input$userID, "u")
-# })
-# valid_password <- reactive({
-#   if (!isTruthy(input$userID)) return(FALSE)
-#   if (!isTruthy(input$password)) return(FALSE)
-#   vfun(input$userID, "p", input$password)
-# })
-
-# set the learnr logging function
-# observe({
-#   if (valid_id()) {
-#     if (valid_password())  {
-#       user_identification <- isolate(input$userID)
-#     } else {
-#       user_identification <- paste("Unauthenticated", isolate(input$userID))
-#     }
-#     options(tutorial.event_recorder =
-#               make_recorder(storage_actions$write,
-#                             user_identification))
-#             
-#   }
-# })
-
-# output$login_message <-
-#   renderText({ 
-#       if (valid_id() && valid_password()) {
-#         return("Login SUCCESSFUL.")
-#       } 
-#       if (valid_id()) {
-#         return("Valid ID but password not yet correct")
-#       } 
-#       if (nchar(input$userID) > 1) {
-#         return("Invalid user ID")
-#       }
-#       return("Please log in.")
-#       
-#     })
-# 
-# # Link to download submissions ...
-# output$get_submissions <- downloadHandler(
-#   filename = function() {
-#     paste0("submissions-", Sys.Date(), ".csv")
-#   },
-#   content = storage_actions$read_submissions
-# )
-```
-
-
 <!--End login block-->
+
+`r include_etude("../From_math_135/Functions/ash-send-shirt.Rmd")`
+
+`r include_etude("../From_math_135/Functions/beech-sleep-drawer.Rmd")`
+
+`r include_etude("../From_math_135/Functions/cat-lend-futon.Rmd")`
+
+
+
 
 ## Topic One
 
@@ -147,11 +91,11 @@ question("Which car  do you drive?",
 
 ## Code
 
-```{r ash-send-shirt-C1, exercise=TRUE, exercise.cap="Sandbox"}
+```{r just_some_code-C1, exercise=TRUE, exercise.cap="Sandbox"}
 
 ```
 
-```{r ash-send-shirt-C1-check}
+```{r just_some_code-C1-check}
 gradethis::grade_result(
   pass_if( ~ .result == 4, message = "Four is a charm!"),
   fail_if( ~ .result == 3, message = "Not three!"),
