@@ -21,7 +21,7 @@ library(etude)
 
 ```{r deer-rise-mug-Qinline1, echo=FALSE}
 etude::choose_one(
-  prompt = "1. What is the effect on national production of a year when unemployment rises from 5% to 8%? National production will ...",
+  prompt = "A) What is the effect on national production of a year when unemployment rises from 5% to 8%? National production will ...",
   c("+Go down by 2.5 percent+", "Go up by 3.5 percent", "Go down by 3.5 percent", "Go up by 2.5 percent"),
   random_answer_order = TRUE
 )
@@ -29,7 +29,7 @@ etude::choose_one(
 
 ```{r deer-rise-mug-Qinline2, echo=FALSE}
 etude::choose_one(
-  prompt = "2. What change in unemployment rate corresponds to a year when production is the same as the year before? Unemployment rate will go ...",
+  prompt = "B) What change in unemployment rate corresponds to a year when production is the same as the year before? Unemployment rate will go ...",
   c("+Up by 1.75+", "Down by 1.75", "Up by 3.5", "Down by 3.5"),
   random_answer_order = TRUE
 )
@@ -38,7 +38,7 @@ etude::choose_one(
 
 ```{r deer-rise-mug-Qinline3, echo=FALSE}
 etude::choose_one(
-  prompt = "3. What is the meaning of the number 3.5 in Okun's law?",
+  prompt = "C) What is the meaning of the number 3.5 in Okun's law?",
   c("+The yearly percentage increase in production when unemployment does not change from the previous year.+",
   "The yearly percentage increase in production when unemployment is zero.", 
   "The unemployment rate when production does not grow.", 

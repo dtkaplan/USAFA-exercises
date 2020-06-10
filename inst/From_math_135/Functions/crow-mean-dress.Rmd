@@ -35,7 +35,7 @@ etudeQinline()
 
 ```{r crow-mean-dress-Qinline1, echo=FALSE}
 etude::choose_one(
-  prompt = "1. Consider a baby and an adult. The adult's mass is $8$ times greater than the baby's. Then the adult's surface area is ...?",
+  prompt = "A) Consider a baby and an adult. The adult's mass is $8$ times greater than the baby's. Then the adult's surface area is ...?",
   c("The same as the baby's", "1.5 times of the baby's", "+4 times the baby's+", "8 times the baby's"),
   random_answer_order = FALSE,
   inline = FALSE
@@ -44,7 +44,7 @@ etude::choose_one(
 
 ```{r crow-mean-dress-Qinline2, echo=FALSE}
 etude::choose_one(
-  prompt = "2. A human of body mass 70 kg has a surface area of 18,600  cm^3^. The constant of proportionality for humans is closest to ...?",
+  prompt = "B) A human of body mass 70 kg has a surface area of 18,600  cm^3^. The constant of proportionality for humans is closest to ...?",
   c(1, 10, 100, "+1000+"),
   random_answer_order = FALSE
 )

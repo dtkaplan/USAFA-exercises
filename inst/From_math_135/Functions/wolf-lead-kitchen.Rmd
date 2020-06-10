@@ -34,7 +34,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 ```{r wolf-lead-kitchen-Qinline1, echo=FALSE}
 etude::choose_one(
-  prompt = "1. In the new form, $P_0$ is which of the following?",
+  prompt = "A) In the new form, $P_0$ is which of the following?",
   c(0.531, 5.47, "+10.00+", 15.31, 17),
   random_answer_order = FALSE
 )
@@ -42,7 +42,7 @@ etude::choose_one(
 
 ```{r wolf-lead-kitchen-Qinline2, echo=FALSE}
 etude::choose_one(
-  prompt = "2. In the new form, $k$ is which of the following?",
+  prompt = "B) In the new form, $k$ is which of the following?",
   c("+0.531+", 5.47, 10.00, 15.31, 17),
   random_answer_order = FALSE
 )

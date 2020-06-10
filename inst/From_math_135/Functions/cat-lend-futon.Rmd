@@ -35,27 +35,27 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 ```{r cat-lend-futon-C1}
 etude::true_or_false(
-  prompt = "1. $2^x$ is a power-law function.", 
+  prompt = "A) $2^x$ is a power-law function.", 
   FALSE)
 ```
 
 
 ```{r cat-lend-futon-C2}
 etude::true_or_false(
-  prompt = "2.  True or false: $3/x^2$ is a power-law function. ", 
+  prompt = "B)  True or false: $3/x^2$ is a power-law function. ", 
   TRUE)
 ```
 
 
 ```{r cat-lend-futon-C3}
 etude::true_or_false(
-  prompt = "3. True or false: $5\\sqrt{x}$ is a power-law function. ", 
+  prompt = "C) True or false: $5\\sqrt{x}$ is a power-law function. ", 
   TRUE)
 ```
 
 ```{r cat-lend-futon-C4}
 etude::choose_one(
-  prompt = "4. The gravitational force, F, between two bodies is inversely proportional to the square of the distance $d$ between them. Then ...",
+  prompt = "D) The gravitational force, F, between two bodies is inversely proportional to the square of the distance $d$ between them. Then ...",
   c("$F = kd^{2}$", "+$F = kd^{-2}$+", 
   "$F = kd^{1/2}$", "$F = kd^{-1/2}$"),
   inline=FALSE)
