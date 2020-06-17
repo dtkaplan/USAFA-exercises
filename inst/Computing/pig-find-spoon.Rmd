@@ -18,7 +18,7 @@ SDSdata::sds_setup()
 library(learnr)
 library(ggformula)
 library(gradethis)
-library(QandA)
+
 library(mosaicCalc)
 library(mosaicUSAFA)
 

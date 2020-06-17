@@ -18,7 +18,7 @@ library(etude)
 library(learnr)
 library(learnrAlt)
 library(gradethis)
-library(QandA)
+
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)

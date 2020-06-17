@@ -16,7 +16,7 @@ id: cheetah-teach-shoe
 SDSdata::sds_setup()
 library(learnr)
 library(gradethis)
-library(QandA)
+
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)

@@ -17,7 +17,7 @@ SDSdata::sds_setup()
 library(etude)
 library(learnr)
 library(gradethis)
-library(QandA)
+
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
@@ -31,7 +31,6 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 `r etude::exercise_title()` The surface area $S$ of a mammal satisfies the equation $S = k M^{2/3}$ where $M$ is the body mass and the constant $k$ depends on the particular species under consideration. 
 
-etudeQinline()
 
 ```{r crow-mean-dress-Qinline1, echo=FALSE}
 etude::choose_one(

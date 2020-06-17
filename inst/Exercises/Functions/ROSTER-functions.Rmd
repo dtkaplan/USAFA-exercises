@@ -34,8 +34,8 @@ library(etude)
 `r etude::include_etude("wolf-hurt-blanket.Rmd")`
 `r etude::include_etude("goldfish-draw-plant.Rmd")`
 `f etude::include_etude("giraffe-understand-pants.Rmd")`
-`fr etude::include_etude("beech-sleep-drawer.Rmd")`
-`f etude::include_etude("ash-send-skirt.Rmd")`
+`r etude::include_etude("beech-sleep-drawer.Rmd")`
+`r etude::include_etude("ash-send-skirt.Rmd")`
 `fr etude::include_etude("seaweed-drink-gloves.Rmd")`
 `fr etude::include_etude(".Rmd")`
 `fr etude::include_etude(".Rmd")`
