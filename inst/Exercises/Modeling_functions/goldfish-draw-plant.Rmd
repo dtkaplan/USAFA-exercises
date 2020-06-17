@@ -94,7 +94,7 @@ etude::choose_one(
 ```{r goldfish-draw-plant-Qinline4, echo=FALSE}
 etude::choose_one(
   prompt = "d) What is the length of the interval marked <---->?",
-  c("1", "0.8", "1.6", "3", "+3.2+", "5", "6"),
+  c("1", "0.8", "1.6", "3.4", "+4.2+", "5", "6.2"),
   random_answer_order = FALSE
 )
 ```
