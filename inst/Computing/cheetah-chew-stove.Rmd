@@ -15,16 +15,16 @@ id: cheetah-chew-stove
 ```{r cheetah-chew-stove-setup, include = FALSE}
 SDSdata::sds_setup()
 library(learnr)
+library(etude)
 library(gradethis)
-library(QandA)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
 library(mosaicUSAFA)
 data("Chapter1", package = "mosaicUSAFA")
 knitr::opts_chunk$set(echo = FALSE)
-learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+learnr::tutorial_options(exercise.timelimit = 60)
+learnr::tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 ## Talking about computer expressions
@@ -86,12 +86,9 @@ names(Coal_prices)
 ```{r cheetah-chew-stove-QA1, echo=FALSE}
 etude::choose_one(
   prompt = "How many rows in `Coal_prices`?",
-  choices = list(
-    "2" = "",
-    "+4+" = "B's a consonant, Bub.",
-    "6" = "C is a consonant, Chub",
-    "8" = "D is a consonant, Dear"
-  )
+  choices = c(
+    "2", "+4+", "6", "8"
+   )
 )
 ```
 
@@ -119,7 +116,7 @@ etude::choose_one(
 "setup"
 ```
 
-```{r cheetah-chew-stove-E2, exercise=TRUE, exercise.cap="Fix this incorrect R expression.", exercise.setup="cheetah-chew-stove-E2-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+```{r cheetah-chew-stove-E2, exercise=TRUE, exercise.cap="Fix this incorrect R expression to produce a plot of year versus price.", exercise.setup="cheetah-chew-stove-E2-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
 gf_point("year", "price", data = "Coal_prices")
 ```
 

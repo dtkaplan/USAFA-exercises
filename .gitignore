@@ -8,3 +8,5 @@ inst/From_math_135/*_files
 inst/Exercises/*/*.html
 inst/Exercises/*_files
 .secrets
+*_files
+*.html

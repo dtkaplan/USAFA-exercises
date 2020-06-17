@@ -38,9 +38,9 @@ learnr::tutorial_options(exercise.timelimit = 60,
 etude::essay_response("a) State briefly ways in which the given information is or is not consistent with an approximately exponential process.")
 ```
 
-```{etude}
+````{etude}
 The amount of alcohol remaining in the food is decreasing toward zero.  The measurement of 25% after 1 hour suggests a half-life of 30 minutes, but the decrease from 25% to 10% in the second hour indicates that the half-life is somewhat different, a bit more than 30 minutes.
-```
+````
 
 
 
