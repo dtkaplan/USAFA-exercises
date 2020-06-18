@@ -13,7 +13,6 @@ id: cheetah-chew-stove
 ---
 
 ```{r cheetah-chew-stove-setup, include = FALSE}
-SDSdata::sds_setup()
 library(learnr)
 library(etude)
 library(gradethis)

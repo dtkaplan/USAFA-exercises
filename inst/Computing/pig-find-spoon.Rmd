@@ -14,16 +14,16 @@ id: pig-find-spoon
 (ref:pig-find-spoon) Exercise in file pig-find-spoon
 
 ```{r pig-find-spoon-default, include = FALSE}
-SDSdata::sds_setup()
 library(learnr)
 library(ggformula)
+library(etude)
 library(gradethis)
-
 library(mosaicCalc)
 library(mosaicUSAFA)
 
-learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+learnr::tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = grade_this::grade_learnr)
 ```
 
 TITLE GOES HERE: The KM textbook shows three very small datasets on page 104-105. These datasets are being provided to you as the R *data frames* named `Prozac`, `Birth_weight`, and `Coal_prices`.
@@ -38,26 +38,25 @@ data("Chapter1", package = "mosaicUSAFA")
 Prozac
 ```
 
-The display form used by R is the standard for data tables. The form used in the book is improper and teaches bad habits.
+The display form used by R is the standard for data tables. The form used in the book is improper and and leads to bad habits.
 
 ```{r pig-find-spoon-4, echo=FALSE}
-yesno("Correct or not? The proper data form shows each variable as a column.",
-      istrue = TRUE,
-      wrong = "Remember, columns in data run vertically, just as they do in buildings.")
+true_or_false("Correct or not? The proper data form shows each variable as a column.",
+      right_answer = TRUE,
+      message_wrong = "Remember, columns in data run vertically, just as they do in buildings.")
 ```
 
 ```{r pig-find-spoon-5, echo=FALSE}
 capitals <- "Capitalization matters in R names."
-choices(
+choose_one(
   "Check the names that appear in the `Prozac` data frame",
-  bad=list(
+  list(
     Day=capitals,
     Conc = "Almost. This is an abbreviation of the actual variable name.",
     Concentration = capitals,
-    Week= "Wrong data set!"),
-  good = list(
-    "day" = "Notice that lower-case was used for the variable names. This is a good convention.", 
-    "concentration" = "Right.")
+    Week= "Wrong data set!",
+    "+day+" = "Notice that lower-case was used for the variable names. This is a good convention to use..", 
+    "+concentration+" = "Right."),
 )
 
 ```
@@ -114,9 +113,9 @@ e. $f(t) \equiv 75.6 e^{-0.128 t}$
 f. $f(t) \equiv 10.0 e^{-\ln(2) t / 5730}$
 
 ```{r pig-find-spoon-7, echo=FALSE}
-choice_list(
+choose_one(
   "For `Prozac` the function that best matches the data is:",
-  choices = list(
+  list(
   A = "", B = "",  C = "", D = "", "+E+" = "", F = ""
   ),
   random_answer_order = FALSE
@@ -124,9 +123,9 @@ choice_list(
 ```
 
 ```{r pig-find-spoon-8, echo=FALSE}
-choice_list(
+choose_one(
   "Which function best matches the data in `Coal_prices`? ",
-  choices = list(
+  list(
   A = "A would be right if the data started at year 0.", "+B+" = "",  C = "", D = "", "E" = "", F = ""
   ),
   random_answer_order = FALSE
@@ -134,23 +133,22 @@ choice_list(
 ```
 
 ```{r pig-find-spoon-9, echo=FALSE}
-choice_list(
+choose_one(
   "Which function best matches the data in `Birth_weight`? ",
-  choices = list(
+  list(
   A = "", "B" = "",  C = "", "+D+" = "", "E" = "", F = ""
   ),
   random_answer_order = FALSE
 )
 ```
 
-<!--begin-answer-->
+````{etude}
 ```{r}
 gf_point(price ~ year, data = Coal_prices) %>%
   slice_plot(31.5*exp(-0.048*(year-1980)) ~ year)
 gf_point(concentration ~ day, data = Prozac) %>%
   slice_plot(75.6*exp(-0.128 * day) ~ day)
 ```
-<!--end-answer-->
-
+````
 
 

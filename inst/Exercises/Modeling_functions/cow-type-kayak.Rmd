@@ -13,11 +13,9 @@ id: cow-type-kayak
 ---
 
 ```{r cow-type-kayak-setup, include = FALSE}
-SDSdata::sds_setup()
 library(etude)
 library(learnr)
 library(gradethis)
-
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
@@ -25,7 +23,7 @@ library(mosaicUSAFA)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+                 exercise.checker = grade_this::grade_learnr)
 ```
 
 
@@ -49,7 +47,7 @@ The amount of alcohol remaining in the food is decreasing toward zero.  The meas
 explain <- "These are not as required within $\\pm 2.5$ percentage points of the numbers given in Wikipedia."
 etude::choose_one(
   prompt = "b) The stated measurements appear rounded to about 5 percentage points --- 25%, 10%.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.?",
-  c("Decrease to 23.6% after one hour and 5.6% after two." = explain,
+  list("Decrease to 23.6% after one hour and 5.6% after two." = explain,
     "+Decrease to 27.5% after one hour and 7.6% after two.+" = "",
     "Decrease to 40% after one hour and 24% after two." = explain, 
     "Decrease to 20% after one hour and 10% after two." = "The decrease in the first hour is by 80%, corresponding to a half life of about 26 minutes. But in the second hour the half life is 60 minutes. These are inconsistent."),

@@ -52,72 +52,72 @@ submitr::shiny_logic(input, output, session, vfun,
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/horse-cost-blanket.Rmd", package = "USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/horse-cost-blanket.Rmd", package = "USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/chicken-choose-vase.Rmd",  package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/chicken-choose-vase.Rmd",  package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/wolf-lead-kitchen.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/wolf-lead-kitchen.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/eagle-speak-pan.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/eagle-speak-pan.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/giraffe-catch-pot.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/giraffe-catch-pot.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/crow-mean-dress.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/crow-mean-dress.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/cat-lend-futon.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/cat-lend-futon.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/lamb-talk-gloves.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/lamb-talk-gloves.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/snake-choose-kayak.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/snake-choose-kayak.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/cow-hang-closet.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/cow-hang-closet.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/snail-hold-drawer.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/snail-hold-drawer.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/finch-feel-knob.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/finch-feel-knob.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/sheep-drink-vase.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/sheep-drink-vase.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Modeling_functions/wolf-hurt-blanket.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Modeling_functions/wolf-hurt-blanket.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Modeling_functions/goldfish-draw-plant.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Modeling_functions/goldfish-draw-plant.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/giraffe-understand-pants.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/giraffe-understand-pants.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Integrals/beech-sleep-drawer.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Integrals/beech-sleep-drawer.Rmd", package="USAFAexercises"))`
 
 ## Problem `r (prob_count <- prob_count + 1)`
 
-`r etude::include_etude(system.file("Exercises/Functions/ash-send-shirt.Rmd", package="USAFAexercises"))`
+`fr etude::include_etude(system.file("Exercises/Functions/ash-send-shirt.Rmd", package="USAFAexercises"))`

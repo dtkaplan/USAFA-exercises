@@ -13,19 +13,17 @@ id: fox-make-stove3
 ---
 
 ```{r fox-make-stove3-setup, include = FALSE}
-SDSdata::sds_setup()
 library(etude)
 library(learnr)
 library(gradethis)
-
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
 library(mosaicUSAFA)
 
 knitr::opts_chunk$set(echo = FALSE)
-learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+learnr::tutorial_options(exercise.timelimit = 60)
+learnr::tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 

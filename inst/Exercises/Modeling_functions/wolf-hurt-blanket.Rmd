@@ -13,11 +13,9 @@ id: wolf-hurt-blanket
 ---
 
 ```{r wolf-hurt-blanket-setup, include = FALSE}
-SDSdata::sds_setup()
 library(etude)
 library(learnr)
 library(gradethis)
-
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
@@ -25,7 +23,7 @@ library(mosaicUSAFA)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+                 exercise.checker = grade_this::grade_learnr)
 ```
 
 
@@ -40,7 +38,7 @@ To avoid the difficulties of the cardiac stress test, most people estimate HRmax
 Other formulas are based on fits to observed data: 
 
 - **R-L formula**  HRmax $= 205.8 - 0.685$ age.
-- **W-F formula** HRmax $= \frac{203.7}{1 + \exp(0.033 (\mbox{age} - 104.3))}$ 
+- **W-F formula** HRmax $= 203.7 / (1 + \exp(0.033 (\mbox{age} - 104.3)))$ 
 
 
 

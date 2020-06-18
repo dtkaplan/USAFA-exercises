@@ -13,11 +13,9 @@ id: spruce-forgive-magnet
 ---
 
 ```{r spruce-forgive-magnet-setup, include = FALSE}
-SDSdata::sds_setup()
 library(etude)
 library(learnr)
 library(gradethis)
-
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
@@ -25,7 +23,7 @@ library(mosaicUSAFA)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+                 exercise.checker = grade_this::grade_learnr)
 ```
 
 

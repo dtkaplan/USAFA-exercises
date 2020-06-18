@@ -15,11 +15,11 @@ title: "Oscillations as they die out"
 (ref:spruce-think-plate) Exercise in file spruce-think-plate
 
 ```{r spruce-think-plate-default, include = FALSE}
-SDSdata::sds_setup()
 library(learnr)
 library(mosaicCalc)
 library(gradethis)
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
