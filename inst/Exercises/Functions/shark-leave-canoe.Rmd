@@ -19,7 +19,7 @@ library(gradethis)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
-library(mosaicUSAFA)
+library(math141Z)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
@@ -39,9 +39,9 @@ where $a$ is age in years.
 # indicate correct choices with +_+ in the item.
 etude::choose_one(
   prompt = "Which of the following is correct?",
-  c("As you age, your maximum heart rate decreases by one beat per year.",
-    "As you age, your maximum hear rate decreases by one beat per minute.",
-    "+As you age, your maximum heart rate decreases by one beat per minute per year.+"),
+  list("As you age, your maximum heart rate decreases by one beat per year." = "Remember, heart rate is has units 'beats per minute'.",
+    "As you age, your maximum heart rate decreases by one beat per minute." = '"As you age" suggests a rate of change. So you\'ll want to think in terms of "one beat per minute" divided by the amount by which you\'ve aged."',
+    "+As you age, your maximum heart rate decreases by one beat per minute per year.+" = "Admittedly, a strange sounding unit. Maybe it's easier to think of it as \"change in heart rate\" per year, and then fill in that change in heart rate has units \"beats per minute.\""),
   random_answer_order = TRUE,
   inline = FALSE
 )
@@ -54,7 +54,7 @@ etude::choose_one(
     "The male is six years older than the female.",
     "The female and the male are the same age.",
     "None of the above."),
-  random_answer_order = TRUE,
+  random_answer_order = FALSE,
   inline = FALSE
 )
 ```

@@ -19,7 +19,7 @@ library(gradethis)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
-library(mosaicUSAFA)
+library(math141Z)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
@@ -30,20 +30,33 @@ learnr::tutorial_options(exercise.timelimit = 60,
 `r etude::exercise_title()` Put the function $P(t) = 2 e^{-0.5 t}$  in the form $P(t)=P_0 a^t$. 
 
 ```{r eagle-speak-pan-Qinline1, echo=FALSE}
+message <- "For $e^{-0.5t}$ to be the same as $a^t$, we must have $a = e^{-0.5}$."
 etude::choose_one(
-  prompt = "A) What is the value of $a$?",
-  c("+0.607+", 1.213, 1.648, 2.000, 3.297),
+  prompt = "A) What is the numerical value of $a$?",
+  list("+0.607+" = "", 
+       "1.213" = message, 
+       "1.648" = message, 
+       "2.000" = message, 
+       "3.297" = message),
   random_answer_order = FALSE
 )
 ```
 
 
 ```{r eagle-speak-pan-Qinline2, echo=FALSE}
+message <- "One way to deal with such problems is to choose a $t$ that makes evaluating the function very simple."
 etude::choose_one(
   prompt = "B) What is the value of $P_0$?",
-  c(0.607, 1.213, 1.648, "+2.000+", 3.297),
+  list(0.607 = message, 
+       1.213 = message, 
+       1.648 = message, 
+       "+2.000+" = "", 
+       3.297 = message),
   random_answer_order = FALSE
 )
 ```
 
+```{r eagle-speak-pan-sandbox1, exercise=TRUE, exercise.cap="Sandbox for scratch calculations.", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
 

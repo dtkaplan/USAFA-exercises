@@ -1,0 +1,46 @@
+---
+chapter: "none yet"
+title: "Title for panda-dig-book"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "panda-dig-book"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-04 
+tags: [arithmetic, Eulers number, exp]
+id: panda-dig-book
+---
+
+```{r panda-dig-book-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` What is Euler's number $e$ in decimal form? Give an R command that produces the result to at least 5 digits. (Hint: $e = e^1$)
+
+
+
+
+```{r panda-dig-book-E1, exercise=TRUE, exercise.cap="Euler's number", exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+
+
+```{r panda-dig-book-E1-check}
+gradethis::grade_result(
+  pass_if( ~ .result == exp(1)),
+  fail_if( ~ TRUE, message = "Keep trying!")
+)
+```
+
+<!-------------------- End of learnr exercise: panda-dig-book-E1 -->
+

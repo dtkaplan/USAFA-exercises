@@ -1,12 +1,12 @@
 Package: USAFAexercises
 Type: Package
 Title: Exercises for the USAFA Calculus course
-Version: 0.1.0
+Version: 0.2.0
 Author: Daniel Kaplan
 Maintainer: Daniel Kaplan <dtkaplan@macalester.edu>
 Description: Manages exercises for the USAFA Math141X project.
 License: All rights reserved for now. 
-Depends: learnr, rmarkdown, mosaicCalc, mosaic, mosaicUSAFA
+Depends: learnr, rmarkdown, mosaicCalc, mosaic, math141Z
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

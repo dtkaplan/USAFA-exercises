@@ -1,0 +1,43 @@
+---
+chapter: "none yet"
+title: "Title for bee-write-closet6"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "bee-write-closet6"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-04 
+tags: [R arithmetic, MMAC textbook, 1.1.7.f]
+id: bee-write-closet
+---
+
+```{r bee-write-closet6-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Use R to evaluate 
+$$\frac{5^2 - 4^2}{2}$$
+
+```{r bee-write-closet6-E1, exercise=TRUE, exercise.cap="Arithmetic in R"}
+
+```
+
+```{r bee-write-closet6-E1-check}
+gradethis::grade_result(
+  pass_if( ~ .result == (5^2 - 4^2)/2),
+  fail_if( ~ .result == 5^2 - (4^2/2),
+           message = "Not that the 5^2 and 4^2 are grouped together."),
+  fail_if( ~ TRUE, message = "Keep trying!")
+)
+```
+
+

@@ -11,7 +11,7 @@ tutorial:
 library(learnr)
 library(gradethis)
 library(submitr)
-library(QandA)
+
 library(etude)
 library(ggformula)
 library(mosaic)
@@ -33,10 +33,10 @@ submitr::login_controls()
 ```{r context = "server", echo = FALSE}
 options(tutorial.storage = "none")
 learnr::tutorial_options(exercise.timelimit = 60, 
-                 exercise.checker = QandA::save_check_inputs)
+                 exercise.checker = gradethis::grade_learnr)
 vfun <- basket::check_valid
 storage_actions <- 
-        in_google_sheets(
+        record_gs4(
           "1w3fEld2rZlR_6FuzvkA-viOLBA5JdqD3xHl-LuLX3-Y",
           "statprep.annie@gmail.com",
           vfun)

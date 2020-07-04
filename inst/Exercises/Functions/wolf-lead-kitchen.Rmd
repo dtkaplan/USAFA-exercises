@@ -19,7 +19,7 @@ library(gradethis)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
-library(mosaicUSAFA)
+library(math141Z)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
@@ -31,18 +31,31 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 
 ```{r wolf-lead-kitchen-Qinline1, echo=FALSE}
+message <- "Note that $P(t=0) = P_0 e^{k0} = P_0$."
 etude::choose_one(
   prompt = "A) In the new form, $P_0$ is which of the following?",
-  c(0.531, 5.47, "+10.00+", 15.31, 17),
+  list("0.531" = message, 
+       "5.47" = message, 
+       "+10.00+" = "", 
+       "15.31" = message, 
+       "17" = message),
   random_answer_order = FALSE
 )
 ```
 
 ```{r wolf-lead-kitchen-Qinline2, echo=FALSE}
+message <- "So that $1.7^t$ will be the same as $e^{kt}$, we must have $k$ such that $e^k = 1.7$.
 etude::choose_one(
   prompt = "B) In the new form, $k$ is which of the following?",
-  c("+0.531+", 5.47, 10.00, 15.31, 17),
+  list("+0.531+"  = '', 
+    "5.47" = message, 
+    "10.00" = message, 
+    "15.31" = message, 
+    "17" = message),
   random_answer_order = FALSE
 )
 ```
 
+```{r wolf-lead-kitchen-sandbox1, exercise=TRUE, exercise.cap="Sandbox for scratch work", exercise.setup="document_3db3eaa-sandbox1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```

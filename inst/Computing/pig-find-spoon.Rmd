@@ -19,7 +19,7 @@ library(ggformula)
 library(etude)
 library(gradethis)
 library(mosaicCalc)
-library(mosaicUSAFA)
+library(math141Z)
 
 learnr::tutorial_options(
   exercise.timelimit = 60, 
@@ -31,7 +31,7 @@ TITLE GOES HERE: The KM textbook shows three very small datasets on page 104-105
 To get started, use the Sandbox below to display each of the three data frames. The command you will use to display the data frames is very simple: just the name of the data frame.
 
 ```{r pig-find-spoon-0-setup}
-data("Chapter1", package = "mosaicUSAFA")
+data("Chapter1", package = "math141Z")
 ```
 
 ```{r pig-find-spoon-0, exercise=TRUE, exercise.setup="pig-find-spoon-0-setup", exercise.cap="Sandbox to display data frames."}

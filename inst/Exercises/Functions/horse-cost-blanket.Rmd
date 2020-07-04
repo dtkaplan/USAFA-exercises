@@ -19,7 +19,7 @@ library(gradethis)
 library(ggformula)
 library(mosaic)
 library(mosaicCalc)
-library(mosaicUSAFA)
+library(math141Z)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
@@ -34,19 +34,24 @@ slice_plot(100* exp(-t/1.75) ~ t, domain(t = c(0,5)))
 ```
 
 ```{r horse-cost-blanket-Qinline1, echo=FALSE}
-explain <- "How long does it take for the function to fall from, say, 100 to 50?"
 etude::choose_one(
   prompt = "At what value of $t$ does the function reach a value of $25$?",
-  list("+1.25+" = "", "2.4"=explain, "3.4"=explain, "4.4"=explain),
+  list("+1.25+" = explain, 
+  "+2.4+" = "", 
+  "3.4"   = explain, 
+  "4.4"   = explain),
   random_answer_order = FALSE
 )
 ```
 
 
 ```{r horse-cost-blanket-Qinline2, echo=FALSE}
+explain <- "How long does it take for the function to fall from, say, 100 to 50?"
 etude::choose_one(
   prompt = "What is the half-life of the exponential?",
-  c(0.5, "+1.75+", 2.25, 10, 50),
+  list("0.5" = explain, "+1.25+" = "", 
+       "2.25"= explain, 
+       "10" =  explain, "50" = explain),
   random_answer_order = FALSE
 )
 ```

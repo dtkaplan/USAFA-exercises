@@ -8,8 +8,7 @@ tutorial:
   id: "deer-rise-mug"
   version: 0.1
 runtime: shiny_prerendered
-
-tags: [first, second, third]
+tags: [affine functions, economics, unemployment]
 id: deer-rise-mug
 ---
 
@@ -17,7 +16,7 @@ id: deer-rise-mug
 library(etude)
 ```
 
-`r etude::exercise_title()` Suppose $y$ is the percent increase in annual US national production during a year when the unemployment rate changes by $u$ percentage points. For example, $u=2$ if unemployment increases from $4%$ to $6%$. The economist Arthur Melvin Okun found that $y = 3.5 - 2u$. This is called "[Okun's Law](https://en.wikipedia.org/wiki/Okun%27s_law)."
+`r etude::exercise_title()` Suppose $y$ is the percent increase in annual US national production during a year when the unemployment rate changes by $u$ percentage points. The economist Arthur Melvin Okun found that $y = 3.5 - 2u$. This is called "[Okun's Law](https://en.wikipedia.org/wiki/Okun%27s_law)." (Do note that both $y$ and $u$ are *percentage point* changes. Since $u$ measures unemployment, when unemployment increases from $4%$ to $6%$, the value of $u$ is 2.)
 
 ```{r deer-rise-mug-Qinline1, echo=FALSE}
 etude::choose_one(
