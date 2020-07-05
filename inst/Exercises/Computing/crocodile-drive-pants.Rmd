@@ -1,0 +1,53 @@
+---
+chapter: "Syntax"
+title: "Title for crocodile-drive-pants"
+author: "Danny Kaplan"
+difficulty: ""
+output: learnr::tutorial
+tutorial:
+  id: "crocodile-drive-pants"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-05 
+tags: [R names, second, third]
+id: crocodile-drive-pants
+---
+
+```{r crocodile-drive-pants-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` 
+
+etude::etudeQA()
+
+```{r crocodile-drive-pants-QA1, echo=FALSE}
+message <- "Names cannot have punctuation (other than . and _)."
+etude::choose_one(
+  prompt = "Which of these are legitimate names in R? (Check all that apply.)",
+  choices = list(
+    "+`c`+" = "",
+    "+`c2`+" = "",
+    "`2c`" = "Names cannot start with a digit.",
+    "+`c_squared`+" = "",
+    "+`c_2`+" = "",
+    "`c^2`" = message,
+    "+`Orville_and_Wilbur_Wright`+" = "",
+    "`correct?`" = message,
+    "`+`" = "`+` is a punctuation sign not allowed in an R name."
+  ),
+  message_wrong = "There are some functions you didn't mark as such.",
+  inline = FALSE,
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+

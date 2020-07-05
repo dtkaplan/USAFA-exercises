@@ -1,0 +1,54 @@
+---
+chapter: "Computing syntax"
+title: "Title for rabbit-bite-scarf"
+author: "Danny Kaplan"
+difficulty: ""
+output: learnr::tutorial
+tutorial:
+  id: "rabbit-bite-scarf"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-05 
+tags: [function evaluation, R syntax, third]
+id: rabbit-bite-scarf
+---
+
+```{r rabbit-bite-scarf-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Here is a complicated-looking R expression involving made-up names. Even though you can't possibly know exactly what each name refers to, it is still possible to determine which names refer to functions.
+
+```{r eval=FALSE}
+slice_plot(tanh(mileage) ~ displacement, domain(displacement = c(100, 500)))
+```
+
+```{r rabbit-bite-scarf-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "Check all the names that refer to functions.",
+  choices = list(
+    "+`slice_plot`+" = "",
+    "+`tanh`+" = "",
+    "`mileage`" = "Is the name `mileage` followed by an open parenthesis?",
+    "`displacement`" = "Is the name `displacement` followed by an open parenthesis?",
+    "+`domain`+" = "",
+    "+`c`+" = ""
+  ),
+  inline = FALSE,
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+
+
+
+
