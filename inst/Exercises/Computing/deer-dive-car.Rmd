@@ -1,0 +1,40 @@
+---
+chapter: "Syntax"
+title: "Title for deer-dive-car"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "deer-dive-car"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-06 
+tags: [functions, named arguments, third]
+id: deer-dive-car
+---
+
+```{r deer-dive-car-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` The R function `seq()` creates sequences of numbers. The command shown in the code box is intended to produce the sequence 1, 3, 5, 7, 9, but the syntax is wrong. Fix it.
+
+```{r deer-dive-car-E1, exercise=TRUE, exercise.cap="Named arguments", exercise.setup="eer-dive-car-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+seq(from = 1; to = 10; by = 2)
+```
+
+```{r deer-dive-car-E1-check}
+grade_result(
+  pass_if( ~ identical(.result, seq(1, 10, by = 2))),
+  fail_if( ~ TRUE, "Your result isn't the requested sequence.")
+)
+```
+
+

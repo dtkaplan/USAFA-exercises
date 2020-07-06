@@ -1,0 +1,58 @@
+---
+chapter: "Syntax"
+title: "Title for giraffe-dream-coat"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "giraffe-dream-coat"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-06 
+tags: [tilde expressions, second, third]
+id: giraffe-dream-coat
+---
+
+```{r giraffe-dream-coat-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Write the tilde expression corresponding to the following relationship:
+
+> `pressure` depends on `temperature` and `volume`.
+
+
+
+```{r giraffe-dream-coat-E1, exercise=TRUE, exercise.cap="Tilde expression", exercise.setup="giraffe-dream-coat-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+
+```{r giraffe-dream-coat-E1-check}
+grade_result(
+  fail_if( ~ ! inherits(.result, "formula"), 
+           "Your answer should be a tilde expression."),
+  fail_if(~ length(all.names(.result)) > 5,
+          "Your tilde expression has more elements than called for."),
+  fail_if( ~ all.names(.result)[2] != "pressure", 
+           "The name `pressure` should be on the left side of the tilde."),
+  fail_if( ~  all.names(.result)[4] != "temperature",
+           "The name `temperature` should be on the right side of the tilde."),
+  fail_if( ~  all.names(.result)[5] != "volume",
+           "The name 'volume' should be on the right side of the tilde."),
+  fail_if( ~ ! all.names(.result[3]) %in%  c("+", "*", "-", "&"),
+           "Use `+` to stand for the English word 'and'."),
+  pass_if( ~ TRUE)
+)
+```
+
+
+
+
