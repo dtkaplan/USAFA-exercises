@@ -1,0 +1,61 @@
+---
+chapter: "MMAC 1.1.81"
+title: "Title for doe-stand-magnet"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "doe-stand-magnet"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-06 
+tags: [MMAC, 1.1.81, third]
+id: doe-stand-magnet
+---
+
+```{r doe-stand-magnet-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaic)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Using R, define the function
+
+$$f(x) \equiv \frac{\pi(9.852 x^3 - 10.375 x)}{(9 \pi)^2 + 27 x}$$
+
+To help you get started, we've put some text in the code box. But the text is not correct R syntax. You'll have to fix it so that it is a legitimate R expression. Then you'll have to make sure that your expression says the same thing as the mathematical definition.
+(Hint: The spacing of the tilde-expression across lines helps to make it easier to read.)
+
+```{r doe-stand-magnet-E1-setup}
+# Setup code goes here
+```
+
+```{r doe-stand-magnet-E1, exercise=TRUE, exercise.cap="Define f()", exercise.setup="oe-stand-magnet-E1-setup", exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+f <- makeFun(
+  pi(9.852x3 - 10.375x) / 9 pi 2 + 27 x ~ x
+)
+```
+
+
+```{r doe-stand-magnet-E1-check}
+f <- makeFun(
+  pi*(9.852*x^3 - 10.375*x) / ((9 * pi)^2 + 27 * x) ~ x
+)
+grade_result(
+  fail_if( ~ !inherits(.result, "function"), "You should be creating a function"),
+  fail_if( ~ !names(formals(.result)) == "x", "The argument to the function should be named `x`."),
+  fail_if( ~ .result(10) != f(10),
+           "Your tilde expression doesn't exactly correspond to the mathematical definition given in the problem."),
+  pass_if( ~ TRUE)
+)
+```
+
+
+

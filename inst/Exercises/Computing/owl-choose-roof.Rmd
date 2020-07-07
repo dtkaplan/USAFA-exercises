@@ -1,0 +1,59 @@
+---
+chapter: "MMAC Chapter 1"
+title: "Title for owl-choose-roof"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "owl-choose-roof"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-06 
+tags: [slice_plot, domain, MMAC 1.1.8]
+id: owl-choose-roof
+---
+
+```{r owl-choose-roof-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Using `slice_plot()`, graph the function $y(x) \equiv -3.546 x - 9.128$ on the domain $x \in [-15, 15]$
+
+
+
+```{r owl-choose-roof-E1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="owl-choose-roof-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+```{r owl-choose-roof-E1-solution}
+slice_plot(- 3.546 * x - 9.128 ~ x, domain(x = c(-15, 15)))
+```
+
+```{r owl-choose-roof-E1-check}
+grade_code()
+```
+
+```{r owl-choose-roof-QA1, echo=FALSE}
+
+etude::choose_one(
+  prompt = "Once you get the above command right, you'll notice that it ends with three parentheses in a row: `)))`. You would never see such a thing in English. Why does it make sense in the R expression?",
+  choices = list(
+    "The outer parenthesis closes the `c()` function, the middle closes the `domain()` function, and the left-most closes the `slice_plot() function." = "You've got them inside out!",
+    "It doesn't make any sense at all." = "Come on now! Get with the program.",
+    "+The innermost closing parenthesis completes the `c()` expression, the middle one completes the `domain()` expression, and the outermost completes the `slice_plot()` function.+" = ""
+  ),
+  inline = FALSE
+)
+```
+
+
+

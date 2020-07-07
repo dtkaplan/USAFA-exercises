@@ -1,0 +1,52 @@
+---
+chapter: "makeFun"
+title: "Title for child-leave-coat"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "child-leave-coat"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-06 
+tags: [makeFun, formulas, third]
+id: child-leave-coat
+---
+
+```{r child-leave-coat-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Consider this formula for wing drag as a function of lift:
+
+$$\mbox{drag} = 3.825\ \mbox{lift} + 1.63\times10^{-3}\ \mbox{lift}^2$$
+PUT THE REAL FORMULA HERE. PICK ONE THAT HAS NUMERICAL PARAMETERS. AND FIX THE `-check` code correspondingly. ALSO, GIVE UNITS FOR THE PARAMETERS AND SAY WHAT UNITS the drag and lift are to be measured in.
+
+Using `makeFun()`, create a function corresponding to the formula. 
+
+
+```{r child-leave-coat-E1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="child-leave-coat-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+# For debugging only
+drag <- makeFun(1.33 * lift / 10 ~ lift)
+```
+
+
+```{r child-leave-coat-E1-check}
+grade_result(
+  fail_if( ~ names(formals(.result))[1] != "lift", 
+           "The function should take `lift` as an argument."),
+  fail_if( ~ ! (.result(10) > 1.32 && .result(10) < 1.34),
+           "Check your tilde-expression. It's not matching the formula."),
+  pass_if( ~ TRUE)
+)
+```
+
+
