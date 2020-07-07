@@ -1,0 +1,50 @@
+---
+chapter: "none yet"
+title: "MMAC Question 1.3.9"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "camel-lie-gloves"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-07 
+tags: [zeros, simultaneous equations, third]
+id: camel-lie-gloves
+---
+
+```{r camel-lie-gloves-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Here are two straight-line functions:
+
+$$f_1(x) \equiv - x + 5 \ \ \ \ \ \mbox{and}\ \ \ \ \ \ f_2(x) \equiv 3x - 2$$
+Find a simultaneous solution for $f_1()$ and $f_2()$, that is, a value for $x$ at which the two functions have the same output.
+
+(a) By chaining two  `slice_plot()` expressions together, graph $f_1()$ and $f_2()$ on the same axes and find where the two graphs intersect. You will have to figure out a suitable domain by trial and error. Alternatively, you can do part (c) first and figure out the appropriate domain from the answer you get there.
+
+```{r camel-lie-gloves-sandbox1, exercise=TRUE, exercise.cap="Make a graph with both functions.", exercise.eval=FALSE, exercise.lines=5, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+(b) Construct a function $g()$ that is the difference between $f_1()$ and $f_2()$ for any given $x$, that is
+$$g(x) \equiv f_1(x) - f_2(x) .$$ Use `slice_plot()` to find a zero crossing of $g(x)$.
+
+```{r camel-lie-gloves-sandbox2, exercise=TRUE, exercise.cap="Plot the difference between the functions.", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+(c) Find a precise numerical value for the simultaneous solution using `findZeros()`. (Note: Different code boxes don't talk to one another, so the `g()` that you defined in the previous block won't be available here unless you create it again.) 
+
+```{r camel-lie-gloves-sandbox3, exercise=TRUE, exercise.cap="Find the zeros numerically.", exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+

@@ -1,0 +1,64 @@
+---
+chapter: "MMAC 1.5.8"
+title: "Title for elm-do-plate"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "elm-do-plate"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-07 
+tags: [first, second, third]
+id: elm-do-plate
+---
+
+```{r elm-do-plate-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Graph each of these functions and check, using the vertical line test, whether it it has an inverse. You'll have to decide on a suitable domain yourself.
+
+(a) $f(x) \equiv \sqrt[3]{3 x - 7}$
+```{r elm-do-plate-sandbox1, exercise=TRUE, exercise.cap="Graph f(x)", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+```{r elm-do-plate-TF1, echo=FALSE}
+etude::true_or_false(
+  prompt = "Does $f(x)$ have an inverse?",
+  TRUE)
+```
+
+
+(b) $g(x) \equiv \frac{5x - 3}{7 x + 4}$
+```{r elm-do-plate-sandbox2, exercise=TRUE, exercise.cap="Graph g(x)", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+```{r elm-do-plate-TF2, echo=FALSE}
+etude::true_or_false(
+  prompt = "Does $g(x)$ have an inverse?",
+  TRUE)
+```
+```{r elm-do-plate-TF3, echo=FALSE}
+essay_response(
+  prompt = "What's going on with $g()$ at $x = -4/7$?"
+)
+  
+```
+
+-----
+
+
+```{r elm-do-plate-C1}
+essay_response(
+  prompt = "Say why you think the domain you used in (a) and (b) was big enough to reliably determine whether the function has an inverse."
+)
+```

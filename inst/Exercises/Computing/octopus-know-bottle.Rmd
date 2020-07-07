@@ -1,0 +1,48 @@
+---
+chapter: "none yet"
+title: "Title for octopus-know-bottle"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "octopus-know-bottle"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-07 
+tags: [inverses, log, exp]
+id: octopus-know-bottle
+---
+
+```{r octopus-know-bottle-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Using `slice_plot()`, graph the function `log(exp())` and show that the output is always equal to the input. Do the same for `exp(log())`. Use the graphic domain $-100 \leq x \leq 100$ for both plots.
+
+```{r octopus-know-bottle-sandbox1, exercise=TRUE, exercise.cap="Graph log(exp())",exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+```{r octopus-know-bottle-sandbox2, exercise=TRUE, exercise.cap="Graph exp(log())",exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+```{r octopus-know-bottle-Q1}
+essay_response("What is it about the shape of each of the two plots that indicates that the output is equal to the input?")
+``` 
+
+```{r octopus-know-bottle-TF1, echo=FALSE}
+etude::true_or_false(
+  prompt = "The *mathematical* domains of exp(log(x)) and log(exp(x)) are the same.",
+  FALSE)
+```
+
+

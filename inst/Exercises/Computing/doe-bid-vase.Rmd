@@ -1,0 +1,40 @@
+---
+chapter: "MMAC Question 1.2.6"
+title: "Title for doe-bid-vase"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "doe-bid-vase"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-07 
+tags: [surface plot, contour plot, MMAC, Question 1.2.6]
+id: doe-bid-vase
+---
+
+```{r doe-bid-vase-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Let's define a function $f()$ with two inputs, $x$ and $y$:
+
+$$f(x, y) \equiv x^2 - y .$$
+
+(a) Using `interactive_plot()` create a surface plot of $f(x,y)$ over the domain $-3 \leq x \leq 3$ and $-3 \leq y \leq 3$.
+```{r doe-bid-vase-sandbox1, exercise=TRUE, exercise.cap="Surface plot", exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+(b) Make a contour plot of $f(x,y)$ over the same domain as in part (a). Arrange for the contours to be drawn at the levels 0, 2, 4, 6, 8, 10.
+```{r doe-bid-vase-sandbox2, exercise=TRUE, exercise.cap="Contour plot", exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
