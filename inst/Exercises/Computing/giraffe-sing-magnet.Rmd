@@ -1,0 +1,99 @@
+---
+chapter: "none yet"
+title: "Title for giraffe-sing-magnet"
+author: "Danny Kaplan"
+difficulty: ""
+output: learnr::tutorial
+tutorial:
+  id: "giraffe-sing-magnet"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-07 
+tags: [contour plot, second, third]
+id: giraffe-sing-magnet
+---
+
+```{r giraffe-sing-magnet-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+library(mosaic)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Using `contour_plot()`, create a contour plot of the function `g17()` over the two-variable domain $-5 \leq \mbox{offset} \leq 5$ and $-0 \leq \mbox{gain} \leq 5$.
+
+The function `g17()` has already been defined for you. The first argument is `offset` and the second is `gain`.
+
+
+```{r giraffe-sing-magnet-QA1, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "Which of these is the right tilde expression to use in making the plot?",
+  choices = list(
+    "`g17(offset, gain)`" = "That's not a tilde expression.",
+    "`g17(x, y) ~ x + y`" = "That will work, but the graph won't be  labeled with the correct variable names `offset` and `gain`.",
+    "+`g17(offset, gain) ~ offset + gain`+" = "",
+    "`g17(gain, offset) ~ gain + offset`" = "You're reversing the names of  the arguments, which is going to create confusion for  the person looking at the graph. The problem statement specified that `offset` is the first argument and `gain` the second."
+  ),
+  inline = FALSE,
+  random_answer_order = FALSE
+)
+```
+
+```{r giraffe-sing-magnet-QA2, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "Which of these is the correct domain (as specified in  the problem statement)?",
+  choices = list(
+    "`domain(x = c(-5, 5), y = c(0, 5))`" = "The domain needs to be written in terms of the variable names appearing on the right side of the tilde expression.",
+    "`domain(offset = c(0, 5), gain = c(-5, 5))`" = "You've reversed the things from the problem statement.",
+    "+`domain(offset = c(-5, 5), gain = c(0, 5))`+" = ""
+  ),
+  inline = FALSE
+)
+```
+
+
+```{r giraffe-sing-magnet-E1-setup}
+set.seed(102)
+tmp <- mosaic::rfun( ~ offset + gain, n = 3)
+g17 <- makeFun(tmp(offset, gain - 2) ~ offset + gain)
+```
+
+```{r giraffe-sing-magnet-E1, exercise=TRUE, exercise.cap="Create the plot of `g17()`", exercise.setup="giraffe-sing-magnet-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+```{r giraffe-sing-magnet-E1-solution}
+contour_plot(g17(offset, gain) ~ offset + gain, 
+             domain(offset = c(-3, 5), gain = c(0, 5)))
+```
+
+```{r giraffe-sing-magnet-E1-check}
+grade_code()
+```
+
+
+```{r giraffe-sing-magnet-QA3, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "Interpreting the contour plot as if it were a topographical map of a geographical area, and with the units of the output being 1000s of feet and the units of each variable being miles, which of these is the best description of the landscape?",
+  choices = list(
+    "+A mountain next to an abyss.+" = "",
+    "Two mountains separated by a valley." = "There are two objects, but one of them is negative, hardly a mountain.",
+    "A sloping meadow." = "A sloping meadow would look like parallel lines in a topographical map.",
+    "A hill next to a quarry pit." = "When a 'hill' is 8000+ feet tall, it deserves to be called a mountain."
+  ),
+  inline = FALSE
+)
+```
+
+
+
+
