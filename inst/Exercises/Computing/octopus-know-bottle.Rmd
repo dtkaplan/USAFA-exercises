@@ -41,7 +41,7 @@ essay_response("What is it about the shape of each of the two plots that indicat
 
 ```{r octopus-know-bottle-TF1, echo=FALSE}
 etude::true_or_false(
-  prompt = "The *mathematical* domains of exp(log(x)) and log(exp(x)) are the same.",
+  prompt = "True or false: The *mathematical* domains of exp(log(x)) and log(exp(x)) are the same.",
   FALSE)
 ```
 

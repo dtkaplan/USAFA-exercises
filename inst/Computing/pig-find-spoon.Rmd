@@ -41,7 +41,7 @@ Prozac
 The display form used by R is the standard for data tables. The form used in the book is improper and and leads to bad habits.
 
 ```{r pig-find-spoon-4, echo=FALSE}
-true_or_false("Correct or not? The proper data form shows each variable as a column.",
+true_or_false("True or false: The proper data form shows each variable as a column.",
       right_answer = TRUE,
       message_wrong = "Remember, columns in data run vertically, just as they do in buildings.")
 ```

@@ -33,7 +33,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 ```
 ```{r elm-do-plate-TF1, echo=FALSE}
 etude::true_or_false(
-  prompt = "Does $f(x)$ have an inverse?",
+  prompt = "True or false:  $f(x)$ has an inverse.",
   TRUE)
 ```
 
@@ -44,7 +44,7 @@ etude::true_or_false(
 ```
 ```{r elm-do-plate-TF2, echo=FALSE}
 etude::true_or_false(
-  prompt = "Does $g(x)$ have an inverse?",
+  prompt = "True or false: $g(x)$ has an inverse?",
   TRUE)
 ```
 ```{r elm-do-plate-TF3, echo=FALSE}

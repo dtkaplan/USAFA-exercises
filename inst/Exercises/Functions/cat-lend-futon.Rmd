@@ -33,7 +33,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 ```{r cat-lend-futon-C1}
 etude::true_or_false(
-  prompt = "A) $2^x$ is a power-law function.", 
+  prompt = "A) True or false: $2^x$ is a power-law function.", 
   FALSE)
 ```
 

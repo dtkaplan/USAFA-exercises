@@ -66,7 +66,6 @@ text(.315, .05, "<------------>")
 
 
 ```{r goldfish-draw-plant-Qinline1, echo=FALSE}
-# indicate correct choices with +_+ in the item.
 etude::choose_one(
   prompt = "a) What is the value along the scale of the tick mark labeled (a)?",
   c(35, 40, 45, "+50+", "60", 80),
@@ -76,7 +75,7 @@ etude::choose_one(
 
 ```{r goldfish-draw-plant-Qinline2, echo=FALSE}
 etude::true_or_false(
-  prompt = "b) Is there a tick mark at the value 100?",
+  prompt = "b) True or false: There a tick mark at the value 100",
   TRUE)
 ```
 
