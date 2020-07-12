@@ -3,73 +3,8 @@ title: "Exercises on Units"
 author: "Daniel Kaplan"
 ---
 
-# Physical units
 
-Physical quantities such as distance, velocity, and so on have specific dimensions.  The dimensions of $L$, $T$, and $M$ are fundamental, and other quantities have dimensions that are derived from these. 
 
-NOTE: To save space, dimensions such as $T/L^2 M^3$ are written as T/(L2.M3).
-    
-1. What is the dimension of distance? {*L*,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
-#. Velocity is (change in) distance per unit time.  What is the dimension of velocity?{L,T,M,L2,L/M,(M.L)/T,M/(T2.L),*L/T*,(M.L2)/(T3)/T/(L2),L/(T2)}
-#. Momentum is velocity times mass.  What is the dimension of   momentum? {L,T,M,L2,L/M,*(M.L)/T*,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
-#. Acceleration is (change in) velocity per unit time.  What is the   dimension of acceleration? {L,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*L/(T2*)}
-#. Force is acceleration times mass: $F = MA$ is the famous   formula.  What is the dimension of force? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*(M.L)/(T2)*,(M.L2)/(T3),L/(T2)}
-#. Kinetic Energy is often given as $\frac{1}{2} m v^2$, where $m$ is the   object's mass and $v$ is the object's velocity.  What is the   dimension of kinetic energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
-#. Potential energy of an object of {\bf mass} $m$ at a {\bf height} of $h$   with {\bf acceleration} due to gravity of $g$ is given by the   formula $m h g$.  What is the dimension of this potential energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),T/(L2),L/(T2)}
-#. Work is force times distance.  What is the dimension of work?   (Hint: you've already seen this dimension, but in another form.) {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
-#. Power is energy per time.  What is the dimension of power? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),(M.L)/(T2),*(M.L2)/(T3)*,T/(L2),L/(T2)} 
-#. Pressure is force per unit area (as in pounds per square inch).   What is the dimension of pressure? {L2,L/M,(M.L)/T,*M/(T2.L)*,L/T,(M.L2)/(T2),(M.L)/(T2),(M.L2)/(T3),L/(T2)} 
-#. Einstein famously wrote $E = m c^2$, a formula that relates the energy   content of an object to its mass $m$ and the   speed of light $c$.   What   is the dimension of $m c^2$? {M,L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),L/(T2)} 
-
-# The size of conversion factors
-
-When doing a conversion between units, it helps to know which unit is larger.  Converting from a larger to a smaller unit will mean multiplying by a conversion factor that is a flavor of 1 whose numerical value looks larger than 1.  For instance, when converting from minutes to seconds, a minute is larger and so the conversion factor will have a numerical value larger than one.  (The conversion factor is $60 \mbox{sec} / 1 \mbox{min}$, which is 1 because the top and bottom are equal but has a numerical value of 60.
-
-For each of the following, use your knowledge of units to say whether the conversion factor should have a numerical value that is **larger or smaller than one**.
-
-1. Convert seconds to hours.{smaller}{larger,smaller} 
-#. Convert meters to cm. {larger}{larger,smaller} 
-#. Convert barrels to teaspoons. {larger}{larger,smaller} 
-#. Convert grams to kilos. {smaller}{larger,smaller} 
-#. Convert acres to square inches. {larger}{larger,smaller} 
-
-# Benjamin Franklin and oil
-
-Benjamin Franklin (Publisher, scientist, and American statesman,
-1706-1790) put one teaspoon of oil on Clapham Common Pond on a windy
-day to see how it reduced the size of waves.  He observed that the oil spread out to cover about one-half acre.  
-
-In Franklin's time, no one knew about molecules.  We now know that such oil spreads out in a layer that is one molecule thick.  
-
-1. Based on Franklin's measurements, how large is an oil molecule   in nanometers.  (A nanometer is $10^{-9}$ meters.)
-    a. 0.25 nm
-    #. *2.5 nm*
-    #. 25 nm
-    #. 250 nm
-    #. 2500 nm
-
-2. How does this compare to modern estimates of the size of an oil molecule?
-    a. Franklin's estimate was much too big.
-    #. *Franklin's estimate was just about right.*
-    #. Franklin's estimate was much too small.
-
-ANSWER:
-Half an acre is 2023 square meters or 20230000 square cm.
-
-One teaspoon is 4.93 ml, that is, 4.93 cc.  
-
-The area times depth will give the volume, so 20230000*d = 4.93, so the depth in cm is 
-```{r }
-4.93 / 20230000
-```
- 
-
-One nm is $10^7$ nm, so the depth of the oil layer is 
-```{r }
-1e7*4.93 / 20230000
-```
-
-[Motivated by ``Measuring Molecules'' in Harte (1985) \cite{harte-1985}.]
 
 # Spacing between water molecules
 
@@ -632,3 +567,77 @@ COMMENTS IN DRAFT.  The acceleration function will likely not be linear, since m
 
 1. David Archer, *Global Warming:  understanding the forecast*, Blackwell, 2007.
 
+
+
+## ALREADY  CONVERTED
+
+
+
+
+# Benjamin Franklin and oil
+
+Benjamin Franklin (Publisher, scientist, and American statesman,
+1706-1790) put one teaspoon of oil on Clapham Common Pond on a windy
+day to see how it reduced the size of waves.  He observed that the oil spread out to cover about one-half acre.  
+
+In Franklin's time, no one knew about molecules.  We now know that such oil spreads out in a layer that is one molecule thick.  
+
+1. Based on Franklin's measurements, how large is an oil molecule in nanometers.  (A nanometer is $10^{-9}$ meters.)
+    a. 0.25 nm
+    #. *2.5 nm*
+    #. 25 nm
+    #. 250 nm
+    #. 2500 nm
+
+2. How does this compare to modern estimates of the size of an oil molecule?
+    a. Franklin's estimate was much too big.
+    #. *Franklin's estimate was just about right.*
+    #. Franklin's estimate was much too small.
+
+ANSWER:
+Half an acre is 2023 square meters or 20230000 square cm.
+
+One teaspoon is 4.93 ml, that is, 4.93 cc.  
+
+The area times depth will give the volume, so 20230000*d = 4.93, so the depth in cm is 
+```{r }
+4.93 / 20230000
+```
+ 
+
+One nm is $10^7$ nm, so the depth of the oil layer is 
+```{r }
+1e7*4.93 / 20230000
+```
+
+[Motivated by ``Measuring Molecules'' in Harte (1985) \cite{harte-1985}.]
+
+# The size of conversion factors
+
+When doing a conversion between units, it helps to know which unit is larger.  Converting from a larger to a smaller unit will mean multiplying by a conversion factor that is a flavor of 1 whose numerical value looks larger than 1.  For instance, when converting from minutes to seconds, a minute is larger and so the conversion factor will have a numerical value larger than one.  (The conversion factor is $60 \mbox{sec} / 1 \mbox{min}$, which is 1 because the top and bottom are equal but has a numerical value of 60.
+
+For each of the following, use your knowledge of units to say whether the conversion factor should have a numerical value that is **larger or smaller than one**.
+
+1. Convert seconds to hours.{smaller}{larger,smaller} 
+#. Convert meters to cm. {larger}{larger,smaller} 
+#. Convert barrels to teaspoons. {larger}{larger,smaller} 
+#. Convert grams to kilos. {smaller}{larger,smaller} 
+#. Convert acres to square inches. {larger}{larger,smaller} 
+
+# Physical units
+
+Physical quantities such as distance, velocity, and so on have specific dimensions.  The dimensions of $L$, $T$, and $M$ are fundamental, and other quantities have dimensions that are derived from these. 
+
+NOTE: To save space, dimensions such as $T/L^2 M^3$ are written as T/(L2.M3).
+    
+1. What is the dimension of distance? {*L*,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Velocity is (change in) distance per unit time.  What is the dimension of velocity?{L,T,M,L2,L/M,(M.L)/T,M/(T2.L),*L/T*,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Momentum is velocity times mass.  What is the dimension of   momentum? {L,T,M,L2,L/M,*(M.L)/T*,M/(T2.L),L/T,(M.L2)/(T3)/T/(L2),L/(T2)}
+#. Acceleration is (change in) velocity per unit time.  What is the   dimension of acceleration? {L,T,M,L2,L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*L/(T2*)}
+#. Force is acceleration times mass: $F = MA$ is the famous   formula.  What is the dimension of force? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),*(M.L)/(T2)*,(M.L2)/(T3),L/(T2)}
+#. Kinetic Energy is often given as $\frac{1}{2} m v^2$, where $m$ is the   object's mass and $v$ is the object's velocity.  What is the   dimension of kinetic energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
+#. Potential energy of an object of {\bf mass} $m$ at a {\bf height} of $h$   with {\bf acceleration} due to gravity of $g$ is given by the   formula $m h g$.  What is the dimension of this potential energy? {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),T/(L2),L/(T2)}
+#. Work is force times distance.  What is the dimension of work?   (Hint: you've already seen this dimension, but in another form.) {L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),(M.L2)/(T3),L/(T2)}
+#. Power is energy per time.  What is the dimension of power? {L/M,(M.L)/T,M/(T2.L),L/T,(M.L2)/(T2),(M.L)/(T2),*(M.L2)/(T3)*,T/(L2),L/(T2)} 
+#. Pressure is force per unit area (as in pounds per square inch).   What is the dimension of pressure? {L2,L/M,(M.L)/T,*M/(T2.L)*,L/T,(M.L2)/(T2),(M.L)/(T2),(M.L2)/(T3),L/(T2)} 
+#. Einstein famously wrote $E = m c^2$, a formula that relates the energy   content of an object to its mass $m$ and the   speed of light $c$.   What   is the dimension of $m c^2$? {M,L2,L/M,(M.L)/T,M/(T2.L),L/T,*(M.L2)/(T2)*,(M.L)/(T2),L/(T2)} 

@@ -26,8 +26,6 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 `r etude::exercise_title()` 
 
-etude::etudeQA()
-
 ```{r crocodile-drive-pants-QA1, echo=FALSE}
 message <- "Names cannot have punctuation (other than . and _)."
 etude::choose_one(
@@ -50,4 +48,24 @@ etude::choose_one(
 )
 ```
 
+etudeE()
+<!------------------ Start learnr exercise: crocodile-drive-pants-E1 -->
 
+```{r crocodile-drive-pants-E1-setup}
+# Setup code goes here
+"setup"
+```
+<span title='crocodile-drive-pants-E1'>...</span>
+```{r crocodile-drive-pants-E1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="crocodile-drive-pants-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+"code block"
+```
+
+```{r crocodile-drive-pants-E1-solution}
+
+```
+
+```{r crocodile-drive-pants-E1-check}
+
+```
+
+<!-------------------- End of learnr exercise: crocodile-drive-pants-E1 -->

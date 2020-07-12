@@ -1,0 +1,114 @@
+---
+chapter: "none yet"
+title: "Physical Units"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "fir-sing-coat"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-11 
+tags: [dimensions, physical units, third]
+id: fir-sing-coat
+---
+
+```{r fir-sing-coat-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Physical quantities such as distance, velocity, and so on have specific dimensions.  The dimensions of $L$, $T$, and $M$ are fundamental, and other quantities have dimensions that are derived from these. 
+
+NOTE: To save space, dimensions such as $T/L^2 M^3$ are written as T/(L2.M3).
+
+    
+```{r fir-sing-coat-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "1) What is the dimension of distance?",
+  choices = c("+L+","T","M","L2","L/M","(M.L)/T","M/(T2.L)","L/T","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+```{r fir-sing-coat-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "2) Velocity is (change in) distance per unit time.  What is the dimension of velocity?",
+  choices = c("L","T","M","L2","L/M","(M.L)/T","M/(T2.L)","+L/T+","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+```{r fir-sing-coat-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "3)  Momentum is velocity times mass. What is the dimension of momentum?",
+  choices = c("L","T","M","L2","L/M","+(M.L)/T+","M/(T2.L)","L/T","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+```{r fir-sing-coat-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "4) Acceleration is (change in) velocity per unit time.  What is the dimension of acceleration?",
+  choices = c("L","T","M","L2","L/M","(M.L)/T","M/(T2.L)","L/T","(M.L2)/(T3)","T/(L2)","+L/(T2)+")
+  )
+```
+
+```{r fir-sing-coat-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "5) Force is acceleration times mass: $F = MA$ is the famous   formula.What is the dimension of force?",
+  choices = c("L2","L/M","(M.L)/T","M/(T2.L)","L/T","(M.L2)/(T2)","+(M.L)/(T2)+","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+
+
+```{r fir-sing-coat-QA6, echo=FALSE}
+etude::choose_one(
+  prompt = "6) Kinetic Energy is often given as $\\frac{1}{2} m v^2$, where $m$ is the  object's mass and $v$ is the object's velocity.  What is the   dimension of kinetic energy?",
+  choices = c("L2","L/M","(M.L)/T","M/(T2.L)","L/T","+(M.L2)/(T2)+","(M.L)/(T2)","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+
+```{r fir-sing-coat-QA7, echo=FALSE}
+etude::choose_one(
+  prompt = "7) Potential energy of an object of {\bf mass} $m$ at a {\bf height} of $h$ with {\bf acceleration} due to gravity of $g$ is given by the   formula $m h g$.  What is the dimension of this potential energy?",
+  choices = c("L2","L/M","(M.L)/T","M/(T2.L)","L/T","+(M.L2)/(T2)+","(M.L)/(T2)","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+```{r fir-sing-coat-QA8, echo=FALSE}
+etude::choose_one(
+  prompt = "8) Work is force times distance.  What is the dimension of work? (Hint: you've already seen this dimension, but in another form.)",
+  choices = c("L2","L/M","(M.L)/T","M/(T2.L)","L/T","+(M.L2)/(T2)+","(M.L)/(T2)","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+
+```{r fir-sing-coat-QA9, echo=FALSE}
+etude::choose_one(
+  prompt = "9) Power is energy per time.  What is the dimension of power?",
+  choices = c("L","T","M","L2","L/M","(M.L)/T","M/(T2.L)","L/T","+(M.L2)/(T3)+","T/(L2)","L/(T2)")
+  )
+```
+
+
+```{r fir-sing-coat-QA10, echo=FALSE}
+etude::choose_one(
+  prompt = "10) Pressure is force per unit area (as in pounds per square inch). What is the dimension of pressure?",
+  choices = c("L2","L/M","(M.L)/T","+M/(T2.L)+","L/T","(M.L2)/(T2)","(M.L)/(T2)","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+```{r fir-sing-coat-QA11, echo=FALSE}
+etude::choose_one(
+  prompt = "11) Einstein famously wrote $E = m c^2$, a formula that relates the energy content of an object to its mass $m$ and the speed of light $c$. What is the dimension of $m c^2$?",
+  choices = c("M","L2","L/M","(M.L)/T","M/(T2.L)","L/T","+(M.L2)/(T2)+","(M.L2)/(T3)","T/(L2)","L/(T2)")
+  )
+```
+
+

@@ -1,0 +1,82 @@
+---
+chapter: "none yet"
+title: "The size of conversion factors"
+author: "Danny Kaplan"
+difficulty: ""
+output: learnr::tutorial
+tutorial:
+  id: "kitten-cut-oven"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-11 
+tags: [first, second, third]
+id: kitten-cut-oven
+---
+
+```{r kitten-cut-oven-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` When doing a conversion between units, it helps to know which unit is larger.  Converting from a larger to a smaller unit will mean multiplying by a conversion factor that is a flavor of 1 whose numerical value looks larger than 1.  For instance, when converting from minutes to seconds, a minute is larger and so the conversion factor will have a numerical value larger than one.  (The conversion factor is $60 \mbox{sec} / 1 \mbox{min}$, which is 1 because the top and bottom are equal but has a numerical value of 60.
+
+For each of the following, use your knowledge of units to say whether the conversion factor should have a numerical value that is **larger or smaller than one**.
+
+```{r kitten-cut-oven-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "1) Convert seconds to hours. ",
+  choices = c("larger", "+smaller+"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+```{r kitten-cut-oven-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "2) Convert meters to cm.",
+  choices = c("+larger+", "smaller"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+```{r kitten-cut-oven-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "3) Convert barrels to teaspoons.",
+  choices = c("+larger+", "smaller"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+```{r kitten-cut-oven-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "4) Convert grams to kilos.",
+  choices = c("larger", "+smaller+"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+```{r kitten-cut-oven-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "5) Convert acres to square inches.",
+  choices = c("+larger+", "smaller"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+
+

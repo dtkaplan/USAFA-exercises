@@ -1,0 +1,71 @@
+---
+chapter: "Benjamin Franklin and oil"
+title: "Title for doe-fly-fridge"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "doe-fly-fridge"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-11 
+tags: [first, second, third]
+id: doe-fly-fridge
+---
+
+```{r doe-fly-fridge-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+show_answers(TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Benjamin Franklin (Publisher, scientist, and American statesman, 1706-1790) put one teaspoon of oil on Clapham Common Pond on a windy day to see how it reduced the size of waves.  He observed that the oil spread out to cover about one-half acre.  
+
+In Franklin's time, no one knew about molecules.  We now know that such oil spreads out in a layer that is one molecule thick.  
+
+
+```{r doe-fly-fridge-sandbox1, exercise=TRUE, exercise.cap="Sandbox",  exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+```{r doe-fly-fridge-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "1) Based on Franklin's measurements, how large is an oil molecule in nanometers. (A nanometer is $10^{-9}$ meters.)",
+  choices = c("0.25 nm", "+2.5 nm+", "25 nm", "250 nm", "2500 nm"),
+  random_answer_order = FALSE
+)
+```
+
+
+
+```{r doe-fly-fridge-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "2) How does this compare to modern estimates of the size of an oil molecule?",
+  choices = c("Franklin's estimate was much too big.",
+              "+Franklin's estimate was just about right.+",
+              "Franklin's estimate was much too small."),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+````{etude}
+Half an acre is 2023 square meters or 20230000 square cm.
+
+One teaspoon is 4.93 ml, that is, 4.93 cc.  
+
+The area times depth will give the volume, so 20230000*d = 4.93, so the depth in cm is `4.93 / 20230000`.
+
+
+One nm is $10^7$ nm, so the depth of the oil layer is `1e7*4.93 / 20230000`.
+
+````
+
+[Motivated by ``Measuring Molecules'' in Harte (1985) \cite{harte-1985}.]
+
+
