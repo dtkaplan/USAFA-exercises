@@ -32,7 +32,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 > *Some cooks believe that food items cooked with wine or liquor will be non-alcoholic, because alcohol's low boiling point causes it to evaporate quickly when heated. However, a study found that some of the alcohol remains: 25% after 1 hour of baking or simmering, and 10% after 2 hours.*
 
 
-```{r cow-type-kayak-C1}
+```{r cow-type-kayak-Essay1}
 etude::essay_response("a) State briefly ways in which the given information is or is not consistent with an approximately exponential process.")
 ```
 

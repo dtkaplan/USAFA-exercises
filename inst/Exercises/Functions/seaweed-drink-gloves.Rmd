@@ -67,7 +67,7 @@ Find a simultaneous solution to each of the following pairs of equations:
 
 For each of the following pairs of functions, find out how many zeros there are in the domain indicated and write this in the text box. In addition, if there is at least one zero, enter the coordinates of that zero into the text box.
 
-```{r seaweed-drink-gloves-Ca}
+```{r seaweed-drink-gloves-Essay1}
 etude::essay_response(
   "a) $3 x + y = 7$ and $x^2 + y^2 = 3$ for $x \\in [-5, 5]$ and $y \\in [-5, 5]$."
 )
@@ -75,13 +75,13 @@ etude::essay_response(
 
 
 
-```{r seaweed-drink-gloves-Cb}
+```{r seaweed-drink-gloves-Essay2}
 etude::essay_response(
   "b) $4 x^2 = 5 - y$ and  $2 x^2 - y^2 = 1$ for $x \\in [-5, 5]$ and $y \\in [-5, 5]$."
 )
 ```
 
-```{r seaweed-drink-gloves-Cc}
+```{r seaweed-drink-gloves-Essay3}
 etude::essay_response(
   "c) $\\sin x = \\tan y$ and $x^2 + y^2 = 3$ for $x \\in [-5, 5]$ and $y \\in [-1, 1]$."
 )

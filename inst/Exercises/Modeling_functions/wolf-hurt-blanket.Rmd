@@ -67,7 +67,7 @@ etude::choose_one(
 )
 ```
 
-```{r wolf-hurt-blanket-Qessay1, echo=FALSE}
+```{r wolf-hurt-blanket-Essay1, echo=FALSE}
 etude::essay_response("b) For the purpose of predicting an individual's HRmax, which might   be anywhere in the 80% to 120% band described above, is the   simple H-F formula an adequate approximation to the relationship   between HRmax and age indicated by the other formulas?  Explain what   specific features of the graphs guide your answer."
 )
 ```

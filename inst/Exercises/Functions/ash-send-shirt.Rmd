@@ -43,7 +43,7 @@ c. $\sin x = \tan y^3$ for $x \in [-5, 5]$ and $y \in [-1, 1]$.
 
 Of course, reading coordinates off a graph is not necessarily precise, so even if your coordinates are reasonable, the function value at those coordinates may not be exactly zero. But make sure that it is small.
 
-```{r ash-send-shirt-C3}
+```{r ash-send-shirt-Essay3}
 etude::essay_response(
   "Enter the coordinate you found for each of functions (a), (b), and (c)."
 )

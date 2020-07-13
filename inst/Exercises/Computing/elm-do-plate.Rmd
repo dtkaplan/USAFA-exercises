@@ -42,12 +42,12 @@ etude::true_or_false(
 ```{r elm-do-plate-sandbox2, exercise=TRUE, exercise.cap="Graph g(x)", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
 
 ```
-```{r elm-do-plate-TF2, echo=FALSE}
+```{r elm-do-plate-Essay1, echo=FALSE}
 etude::true_or_false(
   prompt = "True or false: $g(x)$ has an inverse?",
   TRUE)
 ```
-```{r elm-do-plate-TF3, echo=FALSE}
+```{r elm-do-plate-Essay2, echo=FALSE}
 essay_response(
   prompt = "What's going on with $g()$ at $x = -4/7$?"
 )
@@ -57,7 +57,7 @@ essay_response(
 -----
 
 
-```{r elm-do-plate-C1}
+```{r elm-do-plate-Essay3}
 essay_response(
   prompt = "Say why you think the domain you used in (a) and (b) was big enough to reliably determine whether the function has an inverse."
 )
