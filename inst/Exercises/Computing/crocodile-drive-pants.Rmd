@@ -29,22 +29,15 @@ learnr::tutorial_options(exercise.timelimit = 60,
 ```{r crocodile-drive-pants-QA1, echo=FALSE}
 message <- "Names cannot have punctuation (other than . and _)."
 etude::choose_one(
-  prompt = "Which of these are legitimate names in R? (Check all that apply.)",
+  prompt = "Some of these are legitimate names in R, some  are not. Pick the set where  all the names are  legitimate.",
   choices = list(
-    "+`c`+" = "",
-    "+`c2`+" = "",
-    "`2c`" = "Names cannot start with a digit.",
-    "+`c_squared`+" = "",
-    "+`c_2`+" = "",
-    "`c^2`" = message,
-    "+`Orville_and_Wilbur_Wright`+" = "",
-    "`correct?`" = message,
-    "`+`" = "`+` is a punctuation sign not allowed in an R name."
+    "+`c_2`, `c`, `Orville_and_Wilbur_Wright`+" = "",
+    "`c`, `c^2`, `c_squared`" = message,
+    "`correct?`, `2c`, `c_squared`" = "Names cannot start with a digit.",
+    "`c_squared`, `+`, `c2`" = "`+` is a punctuation sign not allowed in an R name." 
   ),
-  message_wrong = "There are some functions you didn't mark as such.",
   inline = FALSE,
-  random_answer_order = FALSE,
-  allow_retry = FALSE
+  random_answer_order = TRUE
 )
 ```
 
