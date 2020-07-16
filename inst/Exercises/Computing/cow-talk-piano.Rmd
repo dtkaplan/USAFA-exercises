@@ -62,7 +62,7 @@ etude::choose_one(
 
 ```{r cow-talk-piano-QA3, echo=FALSE}
 etude::choose_one(
-  prompt = "C) What is the purpose of the last expression, `count`?",
+  prompt = "C) What is the purpose of the expression on the third line of the code box: `count`?",
   choices = list(
     "+To display the value currently stored under the name `count`.+" = "",
     "To reset `count` to 1." = "This would be done with the expression `count <- 1`.",

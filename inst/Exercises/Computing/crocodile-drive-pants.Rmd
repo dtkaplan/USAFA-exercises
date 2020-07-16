@@ -41,7 +41,6 @@ etude::choose_one(
 )
 ```
 
-etudeE()
 <!------------------ Start learnr exercise: crocodile-drive-pants-E1 -->
 
 ```{r crocodile-drive-pants-E1-setup}
