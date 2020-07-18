@@ -1,0 +1,251 @@
+---
+chapter: "Optimization"
+title: "Approaches to algebra"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "zebra-have-saw"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-16 
+tags: [first, second, third]
+id: zebra-have-saw
+---
+
+```{r zebra-have-saw-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+## Background
+
+`r etude::exercise_title()` Ray sent me a very interesting challenge relating to how to handle algebraic problems from the MMAC textbook.
+
+His example is Exercises 22 & 40 from Section 5.5 on multivariate optimization. (pp. 567-8) This comes late in the course but, nonetheless, points out issues that will present themselves later.
+
+The problem is easily stated: Given a function $$f(x,y) \equiv (x^2 + y^2) e^{-x}$$
+
+1. Confirm that $(2,0)$ is a critical point. (Problem 22.)
+2. State whether the critical point at $(2, 0)$ is a maximum, a minimum, or a saddle point, or whether the answer cannot be determined. (Problem 40.)
+
+At the point where you're asking the students to do the algebra involved in solving this problem analytically, the course becomes entirely about algebra. For instance, part of the problem involves to derive $\frac{\partial^2 f}{\partial x^2}$,  Students have to master the pattern recognition that leads them to apply the chain rule and then get the algebra right. 
+
+I suggest that the book problems like this can be better handled by:
+
+1. Making it clear, in proper notation, what the algorithm is.
+2. Letting students use computation to do routine derivations and saving their cognitive energy.
+3. Having students implement the algorithm in terms of the computations they construct in (2).
+4. Using algebra, if at all, to confirm or expand on the computations in (2).
+
+
+## The algorithm
+
+The algorithm given in the text is (more or less):
+
+**Part 1**
+
+a. Find the two functions 
+
+$$ f_x(x, y) \equiv \partial f/\partial x \  \ \  \mbox{and} \ \ \ f_y  \equiv \partial f/\partial y. $$
+b. Evaluate the function $f_x()$ and $f_y()$ at $(x=2,  y = 0)$ to get numerical values: $a_x \leftarrow f_x(2, 0)$ and $a_y \leftarrow f_y(2, 0)$.
+
+c. Confirm that $a_x$ and $a_y$ are both zero.
+
+**Part 2**
+
+a. Find the three functions 
+
+$$f_{xx}(x, y) \equiv \frac{\partial^2 f}{\partial x^2}$$ 
+$$f_{yy}(x, y) \equiv \frac{\partial^2 f}{\partial y^2}$$ 
+$$f_{xy}(x, y) \equiv \frac{\partial^2 f}{\partial x \partial y}$$ 
+    
+b. Evaluate each of those three functions at $(x=2, y =0)$ to produce the three numbers $b_{xx} \leftarrow  f_{xx}(2, 0)$, $b_{yy} \leftarrow f_{yy}(2, 0)$, and $b_{xy} f_{xy}(2, 0)$.
+
+c. Check the sign of $b_{xx} b_{yy} - b_{xy}^2$. 
+    - If it's positive, the critical point is either a maximum or minimum. If $b_{xx} > 0$, it's a maximum.
+    - If it's negative, the critical point is a saddle.
+    - If it's zero, the answer is indeterminate.
+
+The text doesn't state the algorithm exactly like this. Instead, the text relies on the reader to understand that while $f(x,y)$ is a *function*, $f(a,b)$ is a *scalar*. This, I think, makes the problem difficult: the poor description of the algorithm.
+
+## Approach 1: Graphical
+
+Once you have a formula and a proposed critical point, just draw a graph:
+
+```{r echo=FALSE}
+contour_plot((x^2 + y^2) * exp(-x) ~ x & y,
+             domain(x = c(1,3), y = c(-1, 1)))
+```
+
+To be fair, the textbook does this first. Then they have a BS statement: "However, many functions are presented  via formulas, which necessitates the development of analytical methods for finding and classifying local extreme values." 
+
+Presenting this as an exercise, perhaps problems like this:
+
+
+```{r zebra-have-saw-QA3, echo=FALSE}
+message <- "Make sure the critical point is in the middle of the domain!"
+etude::choose_one(
+  prompt = "Which of these is a good domain to use when checking whether the point $(x=2, y=0)$ is a critical point?",
+  choices = list(
+    "+`domain(x = c(1,3), y = c(-1,1))`+" = "",
+    "`domain(x = c(1,3), y = c(1,3))`" = message,
+    "`domain(x = c(-2, 2), y = c(-2, 2)`" = message,
+    "`domain(x = c(-100,100), y = c(-100,100)`" = "That domain does include  the critical point, but it's so large that it will be hard to see what's happening at the critical point."
+  ),
+  inline = FALSE
+)
+```
+
+
+## Approach 2: Numerical
+
+Insofar as the point is to teach students an algorithm, or to make them comfortable following an algorithm,  how  about this ...
+
+
+1. Confirm that $(x = 2, y = 0)$ is a critical point. Soln: 
+
+```{r echo=TRUE}
+f <- makeFun((x^2 + y^2) * exp(-x) ~ x & y)
+fx <- D(f(x, y) ~ x)
+fy <- D(f(x, y) ~ y)
+fx(2, 0)
+fy(2, 0)
+```
+
+One way to present this as an exercise is to have students do the operations, scaffolding to a greater or lesser extent, e.g.:
+
+<span title='zebra-have-saw-E1'>...</span>
+```{r zebra-have-saw-E1, exercise=TRUE, exercise.cap="A lot of scaffolding", exercise.setup="zebra-have-saw-E1-setup", exercise.eval=FALSE, exercise.lines=7, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+f <- makeFun((x^2 + y^2) * exp(-x) ~ x & y)
+## Create the functions fx() and fy()
+fx <- <<your statement here>>
+fy <- <<your statement here>>
+## Evaluate fx() and fy() and the putative critical point
+fx(2, 0)
+fy(2, 0)
+```
+
+```{r zebra-have-saw-E2, exercise=TRUE, exercise.cap="Less scaffolding", exercise.setup="zebra-have-saw-E2-setup", exercise.eval=FALSE, exercise.lines=7, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+# Define the function f()
+
+# Create functions that are the x- and y- derivatives of f()
+
+# Evaluate those functions at the putative critical point
+
+```
+
+
+2. Classify the critical point. Soln:
+
+```{r echo = TRUE}
+fxx <- D(f(x, y) ~ x & x)
+fyy <- D(f(x, y) ~ y & y)
+fxy <- D(f(x, y) ~ x & y)
+
+discriminant  <- fxx(2, 0) *  fyy(2, 0) - fxy(2, 0)^2
+discriminant
+```
+
+Since the discriminant is negative, the critical point $(x=2, y=0)$ is a saddle.
+
+Here's a way the algorithm might be approached in a problem.
+
+Define the functions `fxx()`, `fyy()`, and `fxy()` in a that's appropriate for calculating the discriminant $D()$ in the "test" on p. 558 of the MMAC text.
+```{r zebra-have-saw-E3, exercise=TRUE, exercise.cap="Find the discriminant", exercise.setup="zebra-have-saw-E3-setup", exercise.eval=FALSE, exercise.lines=8, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+# <<your work here>>
+
+discriminant <- fxx(2, 0) * fyy(2, 0) - fxy(2, 0)^2
+discriminant # display the value
+```
+
+```{r zebra-have-saw-E3-check}
+gradethis::grade_result(
+  failif( ~ !is.numeric(result), "The discrimant should be a number."),
+  failif( ~ (result < -.6 || result  > .4), "Check your functions.  The answer should be around -0.56."),
+  passif( ~ TRUE)
+)
+```
+
+Another problem could reverse things, giving the functions and asking the student to define the discriminant.
+
+Using the functions given, find the discriminant of the function $f(x,y) \equiv (x^2 + y^2) e^{-1}$. (See p. 558 for a definition of the discriminant.)
+```{r zebra-have-saw-E4, exercise=TRUE, exercise.cap="Find the discriminant", exercise.setup="zebra-have-saw-E4-setup", exercise.eval=FALSE, exercise.lines=8, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+f <- makeFun((x^2 + y^2) * exp(-x) ~ x)
+fx <- D(f(x,y) ~ x)
+fy <- D(f(x,y) ~ y)
+fxy <- D(f(x,y) ~ x & y)
+fxx <- <<your work here>>
+fyy <- <<your work here>>
+
+discriminant <- <<write the disciminant at (x=2, y=0) by evaluating the functions above in the appropriate way.>>
+  
+```
+
+```{r zebra-have-saw-E4-solution}
+
+```
+
+```{r zebra-have-saw-E4-check}
+
+```
+
+<!-------------------- End of learnr exercise: zebra-have-saw-E4 -->
+## Approach 2: Semi-numerical
+
+Just as in the above, but get symbolic derivatives:
+
+```{r echo = TRUE}
+fx <- D((x^2 + y^2) * exp(-x) ~ x)
+fx
+fy <- D((x^2 + y^2) * exp(-x) ~ y)
+fy
+fxx <- D((x^2 + y^2) * exp(-x) ~ x & x)
+fxx
+### ... and so on
+```
+
+Notice that you have to specify the function in terms of elementary operations (arithmetic, sqrt, exp, trig,  ...) to get a symbolic expression  as the result.  And notice that the derivative is *always* explicitly identified as a formula.
+
+A style of problem that uses a bit of algebra, but keeps it under control.
+
+**Problem A.** The expression produced by R for the formula of $f_{xx}(x, y)$ is rather verbose:
+
+$$2 e^{-x} - 2 x e^{-x} - ( 2 x e^{-x} - (x^2 + y^2) e^{-x})$$
+
+```{r zebra-have-saw-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of the following expressions is equivalent?",
+  choices = list(
+    "$(2  + x^2 + y^2) e^{-1}$" = "What happens with the $4xe^{-1}$ terms?",
+    "+$(2 + -4 x + x^2 + y^2) e^{-1}$+" = "",
+    "$(2 + 4 x + x^2 + y^2) e^{-1}$" = "Check your signs.",
+    "It can't be simplified." = "Start  by looking for elements that multiple terms have in common. For instance, $e^{-x}$."
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+**Problem B.**
+
+```{r zebra-have-saw-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of these functions is $f_x(x, y) \\equiv \\frac{\\partial}{\\partial x} f(x, y)$",
+  choices = list(
+    "$2 x (x^2 + y^2) e^{-1}$" = "Are you using the chain rule?",
+    "$(2 x - x^2 + y^2) e^{-1}$" = "Check the sign before the parentheses $(x^2 + y^2)$.",
+    "+$(2 x - x^2 - y^2) e^{-1}$+" = ""),
+    inline  = FALSE,
+    random_answer_order = FALSE
+  )
+```
+
+
+

@@ -1,0 +1,12 @@
+name: zebra-have-saw
+title: zebra-have-saw
+username:
+account: dtkaplan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2580908
+bundleId: 3401840
+url: https://dtkaplan.shinyapps.io/zebra-have-saw/
+when: 1594939349.44325
+asMultiple: FALSE
+asStatic: FALSE

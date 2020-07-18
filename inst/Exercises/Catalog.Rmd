@@ -1,0 +1,13 @@
+# A catalog of exercises
+
+Turn this into tutorial form so it can be browsed.
+
+## Exponentials and logs: COVID-19
+
+Modeling_functions/maple-hit-saucer
+
+
+## Optimization: Is it a max or a min?
+
+Optimization/zebra-have-saw
+
