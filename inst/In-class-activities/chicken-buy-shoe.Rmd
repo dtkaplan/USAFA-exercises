@@ -1,0 +1,85 @@
+---
+chapter: "Exponentials, Logs, and Linear"
+title: "Title for chicken-buy-shoe"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "chicken-buy-shoe"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-17 
+tags: [first, second, third]
+id: chicken-buy-shoe
+---
+
+```{r chicken-buy-shoe-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(math141Zexercises) # for covid data
+library(ggformula)
+library(plotly)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` This in-class activity is based on COVID-19 data for the United States. The documentation for the dataset is available at the [COVID-19 Data Hub](https://covid19datahub.io/).
+
+Objectives:
+
+- Highlight the uses of semi-log plots for displaying exponential phenomena, including exponentials that change in time.
+- Show how to do linear extrapolation.
+- Translate linear extrapolation on a semi-log scale into the appropriate raw-count extrapolation.
+- Show how additional variables can explain what's going on in a system.
+
+The general idea is to show the cumulative number of COVID-19 cases (at least, confirmed cases) and deaths (which are certainly deaths, but might not include deaths that occurred at home rather than in the hospital).
+
+Plotting the data on linear axes, you can see the rate increase starting in the middle of June 2020 in the cases. Since deaths lag cases by about 3 weeks, the corresponding increase in deaths is not so apparent, particularly since on a linear scale the graph of deaths is scrunched down toward the bottom.
+
+Important gimmick:  These graphs are made with an additional component which allows you to read off the values of raw data points and to zoom and pan as needed. (Use the dotted rectangle tool to select a size of region and the crossed-arrows to move the window to the part of the graph you want to look at.)
+
+```{r chicken-buy-shoe-sandbox1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="maple-hit-saucer-sandbox1-setup", exercise.eval=FALSE, exercise.lines=3, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_point(deaths ~ date, data = Covid_US, color = "red") %>%
+  gf_point(confirmed ~ date, color = "blue") %>% 
+  ggplotly() # makes graph interactive
+```
+
+* Point out the vertical scale. How many cases were there by the middle of July?
+* Using the mouse to collect the numerical values, calculate the proportion of deaths/cases at the start of May and at the middle of June. Those proportions are almost the same, something you would be hard pressed to see by eye.
+* Point out the increase in the growth rate starting at the end of June.
+* Calculate the slope of the cases. On July 1st,  2.7M versus 3.6M on July 15. So the slope is 450K  per week.
+* Extrapolate this over, say, 10 weeks, giving an additional 4.5M cases (which, added to the 3.5M on July 15 gives  a total of 8M by late October).
+
+## On a semi-log scale
+
+```{r chicken-buy-shoe-sandbox2, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="maple-hit-saucer-sandbox1-setup", exercise.eval=FALSE, exercise.lines=3, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_point(log(deaths) ~ date, data = Covid_US, color = "red") %>%
+  gf_point(log(confirmed) ~ date, color = "blue") %>% 
+  ggplotly() # makes graph interactive
+```
+
+* The logarithm lets you see the details at the start of the pandemic as well as the situation when things were 1000 times bigger.
+* Point out the parallel nature of the cases and death curves.
+e, from early May to mid-June, corresponding to the steady proportion of deaths to cases over that time.
+* Calculate the slope, in terms of $\Delta$log per week$ during the period from late June to mid-July. Try to do this accurately, which will involve perhaps zooming in on the plot and using the mouse to read off the change in log value. (July 1, log(cases) = 14.80. July 16, log(cases) = 15.01) Thus the slope is 0.21 log units over 15 days, or about 0.10 log units per week. 
+* What is the doubling time at this rate?  Doubling time is about 7 weeks: `log(2)/0.1`.
+* Extrapolate the slope over 10 weeks, which gives an increase of 1 log unit, so by the end of October, the log(cases) is extrapolated to be about 16.
+* Translate 16 log units to a raw count: `exp(16)`, which gives 8.9 million cases total. This is just a little bit higher than the linear model. (That's because 10 weeks gives about 1.5 doublings, which isn't a lot.)
+* Do the extrapolation for both linear and exponential growth models for 6 months (26 weeks). We don't expect growth to be sustained at mid-July rates for 6 months, but let's see what happens.
+
+    - Linear model: 450K cases/week times 26 weeks gives 11.7M. Adding in the 3.5M at mid-July gives a total of 15M cumulative cases.
+    - Exponential model. 0.1 log unit per week times 26 weeks gives 2.6 log units. That corresponds to an increase of `exp(2.6)` of 13.5 fold. So the 3.5M at the end of July becomes 47M cases: 3 times as large as the linear model!
+    
+Since epidemics are fundamentally and exponential phenomenon, it's really important to get this right. We would have to reduce the growth rate in cases by about half to end up at 15M. What does it take to reduce the growth rate by half?
+
+Deaths are about 6% of (confirmed) cases, so 47M cases corresponds to 2.8 million deaths.
+
+On the other hand, it's estimated that there are about 10 times as many actual cases as confirmed cases. (Many cases are asymptomatic, so they never lead to a test being done.) But if this is the case, the 47M confirmed-cases estimate would correspond to 470M actual cases, exceeding the size of the US population.
+
+Roughly speaking, once half the population has been innoculated, the growth rate will be only half what it was originally. Next semester, we'll encounter the tools to make a complete model of the long-term possibilities for the pandemic. (And by then, we'll know what the actual answer was!)
+    

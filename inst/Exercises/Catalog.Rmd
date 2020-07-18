@@ -6,6 +6,8 @@ Turn this into tutorial form so it can be browsed.
 
 Modeling_functions/maple-hit-saucer
 
+see also In-class-activities/chicken-buy-shoe.
+
 
 ## Optimization: Is it a max or a min?
 
