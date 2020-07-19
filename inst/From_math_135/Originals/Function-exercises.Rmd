@@ -174,11 +174,6 @@ knitr::include_graphics("/images/naturalGasStorage.png")
 [Contributed by Prof. Dan Flath]
 
 
-
-# Exercise 32
-
-
-
 # Exercise 33
 
 A decade ago, it was claimed by environmental activists that the world's capacity to generate energy from wind has been increasing exponentially. Evaluate that claim using data from British Petroleum's *Statistical Review of World Energy 2010*.  
@@ -294,7 +289,7 @@ knitr::include_graphics("/images/bank-paper.png")
 "Wind chill" is a quantity used to describe how cold a person feels.  It takes into account both air temperature and the wind-speed. The figure shows Wind Chill as a function of air temperature and wind speed.
 
 ```{r echo=FALSE}
-knitr::include_graphics("/images/wind-chil.png")
+knitr::include_graphics("/images/wind-chill.png")
 ```
 
 The following questions involve reading quantities off of the graph. In addition to giving the numerical answer called for, you should mark a point on the graph that is relevant to the answer you are giving. For each item, use the letter label for that item, e.g., (b), as your mark. 

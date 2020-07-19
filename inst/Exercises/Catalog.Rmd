@@ -101,6 +101,7 @@ etude_file <- function(
 # etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
 # etude_file("Half-life", "Functions/horse-cost-blanket")
 etude_file("k vs tau_2", "Modeling_functions/fly-dive-tv")
+etude_file("Mortality vs age", "Modeling_functions/tiger-have-fork")
 
 ```
 
