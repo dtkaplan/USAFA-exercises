@@ -46,7 +46,7 @@ The amount of alcohol remaining in the food is decreasing toward zero.  The meas
 ```{r cow-type-kayak-Qinline1, echo=FALSE}
 explain <- "These are not as required within $\\pm 2.5$ percentage points of the numbers given in Wikipedia."
 etude::choose_one(
-  prompt = "b) The stated measurements appear rounded to about 5 percentage points --- 25%, 10%.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.?",
+  prompt = "b) The stated measurements appear rounded to about 5 percentage points --- 25%, 10%.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.",
   list("Decrease to 23.6% after one hour and 5.6% after two." = explain,
     "+Decrease to 27.5% after one hour and 7.6% after two.+" = "",
     "Decrease to 40% after one hour and 24% after two." = explain, 

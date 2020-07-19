@@ -47,11 +47,11 @@ etude::choose_one(
 message <- "One way to deal with such problems is to choose a $t$ that makes evaluating the function very simple."
 etude::choose_one(
   prompt = "B) What is the value of $P_0$?",
-  list(0.607 = message, 
-       1.213 = message, 
-       1.648 = message, 
+  list("0.607" = message, 
+       "1.213" = message, 
+       "1.648" = message, 
        "+2.000+" = "", 
-       3.297 = message),
+       "3.297" = message),
   random_answer_order = FALSE
 )
 ```

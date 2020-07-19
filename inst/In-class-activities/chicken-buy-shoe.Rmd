@@ -21,6 +21,7 @@ library(math141Zexercises) # for covid data
 library(ggformula)
 library(plotly)
 library(mosaicCalc)
+library(COVID19)
 
 knitr::opts_chunk$set(echo = FALSE)
 learnr::tutorial_options(exercise.timelimit = 60, 
@@ -55,7 +56,7 @@ gf_point(deaths ~ date, data = Covid_US, color = "red") %>%
 * Calculate the slope of the cases. On July 1st,  2.7M versus 3.6M on July 15. So the slope is 450K  per week.
 * Extrapolate this over, say, 10 weeks, giving an additional 4.5M cases (which, added to the 3.5M on July 15 gives  a total of 8M by late October).
 
-## On a semi-log scale
+### On a semi-log scale
 
 ```{r chicken-buy-shoe-sandbox2, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="maple-hit-saucer-sandbox1-setup", exercise.eval=FALSE, exercise.lines=3, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
 gf_point(log(deaths) ~ date, data = Covid_US, color = "red") %>%
@@ -83,11 +84,29 @@ On the other hand, it's estimated that there are about 10 times as many actual c
 
 Roughly speaking, once half the population has been innoculated, the growth rate will be only half what it was originally. Next semester, we'll encounter the tools to make a complete model of the long-term possibilities for the pandemic. (And by then, we'll know what the actual answer was!)
 
-## Public health measures
+### Public health measures
 
 Here's a graph that shows the "stringency" of public-health measures (e.g. lock-downs, masks, school closings, ...) along with the semi-log plot of cases and deaths. Do you see a relationship between the rate of growth of cases and the stringency of public-health measures. (Hint: There's a lag of about 2 weeks before cases become evident.)
     
 ```{r chicken-buy-shoe-sandbox4, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="maple-hit-saucer-sandbox1-setup", exercise.eval=FALSE, exercise.lines=3, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_point(log(deaths) ~ date, data = Covid_US, color = "red") %>%
+  gf_point(log(confirmed) ~ date, color = "blue") %>% 
+  gf_point(stringency_index/4 ~ date) %>%
+  ggplotly() # makes graph interactive
+```
+
+
+### Into the future
+
+The data presented above end at July 16, 2020. It will be interesting to see how things have changed in the interim. The next code box will read in the data up to yesterday  from the web site. 
+
+**Test this** before using live. The web site and software might have changed since this activity was written.
+
+etudeS()
+<span title='chicken-buy-shoe-sandbox5'>...</span>
+```{r chicken-buy-shoe-sandbox5, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="chicken-buy-shoe-sandbox5-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+library(COVID19)
+Covid_US <- COVID19::covid19("USA")[ , c(1:6, 11:22)]
 gf_point(log(deaths) ~ date, data = Covid_US, color = "red") %>%
   gf_point(log(confirmed) ~ date, color = "blue") %>% 
   gf_point(stringency_index/4 ~ date) %>%

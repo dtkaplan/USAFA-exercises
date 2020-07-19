@@ -1,0 +1,134 @@
+---
+chapter: "none yet"
+title: "Title for fly-dive-tv"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "fly-dive-tv"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-18 
+tags: [first, second, third]
+id: fly-dive-tv
+---
+
+```{r fly-dive-tv-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaicCalc)
+library(ggformula)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+
+
+
+`r etude::exercise_title()` Each of the following reflects a function of the form $f(t) = A \exp(kt) + B$ versus $t$.  Provide a reasonable numerical value for $k$ good to about 10%.  (Hint: In terms of the doubling time $\tau$, remember that $k = \ln(2)/\tau$.) 
+
+```{r one,echo=FALSE}
+fun_a  <- makeFun(A*exp(k*t) + B~t, A=10, B=0,  k=-.5)
+slice_plot(fun_a(t) ~ t , domain(t=range(0,10))) %>%
+  gf_labs(y = "", title = "Function  (a)")
+```
+
+```{r fly-dive-tv-QA1, echo=FALSE}
+message_decay = "It's exponential decay, so $k$ should be negative."
+message_growth = "It's exponential growth, so $k$ should be positive."
+etude::choose_one(
+  prompt = "For function (a), the value of $k$ is:",
+  choices = list(
+    "+-0.50+" = "",
+    "-0.25" = "This corresponds to a half-life of about 3 time units. Is that what you see?",
+    "-0.05" = "This  would give a half-life of about 14. Is that what you see?",
+    "0" = "Never! If $k$ were zero, the output of the function would be constant.",
+    "0.03" = message_decay,
+    "0.30" = message_decay,
+    "0.40" = message_decay,
+    "0.50" = message_decay
+  ),
+  random_answer_order = FALSE
+)
+```
+
+
+
+```{r twob,echo=FALSE}
+fun_b <- makeFun(fun_a(t, A=A, B = B, k = k ) + B ~ t,
+                 A=-10,B=10,k=-.25)
+slice_plot( fun_b(t) ~ t, domain(t=range(0,10))) %>%
+  gf_labs(y="", title ="Function (b)")
+```
+
+```{r fly-dive-tv-QA2, echo=FALSE}
+message_decay = "It's exponential decay, so $k$ should be negative."
+message_growth = "It's exponential growth, so $k$ should be positive."
+etude::choose_one(
+  prompt = "For function (b), the value of $k$ is:",
+  choices = list(
+    "-0.50" = "This would give a half-life of about 1.5 time units. Is that what you see?",
+    "+-0.25+" = "",
+    "-0.05" = "This  would give a half-life of about 14. Is that what you see?",
+    "0" = "Never! If $k$ were zero, the output of the function would be constant.",
+    "0.03" = message_decay,
+    "0.30" = message_decay,
+    "0.40" = message_decay
+  ),
+  random_answer_order = FALSE
+)
+```
+
+
+<!-- Maybe for later fun: a complex exponential -->
+
+
+```{r threeb,eval = FALSE, echo=FALSE}
+fun_c <- makeFun(Re(A*exp(k*t)) ~t,  A=10,k=-.25 + 1i*2*pi/2)
+slice_plot(fun_c(t) ~ t, domain(t = range(0,10))) %>%
+  gf_labs(y  = "", title = "Function (c)")
+```
+ 
+Function (c). The value of an initial deposit of $100 as it compounds at an  interest  rate of 3% per year. (Hint: The doubling time for compound interest is roughly 72 divided by the interest rate. This rule of thumb is called the "Rule of 72.")
+
+```{r fly-dive-tv-QA3, echo=FALSE}
+message_decay = "It's exponential decay, so $k$ should be negative."
+message_growth = "It's exponential growth, so $k$ should be positive."
+etude::choose_one(
+  prompt = "For function (c), the value of $k$ is:",
+  choices = list(
+    "-0.50" = message_growth,
+    "-0.25" = message_growth,
+    "-0.05" = message_growth,
+    "0" = "Never! If $k$ were zero, the output of the function would be constant.",
+    "+0.03+" = "",
+    "0.30" = "3% per year corresponds to a doubling time of 24 years. Go recalculate $k$.",
+    "0.40" = "This would bive a doubling time of 1.7 years. That's way faster than you'd get at 3% interest."
+  ),
+  random_answer_order = FALSE
+)
+```
+  
+Function (d). The amount of the radioactive isotope P$_{32}$ over time.  After 150 days, only about 1/1000 an initial amount $A$ will remain. (Hint: $2^{10} \approx 1000$.)
+
+```{r fly-dive-tv-QA4, echo=FALSE}
+message_decay = "It's exponential decay, so $k$ should be negative."
+message_growth = "It's exponential growth, so $k$ should be positive."
+etude::choose_one(
+  prompt = "For function (d), the value of $k$ is:",
+  choices = list(
+    "-0.50" = "This would give a half-life of about 1.5 time units. Is that what you see?",
+    "+-0.25+" = "This $k$ gives a half-life of about 3 time units. If that were the case, after 150 days the amount of the isotope would be $2^{-50}$ of the initial amount, not $2^{-10}$ as stated in  the problem.",
+    "+-0.05+" = "",
+    "0" = "Never! If $k$ were zero, the output of the function would be constant.",
+    "0.03" = message_decay,
+    "0.30" = message_decay,
+    "0.40" = message_decay
+  ),
+  random_answer_order = FALSE
+)
+```

@@ -17,7 +17,7 @@ DRAFT  DRAFT DRAFT
 Some exercises referring to this graphic:
 
 ```{r}
-knitr::include_graphics(system.file("Exercises/Functions/images/NYT-income.png", package = "USAFAexercises"))
+knitr::include_graphics("http://dtkaplan.github.com/141Z-instructors-site/images/NYT-income.png")
 ```
 
 Comparing average per-capita income (in $1000s) in metropolitan areas in 2016 and 1969. [Source: NYTimes](https://www.nytimes.com/interactive/2020/05/13/opinion/inequality-cities-life-expectancy.html?referringSource=articleShare) Dark dots are 2016.

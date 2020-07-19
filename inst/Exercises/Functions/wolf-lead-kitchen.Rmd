@@ -44,7 +44,7 @@ etude::choose_one(
 ```
 
 ```{r wolf-lead-kitchen-Qinline2, echo=FALSE}
-message <- "So that $1.7^t$ will be the same as $e^{kt}$, we must have $k$ such that $e^k = 1.7$.
+message <- "So that $1.7^t$ will be the same as $e^{kt}$, we must have $k$ such that $e^k$ = 1.7"
 etude::choose_one(
   prompt = "B) In the new form, $k$ is which of the following?",
   list("+0.531+"  = '', 

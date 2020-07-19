@@ -1,15 +1,144 @@
-# A catalog of exercises
+---
+title: "Exercise Catalog"
+subtitle: "Applied Calculus"
+output:
+  learnr::tutorial:
+    toc: true
+    toc_depth: 2
+tutorial:
+  id: "catalog-applied-calc"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-18
+tags: [catalog, second, third]
+id: catalog-applied-calc
+---
 
-Turn this into tutorial form so it can be browsed.
+```{r include = FALSE, context="setup"}
+# Note the context="server". That's so that the question_ui_initialize methods from etude will be registered.
+library(mosaic)
+library(mosaicCalc)
+library(ggformula)
+library(math141Z)
+library(etude)
+library(learnr)
+library(gradethis)
+library(submitr)
+library(basket)
+library(math141Zexercises)
+etude::show_answers(FALSE)
 
-## Exponentials and logs: COVID-19
 
-Modeling_functions/maple-hit-saucer
+learnr::tutorial_options(exercise.timelimit = 60,
+                 exercise.checker = gradethis::grade_learnr)
+```
 
-see also In-class-activities/chicken-buy-shoe.
+```{r echo=FALSE}
+submitr::login_controls()
+```
+
+```{r context="server", echo = FALSE}
+options(tutorial.storage = "none")
+vfun <- basket::check_valid
+  #submitr::make_basic_validator(NULL, "hello")
+storage_actions <- submitr::record_gs4("1jiV11I9tlEfAhRrkYqn6kPtkNma04TEpSCk-XMSuIRM", "statprep.annie@gmail.com", vfun)
+  # submitr::record_local("./minimal_submissions.csv")
+submitr::shiny_logic(input, output, session, vfun,
+                     storage_actions)
+```
+
+```{r echo=FALSE}
+etude_file <- function(
+   title = "None yet",
+   file = NULL,
+   directory = "Exercises/",
+   package = "math141Zexercises",
+   indent = 1) {
+  if (is.null(file)) stop("Must provide file name.")
+  full_path <- paste0(directory, file,  ".Rmd")
+  full_title <- paste("##", 
+                      paste0(rep(' ', 3*indent), collapse=""),
+                      title,
+                      "\n\n")
+  #paste ("Full path:", full_path, "Full title:", full_title, "\n")
+  res <- suppressMessages(
+     etude::include_etude(full_path, full_title,  
+                          package = package, quiet = TRUE)
+  )
+  cat(res)
+}
+```
+
+## Functions, generally
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("Heart rate", "Functions/cow-hang-closet")
+# etude_file("Maximum heart rate (2)", "Functions/shark-leave-canoe")
+```
+
+## Contour plots
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("Wind chill", "Functions/beech-sleep-drawer")
+# etude_file("Apple vs orange", "Functions/snake-choose-kayak")
+```
 
 
-## Optimization: Is it a max or a min?
+## Exponentials and logs
 
-Optimization/zebra-have-saw
 
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("COVID-19 data", "Modeling_functions/maple-hit-saucer")
+# etude_file("Evaporating Alcohol",  "Modeling_functions/cow-type-kayak")
+# etude_file("Retail discounting", "Functions/chicken-choose-vase")
+# etude_file("Log scale", "Modeling_functions/goldfish-draw-plant")
+# etude_file("Maximum heart rate", "Modeling_functions/wolf-hurt-blanket")
+# etude_file("   Activity: COVID-19", "../in-class-activities/chicken-buy-shoe")
+
+# etude_file("Unemployment", "Functions/deer-rise-mug")
+# etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
+# etude_file("Bases of exponentials", "Functions/wolf-lead-kitchen")
+# etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
+# etude_file("Half-life", "Functions/horse-cost-blanket")
+etude_file("k vs tau_2", "Modeling_functions/fly-dive-tv")
+
+```
+
+## Power-law functions
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("Reading algebraic notation", "Functions/cat-lend-futon")
+# etude_file("Skin and power-laws", "Functions/crow-mean-dress")
+```
+
+
+## Sines
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("The seasons", "Modeling_functions/pine-hear-bulb")
+# etude_file("Breathe in, breathe out", "Functions/lamb-talk-gloves")
+etude_file("Museum conservation", "Modeling_functions/goldfish-become-magnet")
+```
+
+## Solving and zeros
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+# etude_file("Finding zeros", "Functions/ash-send-shirt")
+# etude_file("Algebra to R", "Functions/finch-feel-knob")
+# etude_file("Just formulas", "Functions/sheep-drink-vase")
+# etude_file("Simultaneous solutions", "Functions/seaweed-drink-gloves")
+```
+
+
+
+## Derivatives
+
+```{r results = "asis", echo=FALSE, message=FALSE}
+#  etude_file("Car finance", "Functions/snail-hold-drawer")
+```
+
+## Optimization
+
+```{r results = "asis", echo=FALSE, message = FALSE}
+# etude_file("Max, min, saddle?", "Optimization/zebra-have-saw")
+```

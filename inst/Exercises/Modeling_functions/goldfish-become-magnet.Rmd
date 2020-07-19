@@ -1,0 +1,43 @@
+---
+chapter: "none yet"
+title: "Title for goldfish-become-magnet"
+author: "Danny Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "goldfish-become-magnet"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-07-18 
+tags: [first, second, third]
+id: goldfish-become-magnet
+---
+
+```{r goldfish-become-magnet-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` # Exercise 31
+
+Fluctuating humidity in museum exhibition halls is a serious problem. It leads to degradation of valuable and irreplaceable artifacts.  The goal is to install a climate control system that maintains constant humidity.   The figure displays humidity records for two years at one of the world's great natural history museums.  Each  black rectangle shows fluctuation during a week.
+
+```{r echo = FALSE, out.width = "100%"}
+knitr::include_graphics("http://dtkaplan.github.com/141Z-instructors-site/images/humidityfluctuations.png")
+# math141Zexercises::image_url("humidityfluctuations.png")
+```
+
+*Relative humidity for two years in the Field Museum in Chicago*. [Source](http://cool.conservation-us.org/jaic/articles/jaic30-02-006.html)
+
+1. Write a paragraph to the museum Director summarizing in words the data shown in the graph.  Suggest an explanation for the data. 
+#. Find a mathematical model that captures the most important features of the data.  Define clearly all variables that you use, including their units. 
+
+[Contributed by Prof. Dan Flath]
+
+

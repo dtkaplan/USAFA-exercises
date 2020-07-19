@@ -16,7 +16,10 @@ The following table is part of an advertisement from the American Association of
 Retired Persons (AARP) offering life insurance.  
 
 ```{r echo=FALSE}
-knitr::include_graphics("/images/aarp-rates.png")
+knitr::include_graphics(
+  system.file("images/aarp-rates.png", 
+              package = "math141Zexercises")
+)
 ```
 
 The premiums are different for men and women and for different ages.
@@ -77,32 +80,22 @@ both = merge( aarp, mortality )
  
 Clearly, the cost of the insurance should depend on both the mortality rate and the coverage
 
-# Exercise 24: The parameter k in exponentials
-
-Each of the following reflects a function of the form $f(t) = A \exp(kt) + B$ versus $t$.  Provide a reasonable numerical value for $k$ good to about 10%.  (Hint: In terms of the doubling time $\tau$, remember that $k = \ln(2)/\tau$.)  Your answer should always be in the form of $k$, but you are welcome to provide intermediate calculations or annotations on the graph to support your claim.
-
-a. 
-```{r one,echo=FALSE}
-plotFun( A*exp(k*t) + B~t, tlim=range(0,10), A=10, B=0,k=-.5, ylab="",main="Graph (a)")
+```{r document_d92c4db-QA1, echo=FALSE}
+# indicate correct choices with +_+ in the name of the list item.
+etude::choose_one(
+  prompt = "Which of these letters is a vowel?",
+  choices = list(
+    "+A+" = "",
+    "B" = "B's a consonant, Bub.",
+    "C" = "C is a consonant, Chub",
+    "D" = "D is a consonant, Dear",
+    "+E+" = ""
+  )
+)
 ```
- 
-
-#. 
-```{r twob,echo=FALSE}
-plotFun( A*exp(k*t) + B~t, tlim=range(0,10), A=-10,B=10,k=-.25,ylab="",main="Graph (b)")
-```
-
-#. 
-```{r threeb,echo=FALSE}
-plotFun( Re(A*exp(k*t)) ~t, tlim=range(0,10), A=10,k=-.25 + 1i*2*pi/2,ylab="",main="Graph (c)")
-```
- 
-#. The value of and initial deposit of $100 as it compounds at an  interest  rate of 3% per year.
-  
-#. The amount of the radioactive isotope P$_{32}$ over time.  After 150 days, only about 1/1000 an initial amount $A$ will remain.
 
 
-# Exercise 25: Evaporating alcohol?
+
 
 
 
@@ -127,7 +120,7 @@ For_plotting  <-
 gf_line(ccf ~ date, data  = For_plotting)
 ```
 
-For each of the following functional formulas, use `fitModel()` to find the appropriate parametersand plot the resulting model function along with the data.
+For each of the following functional formulas, use `fitModel()` to find the appropriate parameters and plot the resulting model function along with the data.
 
 1. `ccf ~ A * sin(2 * pi *  date / period)`
 2. `ccf ~ A + sin(2 * pi *  date / period) + B`
@@ -180,18 +173,7 @@ knitr::include_graphics("/images/naturalGasStorage.png")
 
 [Contributed by Prof. Dan Flath]
 
-# Exercise 31
 
-Fluctuating humidity in museum exhibition halls is a serious problem because it leads to degradation of many valuable and irreplaceable artifacts.  The goal is to install a climate control system that maintains constant humidity.   The figure displays humidity records for two years at one of the world's great natural history museums.  Each  black rectangle shows fluctuation during a week.
-
-```{r echo = FALSE, fig.cap="Relative humidity for two years in the Field Museum in Chicago. [Source](http://cool.conservation-us.org/jaic/articles/jaic30-02-006.html)"}
-knitr::include_graphics("/images/humidityfluctuations.png")
-```
-
-1. Write a paragraph to the museum Director summarizing in words the data shown in the graph.  Suggest an explanation for the data. 
-#. Find a mathematical model that captures the most important features of the data.  Define clearly all variables that you use, including their units. 
-
-[Contributed by Prof. Dan Flath]
 
 # Exercise 32
 

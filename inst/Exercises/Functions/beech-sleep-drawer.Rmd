@@ -30,7 +30,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 `r etude::exercise_title()` The graphic below is about wind chill, temperature and wind speed. 
 
 ```{r echo=FALSE}
-knitr::include_graphics("images/wind-chill.png")
+knitr::include_graphics("http://dtkaplan.github.com/141Z-instructors-site/images/wind-chill.png")
 ```
 
 

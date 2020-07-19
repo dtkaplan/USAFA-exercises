@@ -27,31 +27,39 @@ learnr::tutorial_options(exercise.timelimit = 60,
 ```
 
 
-`r etude::exercise_title()` Consider this exponential function.
+`r etude::exercise_title()` Consider this exponential function, where $t$ is in hours.
 
 ```{r echo=FALSE}
-slice_plot(100* exp(-t/1.75) ~ t, domain(t = c(0,5)))
+slice_plot(100* exp(-t/1.75) ~ t, domain(t = c(0,5))) %>%
+  gf_labs(x  = "t (hours)")
 ```
 
 ```{r horse-cost-blanket-Qinline1, echo=FALSE}
+explain <- "Look for a value of $t$ that makes $e^{-t/1.75} = 0.25."
+explain2 <- "Remember, the graph shows $t$ in **hours**."
 etude::choose_one(
   prompt = "At what value of $t$ does the function reach a value of $25$?",
-  list("+1.25+" = explain, 
-  "+2.4+" = "", 
-  "3.4"   = explain, 
-  "4.4"   = explain),
+  list(
+    "1.25 minutes" = explain2,
+    "1.25 hours" = explain, 
+    "2.4 minutes" = explain2,
+    "+2.4 hours+" = "", 
+    "3.4 minutes" = explain2,
+    "3.4 hours"   = explain, 
+    "4.4 minutes" = explain2,
+    "4.4 hours"   = explain),
   random_answer_order = FALSE
 )
 ```
 
 
 ```{r horse-cost-blanket-Qinline2, echo=FALSE}
-explain <- "How long does it take for the function to fall from, say, 100 to 50?"
+explain <- "How long does it take for the function to fall from, say, 100 to 50 or from 50 to 25 or from 25 to 12.5?"
 etude::choose_one(
-  prompt = "What is the half-life of the exponential?",
-  list("0.5" = explain, "+1.25+" = "", 
-       "2.25"= explain, 
-       "10" =  explain, "50" = explain),
+  prompt = "What is the half-life of the exponential process?",
+  list("0.5 hours" = explain, "+1.25 hours+" = "", 
+       "2.25 hours"= explain, 
+       "10 hours" =  explain, "50 hours" = explain),
   random_answer_order = FALSE
 )
 ```
