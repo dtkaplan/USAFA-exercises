@@ -1,0 +1,53 @@
+---
+chapter: "none yet"
+author: "Danny Kaplan"
+difficulty: "XX"
+date: 2020-07-19 
+version: 0.1
+tags: [wind chill, graphics, by-hand]
+id: giraffe-understand-bulb
+---
+
+```{r giraffe-understand-bulb-default, include = FALSE}
+library(etude)
+library(mosaicCalc)
+library(ggformula)
+```
+
+`r etude::exercise_title()`  "Wind chill" is a quantity used to describe how cold a person feels.  It takes into account both ambient air temperature and the wind speed. The official definition is based on empirical engineering relationships of heat transfer in a moving fluid as defined in 2001 by the US/Canada/UK Joint Action Group for Temperature Indices (JAG/TI). For convenience, it has been approximated by a formula
+
+$$T_{wc} \equiv 13.12 + 0.6214 T_a - 11.37 v^{0.16} + 0.3965 T_a v^{0.16} ,$$
+where $T_a$ is ambient temperature in deg. C and $v$ is wind velocity measured in kilometers per hour. (The measurement should be made at 10m, the standard anemometer height.)
+
+The figure shows wind chill as a function of air temperature and wind speed.
+
+```{r echo = FALSE}
+wind_chill <- function(T_ambient, v_wind) {
+  13.12 + 0.6215 * T_ambient - 
+    11.37 * v_wind^0.16 + 
+    0.3965 * T_ambient * v_wind^0.16
+}
+contour_plot(wind_chill(T_ambient, v_wind) ~ T_ambient + v_wind,
+             domain(T_ambient = c(-50, 0), v_wind = c(10, 50)),
+             skip = 0, filled = FALSE, n_contours = 20, 
+             contour_color = "gray", label_color = "black") %>%
+  gf_labs(title = "Wind Chill (deg C)", y = "Wind velocity (km/hr)",
+          x = "Ambient temperature (deg C)") %>%
+  gf_theme(theme_bw())
+
+```
+
+The following questions involve reading quantities off the graph. In addition to giving the numerical answer called for, you should mark a point on the graph that is relevant to the answer you are giving. For each item, use the letter label for that item, e.g., (b), as your mark. 
+
+a. What is the wind chill if the air temperature is $-25^{\circ}$C and the wind speed is 15 kph?  Mark the relevant point on the graph with label "(a)" and give the numerical value (with units) of wind chill.
+
+
+#. Bare skin is at risk of frostbite in just a few minutes when the wind chill is below $-45^{\circ}$C.  If the air temperature is $-30^\circ$C, what is the wind speed at which the wind chill is $-45^{\circ}$? Mark the point on the relevant point on the graph with label "(b)" and give the numerical value of wind speed.
+
+
+#. Find a point where the wind speed produces a wind chill 20 degrees colder than the air temperature?  Mark it clearly on the graph with the label  "(c)".  
+
+
+
+
+

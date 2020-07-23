@@ -80,20 +80,6 @@ both = merge( aarp, mortality )
  
 Clearly, the cost of the insurance should depend on both the mortality rate and the coverage
 
-```{r document_d92c4db-QA1, echo=FALSE}
-# indicate correct choices with +_+ in the name of the list item.
-etude::choose_one(
-  prompt = "Which of these letters is a vowel?",
-  choices = list(
-    "+A+" = "",
-    "B" = "B's a consonant, Bub.",
-    "C" = "C is a consonant, Chub",
-    "D" = "D is a consonant, Dear",
-    "+E+" = ""
-  )
-)
-```
-
 
 
 
@@ -257,62 +243,12 @@ curve(0.04*x,-1000,0,add=TRUE,col="blue", lwd=3)
 curve(0.15*x,0,1000,add=TRUE,col="blue", lwd=3)
 ```
   
-1. Which of the following graphs reflects the dynamics of the system?
-
-    ```{r one-two,echo=FALSE, out.width="50%", fig.show="hold", fig.cap="Scenarios A and B"} 
-knitr::include_graphics("/images/bank-bank1.png")
-knitr::include_graphics("/images/bank-bank2.png")
-```
-
-    ```{r three-four,echo=FALSE, out.width="50%", fig.show="hold", fig.cap="Scenarios C and D"} 
-knitr::include_graphics("/images/bank-bank3.png")
-knitr::include_graphics("/images/bank-bank4.png")
-```
-
-2. On the graph paper below, sketch out the modifications of the   bank-card dynamics described. Identify any fixed points by marking them on the graph and say if they are stable or unstable.
-  
-    ```{r echo=FALSE, out.width="50%", fig.show="hold"} 
-knitr::include_graphics("/images/bank-paper.png")
-knitr::include_graphics("/images/bank-paper.png")
-```
-
-    a. In addition to the normal bank-card dynamics, your employer makes a steady retirement deposit into your account at the rate of $100 per year.      
-    b. Your darling aunt looks at your account balance.  If you have less than $300 in your account, she will add money daily at a rate of $100 per year.  Otherwise, she does nothing.
-    
 
 # Exercise 38
 
 
 # Exercise 39
 
-
-"Wind chill" is a quantity used to describe how cold a person feels.  It takes into account both air temperature and the wind-speed. The figure shows Wind Chill as a function of air temperature and wind speed.
-
-```{r echo=FALSE}
-knitr::include_graphics("/images/wind-chill.png")
-```
-
-The following questions involve reading quantities off of the graph. In addition to giving the numerical answer called for, you should mark a point on the graph that is relevant to the answer you are giving. For each item, use the letter label for that item, e.g., (b), as your mark. 
-
-1. What is the wind chill if the air temperature is $0^{\circ}$F and the wind speed is 10 mph?  Mark the relevant point on the graph with label "(a)" and give the numerical value (with units) of wind chill.
-
-<!--begin-answer-->
-The point on the graph with wind speed of 10 mpg and air temperature of 0 is just to the right of the $-20$ contour, between the $-20$ and $0$ contours.  So the wind chill is somewhere between $-20$ and $0$. Since the point is about one-quarter of the way from the $-20$ contour $0$ contour, it's reasonable to conclude that the wind chill is about one-quarter of the way between $-20$ and $0$, that is, $-15$.
-<!--end-answer-->
-
-#. Bare skin is at risk of frostbite in just a few minutes when the wind chill is below $-50^{\circ}$F.  If the air temperature is $-20^\circ$F, what is the wind speed at which the wind chill is $-50^{\circ}$? Mark the point on the relevant point on the graph with label "(b)" and give the numerical value of wind speed.
-
-<!--begin-answer-->
-The contour labeled "-40" tells all the combinations of wind speed and air temperature where the wind chill is $-40$.  To answer this question, you need a contour labelled "-50."  No such contour has been drawn on the graph but it's reasonable to assume that it is going to be mid-way between the "-60" and the "-40" contours.  Sketch in that contour and look for the wind speed where the contour crosses the line for air temperature of $-20^\circ$.
-<!--end-answer-->
-
-#. Find a point where the wind speed produces a wind chill 20 degrees colder than   the air temperature?  Mark it clearly on the graph with the label  "(c)".  
-
-
-
-<!--begin-answer-->
-This will be the wind speed at which a given contour line crosses the vertical line with the value 20 degrees less.  For instance, there is a wind-chill contour labeled "20" and a vertical line representing all the points with air temperature of "0".  These two cross when the wind speed is 15 mph. 
-<!--end-answer-->
 
 
 

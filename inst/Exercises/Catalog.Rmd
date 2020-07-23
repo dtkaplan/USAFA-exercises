@@ -81,6 +81,7 @@ etude_file <- function(
 ```{r results = "asis", echo=FALSE, message=FALSE}
 # etude_file("Wind chill", "Functions/beech-sleep-drawer")
 # etude_file("Apple vs orange", "Functions/snake-choose-kayak")
+etude_file("Wind chill (2)", "Functions/giraffe-understand-bulb")
 ```
 
 
@@ -142,4 +143,10 @@ etude_file("Museum conservation", "Modeling_functions/goldfish-become-magnet")
 
 ```{r results = "asis", echo=FALSE, message = FALSE}
 # etude_file("Max, min, saddle?", "Optimization/zebra-have-saw")
+```
+
+## Dynamics
+
+```{r results = "asis", echo=FALSE, message = FALSE}
+# etude_file("Bank account dynamics", "Dynamics/bear-find-mug")
 ```

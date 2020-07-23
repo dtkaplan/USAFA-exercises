@@ -27,10 +27,22 @@ learnr::tutorial_options(exercise.timelimit = 60,
 ```
 
 
-`r etude::exercise_title()` The graphic below is about wind chill, temperature and wind speed. 
+`r etude::exercise_title()` The graphic below is about wind chill in deg.F, temperature (in deg.F) and wind speed (in mph). 
 
-```{r echo=FALSE}
-knitr::include_graphics("http://dtkaplan.github.com/141Z-instructors-site/images/wind-chill.png")
+```{r echo = FALSE}
+wind_chill <- function(T_ambient, v_wind) {
+  35.74 + 0.6215 * T_ambient - 
+    35.75 * v_wind^0.16 + 
+    0.4275 * T_ambient * v_wind^0.16
+}
+contour_plot(wind_chill(T_ambient, v_wind) ~ T_ambient + v_wind,
+             domain(T_ambient = c(-50, 20), v_wind = c(6, 30)),
+             skip = 0, filled = FALSE, n_contours = 20, 
+             contour_color = "gray", label_color = "black") %>%
+  gf_labs(title = "Wind Chill (deg F)", y = "Wind velocity (mi/hr)",
+          x = "Ambient temperature (deg F)") %>%
+  gf_theme(theme_bw())
+
 ```
 
 
@@ -53,49 +65,49 @@ etude::true_or_false(
 
 ```{r beech-sleep-drawer-C3}
 etude::true_or_false(
-  "For a wind speed of 15 and a temperature of 0, the wind chill is -10.",
+  "For a wind speed of 15 and a temperature of 0, the wind chill is appoximately -10.",
   FALSE
 )
 ```
 
 ```{r beech-sleep-drawer-C4}
 etude::true_or_false(
-  "For a wind speed of 30 and a temperature of 20, the wind chill is 0.",
+  "For a wind speed of 30 and a temperature of 20, the wind chill is approximately 0.",
   TRUE
 )
 ```
 
 ```{r beech-sleep-drawer-C5}
 etude::true_or_false(
-  "For a wind *chill* of -40 and a temperature of -20, the wind *speed* is 10.",
+  "For a wind *chill* of -40 and a temperature of -20, the wind *speed* is approximately 10.",
   TRUE
 )
 ```
 
 ```{r beech-sleep-drawer-C6}
 etude::true_or_false(
-  "For a wind speed of 20 and a wind chill of 0, the temperature is 0.",
+  "For a wind speed of 20 and a wind chill of 0, the temperature is approximately 0.",
   FALSE
 )
 ```
 
 ```{r beech-sleep-drawer-C7}
 etude::true_or_false(
-  "For a wind speed of 15 and a temperature of 0, the wind chill is -10.",
+  "For a wind speed of 15 and a temperature of 0, the wind chill is approximately -10.",
   FALSE
 )
 ```
 
 ```{r beech-sleep-drawer-C8}
 etude::true_or_false(
-  "For a temperature of 20 and a wind chill of 0, the wind speed is -30.",
+  "For a temperature of 20 and a wind chill of 0, the wind speed is approximately -30.",
   TRUE
 )
 ```
 
 ```{r beech-sleep-drawer-C9}
 etude::true_or_false(
-  "For a wind speed of 10 and a wind chill of -70, the air temperature is -30.",
+  "For a wind speed of 10 and a wind chill of -70, the air temperature is approximately -30.",
   FALSE
 )
 ```
