@@ -1,6 +1,6 @@
 ---
 title: "Exercise Catalog"
-subtitle: "Applied Calculus"
+subtitle: "Math 141Z"
 output:
   learnr::tutorial:
     toc: true
@@ -9,7 +9,7 @@ tutorial:
   id: "catalog-applied-calc"
   version: 0.1
 runtime: shiny_prerendered
-date: 2020-07-18
+date: "Updated 2020-07-28"
 tags: [catalog, second, third]
 id: catalog-applied-calc
 ---
@@ -69,19 +69,21 @@ etude_file <- function(
 }
 ```
 
+Exercises transformed to online format
+
 ## Functions, generally
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("Heart rate", "Functions/cow-hang-closet")
-# etude_file("Maximum heart rate (2)", "Functions/shark-leave-canoe")
+etude_file("Heart rate", "Functions/cow-hang-closet")
+etude_file("Maximum heart rate (2)", "Functions/shark-leave-canoe")
 ```
 
 ## Contour plots
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("Wind chill", "Functions/beech-sleep-drawer")
-# etude_file("Apple vs orange", "Functions/snake-choose-kayak")
-etude_file("Wind chill (2)", "Functions/giraffe-understand-bulb")
+etude_file("Wind chill", "Functions/beech-sleep-drawer")
+etude_file("Apple vs orange", "Functions/snake-choose-kayak")
+### etude_file("Wind chill (2)", "Functions/giraffe-understand-bulb")
 ```
 
 
@@ -89,18 +91,18 @@ etude_file("Wind chill (2)", "Functions/giraffe-understand-bulb")
 
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("COVID-19 data", "Modeling_functions/maple-hit-saucer")
-# etude_file("Evaporating Alcohol",  "Modeling_functions/cow-type-kayak")
-# etude_file("Retail discounting", "Functions/chicken-choose-vase")
-# etude_file("Log scale", "Modeling_functions/goldfish-draw-plant")
-# etude_file("Maximum heart rate", "Modeling_functions/wolf-hurt-blanket")
-# etude_file("   Activity: COVID-19", "../in-class-activities/chicken-buy-shoe")
+etude_file("COVID-19 data", "Modeling_functions/maple-hit-saucer")
+etude_file("Evaporating Alcohol",  "Modeling_functions/cow-type-kayak")
+etude_file("Retail discounting", "Functions/chicken-choose-vase")
+etude_file("Log scale", "Modeling_functions/goldfish-draw-plant")
+etude_file("Maximum heart rate", "Modeling_functions/wolf-hurt-blanket")
+etude_file("   Activity: COVID-19", "../in-class-activities/chicken-buy-shoe")
 
-# etude_file("Unemployment", "Functions/deer-rise-mug")
-# etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
-# etude_file("Bases of exponentials", "Functions/wolf-lead-kitchen")
-# etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
-# etude_file("Half-life", "Functions/horse-cost-blanket")
+etude_file("Unemployment", "Functions/deer-rise-mug")
+etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
+etude_file("Bases of exponentials", "Functions/wolf-lead-kitchen")
+etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
+etude_file("Half-life", "Functions/horse-cost-blanket")
 etude_file("k vs tau_2", "Modeling_functions/fly-dive-tv")
 etude_file("Mortality vs age", "Modeling_functions/tiger-have-fork")
 
@@ -109,44 +111,58 @@ etude_file("Mortality vs age", "Modeling_functions/tiger-have-fork")
 ## Power-law functions
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("Reading algebraic notation", "Functions/cat-lend-futon")
-# etude_file("Skin and power-laws", "Functions/crow-mean-dress")
+etude_file("Reading algebraic notation", "Functions/cat-lend-futon")
+etude_file("Skin and power-laws", "Functions/crow-mean-dress")
 ```
 
 
 ## Sines
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("The seasons", "Modeling_functions/pine-hear-bulb")
-# etude_file("Breathe in, breathe out", "Functions/lamb-talk-gloves")
+etude_file("The seasons", "Modeling_functions/pine-hear-bulb")
+etude_file("Breathe in, breathe out", "Functions/lamb-talk-gloves")
 etude_file("Museum conservation", "Modeling_functions/goldfish-become-magnet")
 ```
 
 ## Solving and zeros
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-# etude_file("Finding zeros", "Functions/ash-send-shirt")
-# etude_file("Algebra to R", "Functions/finch-feel-knob")
-# etude_file("Just formulas", "Functions/sheep-drink-vase")
-# etude_file("Simultaneous solutions", "Functions/seaweed-drink-gloves")
+etude_file("Finding zeros", "Functions/ash-send-shirt")
+etude_file("Algebra to R", "Functions/finch-feel-knob")
+etude_file("Just formulas", "Functions/sheep-drink-vase")
+etude_file("Simultaneous solutions", "Functions/seaweed-drink-gloves")
 ```
 
+## Linear Combinations
 
+```{r results = "asis", echo=FALSE, message=FALSE}
+etude_file("Car finance", "Functions/snail-hold-drawer")
+etude_file("Sines", "Linear-algebra/lobster-lie-gloves")
+```
 
 ## Derivatives
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-#  etude_file("Car finance", "Functions/snail-hold-drawer")
+etude_file("Approximations", "Derivatives/fox-make-stove")
 ```
 
 ## Optimization
 
 ```{r results = "asis", echo=FALSE, message = FALSE}
-# etude_file("Max, min, saddle?", "Optimization/zebra-have-saw")
+etude_file("Max, min, saddle?", "Optimization/zebra-have-saw")
+```
+
+## Integrals
+
+Many of these come in varients
+
+```{r results = "asis", echo=FALSE, message = FALSE}
+etude_file("beech-sleep-drawer, 2, 3, 4", "Integrals/beech-sleep-drawer")
+etude_file("fox-make-stove, 2, 3", "Integrals/fox-make-stove2")
 ```
 
 ## Dynamics
 
 ```{r results = "asis", echo=FALSE, message = FALSE}
-# etude_file("Bank account dynamics", "Dynamics/bear-find-mug")
+etude_file("Bank account dynamics", "Dynamics/bear-find-mug")
 ```

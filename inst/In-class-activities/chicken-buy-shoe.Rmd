@@ -45,6 +45,7 @@ Plotting the data on linear axes, you can see the rate increase starting in the 
 Important gimmick:  These graphs are made with an additional component which allows you to read off the values of raw data points and to zoom and pan as needed. (Use the dotted rectangle tool to select a size of region and the crossed-arrows to move the window to the part of the graph you want to look at.)
 
 ```{r chicken-buy-shoe-sandbox1, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="maple-hit-saucer-sandbox1-setup", exercise.eval=FALSE, exercise.lines=3, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+data(Covid_US, package="math141Zexercises")
 gf_point(deaths ~ date, data = Covid_US, color = "red") %>%
   gf_point(confirmed ~ date, color = "blue") %>% 
   ggplotly() # makes graph interactive
@@ -102,11 +103,10 @@ The data presented above end at July 16, 2020. It will be interesting to see how
 
 **Test this** before using live. The web site and software might have changed since this activity was written.
 
-etudeS()
 <span title='chicken-buy-shoe-sandbox5'>...</span>
-```{r chicken-buy-shoe-sandbox5, exercise=TRUE, exercise.cap="Sandbox", exercise.setup="chicken-buy-shoe-sandbox5-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+```{r chicken-buy-shoe-sandbox5, exercise=TRUE, exercise.cap="Sandbox", warning=FALSE, exercise.setup="chicken-buy-shoe-sandbox5-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
 library(COVID19)
-Covid_US <- COVID19::covid19("USA")[ , c(1:6, 11:22)]
+Covid_US <- COVID19::covid19("USA", verbose=FALSE)[ , c(1:6, 11:22)]
 gf_point(log(deaths) ~ date, data = Covid_US, color = "red") %>%
   gf_point(log(confirmed) ~ date, color = "blue") %>% 
   gf_point(stringency_index/4 ~ date) %>%
