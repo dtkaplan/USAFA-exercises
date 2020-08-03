@@ -81,7 +81,7 @@ etude_file("Maximum heart rate (2)", "Functions/shark-leave-canoe")
 ## Contour plots
 
 ```{r results = "asis", echo=FALSE, message=FALSE}
-etude_file("Wind chill", "Functions/beech-sleep-drawer")
+etude_file("Wind chill", "Functions/pine-sleep-drawer")
 etude_file("Apple vs orange", "Functions/snake-choose-kayak")
 ### etude_file("Wind chill (2)", "Functions/giraffe-understand-bulb")
 ```
@@ -96,7 +96,7 @@ etude_file("Evaporating Alcohol",  "Modeling_functions/cow-type-kayak")
 etude_file("Retail discounting", "Functions/chicken-choose-vase")
 etude_file("Log scale", "Modeling_functions/goldfish-draw-plant")
 etude_file("Maximum heart rate", "Modeling_functions/wolf-hurt-blanket")
-etude_file("   Activity: COVID-19", "../in-class-activities/chicken-buy-shoe")
+etude_file("   Activity: COVID-19", "in-class-activities/chicken-buy-shoe")
 
 etude_file("Unemployment", "Functions/deer-rise-mug")
 etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
