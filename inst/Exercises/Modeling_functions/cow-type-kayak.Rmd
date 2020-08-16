@@ -40,13 +40,14 @@ etude::essay_response("a) State briefly ways in which the given information is o
 The amount of alcohol remaining in the food is decreasing toward zero.  The measurement of 25% after 1 hour suggests a half-life of 30 minutes, but the decrease from 25% to 10% in the second hour indicates that the half-life is somewhat different, a bit more than 30 minutes.
 ````
 
+In the following, keep in mind the distinction between *percent* and *percentage points*.   "25% rounded to 5 percentage points" means that the original number might have been anywhere between 20% and 30%. In contrast, "25% rounded to 5%" means the original might have been in  the range 23.75% to 26.25%.
 
 
   
 ```{r cow-type-kayak-Qinline1, echo=FALSE}
 explain <- "These are not as required within $\\pm 2.5$ percentage points of the numbers given in Wikipedia."
 etude::choose_one(
-  prompt = "b) The stated measurements appear rounded to about 5 percentage points --- 25%, 10%.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.",
+  prompt = "b) The stated measurements (25% and 10%) appear rounded to about 5 percentage points.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.",
   list("Decrease to 23.6% after one hour and 5.6% after two." = explain,
     "+Decrease to 27.5% after one hour and 7.6% after two.+" = "",
     "Decrease to 40% after one hour and 24% after two." = explain, 
