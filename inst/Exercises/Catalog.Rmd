@@ -96,16 +96,14 @@ etude_file("Evaporating Alcohol",  "Modeling_functions/cow-type-kayak")
 etude_file("Retail discounting", "Functions/chicken-choose-vase")
 etude_file("Log scale", "Modeling_functions/goldfish-draw-plant")
 etude_file("Maximum heart rate", "Modeling_functions/wolf-hurt-blanket")
-etude_file("   Activity: COVID-19", "in-class-activities/chicken-buy-shoe")
-
-etude_file("Unemployment", "Functions/deer-rise-mug")
-etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
-etude_file("Bases of exponentials", "Functions/wolf-lead-kitchen")
-etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
-etude_file("Half-life", "Functions/horse-cost-blanket")
-etude_file("k vs tau_2", "Modeling_functions/fly-dive-tv")
-etude_file("Mortality vs age", "Modeling_functions/tiger-have-fork")
-
+# etude_file("   Activity: COVID-19", "in-class-activities/chicken-buy-shoe")
+# etude_file("Unemployment", "Functions/deer-rise-mug")
+# etude_file("Nicotine metabolization", "Functions/giraffe-catch-pot")
+# etude_file("Bases of exponentials", "Functions/wolf-lead-kitchen")
+# etude_file("Bases of exponentials (2)", "Functions/eagle-speak-pan")
+# etude_file("Half-life", "Functions/horse-cost-blanket")
+# etude_file("k vs tau_2", "Modeling_functions/fly-dive-tv")
+# etude_file("Mortality vs age", "Modeling_functions/tiger-have-fork")
 ```
 
 ## Power-law functions
