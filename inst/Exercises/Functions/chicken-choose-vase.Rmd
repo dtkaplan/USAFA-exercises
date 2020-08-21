@@ -30,7 +30,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 `r etude::exercise_title()` The Bargain Basement store wants to sell its goods quickly.  Consequently, they reduce each product's price $P$ by 5% per day. 
 
 ```{r chicken-choose-vase-QA1, echo=FALSE}
-# indicate correct choices with +_+ in the name of the list item.
+
 etude::choose_one(
   prompt = "If a jacket costs $80 today, how much will it cost in $t$ days?",
   choices = list(
@@ -42,6 +42,25 @@ etude::choose_one(
   )
 )
 ```
+
+Here's a sandbox to help  you  do the next  problem.
+
+```{r chicken-choose-vase-sandbox1, exercise=TRUE, exercise.cap="Sandbox for scratch  calculations",  exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+```{r chicken-choose-vase-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "You decided that you like the $80 jacket, but you have a budget of only $60. How long should you wait before coming back to the Bargain Basement store.?",
+  choices = list(
+    "3 days" = "On day 3 the price will be 0.95*0.95*0.95*80. That's above your budget.",
+    "4 days" = "On day 4 the price will be $80 \\times 0.95^4$= $65.16. Too much!",
+    "5 days" = "On day 5 the price will be $80 \\times 0.95^5$= $61.90. Close, but still higher than your budget.",
+    "+6 days+" = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
 
 
 
