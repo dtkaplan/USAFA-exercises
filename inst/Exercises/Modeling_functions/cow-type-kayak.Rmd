@@ -31,33 +31,86 @@ learnr::tutorial_options(exercise.timelimit = 60,
 
 > *Some cooks believe that food items cooked with wine or liquor will be non-alcoholic, because alcohol's low boiling point causes it to evaporate quickly when heated. However, a study found that some of the alcohol remains: 25% after 1 hour of baking or simmering, and 10% after 2 hours.*
 
+The modeler's go-to function type for events like the evaporation of alcohol is exponential: The amount of alcohol that evaporates would, under constant conditions (e.g. an oven's heat), be proportional to the amount of alcohol that hasn't yet evaporated. 
+etudeQA()
 
-```{r cow-type-kayak-Essay1}
-etude::essay_response("a) State briefly ways in which the given information is or is not consistent with an approximately exponential process.")
-```
-
-````{etude}
-The amount of alcohol remaining in the food is decreasing toward zero.  The measurement of 25% after 1 hour suggests a half-life of 30 minutes, but the decrease from 25% to 10% in the second hour indicates that the half-life is somewhat different, a bit more than 30 minutes.
-````
-
-In the following, keep in mind the distinction between *percent* and *percentage points*.   "25% rounded to 5 percentage points" means that the original number might have been anywhere between 20% and 30%. In contrast, "25% rounded to 5%" means the original might have been in  the range 23.75% to 26.25%.
-
-
-  
-```{r cow-type-kayak-Qinline1, echo=FALSE}
-explain <- "These are not as required within $\\pm 2.5$ percentage points of the numbers given in Wikipedia."
+```{r cow-type-kayak-QA1, echo=FALSE}
 etude::choose_one(
-  prompt = "b) The stated measurements (25% and 10%) appear rounded to about 5 percentage points.  Give a small alteration to the stated measurements (to within $\\pm 2.5$ percentage points) that would be exactly consistent with an exponential process.",
-  list("Decrease to 23.6% after one hour and 5.6% after two." = explain,
-    "+Decrease to 27.5% after one hour and 7.6% after two.+" = "",
-    "Decrease to 40% after one hour and 24% after two." = explain, 
-    "Decrease to 20% after one hour and 10% after two." = "The decrease in the first hour is by 80%, corresponding to a half life of about 26 minutes. But in the second hour the half life is 60 minutes. These are inconsistent."),
-  random_answer_order = FALSE,
-  inline=FALSE
+  prompt = "A) Assume that 25% of the alcohol remains after 1 hour? If the process were exponential, how much would remain after 2 hours?",
+  choices = list(
+    "10%" = "That's what the study is reported to have found, but that's not consistent with an exponential process that decays to 25% after one hour",
+    "25%" = "Exponentials decay to zero eventually, so don't expect things to stay still after one hour.",
+    "+25% of 25%+" = "We know that 75% is eliminated over 1 hour, leaving 25%. The continuing exponential process will, over the next hour eliminate 75% of the amount at the start of that hour. So after hour 2 we'll have 25% of the amount we had at hour 1, which was 25% of the original amount.",
+    "75%" = "That's how much was eliminated in the first hour, not how much remains after 2 hours.",
+    "75% of 75%" = "In an exponential process, at any moment the rate of decay (e.g. 75% per hour) is a constant proportion of the amount that is still there. After one hour, there is 25% of the alcohol remaining. That will decay at a rate of 75% per hour. Over the next hour, we'll lose 75% of the original 25%, giving us 25% of the original amount."
+  ), 
+  inline = FALSE,
+  random_answer_order = FALSE
 )
 ```
 
-```{etude}
-Suppose that the decrease in the first hour were to 27.5% which is 2.5 percentage points different from 25%.  Decreasing at exactly this rate for the next hour would result in $0.275^2$ remaining after two hours, that is, $0.0756 = 7.56$%, which is also within 2.5 percentage points of the stated value.
+```{r cow-type-kayak-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "B) What is the half-life of an exponential process that decays to 25% after one hour?",
+  choices = list(
+    "15 minutes" = "This provides time for four halvings in one hour, which would leave $\\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} = 1/16$ of the original not 1/4.",
+    "+30 minutes+" = "This gives time for two halvings in one hour, bringing us to 25% as observed.",
+    "45 minutes" = "Two halvings bring us down to 25%. At this rate, it would take 90 minutes to get down to 25%, not 60 minutes as observed.",
+    "none of the above" = ""
+  )
+)
 ```
+
+Let's change pace and think about the "10% after 2 hours" observation. First, recall that the amount left after $n$ halvings is 
+$\mbox{amount_left}(n) \equiv \frac{1}{2}^n$ 
+This is an exponential function with base 1/2.
+
+Here is a code box which you can use to do scratch calculations. We've pre-filled it with the `amount_left()` function. Make a guess for n, try it out, then revise the guess until you get the output 10%.
+
+```{r cow-type-kayak-sandbox1, exercise=TRUE, exercise.cap="How much is left", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+amount_left <- makeFun((1/2)^n ~ n)
+```
+
+```{r cow-type-kayak-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "C) Use `amount_left()` to figure out how many halvings it takes to bring something down to 10% of the original amount.",
+  choices = c("2.58", "+3.32+" , "3.62", "3.94", "4.12")
+)
+```
+
+What you're doing with the guess-and-check procedure is trying to find the value of an *inverse function* to $(1/2)^n$; what $n$ will generate a stated value (e.g. 10%). The computer already provides you with inverse functions for $2^n$ and $e^n$ and $10^n$. Their names are `log2()`, `log()`, and `log10()` repectively.  Using `log2()`, write a function named `log_half()` that gives the inverse function to $(1/2)^n$.
+
+```{r cow-type-kayak-E1, exercise=TRUE, exercise.cap="Define log_half().", exercise.setup="cow-type-kayak-E1-setup", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+log_half <- makeFun( log2(...your stuff here ...) ~ x)
+```
+
+
+```{r cow-type-kayak-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "The answer you got in part C) is the **number** of halvings needed to reach 10%. If this number occurs in 2 hours (that is, 120 minutes),  what is the half life stated in minutes.",
+  choices = c(30, 35, "+36+", 38, 42, 47),
+  random_answer_order = FALSE
+)
+```
+
+Suppose you compromise between the half-life needed to reach 25% after one hour and the half-life needed to reach 10% after two hours. Use, say, 33 minutes as the compromise half life. Using the sandbox below, calculate how much would be left after 1 hour for this compromise half life, and how much left after 2 hours.
+
+```{r cow-type-kayak-sandbox2, exercise=TRUE, exercise.cap="Sandbox", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+```
+
+```{r cow-type-kayak-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "How much is left after 1 hour and after 2 hours when the half life is 33 minutes?",
+  choices = c(
+    "+28% and  8%+",
+    "31% and 4%",
+    "30% and 9%",
+    "27% and 9%"
+  ),
+  inline  = FALSE
+)
+```
+
+
 
