@@ -28,17 +28,19 @@ learnr::tutorial_options(exercise.timelimit = 60,
 ```
 
 
-`r etude::exercise_title()` The data frame `SSA_2007` comes from the [US Social Security Administration(https://www.ssa.gov/oact/STATS/table4c6.html) and contains mortality in the US as a function of age and sex. ("Mortality"  refers to the probability of dying in the next year.)
+`r etude::exercise_title()` The data frame `SSA_2007` comes from the [US Social Security Administration(https://www.ssa.gov/oact/STATS/table4c6.html) and contains mortality in the US as a function of age and sex. ("Mortality"  refers to the probability of dying in the next year.) Type the name of the dataframe `SSA_2007` in the code block below. Then click "Run code" to see the contents of the data frame.
 
 ```{r tiger-have-fork-sandbox1, exercise=TRUE, exercise.cap="Sandbox",  exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
 
 ```
 
-The next chunk would make a plot of the relationship, but there is a *slight* mistake in the way the command is written. Use the sandbox to explore the `SSA_2007` data frame using functions such as `head()` and `names()` to gain some insight into what the problem is with the plotting command.  
+The next chunk would make a plot of the relationship, but there is a *slight* mistake in the way the command is written. Notice that the `gf_point()` command is also  commented out so that you can use other functions in the sandbox to figure out what's wrong with the  command. (Keep in mind that R  makes a strict distinction between lower-case  letters  (like  `k`) and upper-case letters (like `K`).)
+
+Use the sandbox to explore the `SSA_2007` data frame using functions such as `head()` and `names()` to gain some insight into what the problem is with the plotting command. Then you can uncomment the `gf_point()` command, correct it, and  run it to  see the graphic.
 
 
 ```{r tiger-have-fork-E1, exercise=TRUE, exercise.cap="Sandbox", exercise.eval=FALSE, exercise.lines=2, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
-gf_point(mortality ~ age, color = ~ sex, data = SSA_2007)
+# gf_point(mortality ~ age, color = ~ sex, data = SSA_2007)
 ```
 
 ```{r tiger-have-fork-QA1, echo=FALSE}
