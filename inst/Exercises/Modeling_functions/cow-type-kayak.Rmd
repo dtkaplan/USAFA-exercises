@@ -32,7 +32,6 @@ learnr::tutorial_options(exercise.timelimit = 60,
 > *Some cooks believe that food items cooked with wine or liquor will be non-alcoholic, because alcohol's low boiling point causes it to evaporate quickly when heated. However, a study found that some of the alcohol remains: 25% after 1 hour of baking or simmering, and 10% after 2 hours.*
 
 The modeler's go-to function type for events like the evaporation of alcohol is exponential: The amount of alcohol that evaporates would, under constant conditions (e.g. an oven's heat), be proportional to the amount of alcohol that hasn't yet evaporated. 
-etudeQA()
 
 ```{r cow-type-kayak-QA1, echo=FALSE}
 etude::choose_one(
