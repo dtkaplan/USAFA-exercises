@@ -26,16 +26,19 @@ learnr::tutorial_options(exercise.timelimit = 60,
                  exercise.checker = gradethis::grade_learnr)
 ```
 
-`r etude::exercise_title()` A person breathes in and out every three seconds. The volume $V$ of air in the person's lungs varies between a minimum of $2$ liters and a maximum of $4$ liters. Assume time $t$ is measured in seconds 
+`r etude::exercise_title()` A person breathes in and out every three seconds. The volume $V$ of air in the person's lungs varies between a minimum of $2$ liters and a maximum of $4$ liters. Assume time $t$ is measured in seconds.
+
+Remember that a full cycle of the sine wave $\sin(x)$ involves $x$ going  from its starting value to that value **plus** $2 \pi$.  
 
 ```{r lamb-talk-gloves-QA1, echo=FALSE}
+wrong_amp <- "This varies between a minimum of 0 and a maximum  of 2."
 etude::choose_one(
   prompt = "Which of the following is the most appropriate of these models for $V(t)$?",
-  choices = c(
-    "$V(t) \\equiv 2 + 2 \\sin \\left( \\frac{\\pi}{3} t \\right)$",
-"+$V(t) \\equiv 3 + \\sin \\left( \\frac{2\\pi}{3} t \\right)$+",
-"$V(t) \\equiv 2 + 2 \\sin \\left( \\frac{2\\pi}{3} t \\right)$",
-"$V(t) \\equiv 3 + \\sin \\left( \\frac{\\pi}{3} t \\right)$"
+  choices = list(
+    "$V(t) \\equiv 2 + 2 \\sin \\left( \\frac{\\pi}{3} t \\right)$" = wrong_amp,
+"+$V(t) \\equiv 3 + \\sin \\left( \\frac{2\\pi}{3} t \\right)$+" = "Good. In this class, we generally write the sine function like  $\\sin(2 \\pi t/P)$ which means that the overall argument to  the sine function will go from 0 to $2 \\pi$ when $t$ goes from 0 to $P$.",
+"$V(t) \\equiv 2 + 2 \\sin \\left( \\frac{2\\pi}{3} t \\right)$" = wrong_amp,
+"$V(t) \\equiv 3 + \\sin \\left( \\frac{\\pi}{3} t \\right)$" = "Right amplitude and baseline: the minimum will be 2 liters and the maximum 4 liters. But the period is wrong. Going from $t=0$ to  $t=3$ should produce a full cycle of the sine function. But here  the argument would go only  from 0 to $\frac{\\pi}{3} 3 = $\\pi$. Thus,  after 3 seconds, only half  a cycle has been  completed."
   ),
   inline = FALSE,
   random_answer_order = FALSE
