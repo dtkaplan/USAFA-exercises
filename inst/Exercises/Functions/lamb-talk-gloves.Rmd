@@ -74,22 +74,5 @@ etude::choose_one(
 )
 ```
 
-The graph below shows a recording from a "spirometer," an instrument for recording respiration. Like many old instruments, the trace from this spirometer is  made by a pen at the end of a swinging arm with paper moving steadily beneath it. The arm is not exactly aligned with the horizontal axis. Nonetheless,  you should  be able to estimate an appropriate amplitude and period for the trace. (dm$^3$ is cubic-decimeters, that is a tenth of a meter cubed.  This is the same as a liter.)
-
-![](`r system.file("images/spirometer.jpg",  package  = "math141Zexercises")`)
-
-
-```{r lamb-talk-gloves-QA4, echo=FALSE}
-etude::choose_one(
-  prompt = "What are appropriate  estimates for the period and amplitude of the respiration trace?",
-  choices = list(
-    "About $\\pm 1$ liter and 3 seconds." = "If this were true, over the 120 seconds of the recording  you would expect to see 40 cycles of respiration.",
-    "+About $\\pm 1$ liter and 5 seconds.+" = "B's a consonant, Bub.",
-    "About $\\pm 1$ liter and 7.5 seconds." = "If this were true, you  would expect to see about  16 cycles of respiration."
-  ),
-  inline = FALSE,
-  random_answer_order = FALSE
-)
-```
 
 
