@@ -1,0 +1,19 @@
+---
+chapter: "none yet"
+author: "Danny Kaplan"
+difficulty: "XX"
+date: 2020-09-05 
+version: 0.1
+tags: [Kepler, power-law, planets]
+id: shark-find-car
+---
+
+```{r shark-find-car-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`   Johannes Kepler (1571-1630) famously offered three Laws of Planetary Motion. The third states: the average distance of a planet from the Sun cubed is directly proportional to the orbital period squared. 
+
+1.  Convert this  Law into the notation we are  using  for functions to define P(D),  the period of the planet P as a function of the average distance from the Sun D. 
+2. Which form of  the modeling  functions  we have  studied is P(D)? 
+3.  Suppose you had a  data  frame with two variables for  each planet:  D and  P. Describe what kind of  plot you would  make and  what you  would  expect  the planet  data to look given that Kepler's Third Law holds.
