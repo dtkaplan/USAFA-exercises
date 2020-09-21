@@ -1,0 +1,119 @@
+---
+chapter: "none yet"
+title: "Title for kid-write-bowl"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "kid-write-bowl"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-21 
+tags: [kayak, empirical polynomials, third]
+id: kid-write-bowl
+---
+
+```{r kid-write-bowl-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+library(ggformula)
+library(mosaicCalc)
+Righting <- tibble::tribble(
+  ~H,    ~L,    ~W,    ~M,    ~line,
+  0,      0,   200,     0,        2,
+  5,      0,   200,     1,        2,
+ 10,      0,   200,     2,        2,
+ 15,      0,   200,   2.5,        2,
+ 20,      0,   200,     2,        2,
+ 25,      0,   200,   0.3,        2,
+  0,    100,   200,     0,        4,
+  5,    100,   200,     6,        4,
+ 10,    100,   200,    12,        4,
+ 15,    100,   200,    17,        4,
+ 20,    100,   200,    22,        4,
+ 25,    100,   200,    24,        4,
+ 30,    100,   200,    24,        4,
+ 35,    100,   200,    22,        4,
+ 40,    100,   200,    20,        4,
+ 45,    100,   200,    11,        4,
+ 50,    100,   200,     3,        4,
+  0,      0,   150,     0,        1,
+  5,      0,   150,     3,        1,
+ 10,      0,   150,     5,        1,
+ 15,      0,   150,     7,        1,
+ 20,      0,   150,     8,        1,
+ 25,      0,   150,     8,        1,
+ 30,      0,   150,     7,        1,
+ 35,      0,   150,     5,        1,
+ 40,      0,   150,     1,        1,
+  0,    100,   150,     0,        3,
+  5,    100,   150,    10,        3,
+ 10,    100,   150,    18,        3,
+ 15,    100,   150,    27,        3,
+ 20,    100,   150,    35,        3,
+ 25,    100,   150,    41,        3,
+ 30,    100,   150,    45,        3,
+ 35,    100,   150,    47,        3,
+ 40,    100,   150,    48,        3,
+ 45,    100,   150,    47,        3,
+ 50,    100,   150,    46,        3,
+ 55,    100,   150,    44,        3,
+ 60,    100,   150,    41,        3,
+ 65,    100,   150,    38,        3,
+ 70,    100,   150,    34,        3,
+ 75,    100,   150,    30,        3,
+ 80,    100,   150,    26,        3,
+ 85,    100,   150,    22,        3,
+ 90,    100,   150,    18,        3
+)       
+```
+
+
+`r etude::exercise_title()`       Kayaks are small, light boats that are relatively narrow.  They are fast, but tippy.  
+
+
+```{r echo=FALSE, fig.align = "center", out.width = "40%",fig.cap="A NordKapp LV at sea. [Photo source](http://seakayakphoto.blogspot.com/2007/01/valley-nordkapp-lv-test.html)" }
+knitr::include_graphics(system.file("images/nordkapp-photo.png", package = "math141Zexercises"))
+```
+
+The graph provides stability information about the NordKapp LV sea kayak.  
+
+```{r echo=FALSE, out.width = "70%"}
+knitr::include_graphics(system.file("images/kayak-righting2.png", package = "math141Zexercises"))
+```
+
+There are four variables involved in the
+graph:
+
+- Degrees of Heel, $H$.  This is the angle at which the kayak is tipped.  0 means sitting level on the water.  90 is turned completely on its side.
+- Cargo load, $L$ in pounds.  
+- Paddler weight $W$.  Cargo sits low inside the boat, whereas the paddler sits relatively higher. 
+- Righting moment $M$ in foot pounds.  The higher the righting moment, the greater the tendency of the kayak to return to a level position (that is $H = 0$) on the water.
+
+
+The righting moment is an important feature of a kayak.  If the kayak is tipped at an angle of heel that gives zero righting moment, there is no restoring force and the kayak can easily be tipped more.  The angle at which the righting moment is a maximum can be considered the tipping point --- if there is a tipping force  that pushes the kayak to heel past this angle, the kayak will tip even further and capsize. 
+
+Your job: 
+
+a. Build a second-order polynomial formula $M(H, L, W)$ that will model the data presented about the stability of the kayak.  Use your formula to predict a cargo load $L$ such that the kayak will produce a righting moment $M=30$ foot pounds at an angle of $H=30$ degrees.  You might want to make a contour plot of `M(H=30, L, W) ~ L + W`. Use your own weight for W.
+#. Using your model, make a graph in the same style as that shown above.  Comment on what aspects of the kayak behavior your model gets right and what it's missing.
+
+
+Some suggestions:
+
+* Data on H, L, W, & M from the figure are available in the data frame `Righting`
+* Decide which model terms in a second-order polynomial of $M( L, H, W )$ you should include.
+* Use `fitModel()` to construct a model.
+
+```{r kid-write-bowl-sandbox1, exercise=TRUE, exercise.cap="Sandbox", exercise.eval=FALSE, exercise.lines=10, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+gf_path(M ~ H,, color=~W, linetype = ~ L==100, group = ~line, data = Righting )
+```
+
+
+
+

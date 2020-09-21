@@ -1,0 +1,91 @@
+---
+chapter: "Derivatives"
+title: "Title for bear-ring-dress"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "bear-ring-dress"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-21 
+tags: [derivatives, gradient, third]
+id: bear-ring-dress
+---
+
+```{r bear-ring-dress-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaic)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Here's a contour plot of a function of two variables:
+
+```{r uvplot2,echo=FALSE, warning = FALSE}
+f=rfun( ~x|y, seed=6724)
+Labels <- tibble(x=c(-1.2,0,1.2,-1.2,0,1.2,-1.2,0,1.2),
+                 y=c(1,1,1,0,0,0,-1,-1,-1),
+                 label = c("A","B","C","D","E","F","G","H","I"))
+contour_plot(f(u,v)~ u + v, domain(u=range(-2,2), v=range(-2,2) ), skip = 0) %>%
+  gf_label(y ~ x, label=~label, data = Labels)
+```
+ 
+
+
+The "gradient" vector points in the steepest **uphill** direction.
+
+At each of the marked points, say which direction (approximately) the gradient points in.  (Directions are given using north-east-south-west compass points.  Assume that north is up and east is to the right.)
+
+
+```{r bear-ring-dress-QA1, echo=FALSE}
+etude::choose_one(
+prompt = "Point A", choices = c("SE","SW","+NW+","NE"), random_answer_order=FALSE, inline=FALSE) 
+```
+
+```{r bear-ring-dress-QA2, echo=FALSE}
+etude::choose_one(
+prompt = "Point B", choices = c("S","W","N","+E+"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA3, echo=FALSE}
+etude::choose_one(
+prompt = "Point C", choices = c("SE","SW","NW","+NE+"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA4, echo=FALSE}
+etude::choose_one(
+prompt = "Point D", choices = c("SE","SW","+NW+","NE"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA5, echo=FALSE}
+etude::choose_one(
+prompt = "Point E", choices = c("SE","SW","+NW+","NE"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA6, echo=FALSE}
+etude::choose_one(
+prompt = "Point F", choices = c("SE","SW","NW","+NE+"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA7, echo=FALSE}
+etude::choose_one(
+prompt = "Point G", choices = c("S","W","+N+","E"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA8, echo=FALSE}
+etude::choose_one(
+prompt = "Point H", choices = c("S","W","+N+","E"), random_answer_order=FALSE, inline=FALSE)
+```
+
+```{r bear-ring-dress-QA9, echo=FALSE}
+etude::choose_one(
+prompt = "Point I", choices = c("SE","SW","NW","+NE+"), random_answer_order=FALSE, inline=FALSE)
+```
+
