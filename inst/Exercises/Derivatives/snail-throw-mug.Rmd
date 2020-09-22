@@ -1,0 +1,56 @@
+---
+chapter: "Derivatives"
+title: "Title for snail-throw-mug"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "snail-throw-mug"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [partial derivatives, constructing functions, third]
+id: snail-throw-mug
+---
+
+```{r snail-throw-mug-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` For almost everyone, a house is too expensive to buy with cash, so people need to borrow money. The usual form of the loan is called a "mortgage".  Mortgages extend over many years and involve paying a fixed amount each month.  That amount is calculated so that, by paying it each month for the duration of the mortgage, the last payment will completely repay the amount borrowed plus the accumulated interest.
+
+The monthly mortgage payment in dollars, $P$, for a house is a function of three variables, $P = f(A, r, N)$, where $A$ is the amount borrowed in dollars, $r$ is the interest rate (per year), and $N$ is the number of years before the mortgage is paid off. 
+
+A studio apartment is selling for $220,000. You will need to borrow $184,000 to make the purchase. 
+
+#. Suppose $f(184000,14,30) = 2180.16$.  What does this tell you in financial terms?
+    a. The monthly cost of borrowing $184,000 for 14 years at 30% interest per year.
+    #. *The monthly cost of borrowing $184,000 for 30 years at 14% interest per year.*
+
+#. What would you expect about the quantity $\partial P / \partial A$?
+
+    a. *Positive*
+    #. Negative
+    #. Zero
+
+#. What would you expect about the quantity $\partial P / \partial N$?
+
+    a. Positive
+    #. *Negative*
+    #. Zero
+
+#. Suppose $\partial P / \partial r (184000,14,30) = $145.64.  What is the financial significance of the number $145.65?
+
+    a. If the interest rate $r$ went up from 14 to 15, the monthly payment would increase by $145.65.
+    #. If the interest rate $r$ went up from 14 to 14.001, the monthly payment would increase by $145.65.
+    #. *If the interest rate $r$ went up from 14 to 14.001, the monthly payment would increase by $0.001 \times $145.65.*
+    
+
+

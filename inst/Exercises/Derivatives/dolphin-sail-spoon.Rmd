@@ -1,0 +1,35 @@
+---
+chapter: "Derivatives"
+title: "Title for dolphin-sail-spoon"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "dolphin-sail-spoon"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [differential forms, second, third]
+id: dolphin-sail-spoon
+---
+
+```{r dolphin-sail-spoon-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` For a function $f(x,y)$, we are given $f(100,20) = 2750$ and $f_x(100,20) = 4$, and $f_y(100,20) = 7$.  Estimate $f(105,21)$.
+
+a. $2750 + 4 + 7$
+#. $5\times 4 + 1 \times 7$
+#. $5\times 7 + 1 \times 4$
+#. *$2750 + 5\times 4 + 1 \times 7$*
+#. $2750 + 5\times 7 + 1 \times 4$
+
+

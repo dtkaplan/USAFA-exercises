@@ -1,0 +1,48 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-21 
+version: 0.1
+tags: [general polynomials, interactions, third]
+id: seaweed-toss-bed
+---
+
+```{r seaweed-toss-bed-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`  The figure depicts the effect of a drug on heart rate. The effect depends both on the dose of the drug and on the age of the person taking the drug.
+
+```{r drugdose, eval=FALSE, echo = FALSE}
+graph.paper( yticks = seq(50,90,by=10), xticks=seq(200,300,by=25),
+            xlab="Drug Dose (mg)", ylab="Heart Rate (bpm - beats per minute)")
+curve( 0.2*(x-175) + 60, add=TRUE,col="red",lwd=2)
+curve( 0.0*(x-200) + 70, add=TRUE,col="blue",lwd=2)
+curve( -0.2*(x-175) + 80, add=TRUE,lwd=2)
+text(300,53,"Age 20",pos=2,srt=-25)
+text(300,87,"Age 40",pos=2,srt=25,col="red")
+text(285,70,"Age 30",pos=3,col="blue")
+```
+ 
+```{r echo=FALSE}
+knitr::include_graphics(system.file("images/HRdrug-drugdose.png", package = "math141Zexercises"))
+```
+
+Using the information shown in the graph, estimate numerically each of the following partial derivatives, giving proper units for each. (Heart rate is measured in ``bpm" (beats per minute) and dose in ``mg".)
+
+1. The derivative $\frac{\partial}{\partial \mbox{dose}} HR$.
+    
+    a. at dose$=275$, age  $= 20$.
+    #. at dose$=275$, age  $= 30$.
+    #. at dose$=275$, age  $= 40$.
+     
+#. $\frac{\partial}{\partial \mbox{age}} HR$ at dose$=275$, age $= 30$.
+
+#. $\frac{\partial}{\partial \mbox{dose}} \frac{\partial}{\partial \mbox{dose}} HR$ at dose$=275$, age $= 30$.
+
+#. $\frac{\partial}{\partial \mbox{age}} \frac{\partial}{\partial \mbox{age}} HR$ at dose$=275$, age $= 30$.
+
+#. $\frac{\partial}{\partial \mbox{age}} \frac{\partial}{\partial \mbox{dose}} HR$ at dose$=275$, age $= 30$.
+
+
