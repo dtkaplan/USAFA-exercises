@@ -1,0 +1,31 @@
+---
+chapter: "Derivatives"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-21 
+version: 0.1
+tags: [first, second, third]
+id: seal-hide-map
+---
+
+```{r seal-hide-map-default, include = FALSE}
+library(etude)
+library(mosaic)
+library(mosaicCalc)
+```
+
+`r etude::exercise_title()` At each of the 4 points A to D, draw the gradient vector as an arrow with its root at the point.  You should be able to get the direction right.  As for the length of the arrow, make it relatively longer or shorter depending on the "steepness" of the function at the point.
+
+```{r uvplot1,echo=FALSE, warning=FALSE}
+f=rfun( ~x|y, seed=1324)
+Labels <- tibble(x=c(-1.2,0,-1.2,1.2),y=c(1,1.3,-.5,-1),label=c("A","B","C","D"))
+contour_plot(f(u,v)~ u + v, domain(u=range(-2,2), v=range(-2,2)), filled=FALSE ) %>%
+  gf_label(y ~ x, label = ~ label, data = Labels)
+
+```
+ 
+
+
+  
+
+

@@ -1,0 +1,156 @@
+---
+chapter: "Partial derivatives"
+author: "Daniel Kaplan"
+difficulty: "M"
+date: 2020-09-21 
+version: 0.1
+tags: [partial deriv, divorce, R]
+id: monkey-beat-dress
+---
+
+```{r monkey-beat-dress-default, include = FALSE}
+library(etude)
+library(mosaicCalc)
+```
+
+`r etude::exercise_title()`      In [2006](https://www.nytimes.com/2006/09/19/opinion/19tierney.html), and again in [2012](https://www.nytimes.com/2012/03/13/science/a-refined-formula-to-predict-doom-in-celebrity-marriages.html), the New York *Times* published mathematical models of celebrity divorce.  The purpose of the models was to address the pressing social need of predicting how long celebrity marriages will last.
+
+Like any prediction model, the marriage duration prediction is based on information that is available at the time the prediction is made.  Two of the variables in the models reflect news coverage about the celebrities. 
+
+- NYT: the number of search results since 1990 in the New York *Times* archive.
+- ENQ: the number of search results since 1990 in the  *National Enquirer* archive.
+
+Note, the *Times* is considered by many the newspaper of record in the US, whereas the *Enquirer* has a more sensationalist style.
+
+Other variables describe the couple themselves:
+
+- $A_h$: Age, in years, of the husband.
+- $A_w$: Age, in years, of the wife.
+- Sc: Number of photos in the top five Google Image hits, showing the wife scantily clad.
+- Md: Number of months the couple dated before marriage.
+- $T$ Time, in years after the marriage, at which the prediction is to be made.
+
+Here is a 2012 snapshot of the data on these model inputs:
+
+```{r echo=FALSE}
+knitr::include_graphics(system.file("images/divorce-data.png", 
+                                    package = "math141Zexercises"))
+```
+
+The formula given for the percentage chance $P$  that the two celebrities will still be married after $T$ years is:
+$$ P = 50  \sqrt[15]{\frac{NYT}{ENQ} \frac{(A_h + A_w)}{(Sc + 5)} Md \left[ \frac{Md}{(Md+2)} \right]^{T^2} }$$
+
+Or, in R:
+```{r }
+P = makeFun( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ 
+  T | NYT | ENQ | Ah | Aw | Sc | Md )
+```
+ 
+
+This is a genuinely complicated formula, and it's easy to get it wrong when translating from mathematical notation to R or just in typing the R statement.   To make sure you have things right, apply your function to one or more of the data points given by the *Times* and make sure that you are getting the right output.  Here, for instance, is the function applied to the values for Chelsea Clinton and Marc Mezvinsky.  Note that they match the published predicted values.  Yours should too.
+
+```{r }
+P(T=1,NYT=618,ENQ=26,Ah=33,Aw=30,Sc=0,Md=50)
+P(T=5,NYT=618,ENQ=26,Ah=33,Aw=30,Sc=0,Md=50)
+P(T=15,NYT=618,ENQ=26,Ah=33,Aw=30,Sc=0,Md=50)
+```
+ 
+
+Your task is to assess whether the model is reasonable.  By "reasonable," we do not mean "correct"; there's no way to know what will happen to these couples.  Rather, you should see whether the model is in accord with your intuitive understanding of the factors that might lead to a divorce.
+
+The equation itself is basically impenetrable, but you can ask some simple questions of the model.  Here are a few:
+
+Holding all the other variables constant (at, say, the level for some couple of interest to you), what do you think will happen to the probability of staying married for at least 5 years:
+
+#.  As NYT increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As ENQ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As $A_h$ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As $A_w$ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As $Sc$ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As $Md$ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+#.  As $T$ increases, probability of staying married 
+  {increases}{increases,decreases,stays the same}
+
+
+Now, having answered the above according to your intuition, see what the model says.  Calculate the appropriate partial derivative, evaluating it at the input values for a couple of your choice.  Mark down on the above whether the value of the derivative is consistent with your intuition.  Do this for all of the variables in the formula.
+
+To help you out, here is an R statement for the partial with respect
+to $A_h$:
+```{r }
+dPdAh = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Ah )
+```
+ 
+
+With a very slight modification of this statement, you can construct the partial derivatives with respect to the other variables.  Evaluate the derivative function for a celebrity couple of your choice and see whether the sign of the resulting number is consistent with your intuition.
+
+ANSWER
+Setting up the derivatives:
+```{r }
+dPdAh = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Ah )
+dPdAw = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Aw )
+dPdNYT = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ NYT )
+dPdENQ = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ ENQ )
+dPdSc = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Sc )
+dPdMd = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Md )
+```
+ 
+
+And evaluating them for Jennifer Lopez and Ojani Noi
+```{r}
+P(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdNYT(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdENQ(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdAh(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdAw(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdSc(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+dPdMd(NYT=1266,ENQ=175,Ah=25,Aw=27,Sc=4,Md=6,T=5)
+```
+ 
+END of ANSWER
+
+The magnitude of the derivative gives an indication of the importance of the variable.  Of course, what matters is not so much the *rate*, but the change in probability, which involves multiplying the rate by the change in the input.  For example, you can see that the Sc variable ranges from 0 to 5, so a change of four points covers the whole range of the scale.  Multiplying the derivative with respect to Sc by such a difference gives an idea of how much the output will change from, say, Kate Middleton  to Jennifer Lopez.
+
+Consider the range of each of the input variables in the data below. Multiply this difference by the corresponding partial derivative to get a sense for how much that variable contributes to the variation from couple to couple in the probabilities of still being married.
+
+#.  Which variable or variables seem to be the most strongly associated with the output of the function?
+
+Now, onto second derivatives.  Here's an R statement to construct the mixed partial derivative with respect to Sc and Md.
+
+```{r }
+ScMd = D( 
+  50*( (NYT/ENQ)*((Ah+Aw)/(Sc+5))*Md*
+      (Md/(Md+2))^(T^2))^(1/15) ~ Sc|Md )
+```
+ 
+Here's the value of this derivative for Kate Middleton and Prince William:
+```{r }
+ScMd(NYT=258,ENQ=44,Ah=29,Aw=29,Sc=0,Md=120,T=5)
+```
+ 
+As you've already seen, the model holds Sc to be negative in its influence on the probability to stay married.  This mixed partial derivative is negative, suggesting that scantily-clad photos are even more negative prognosticators the longer the couple dated (Md).   That is, for long-dating couples, Sc is even worse in its effect: an interaction in the model.
+
+#.  Pick another pair of variables for and find the mixed partial derivative with respect to these.  Try to interpret the result  in everyday language suitable for publication in the *National Enquirer*.
+
+

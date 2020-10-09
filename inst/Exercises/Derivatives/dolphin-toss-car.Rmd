@@ -1,0 +1,37 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-21 
+version: 0.1
+tags: [first, second, third]
+id: dolphin-toss-car
+---
+
+```{r dolphin-toss-car-default, include = FALSE}
+library(etude)
+library(mosaic)
+library(mosaicCalc)
+
+```
+
+`r etude::exercise_title()` Here's a contour diagram showing the depth of a lake and the landscape around it.  **Negative values** are underwater. 
+
+```{r one, echo = FALSE, warning=FALSE, message=FALSE}
+f = rfun( seed=78344 )
+ff = function(x,y){-5*(f(x/100, y/100)-3)}
+contour_plot(ff(x, y) ~ x + y, domain(x=c(-700,700), y=c(-700,700)), filled=FALSE,
+             contours_at=c(-20,-15,-10,-5,0, 5,10,15), skip = 0) %>%
+  contour_plot(ff(x, y) ~ x + y, contours_at=0, size=4, filled=FALSE)
+```
+
+
+The axis scales and contour units are in feet.
+
+For each of the following, mark on the graph a location where   the conditions apply.  Make sure to use the letters, A -- D to   distinguish the various points from one another.
+
+1. The lake bottom is **steep** and fairly **deep**.
+#. The lake bottom is **steep** and **shallow**.
+#. The lake bottom is **relatively flat** and **deep**.
+#. The lake bottom is **relatively flat** and **shallow**.
+

@@ -1,0 +1,37 @@
+---
+chapter: "Modeling functions"
+title: "Title for boy-mean-plant"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "boy-mean-plant"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [hump functions, sigmoid functions, third]
+id: boy-mean-plant
+---
+
+```{r boy-mean-plant-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` The graphic shows data on the production of phosphate in the US over the last century. The same data are shown in two forms, as annual production and as cumulative production. A model has been fitted to the annual production.
+
+
+```{r echo=FALSE}
+knitr::include_graphics(system.file("images/phosphate-production.png", package = "math141Zexercises"))
+```
+
+1. What's the relationship between cumulative production and annual production.
+2. The R-squared for the cumulative production model is $R^2 = 0.999$, practically a perfect fit. The model for the annual production is not as good, but still has a very high R-squared. Explain how the model fit to the annual production can result in such an excellent match between the cumulative production data and the annual.
+
+3. Comment on the extent to which you buy the prediction that annual production will fall precipitously starting in about 2020.

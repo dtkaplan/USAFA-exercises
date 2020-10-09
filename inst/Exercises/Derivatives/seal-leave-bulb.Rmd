@@ -1,0 +1,120 @@
+---
+chapter: "Derivatives"
+title: "Title for seal-leave-bulb"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "seal-leave-bulb"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [polynomial approximation, second, third]
+id: seal-leave-bulb
+---
+
+```{r seal-leave-bulb-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaic)
+library(mosaicCalc)
+library(ggformula)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` In this activity, you're going to explore the selection of terms in polynomial approximations.  
+
+The background:
+
+a. Polynomials provide a general-purpose approach to modeling functional relationships.
+b. In practice, polynomials of first- or second-order are used to model simple relationships.  Here are first- and second-order polynomials in two variables.
+    - First order $p_1(x,y) = a_0 + a_1 x + a_2 y + a_3 x y$
+    - Second order $p_2(x,y) = b_0 + b_1 x + b_2 y +  b_3 x y + b_4 x^2 + b_5 y^2$
+#. The "goodness of fit" of an approximation can be measured by the residuals: the difference between the actual relationship and the approximation.  The "RMS error" (root mean square error) reflects the average magnitude of the residuals. 
+#. The more polynomial terms, the better will be the approximation in an RMS sense.
+#. HOWEVER, there are reasons to want to leave out polynomials terms, even though more terms will give a better RMS measure.
+    * The philosophical notion of "parsimony": Simpler is better.  As Einstein said, "Everything should be made as simple as possible, but not simpler."
+    * Interpretability.  Particularly when there are many input variables, it can become burdensome to keep track of all the different terms.  Often, only a few terms are important.
+    * Noise.  Measured data inevitably includes noise: random fluctuations that are not part of the overall relationship.  Techniques from statistics provide a formal way to decide when a model term is mainly shaped by noise and not the relationship you are modeling.  
+
+
+To give you something to work with, here are three "relationships" $f(x,y)$, $g(x,y)$, and $h(x,y)$.  
+
+```{r }
+f = rfun( ~x|y, seed=801 )
+g = rfun( ~x|y, seed=802 )
+h = rfun( ~x|y, seed=805 )
+```
+ 
+
+```{r ffun,echo=FALSE, out.width="30%", warning=FALSE, message=FALSE, fig.show="hold"}
+the_domain <- domain(x=range(-3,3), y=range(-3,3))
+contour_plot( f(x,y)~x|y, the_domain) %>%
+  gf_labs(title  = "f(x,y)")
+
+contour_plot( g(x,y)~x|y, the_domain) %>%
+  gf_labs(title  = "g(x,y)")
+
+contour_plot( h(x,y)~x|y, the_domain) %>%
+  gf_labs(title  = "h(x,y)")
+```
+ 
+You are going to use these to experiment with making polynomial approximations in first- and second-order.  Each of these functions is somewhat complicated, with many ups and downs: a landscape, as it were.  The first- and second-order polynomials are well suited to model **a small portion** of the complicated landscape.  As it happens, those small, simplified landscapes are pretty useful in modeling relationships in the real world.
+
+In each of the following cases, you will use `m2Fit` to fit a local polynomial to the landscape feature of interest.   Your command will look like this:
+```{r eval = FALSE, echo=FALSE}
+Sample <- expand.grid(
+  x = seq(1, 3, length = 50),
+  y = seq(0.5, 1.5, length = 50)
+) %>% 
+  mutate(value = f(x, y))
+
+f_approx <- 
+  fitModel(value ~ a + b*x + c*y + d*x*y,
+           data = Sample)
+```
+ 
+
+#. Set the center of the "approximation circle" over the feature   and set the radius of the circle to 1.0.
+#. Play with including and excluding the various polynomial terms.   Examine both the RMS error and how well the shape of the   approximation matches the landscape of the actual function.
+#. Decide which terms you think are essential and which can be   excluded.  Circle the essential terms.  
+
+Your choice of ``essential terms" will be subjective.  Formal methods for making such a selection are introduced in statistical modeling courses.
+
+
+#. An east-west hillside.  Function $f(x,y)$ at $(x=-2, y=0)$.  
+  
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+#. A NW-SE hillside.  Function $f(x,y)$ at $(x=2, y=-1)$.  
+  
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+#. An amphitheater.  Function $f(x,y)$ at $(x=-1, y=3)$.
+  
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+#. A bowl.  Function $f(x,y)$ at $(x=-0.75, y=-2)$.
+
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+#. A mountain.  Function $g(x,y)$ at $(x=0,y=0)$.
+  
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+#. A saddle.  Function $h(x,y)$ at $(x=-1,y=1)$.
+
+Circle the "essential" terms: $x$, $y$, $x y$, $x^2$, $y^2$
+
+Extra Credit:  
+
+#. Make the radius of the approximation circle very large.  Looking at how well the shape of the approximation matches the underlying function, what happens?  
+#. Now make the radius of approximation very small, say $0.3$.  Does this make it easier to match the underlying function (over the approximation region) with fewer terms?  
+#. Does the answer to (B) depend on the type of landscape feature being approximated?
+
+

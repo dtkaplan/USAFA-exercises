@@ -1,0 +1,23 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-22 
+version: 0.1
+tags: [partial derivatives, second, third]
+id: tiger-run-shirt
+---
+
+```{r tiger-run-shirt-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`   The graphs on the left side of the table give some function $f(x,y)$. For each of the graphs, say whether the graph on the right side of the table gives $\frac{\partial f}{\partial x}$ or $\frac{\partial   f}{\partial y}$.  (You just need to write down which one it is, not do any detailed calculation.)
+
+
+$f( x, y )$ |  Is it $\frac{\partial f}{\partial x}$ or $\frac{\partial f}{\partial y}$
+------------|-------------
+![](`r system.file("images/p502-f1.png", package = "math141Zexercises")`) | ![](`r system.file("images/p502-df1.png", package = "math141Zexercises")`)
+![](`r system.file("images/p502-f2.png", package = "math141Zexercises")`) | ![](`r system.file("images/p502-df2.png", package = "math141Zexercises")`)
+
+

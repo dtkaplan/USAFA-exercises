@@ -1,0 +1,59 @@
+---
+chapter: "Derivatives"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-22 
+version: 0.1
+tags: [derivatives, average, population]
+id: frog-lose-car
+---
+
+```{r frog-lose-car-default, include = FALSE}
+library(etude)
+library(tibble)
+library(ggformula)
+```
+
+`r etude::exercise_title()` 
+
+```{r echo=FALSE}
+Table <- tribble(
+  ~ year, ~ population,
+  1975, 4.08,
+  1980, 4.45,
+  1985, 4.84,
+  1990, 5.27,
+  1995, 5.68,
+  2000, 6.07,
+  2005, 6.45
+)
+knitr::kable(Table, caption = " World population, in billions")
+gf_point(population ~ year, data = Table) %>%
+  gf_line() %>%
+  gf_text(population ~ year, label = ~ paste(population, "B", sep=""))
+```
+
+#. What are the units of average rate of change for the data below?
+    a. Years
+    #. Billions of people
+    #. *Billions of people per year*
+    #. Years per billions of people
+    #. Years $\times$ billions of people
+    
+#. Using the data, find the average rate of change in the world's population between 1975 and 2005.
+    a. $6.45/2005$
+    #. $4.08/1975$
+    #. $1975/4.08$
+    #. $2005/6.45$
+    #. $\frac{4.08 - 6.45}{2005-1975}$
+    #. *$\frac{6.45 - 4.08}{2005-1975}$*
+    #. $\frac{2005-1975}{4.08 - 6.45}$
+    #. $\frac{2005-1975}{6.45 - 4.08}$
+
+#. Which is the best estimate of the derivative of the population curve in $2005$?
+     a. $2005/6.45$
+     #. $6.45/2005$
+     #. *$0.38/5$*
+     #. $2.37/30$
+
+

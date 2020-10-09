@@ -1,0 +1,31 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-21 
+version: 0.1
+tags: [empirical polynomials, partials, third]
+id: camel-tug-chair
+---
+
+```{r camel-tug-chair-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`      Here is a second-order polynomial in two variables, $x$ and $y$:
+$$ p(x,y) = a_0 + a_x x + a_y y + a_{xy} x y + a_{xx} x^2 + a_{yy} y^2  .$$
+
+Write down each of the following derivatives:
+
+a.  ${\partial p}/{\partial x}$
+
+#. ${\partial p}/{\partial y}$
+
+#. ${\partial^2 p}/{\partial x^2}$
+
+#. ${\partial^2 p}/{\partial y^2}$
+
+#. ${\partial^2 p}/{\partial x \partial y}$ (First w.r.t. $y$, then w.r.t. $x$)
+
+#. ${\partial^2 p}/{\partial x \partial y}$ (First w.r.t. $x$, then w.r.t. $y$)
+

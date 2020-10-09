@@ -1,0 +1,36 @@
+---
+chapter: "Derivatives"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-22 
+version: 0.1
+tags: [polynomial approximations, second, third]
+id: elm-fight-pen
+---
+
+```{r elm-fight-pen-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`  Here is a second-order polynomial in two variables, $x$ and $y$:
+$$ p(x,y) = a_0 + a_1 x + a_2 y + a_3 x y + a_4 x^2 + a_5 y^2  .$$
+
+Write down each of the following derivatives:
+
+a.  ${\partial p}/{\partial x}$
+
+#. ${\partial p}/{\partial y}$
+
+#. ${\partial^2 p}/{\partial x^2}$
+
+#. ${\partial^2 p}/{\partial y^2}$
+
+#. ${\partial^2 p}/{\partial x \partial y}$ (First w.r.t. $y$, then w.r.t. $x$)
+
+#. ${\partial^2 p}/{\partial x \partial y}$ (First w.r.t. $x$, then w.r.t. $y$)
+
+#.  Which of the above derivatives relates most clearly and plainly to the interaction term?
+
+
+
+

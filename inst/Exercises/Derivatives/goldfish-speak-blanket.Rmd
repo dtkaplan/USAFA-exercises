@@ -1,0 +1,52 @@
+---
+chapter: "Derivatives"
+title: "Title for goldfish-speak-blanket"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "goldfish-speak-blanket"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [velocity, acceleration, third]
+id: goldfish-speak-blanket
+---
+
+```{r goldfish-speak-blanket-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(ggformula)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Each of the graphs shows the position $x$ of a particle -- I, II,  III, or IV -- as a function of time.
+
+```{r echo=FALSE, out.width = "50%", fig.show="hold"}
+gf_fun(t^2 - 3 ~ t, xlim=c(0,3)) %>% 
+  gf_labs(title = "Particle I", x="time", y = "position")
+gf_fun(sin(2*pi*t/3) - 3 ~ t, xlim=c(0,3)) %>% 
+  gf_labs(title = "Particle II", x="time", y = "position")
+gf_fun(2 - t/1.5 ~ t, xlim=c(0,3)) %>% 
+  gf_labs(title = "Particle III", x="time", y = "position")
+gf_fun(sqrt(t) ~ t, xlim=c(0,3)) %>% 
+  gf_labs(title = "Particle IV", x="time", y = "position")
+```
+
+Note that the vertical scales vary from one graph to another. It may be important to take this into account when answering the following.
+
+1. Which graph shows the particle with constant velocity? {I, II, *III*, IV}
+#. Which graph shows the particle with the greatest initial velocity? {I, II, III, *IV*}
+#. Which graph shows the particle with positive acceleration throughout?{I, II, III, IV}
+#. Which graph shows the particle with zero average velocity?{I, *II*, III, IV}
+#. Which graph shows the particle with the greatest average velocity? {*I*, II, III, IV}
+#. Which graph shows the particle with zero acceleration? {I, II, *III*, IV}
+
+
+
+

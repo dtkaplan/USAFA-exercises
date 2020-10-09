@@ -1,0 +1,57 @@
+---
+chapter: "none yet"
+title: "Title for fly-fall-table"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "fly-fall-table"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-22 
+tags: [first, second, third]
+id: fly-fall-table
+---
+
+```{r fly-fall-table-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(ggformula)
+library(mosaic)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` 
+
+```{r echo=FALSE}
+set.seed(133)
+pts <- tibble(x = -5 +  cumsum(0.5 + rexp(5) ), y = runif(5))
+refx <- sort(c(-3.7, -2.4, -0.95, 3.62,  2.47 ))
+f <- spliner(y ~ x, data =  pts)
+special_pts <- tibble(x = refx, y = 8 * f(refx) - 3)
+label <- character(8)
+special_pts$label = 
+  sapply(1:length(refx),
+        FUN = function(x) paste0("x", x))
+gf_fun(8*f(x)-3 ~ x, xlim = c(-4, 4)) %>%
+  gf_labs(y = "f(x)") %>%
+  
+  gf_point(y ~ x, data = special_pts) %>%
+  gf_segment(15 + y ~ x + x, data = special_pts, linetype = 2)  %>%
+  gf_label(15 ~ x, label = ~ label, data = special_pts )
+```
+
+1. At which point is the first derivative positive and the second derivative positive as well? {$x_1$, $x_2$, $x_3$, *$x_4$*, none}
+#. At which point is the first derivative *negative* and the second derivative positive? {$x_1$, $x_2$, $x_3$, $x_4$, *none*}
+#. At which point is the first derivative positive and the second derivative negative? {*$x_1$*, $x_2$, $x_3$, $x_4$, none}
+#. At which point is the first derivative negative and the second derivative negative as well? {$x_1$, *$x_2$*, $x_3$, $x_4$, none}
+#. At which point is the second derivative closest to zero?  {$x_1$, $x_2$, *$x_3$*, $x_4$}
+
+
+

@@ -1,0 +1,137 @@
+---
+chapter: "Derivatives"
+title: "Title for oak-ring-car"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "oak-ring-car"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-21 
+tags: [partial derivs, contour, third]
+id: oak-ring-car
+---
+
+```{r oak-ring-car-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaic)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Here's a contour plot of a function of two variables:
+
+```{r uvplot3,echo=FALSE, warning=FALSE}
+f <- rfun( ~ x | y, seed=672)
+
+Labels <- tibble(x=c(-1.2,0,1.2,-1.2,0,1.2,-1.2,0,1.2),
+                 y=c(1,1,1,0,0,0,-1,-1,-1),
+                 label = toupper(c("a","b","c","d","e","f","g","h","i")))
+contour_plot(f(u,v)~  u +  v, 
+             domain(u=range(-2,2), v=range(-2,2) ),
+             skip = 0) %>%
+  gf_label(y ~ x, label = ~ label, data = Labels)
+```
+ 
+
+At each of the marked points, say whether the partial derivative is positive, negative, or zero.  (NOTE: It's hard to say from a contour graph like this when something is exactly zero.  And if it's not exactly zero, then it must be either positive or negative.  Here, use "zero" to mean "much smaller in magnitude than at most of the other points.)
+
+```{r oak-ring-car-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "Point A. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "+neg & zero+", "neg & neg"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+
+
+```{r oak-ring-car-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "Point B. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "+neg & zero+", "neg & neg"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+```{r oak-ring-car-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "Point C. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "+pos & neg+",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "neg & zero", "neg & neg"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+```{r oak-ring-car-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "Point D. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "neg & zero", "+neg & neg+"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+```{r oak-ring-car-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "Point E. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "neg & zero", "+neg & neg+"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+
+```{r oak-ring-car-QA6, echo=FALSE}
+etude::choose_one(
+  prompt = "Point F. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "+pos & neg+",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "neg & zero", "neg & neg"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+```{r oak-ring-car-QA7, echo=FALSE}
+etude::choose_one(
+  prompt = "Point G. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "+zero & neg+",
+    "neg & pos", "neg & zero", "neg & neg"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+
+
+```{r oak-ring-car-QA8, echo=FALSE}
+etude::choose_one(
+  prompt = "Point H. $\\partial f/\\partial u$ and $\\partial f/\\partial u$?",
+  choices = c(
+    "pos & pos", "pos & zero", "pos & neg",
+    "zero & pos", "zero & zero", "zero & neg",
+    "neg & pos", "neg & zero", "+neg & neg+"
+  ), random_answer_order = FALSE, inline = FALSE
+)
+```
+

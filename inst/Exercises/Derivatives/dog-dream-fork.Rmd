@@ -1,0 +1,31 @@
+---
+chapter: "Derivatives"
+author: "Daniel Kaplan"
+difficulty: "XX"
+date: 2020-09-22 
+version: 0.1
+tags: [partial derivatives, second, third]
+id: dog-dream-fork
+---
+
+```{r dog-dream-fork-default, include = FALSE}
+library(etude)
+```
+
+`r etude::exercise_title()`      
+
+```{r echo=FALSE}
+knitr::include_graphics(system.file("images/p502-f2.png", package="math141Zexercises"))
+```
+
+1. Estimate a number for the derivative of the function $f(x,y)$ at the indicated point:
+
+    a. $\frac{\partial f}{\partial x}$ at A.
+    #. $\frac{\partial f}{\partial x}$ at B.
+    #. $\frac{\partial f}{\partial y}$ at A.
+    #. $\frac{\partial f}{\partial y}$ at B.
+
+#. Mark a point on the graph where both  $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ are very small in magnitude. Label the point with "small."
+#. Mark a point on the graph where both  $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ are very big in magnitude. Label the point with "big."
+
+

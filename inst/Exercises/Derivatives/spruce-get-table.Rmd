@@ -1,0 +1,90 @@
+---
+chapter: "none yet"
+title: "Title for spruce-get-table"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "spruce-get-table"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-09-21 
+tags: [first, second, third]
+id: spruce-get-table
+---
+
+```{r spruce-get-table-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+library(mosaic)
+library(mosaicCalc)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()`  You are walking along the red path from A to I.  At each of the marked points, say whether you are going uphill, downhill, or level.  (Use "level" is the slope is much smaller than at most of the other points.)
+
+```{r walkplot,echo=FALSE, warning=FALSE}
+f <- rfun( ~x|y, seed=672)
+data <- tibble(
+  t = seq(0:10),
+  x = c(-2,-1,0,1,1.5,1.3,1.0,0,-.5,-1.2,-1.9 ),
+  y = c(0,.75,1,1.2,.5,0,-.5,-1.0,-1.3,-1.5,-1.9)
+)
+
+tpts = seq(1,10,length=500)
+
+px = spliner(x~t, data=data)
+py = spliner(y~t, data=data)
+Path <- tibble(x = px(tpts), y = py(tpts))
+Points <- tibble(x = px(1:9), y = py(1:9), 
+                 label = c("A","B","C","D","E","F","G","H","I"))
+
+contour_plot(f(u, v) ~ u + v, domain(u = range(-2,2), v = range(-2,2))) %>%
+  gf_path(y ~ x, data = Path, color = "red") %>%
+  gf_label(y ~ x, data = Points, label = ~ label)
+```
+
+ 
+```{r crocodile-burn-rug-QA1, echo=FALSE}
+etude::choose_one(prompt = "Point A.", choices = c("Uphill","Downhill","+Level+"), random_answer_order=FALSE)   
+```
+
+```{r crocodile-burn-rug-QA2, echo=FALSE}
+etude::choose_one(prompt = "Point B.", choices = c("Uphill","+Downhill+","Level"), random_answer_order=FALSE)    
+```
+
+```{r crocodile-burn-rug-QA3, echo=FALSE}
+etude::choose_one(prompt = "Point C.", choices = c("Uphill","+Downhill+","Level"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA4, echo=FALSE}
+etude::choose_one(prompt = "Point D.", choices = c("Uphill","Downhill","+Level+"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA5, echo=FALSE}
+etude::choose_one(prompt = "Point E.", choices = c("+Uphill+","Downhill","Level"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA6, echo=FALSE}
+etude::choose_one(prompt = "Point F.", choices = c("+Uphill+","Downhill","Level"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA7, echo=FALSE}
+etude::choose_one(prompt = "Point G.", choices = c("+Uphill+","Downhill","Level"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA8, echo=FALSE}
+etude::choose_one(prompt = "Point H.", choices = c("+Uphill+","Downhill","Level"), random_answer_order=FALSE)     
+```
+
+```{r crocodile-burn-rug-QA9, echo=FALSE}
+etude::choose_one(prompt = "Point I.", choices = c("+Uphill+","Downhill","Level"), random_answer_order=FALSE)     
+```
+
+
+
