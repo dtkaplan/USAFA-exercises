@@ -1,0 +1,164 @@
+---
+chapter: "Accumulation"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, accumulation, third]
+id: fish-buy-sheet 
+---
+
+(ref:fish-buy-sheet) Exercise in file fish-buy-sheet
+
+```{r fish-buy-sheet-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Often you know something about how a quantity changes and want to figure
+out what the quantity is. For instance, it's easy to find the velocity
+of a car: look at the speedometer. But how do you turn this into
+information about the precision.
+
+-  The longitude problem and dead reckoning.
+
+But it's also helpful to think about derivatives because, often, they
+are simpler than the system itself. Example:
+
+-  Show two putative contour graphs of cost-per-child to educate a kid in school as a function of teacher salary M and class size S.
+    - One contour plot should have the contours running with a positive slope. 
+        plotFun( log(M / S) ~ M & S, M = range(0, 20),S = range(0, 20))
+    - The other should have the contours running with a negative slope.
+        plotFun( log(M + S) ~ M & S, M = range(0, 20),S = range(0, 20))
+
+- Which one is right? How should the contours be labeled?
+
+It's easy to think about how the cost should increase or decrease with either of the variables.
+
+Newton constructed a theory that related force to acceleration. But acceleration is related to velocity and velocity is related to position. Sometimes, force itself is a function of position (e.g. gravity) and velocity (e.g., air drag). One of the most important uses for the calculus is in translating among these different related quantities: acceleration, velocity, position. 
+
+The number of people who will get an infectious disease is related to the number of people who are infectious and the number of people who are susceptible. But the rate at which people get the disease is related to the number who have it at any given time and the number who recover.
+
+The rate at which predators capture prey relates both to the population of the predators and the prey, but it also sets a component of the change in the population of the prey.
+
+The country's deficit depends on the level of economic activity, but the level of economic activity seems to be influenced by the debt, which is the accumulated deficit.
+
+### Accumulation Examples
+
+General theme ... sometimes it's **easy** to measure things locally, but you want to know something globally. To do this, you need to accumulate the local into the global.
+
+#### Area of a Lake
+
+It's **easy** to see from a photograph at each point whether the lake is there or not.
+
+[Pokegama Lake near Grand Rapids, MN](http://dl.dropbox.com/u/5098197/Math135/Figures/pokegama-lake-google.png)
+
+
+Imagine a mathematical function of x and y that has a value of 1 when (x,y) is on the lake, and 0 when it is not. This is called an "indicator function." Imagine that you trace a line north-south (e.g., change y and hold x constant) and measure how much length of that line is covered by the lake. That tells you the amount of lake on that line, a function of x. Now add together that for every x. By accumulating all of the 1s, you find the area of the lake.
+
+#### Volume of a Lake
+
+It's **easy** to measure the depth at a point. This tells you the volume of a column of water at that point. Accumulate this over all the possible columns of water.
+
+#### Dead Reckoning
+
+Before the invention of precise time-keeping instruments, it was very hard to know position from east to west. But it was **easy** to measure velocity: through a knotted line overboard and count the number of knots that run by in a fixed period, say, 15 seconds. So you can know velocity over the course of the day. How do you turn this into position? Accumulate the velocity.
+
+#### Sampling the Population
+
+Locally, it's relatively **easy** to measure population density. Accumulate this to get an estimate of total population.
+
+[interactive density map](http://maps.howstuffworks.com/united-states-population-density-map.htm)
+
+
+#### Length of a Curve
+
+It's pretty easy to find the length of segments of a curve $f(x)$ if you have the derivative: $\sqrt{ (dx)^2 + (dx \times \frac{df}{dx})^2}$.
+
+How to accumulate this into the length of the curve? Do the example with a semi-circle: $f(x) = \sqrt{1-x^2}$
+
+    f = makeFun( sqrt(1-x^2)~x)
+    df = D(sqrt(1-x^2)~x)
+    ds = makeFun(sqrt(1+df(x)^2)~x) #segment with horiz. extent dx
+    S = antiD( ds(x)~x)
+    S(from=-1,to=1)
+    [1] 3.141593
+
+#### Integrals as Areas
+
+Plot of a function:
+
+    graph.paper( xticks=0:10, yticks=-5:5)
+    plotFun( 4*sin(2*pi*x/10)~x, x=range(0,10),add=TRUE)
+
+-   What is the slice? a vertical strip.
+-   Area of the slice is $dx$ times the height. So the integral is of the height.
+-   How to estimate areas: count the boxes. Find the units of a box.
+
+Show how to do it with `antiD( )`
+
+Some other integrals:
+
+-   Area of a circle. $\int_0^r 2 \pi r dr$
+-   Surface area of a sphere.
+
+$\int_0^{\pi} 2 \pi r \sin(\theta) r d\theta$
+
+-   Volume of a sphere:
+
+$2 \int_{0}^r \pi (r^2 - x^2) dx$ or as a sum of surface areas $ \int_0^r 4 \pi r^2 dr $
+
+### Bumps and S-functions
+
+New Model Functions
+
+-   Bump: The local position -- a gaussian with position "mean" and width "sd".
+-   S-function: The hillside -- cumulative of a gaussian.
+
+### Some Normal Theory
+
+(Save for an exercise.)
+
+What's the normalization for \$e^{-\frac{1}{2} x^2/\sigma^2}\$?
+
+According to theory, the total amount of stuff is $\sqrt{2 \pi \sigma^2}$.
+
+Let's check that out:
+
+    bell.shape = makeFun(exp(-0.5*x^2/9)~x)
+    BELL.SHAPE = antiD(bell.shape(x)~x)
+    plotFun(BELL.SHAPE(x)~x,x=range(-10,10))
+    BELL.SHAPE(Inf) - BELL.SHAPE(-Inf)
+    [1] 7.519885
+    sqrt(2*pi*9)
+    [1] 7.519885
+
+What's the average distance from the center ($x=0$)?
+
+    > distfun = function(x) {abs(x)*bell.shape(x)/7.519885}
+    > DISTFUN = antiD(distfun)
+    > DISTFUN(100) - DISTFUN(-100)
+    [1] 2.393654
+
+What's the average **square distance** from the center?
+
+    > distfun = function(x) {x^2*bell.shape(x)/7.519885}
+    > DISTFUN = antiD(distfun)
+    > DISTFUN(100) - DISTFUN(-100)
+    [1] 9
+
+That's the source of the parameterization with $\sigma$.
+
+### Flath
+
+-   Examples of integration problems
+-   Integration of densities
+    -   Opening example: Show map of US with population density given state by state. Ask: use this info to find the population of the US. Interpret as an integral.
+    -   Cars on a highway, with density (cars per 100 ft) graphed vs distance (miles). In one section there is a major slowdown due to accident, etc. How many cars on the road?
+    -   Population density given by a contour diagram.
+-   Graph given of number of workers on a construction job vs time. Workers come and go.
+    -   What could the integral even mean? What are its units? (man-hours, worker-hours). Why would anyone care (payroll)
+    -   First figure out total man-hours to complete the job.
+    -   Now make table: worker hours up to time t for t=0, 1, 2, 3, 4, 5. Each is a separate definite integral. Table accumulates.
+    -   The table hints at a function. That function is antiD. Graph antiD and discuss.
+    -   What is the derivative of the accumulation graph? Why? Brief discussion of fundamental theorem.
+    
+

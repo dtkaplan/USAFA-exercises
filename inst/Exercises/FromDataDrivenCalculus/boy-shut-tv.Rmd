@@ -1,0 +1,46 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [first, second, third]
+id: boy-shut-tv 
+---
+
+(ref:boy-shut-tv) Exercise in file boy-shut-tv
+
+```{r boy-shut-tv-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Functions of two variables:
+
+1.  Motivation: Functions can have many simultaneous inputs. We're going to try to develop some techniques for representing and working with such functions. Overall strategy, build on your intuition for functions of two variables and use this to introduce analytic and formal techniques that can be applied to functions of more than two variables. We won't go very far with such functions, since this is an introductory course.
+2.  Examples
+    -   [Body Mass Index](http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Body_mass_index_chart.svg/395px-Body_mass_index_chart.svg.png)  from [article](http://en.wikipedia.org/wiki/Body_mass_index)
+        
+    -   [Topographical map](http://etc.usf.edu/clipart/46200/46290/46290_contour_map.htm)
+        
+    -   [Housing prices in Houston](http://themacklins.net/images/blog_images/Apr_12_2008/map1_resized.jpg) from [article](http://themacklins.net/blog.php?userid=Paul&postid=11)
+        
+    -   [pH of acid rain](http://www.emc.maricopa.edu/faculty/farabee/biobk/biobookcycles.html)
+        
+    -   [Sulfur dioxide on the island of Hawaii](http://www.google.com/imgres?imgurl=http://osu.orst.edu/dept/ncs/photos/kilauea.jpg&imgrefurl=http://oregonstate.edu/dept/ncs/newsarch/2005/Feb05/volcano.htm&usg=__QhKCZhNbeigUZfbZ-SlYLe1KzJU=&h=717&w=800&sz=512&hl=en&start=0&zoom=1&tbnid=taD9cRBV48y6SM:&tbnh=127&tbnw=142&prev=/images%3Fq%3Dkilauea%2Bvolcano%2Bcontour%2Bdiagram%2Btopographical%2Bmap%26um%3D1%26hl%3Den%26rlz%3D1C1CHFX_enUS393US393%26biw%3D1366%26bih%3D643%26tbs%3Disch:1&um=1&itbs=1&iact=hc&vpx=610&vpy=168&dur=1292&hovh=213&hovw=237&tx=170&ty=144&ei=ce-fTKGQIN_nnQfD7oSIDQ&oei=ce-fTKGQIN_nnQfD7oSIDQ&esq=1&page=1&ndsp=25&ved=1t:429,r:4,s:0)
+        
+    -   [Strength of a radio signal](http://wmbr.mit.edu/www/contours)
+    -   [Ozone depletion](http://www.esrl.noaa.gov/gmd/ozwv/dobson/papers/wmobro/observed.html#fig10)
+        
+    -   [Mona Lisa](http://www.msnbc.msn.com/id/15029288/)
+        
+    -   [Antarctic ice flow speed](http://www.theoildrum.com/uploads/12/rapley_ice_flow.png) from [article](http://www.theoildrum.com/story/2006/2/3/0394/97545)
+        
+    -   [earthquake risk map](http://www.mgs.md.gov/esic/brochures/gif/eqfig6.gif) showing maximal horizontal ground acceleration from [article](http://www.mgs.md.gov/esic/brochures/earthquake.html)
+        
+    -   [Tornadoes in Texas](http://web2.airmail.net/danb1/TX2a1.jpg) from  [article](http://web2.airmail.net/danb1/tornado.htm)
+        
+    -   [Thunderstorm days per year](http://ecmweb.com/mag/706ecmLPfig2.jpg) from [article](http://ecmweb.com/mag/electric_lightning_strikes/)
+        
+    -   [Temperature at North Pole](http://www.originlab.com/www/products/images/temperature_distribution_depicted_in_a_polar_contour_plot_498px.png) from [article](http://www.originlab.com/index.aspx?go=Products/Origin/Graphing/Contour)
+        
+    -   [Noisy events](http://www.infrastructure.gov.au/images/aviation/Page32.jpg) near airport from [article](http://www.infrastructure.gov.au/aviation/environmental/transparent_noise/guidance/part2.aspx)
+    

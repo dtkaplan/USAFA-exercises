@@ -1,0 +1,193 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [notes, conversion, estimation]
+id: hamster-become-window 
+---
+
+(ref:hamster-become-window) Exercise in file hamster-become-window
+
+```{r hamster-become-window-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Conversion and estimation
+
+Expansion and Contraction
+
+Some problems can be solved by a clever choice of dimension conversion. This happens when certain rates or quantities are known, and these can be combined to produce something that is not directly known. ([Kaplan](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") 18:23, 30 August 2010 (EDT))
+
+Text resource:
+[Quesstimation](http://www.amazon.com/Guesstimation-Solving-Worlds-Problems-Cocktail/dp/0691129495/ref=sr_1_1?s=books&ie=UTF8&qid=1283287434&sr=1-1)
+ Chap. 1.
+
+#### Example: How much income does a full-time worker make in a year?
+
+Income equals wage rate (say, dollars per hour) times the number of hours worked. Full-time workers work about 40 hours a week, working for 52 weeks per year. So 2080 hours per year. If the wage is \$15 per hour, then income is \$31,200 per year. 
+
+#### Example: How much money does it cost to light a bulb that's been left burning inadvertently for a month?
+
+dollars = (dollars per kwh) x (kw) x (hours)
+
+There are 24 hours in a day and 30 days in a month, so 720 hours in a month.
+
+A typical bulb uses 100 watts, or 0.1 kw
+
+Electricity costs about 0.10 dollars per kwh. Put it together to find the total cost.
+([Kaplan](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") 18:23, 30
+August 2010 (EDT))
+
+#### Example: How much carbon (in the form of CO2) is produced by automobiles in the US?
+
+At first glance, this might seem completely unknown without specific knowledge. Here is an expansion that provides this quantity in terms of others that are more accessible. Let C be "carbon". 
+
+Total C per year = (Number of cars in US) x (C per car per year)
+
+You have a good chance of finding an estimate of the first quantity, about 200 million. Breaking down the second term further
+
+C per car per year = (C per mile) x (miles per car per year)
+
+The second term is also a matter of common experience, about 10,000 miles per car per year. Expanding the other term
+
+C per mile = (C per gallon) x (gallons per mile)
+
+Cars get something like 20 miles per gallon, so 0.05 gallons per mile.
+
+Now all the quantities are known but one:
+
+Total C per Year = 200,000,000 x 10,000 x 0.05 x (C per gallon)
+
+The chemists can tell you the last one: almost all of gasoline is carbon. (A reasonable approximation is 12/14 of gasoline, by weight, is carbon, since there are typically two hydrogen atoms per carbon atom in the hydrocarbon chain.) Find the weight of a gallon of gasoline and you'll have an approximation to (C per gallon). ([Kaplan](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") 18:23, 30 August 2010 (EDT))
+
+The goal is a very rough order of magnitude estimate/guesstimate, but the estimate is not a guess. The estimate is the result of a rational procedure implemented with rough but not unreasonable simplifying assumptions, including rough but not unreasonable assumptions about data values.
+
+The general method uses just three techniques:
+
+- Make oversimplifying assumptions
+- Break the big problem into smaller problems
+- Make estimates or even guesses to solve the smaller problems. Do this with rough data, gotten from readily available sources.
+
+Oversimplifying assumptions may be needed to break the big problem into small problems.
+
+When estimating or guessing - a good plan is to aim for an order of magnitude, a power of ten. An answer to a serious question that is the right order of magnitude (or close) is considered a success. We want to know, for example, "are we talking millions or billions?" Just answering that question may be useful.
+
+When working through a Fermi problem that seems impossible, you can sometimes make headway simply by asking, "What information would help me solve the problem?" Even this question may seem difficult, but a creative answer could be the key to the whole problem.
+
+If more accuracy is required, a very approximate order of magnitude solution of a Fermi problem may serve as the starting point for a much more detailed and tedious analysis in subsequent work. 
+
+[Estimation cartoon](https://xkcd.com/718/)
+
+Estimation of scale. How best to state the range of an unknown quantity. Sometimes people think that it's a matter of 1 to 9, but it's really about 0 to 9, and 0 can be much, much smaller than 9, while 1 can only be 1/9th as large as 9. It could have been 0.1, or 0.001 or 0.00001.
+
+It's conventional to ask the question first in terms of the position of the leading digit relative to the decimal point. This is related to the log10 of the number.
+
+Question: How much CO$_2$ is produced by cars in the US each year? Choices
+
+$10^1$million pounds $10^2$, ...
+
+Here's an answer
+
+> Carbon dioxide emissions from personal vehicles in the United States equaled 314 million metric tons in 2004. That much carbon could fill a coal train 55,000 miles long---long enough to circle the Earth twice.
+
+CO_2_ is product of number of cars x gallons of gas per car x mass of a gallon x relative mass of C to CO_2_. (which is 32/12) (we'll ignore hydrogen, but we can fix this) 
+gas per car = miles per car / miles per gallon
+
+#### An Example from Fermi
+
+From [Enrico Fermi's report](http://www.radiochemistry.org/history/trinity/01_fermi.shtml)
+ ...
+
+On the morning of the 16th of July, I was stationed at the Base Camp at Trinity in a position about ten miles from the site of the explosion.
+
+> The explosion took place at about 5:30 A.M. I had my face protected by a large board in which a piece of dark welding glass had been inserted. My first impression of the explosion was the very intense flash of light, and a sensation of heat on the parts of my body that were exposed. Although I did not look directly towards the object, I had the impression that suddenly the countryside became brighter than in full daylight. I subsequently looked in the direction of the explosion through the dark glass and could see something that looked like a conglomeration of flames that promptly started rising. After a few seconds the rising flames lost their brightness and appeared as a huge pillar of smoke with an expanded head like a gigantic mushroom that rose rapidly beyond the clouds probably to a height of the order of 30,000 feet. After reaching its full height, the smoke stayed stationary for a while before the wind started dispersing it.
+
+> About 40 seconds after the explosion the air blast reached me. I tried to estimate its strength by dropping from about six feet small pieces of paper before, during and after the passage of the blast wave. Since at the time, there was no wind I could observe very distinctly and actually measure the displacement of the pieces of paper that were in the process of falling while the blast was passing. The shift was about 2 1/2 meters, which, at the time, I estimated to correspond to the blast that would be produced by ten thousand tons of T.N.T. [1](http://www.radiochemistry.org/history/trinity/01_fermi.shtml)
+
+
+#### Practice Fermi Problem
+
+Who creates more CO$_2$, a person who drives a hummer, or a student who goes to a school across the country, say Minnesota and LA? (For instructors: a commercial jet uses roughly 1 liter per 20 km for a passenger.  [2](http://en.wikipedia.org/wiki/Fuel_efficiency_in_transportation#Aircraft)
+
+A framing of the question that puts it into a plausible scenario: "Late one night at Dunn Bros Coffee you and a classmate are being environmentally correct. You criticize your friend for driving a Hummer to campus every day. She points out that you fly to and from Los Angeles to St Paul every semester, which she says is worse. Well - is it?
+
+List information you would want in order to determine which of you is responsible for putting more CO2 into the atmosphere and explain how you would use it. "
+
+#### Climbing Video and Dimensional Analysis
+
+Did an experiment with a pendulum of length 1m. The period was 2 seconds. Catherine Destivelle's swing lasts about 5 seconds. [video here](http://www.ukclimbing.com/news/item.php?id=49981f)
+
+
+We know that $Period = A \sqrt{length/g}$. Taking the ratio of periods
+
+$P_{Catherine} / P_{pendulum} = \sqrt{L_{Catherine}/1m} = 5/2$. So her pendulum length is 6.25 meters.
+
+#### Probability of a re-entering object striking a person
+
+How close does it have to come? Might depend on what angle it's coming down at, but it's likely to be almost vertical unless it is very, very large. So call it a cross section of $1 m^2$. The radius of the earth is 6 378 000 m, so the surface area is $4 \pi 6.4e6 \times 6.4e6$ gives 5e14 square meters. The object will hit one of these square meters. If we assume that 7e9 people in the world, and that they are evenly spread out, then 7e9/5e14 = 1/70000. If there were 20 objects falling from the satellite, and we assume these are scattered, then we get 20/70000 = 1/3500 -- roughly what NASA got.
+
+#### Fermi problems
+
+**Example**: what's the power of the sun, starting from 250 watts/meter^2^ on farmer Brown's cornfield. It was amazing how difficult students found this. I let them struggle. One needed the area of the earth, another needed the volume of the sun, another needed the distance from the earth to the sun so he could use the formula $4/3 \pi r^3$. I was just staggered at the inability to see a simple way to approach this. NONE of them knew a figure for the Earth-Sun distance. Once one finally figured out that they needed a surface area of the right sphere, the class shouted out $4/3 \pi r^3$ - which led to a great discussion of whether this could be right in terms of dimensions. 
+-   DTK suggests: ask them what is the relationship between the volume $4/3 \pi r^3$ and the surface area $4 \pi r^2$.
+
+
+**Fermi problems in the news**: The earlier example on the probability of satellite debris striking a person suggests keeping an eye out for news reports that can be interpreted as Fermi problems and used in class.
+
+## Monday Oct 3 
+
+- Ask about the Fermi problems from the hand-out. 
+- A class-wise Fermi problem: Taking all the paper every produced, how many times would it cover the surface of the earth? Or, taking all the US paper money in circulation, how many times would it cover the surface of the earth? Or, the US GDP is about dollars. If this were printed in 1-dollar bills, how many times would it cover the earth?
+    - One student observed that economic data is available on the yearly world production of paper: about 300 million tonnes. This can be converted to an area by making use of the density of paper to create a volume, then dividing by the thickness of paper. 
+
+Opening activity: I brought in a bag of lentils. Question for the class: How many lentils would it take to fill up the classroom, floor to ceiling, wall to wall? Answer to the nearest power of ten. Students work in groups.
+
+Some resources for instructors on Fermi Problems:
+
+A good websitec[1](http://www.vendian.org/envelope/dir0/fermi_questions.html)
+
+
+See [2](http://www.pnas.org/content/106/51/21465.long) where there is a plea for Fermi problems in biology and included are three Fermi type case studies in cell biology that are pretty interesting. The authors say:
+
+> In our opinion, the time is ripe for the emergence of a similar tradition (i.e. Fermi problems) in the biological setting because as we argue throughout the remainder of the article such estimates can reveal gaps in our understanding, relate quantities that were previously not known to be related and serve as the basis for an intuitive understanding of the significance of numbers that result from measurements.
+
+> Concomitant with the development of the BioNumbers web site,  [3](http://bionumbers.hms.harvard.edu/KeyNumbers.aspx) we have been engaged in trying to develop a systematic set of Fermi problems for biology (i.e., BioEstimates) (28) that have the same reach across scales as are represented in the BioNumbers database. Examples that illustrate this style of thinking in the biological setting are explored in the case studies throughout the remainder of the article.
+
+
+### Origins of the Name
+
+[I think](/wiki/mosaic/index.php/User:Flath "User:Flath") that perhaps Philip Morrison first named these things "Fermi Questions".
+
+American Journal of Physics -- August 1963 -- Volume 31, Issue 8, pp.
+626
+
+Fermi Questions
+
+Philip Morrison
+
+Laboratory of Nuclear Studies, Cornell University, Ithaca, New York
+
+Elsewhere, Phil Morrison described the way physics infused Fermi's every waking moment:
+
+I want to mention the "Fermi Questions." Fermi was the first physicist to my knowledge who enjoyed doing physics out loud walking through the hall. ... We were walking though the wooden barracks-like structure of the Theoretical Physics Building at Los Alamos, and as we walked, the sounds of our footsteps reflected off the high surface - wood, no acoustic treatment - and seemed to bounce throughout. And he said, ... "How far do you think our footsteps can be heard in this building." And then he began to tell me what the yield of sound would be from the impulse, how far that would go, how you have to worry about the wood conduction and the air passage. And pretty soon, by the end of the hall, he had *an answer*. It was a fast calculation. Sounded very reasonable. And when I tried to recalculate it, I got something like the same result - slowly and looking at the numbers over and over again.
+
+This was my idea of a Fermi Question: Turn every experience into a question. Can you analyze it? If not, you'll learn something. If you can, you'll also learn something.
+
+### Chemistry example
+
+150M cars x 10000 miles / 20 mpg = 150M x 500 g = 75000M g
+
+75000M x 6 lbs x 2.5 = 562,500,000 tons per year.
+
+Fixing the gasoline story iso-octane = C8H18 n-heptane = C7H16
+
+gasoline is 96/114 parts carbon by weight. CO$_2$ is 12/32 parts carbon. So 1 lb of gasoline will produce 32/12 \* 96/114 lbs of CO2, suggesting a weight of 2.24 lbs per pound of gasoline.
+
+```{r hamster-become-window-1, echo = FALSE}
+
+```
+
+```{r hamster-become-window-2, echo = FALSE}
+
+```

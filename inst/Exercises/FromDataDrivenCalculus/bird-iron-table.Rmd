@@ -1,0 +1,21 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [notes, parameters, third]
+id: bird-iron-table 
+---
+
+(ref:bird-iron-table) Exercise in file bird-iron-table
+
+```{r bird-iron-table-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Common function families and their parameters
+
+1.  $m x + b$: slope and intercept
+#.  $A sin( \frac{2\pi}{P} t ) + C$: amplitude A, period $P$, and vertical offset $C$. (There's also a phase, a starting point, a horizontal offset. But we won't worry about that right now.)
+#.  Linear functions: parameterization $f(x,y) = a x + b y + c$ and contour plot (parallel lines)
+#. Exponentials: time constant or 

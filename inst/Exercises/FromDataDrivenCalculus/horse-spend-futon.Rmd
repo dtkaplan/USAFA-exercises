@@ -1,0 +1,49 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [exercise, linear, exponential, linear combinations]
+id: horse-spend-futon 
+---
+
+(ref:horse-spend-futon) Exercise in file horse-spend-futon
+
+```{r horse-spend-futon-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Consider world swimming records in the 100m freestyle race. 
+
+```{r horse-spend-futon-1, echo = FALSE}
+gf_point(time ~ year | sex,  data = mosaicData::SwimRecords)
+```
+
+The improvement in record time (that is, the decline) might be modeled linearly or exponentially. Note these aspects of constant, linear and exponential functions:
+
+Constant
+: Never changes
+
+Linear
+: If the slope is nonzero, the linear function must eventually cross zero.
+
+Exponential
+: Exponential decline must eventually reach zero (but doesn't cross).
+
+Consider some basic facts about the possibilities for world record swim times:
+
+i. Will they reach zero?
+#. If so, will they cross zero?
+
+1. How can you put together a linear combination of a constant and an exponential function in order to satify  your answers to i and ii.
+2. What would be the parameters? Use `fitModel()` and do the calculations for males and females separately.
+3. Based on your parameters, will the world record for women eventually reach or surpass that of men?
+
+
+<!--begin-answer-->
+```{r}
+fitModel(time ~ A + B * exp(- (year-1950) / tau), data = mosaicData::SwimRecords %>% filter(sex == 'F'),
+         start  = c(A  = 50,  B = 30,  tau=20) )
+```
+<!--end-answer-->
+

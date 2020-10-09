@@ -1,0 +1,83 @@
+---
+chapter: "Local vs Global"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, global vs local, third]
+id: bear-look-cotton 
+---
+
+(ref:bear-look-cotton) Exercise in file bear-look-cotton
+
+```{r bear-look-cotton-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Integration and differentiation are related to global versus local.
+
+What sort of function is appropriate when describing, say, the probability that something is near a particular point?
+
+-   Square-wave pulse. But derivative is zero everywhere
+-   Triangle pulse. Derivative is non-zero where the particle is, but not smooth: second derivative doesn't exist.
+-   Canonical "Normal pulse": $e^{-(x-m)^2/2s^2}$ parameterized by
+    -   $m$ -- location of center, called the mean
+    -   $s$ -- spread, called the "standard deviation"
+
+If we want it to be a probability, we should "normalize" it. Find the area by integration. Normalization factor turns out to be $1/\sqrt{2 \pi s^2}$
+
+Confirming this:
+
+    f = plotFun( exp(-(x-m)^2/(2*s^2))~x,m=1,s=2)
+    F = antiD(f(x)~x,m=1,s=2)
+    F( from=-Inf, to=Inf)
+    [1] 5.013257
+    sqrt(2*pi*4)
+    [1] 5.013257
+
+Another use for Local Functions ... suppose we want to describe something that is increasing from zero amount and then levels off. The derivative should be small, then big, then small vanishing to zero. 
+
+[Tom's demo](/wiki/mosaic/index.php/Demo_for_Tom_Halverson "Demo for Tom Halverson")
+
+### S curve
+
+Integrate the normal bump to get an S-curve
+
+    Sfun = antiD( (1/sqrt(2*pi*s^2))*exp(-(x-m)^2/(2*s^2))~x)
+    plotFun(Sfun(x,m=1,s=2,from=-Inf)~x, x=range(-5,5))
+
+Try changing $m$ and $s$ to get different shapes.
+
+Examples of applications:
+
+-   Adoption of technology
+-   Conversion in a catalyzed reaction, as a function of amount of enzyme
+-   Oxygen saturation of blood as a function of atmosphere oxygen content
+-   Learning curve as a function of time or effort
+-   Car velocity from a standing start
+-   Population when there is a carrying capacity
+-   Total oil produced by humankind
+-   Probability versus exposure
+-   Benefits of health expenditure
+
+### The Logistic S-curve
+
+$ e^b / (1+e^b) $ with $b = s(x-m)$
+
+    plotFun( exp(s*(x-m))/(1+exp(s*(x-m)))~x,s=2,m=1,x=range(-5,5))
+
+### Using an S-curve
+
+The [traffic light problem](http://dl.dropbox.com/u/5098197/Math135/In-Class/road-capacity-activity.pdf) . State velocity as a function of time as an S function, then integrate this to get position versus time.
+
+
+
+
+Variety of examples. Compare the shape (concavity) of the S coming from square and triangular bumps. Look at the bump coming from the S $x^2/(1+x^2)$ for $x > 0$. Normal density and cumulative.
+
+-   Traffic light problem. Ask students to collect data and report back to class on Wednesday.
+
+### Returning to the relationship between derivatives and integrals
+
+Use mDerivs( ) to show relationship between anti-derivatives and derivatives, and that the anti-derivative has two arguments: to and from. Example:
+
+    mDerivs( sin(2*pi*x/5) ~ x )

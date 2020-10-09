@@ -1,0 +1,71 @@
+---
+chapter: "Taylor polynomials"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, taylor polynomials, third]
+id: crocodile-shut-sofa 
+---
+
+(ref:crocodile-shut-sofa) Exercise in file crocodile-shut-sofa
+
+```{r crocodile-shut-sofa-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Historical aside
+
+Taylor Series
+
+[Brook Taylor's](http://en.wikipedia.org/wiki/Brook_Taylor)  idea: find the polynomial that matches a function and it's derivatives at a point. His direction: make it a high-order polynomial. Another approach: find the best RMS polynomial over some range.
+
+-   Idea of accumulating the change in the derivative to get the derivative, then accumulate that to get the function. Example: position versus time of a ball.
+-   Generalization: Construct a function whose derivative matches.
+
+$g(x+h) = f(x) + f'(x) h + \frac{f*(x)}{2} h^2+ \frac{f'*(x)}{3!} h^3 + \frac{f^{(4)}(x)}{4!} h^4 + ...$ Differentiate this with respect to $h$ and evaluate at $h=0$. Each of the derivatives of $g(x + h)$ matches the derivative of $f(x)$, including the zeroth derivative.
+
+#### Why Do This?
+
+##### Example: Turning division into multiplication
+
+Suppose you have a division problem, $a/b$. Division is more difficult than multiplication. Wouldn't it be nice if we could turn this into a multiplication problem. How, model $1/x$ with a polynomial in $x$.
+
+Taking $f(x) = 1/x$ around $x=1$, the derivatives are:
+
+-   $f(x=1) = 1$
+-   $f'(x=1) = -\frac{1}{x^2} = -1$
+-   $f*(x=1) = \frac{2}{x^3} = 2$*
+
+So the polynomial approximation, to 2nd order, is $f(x) \approx 1 - (x-1) + \frac{2}{2}(x-1)^2 = 3 - 3x + x^2$
+
+    plotFun(1/x ~ x, x=range(.5,2))
+    f2 = plotFun(3 - 3*x +x^2 ~ x, col="red",add=TRUE)
+
+To third order:
+
+-   $f**(x=1) = -\frac{6}{x^4} = -6$**
+
+so the third-order Taylor polynomial is: $4 - 6x + 4x^2 - x^3$
+
+    f3 = plotFun( 4 - 6*x +  4*x^2 - x^3 ~ x, add=TRUE, col="green")
+
+How close is the approximation to the real thing? Relative and absolute
+error.
+
+### Demonstration
+
+Quantifying the difference between a function and its approximation
+
+-   Sum of square residuals, e.g. integral of the square of the difference over the domain of interest.
+-   How least squares minimizes this.
+
+    mTaylor( exp(-0.2*x)*sin(x)~x )
+
+-   Integrating the bump function. How to use local approximations to find the integral of the normal bump function....
+
+    mTaylor( 2/sqrt(pi)*exp(-t^2)~t)
+
+Which is better?
+
+-   [Quiz on Taylor Series](http://numericalmethods.eng.usf.edu/mcquizzes/01aae/quiz_01aae_taylorseries.html?Q1=V2&Q2=V2&Q3=V3&Q4=V4&Q5=V5&Q6=V6&btncheck=Check+my+answers)
+    

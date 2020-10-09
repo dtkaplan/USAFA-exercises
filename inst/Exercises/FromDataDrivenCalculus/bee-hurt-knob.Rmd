@@ -1,0 +1,24 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [notes, linear, functions]
+id: bee-hurt-knob 
+---
+
+(ref:bee-hurt-knob) Exercise in file bee-hurt-knob
+
+```{r bee-hurt-knob-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: **Linear Functions** 
+
+You all know about linear functions: $y = m x + b$. For our purposes, what's important is
+
+1.  There are two parameters: a "slope" and an intercept.
+2.  They are a good way to represent or approximate other functions.
+3.  The "slope" tells how sensitive the output is to changes in the input. If the slope is zero, then the output does not vary with the input, which is a perfectly sensible and potentially important kind of relationship even if not a terribly interesting one. It's the relationship of "the output and the input aren't connected with one another."
+4.  These are arguably the most important sort of models of relationships -- certainly the most common. Very often, they get generalized to multiple inputs, e.g., $y = m_1 x_1 + m_2 x_2 + m_3 x_3 + b$ where the inputs have been written $x_1, x_2, x_3$. Notice that there are several slopes -- one for each input -- but always just one intercept.
+5.  Digression: Strictly speaking, these are "affine" functions. Linear functions always have an intercept of zero. Sometimes I call the $mx + b$ functions "straight-line" functions.

@@ -1,0 +1,94 @@
+---
+chapter: "Directional and partial derivatives"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, derivatives, partial]
+id: fish-lie-chair 
+---
+
+(ref:fish-lie-chair) Exercise in file fish-lie-chair
+
+```{r fish-lie-chair-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: A derivative is a function. In general, its value depends on the inputs.
+
+-   For any set input, the derivative function gives the slope -- rise over run -- of some other function, the function from whence it is "derived", at the value of those inputs.
+-   The arguments to the derivative are the same as the arguments to the original function.
+
+#### "Directional" and Partial Derivatives
+
+For functions of multiple variables, you have to say something about the direction of the "run."
+
+##### Example: an arbitrary function
+
+    f1 = practice.max(seed=893)
+    plotFun(f1(x,y)~x&y,x=range(-3,3),y=range(-3,3))
+
+What's the slope at $(x=1,y=0)$?
+
+-   Move one unit to the right.
+-   Move one unit up.
+-   Move one unit to the northwest.
+
+Are the answers the same?
+
+Problem: How do you measure the "run" if it is not along one of the  axes? The units of x and y don't necessarily allow you to add them.
+
+The **partial derivative** is the derivatives when the run is taken parallel to one of the axes. The notation is $\frac{\partial f}{\partial y}$ for the run along the $y$ axis.
+
+Looking at the derivative functions (put them up beside the original):
+
+-   $\frac{\partial f}{\partial x}$
+
+    df1.dx = D(f1(x,y)~x)
+    plotFun(df1.dx(x=x,y=y)~x&y,x=range(-3,3),y=range(-3,3))
+
+-   $\frac{\partial f}{\partial y}$
+
+    df1.dy = D(f1(x,y)~y)
+    plotFun(df1.dy(x=x,y=y)~x&y,x=range(-3,3),y=range(-3,3))
+
+Wed Oct 19
+----------
+
+Review:
+
+-   A derivative is a function. In general, its value depends on the inputs.
+-   For any set input, the derivative function gives the slope \-- rise over run -- of some other function, the function from whence it is "derived", at the value of those inputs.
+-   The arguments to the derivative are the same as the arguments to the original function.
+
+#### "Directional" and Partial Derivatives
+
+For functions of multiple variables, you have to say something about the direction of the "run."
+
+##### Example: an arbitrary function
+
+    f1 = practice.max(seed=893)
+    plotFun(f1(x,y)~x&y,x=range(-3,3),y=range(-3,3))
+
+What's the slope at $(x=1,y=0)$?
+
+-   Move one unit to the right.
+-   Move one unit up.
+-   Move one unit to the northwest.
+
+Are the answers the same?
+
+Problem: How do you measure the "run" if it is not along one of the axes? The units of x and y don't necessarily allow you to add them.
+
+The **partial derivative** is the derivatives when the run is taken parallel to one of the axes. The notation is $\frac{\partial f}{\partial y}$ for the run along the $y$ axis.
+
+Looking at the derivative functions (put them up beside the original):
+
+- $\frac{\partial f}{\partial x}$
+
+    df1.dx = D(f1(x,y)~x)
+    plotFun(df1.dx(x=x,y=y)~x&y,x=range(-3,3),y=range(-3,3))
+
+- $\frac{\partial f}{dy}$
+
+    df1.dy = D(f1(x,y)~y)
+    plotFun(df1.dy(x=x,y=y)~x&y,x=range(-3,3),y=range(-3,3))

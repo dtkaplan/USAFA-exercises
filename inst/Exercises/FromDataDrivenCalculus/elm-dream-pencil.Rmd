@@ -1,0 +1,189 @@
+---
+chapter: "Curve Fitting"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, linear algebra, curve fitting]
+id: elm-dream-pencil 
+---
+
+(ref:elm-dream-pencil) Exercise in file elm-dream-pencil
+
+```{r elm-dream-pencil-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Linear Curve Fitting
+
+Work through the examples in the [StartR on Linear Curve
+Fitting](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-StartR-Curve-Fitting-and-Linear-Algebra/AC-StartR-Curve-Fitting-and-Linear-Algebra-A.html?access=AC6)
+
+
+Main ideas:
+
+-   Express one function as a linear combination of other given functions. Or as close to such a linear combination as possible.
+-   Represent a function as a set of points: x and y. This has the effect of reformulating "function approximately equal to linear combo of functions" as "vector approximately equal to linear combo of vectors"
+-   Measure "closeness" as sum of square residuals.
+-   Find parameters to bring the function as close as possible -- projection.
+
+#### Nonlinear Curve Fitting
+
+We're going to use the program `mFitExp`. It does the linear algebra part of things automatically, leaving for the user to select the nonlinear parameters with a slider.
+
+Here's an example from the Income-Housing data. Note that it's important to rescale the independent variable in order not to exceed the capacity of floating point numbers
+
+```r
+inc <- fetchData("Income-Housing.csv")
+inc$inc <- inc$Income/10000
+mFitExp( TwoVehicles ~ inc, data = inc)
+```
+
+- It starts with just the constant selected.
+- Try adding in the linear term and the logarithmic term. Neither of these has a nonlinear parameter, so everything is automatic.
+- Add in the exponential term (and take out the linear and logarithmic term). Adjust k to make the sum of square residuals as small as possible.
+- [Tide Data](http://tidesandcurrents.noaa.gov/data_menu.shtml?bdate=20110801&edate=20110831&wl_sensor_hist=W1&relative=&datum=6&unit=1&shift=g&stn=1612404+FORD+ISLAND%2C+FERRY+DOCK%2C+PEARL+HARBOR%2C+HI&type=Historic+Tide+Data&format=View+Data)
+    
+
+Wed Oct 12
+----------
+
+- Trace through history of record players: analog recording
+- Literal digital transposition as found on CDs
+- Projection of the actual sound onto a smaller dimensional set of vectors: MP3 file.
+
+#### Overall Outline
+
+- Why is a function like a vector? If we agree on a set of input values, the function is represented by the set of corresponding outputs: a vector.
+- What does a linear combination of functions look like?
+- Contest. Draw two different pairs of vectors, a and b:
+    1. arrows in two dimensions
+    2. two functions: a constant (a) and a sine (b) , graph these
+        - Set up a contest between two students: take the linear combinations 2a, -b, a+b, a+2b
+        - Some examples of linear combinations of functions. Use this manipulate function ...
+
+```r
+manipulate(plotFun(A*sin((2*pi/3)*T) + C ~ T, T=range(0,10),
+           C=one,A=two,ylim=c(-10,10)),
+           one=slider(-10,10),two=slider(-10,10))
+```
+
+- Curve fitting
+    - What the residuals look like on a graph. The amount of ink in  `mLineFit`.
+- Activity: Fit a line to some data. Then examine the sum of square
+    - Demo with the `mLineFit`
+    - Note that the minimum for RMS error is fairly broad. Some of statistics has to do with this.
+- Activity: Generate 5 points of x and y using `rnorm(5)`. Fitpolynomials of order 0, 1, 2, 3, 4 to them. You can see the graph going through the points when you do a 4th order polynomial.
+- Activity: Generate 6 points of x, y, and z. Fit polynomials of order 0, 1, and 2 to them. Plot these out and find the values of the function at the actual points.
+- Activity: Generate 1000 random x points. Set `y <- 3 - 2\*x + 4\*x^2 + rnorm(1000)`. Plot it out. Then fit the curve and show that you get back the stated coefficients.
+
+```r
+x <- runif(1000)
+y <- 3 - 2*x + 4*x^2 + rnorm(1000)
+plot(y  ~ x)
+project(y ~ 1 + x + I(x ^ 2))
+```
+
+-   Linear combinations of a sine and a cosine give the various phases of sines and cosines.
+
+```r
+manipulate(plotFun(A*sin((2*pi/3)*T) + B*cos((2*pi/3)*T) + C ~ T, 
+           T=range(0,10),
+           C=one,A=two,B=three,
+           ylim=c(-10,10)),
+           one=slider(-10,10),two=slider(-10,10),three=slider(-10,10))
+```
+
+#### Connection between Functions and Vectors
+
+```r
+f1 <- plotFun( A*exp(k*t)~t, t=range(-2,3),A=4,k=.1)
+f2 <- plotFun( C ~ t, t=range(-2,3), C=1)
+plotFun( 3 * f1(t) - 2 * f2(t) ~ t, t = range(-2, 3))
+x <- seq(-2, 3)
+pts1 <- f1(x)
+pts2 <- f2(x)
+points(3 * pts1 - 2 * pts2 ~ x)
+```
+
+#### Showing how a function can minimize the sum of square resids
+
+```r
+kids <- fetchData("kidsfeet.csv")
+mLineFit( width ~ length, data=kids)
+```
+
+##### Summary of Linear Algebra
+
+What are vectors?
+
+-   arrows
+-   columns of numbers
+
+... but also
+
+-   functions
+-   pictures, etc.
+
+Linear algebra solves the problem of how best to approximate something, B, by a linear combination of other things, v1, v2, v3, ...
+
+#### Sines and Cosines
+
+Show that a linear combination of a sine and a cosine of the same period produces a shifted sine:
+
+```r
+manipulate(plotFun(A * sin(2 * pi * t / 2) + sqrt(1 - A ^ 2) * cos(2 * pi * t / 2) ~ t, 
+           t = range(0, 10), A = A, ylim = c(-5, 5)),
+           A = slider(-1, 1, step=.01))
+```
+
+#### Nonlinear Curve Fitting
+
+Fitting an exponential to Telephone vs Income in the "Income-Housing.csv" data
+
+Guessing a k in exp(k Y) -- the half-life is about 10000, so $k \approx \log(1/2)/10000$. Plug that in and do the projection.
+
+Then use
+
+```r
+inc <- fetchData("Income-Housing.csv")
+inc$tens = inc$Income / 10000
+mFitExp( Telephone ~ tens, data = inc)
+```
+
+Check the "exp(kx)" box and use the slider to set k to fit the data. Observe that the RMS residual is gets small for better fits.
+
+#### Things I wanted to do but didn't get to
+
+Generate some random data and fit a bunch of functions to it
+
+    mydata <- data.frame(x = rnorm(5), y = rnorm(5))
+    mFitSines(y ~ x,data=mydata)
+
+Add in more functions and note when the fitted function goes exactly through the data.
+
+-   Just put in cosines (without a constant function). How many of them do you need to go exactly through the data?
+-   Just put in sines (without a constant function). How many of them do you need to go exactly through the data?
+-   When you add in more functions, how many fewer cosines do you need?
+-   Instead of 5 (x,y) pairs, generate 10. How many cosines (without a constant function) do you need? etc.
+
+### Other examples
+
+- Percent of population with 4 years of college as a function of years since 1970.
+
+Straightforward $gradpercent = m year + b$.
+
+- Water level (tide) in Hawaii as a function of time (hourly) over three days
+
+A fourier coefficient fit to linear combination of 1, $\sin(2 pi t/24)$, $\cos(2 pi t/24)$, $\sin(2 pi t/12)$, $\cos(2 pi t/12)$
+
+- Calories burned per minute while rollerblading as function of weight and speed.
+
+Two variable linear fit: $y = m weight + n speed + c$
+
+Time with the model $A + B \exp(k t)$ where $k$ is negative.
+
+-   Students not comfortable with exponential decay toward a nonzero value, so it was time well spent.
+-   From scatterplot, estimate k via "by eye" estimation of a halflife.
+-   Using the guess for k, do a linear fit to find best parameters A and B
+-   But what is the best k? Using RStudio software, plot RMS error vs k to find the best k.
+-   All demonstrated with Income-Housing data.

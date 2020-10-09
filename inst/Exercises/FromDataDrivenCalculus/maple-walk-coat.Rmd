@@ -1,0 +1,56 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [notes, inverting, third]
+id: maple-walk-coat 
+---
+
+(ref:maple-walk-coat) Exercise in file maple-walk-coat
+
+```{r maple-walk-coat-default, include = FALSE}
+SDSdata::sds_setup()
+library(mosaicCalc)
+```
+
+TITLE GOES HERE: Notes in inverting, aka finding roots, finding zeros, solving, ...
+
+Idea of an inverse of a function and reverse look-up of the input, giving the output. This is the idea of solving.
+
+-   Do it graphically
+-   Name the kinds of functions that invert each of the previous: 
+    - Linear $\rightarrow$ Linear, 
+    - Power Law -\> Power Law, 
+    - Sine and the issues with inverting it and the named function asin, Exponential -\> Log
+-   Computer demonstration of inverses, e.g., `log(exp(3.5))` or
+    `asin(sin(.2323))` It would have been good to insert an `x`, maybe
+    to plot out
+
+    
+```{r maple-walk-coat-1, echo = TRUE}
+graphFun( asin(sin(x))~x, x=range(-5,5))
+```
+
+```{r maple-walk-coat-2, echo = FALSE}
+
+```
+
+
+Comments: Students have heard about inverse functions, but many are surprised at the simple relationship between exponential and logarithm functions (I guess because they have spent their time in high-school using the algebraic properties of logs rather than looking at the shape of the function and where it comes from). About half the class thinks that $sin^{-1}(x) = \frac{1}{sin(x)}$ without realizing that $sin^{-1}$ is just the name of a function: the arcsine. When asked for the inverse of the sine function, got answers like cosine, tangent, secant, cosecant. Clearly grasping around in trigonometry.
+
+Example from Income and Housing exercise. You have found the exponential form for a relationship with parameter $k$ in $e^{-k \times \mbox{Income}}$. You were asked to translate this into another form, the "percentage decrease" per unit of income. Perhaps you remembered the rule of 72 and were able to find the half-life from the graph. If so, then you just had to set up the system for the rule: *72/percentage = halflife*. But since things were parameterized in terms of $k$, you would have first had to translate $k$ to half-life.
+
+There is a formula for this. It comes from setting up the equality $e^{-k T_{half}} = (1/2)$. Taking logs of both sides gives $-k T_{half} = \ln \frac{1}{2}$. You know $k$, so solve for the corresponding $T_{half}$.
+
+More generally, you can make a plot of the function $e^{-k T_{half}} - 1/2$ with $T_{half}$ as the input. Find the zero of this.
+
+This can be automated with the `findZeros( )` function. (Unfortunately, this always uses `xlim` as the variable to define the range. This needs to be fixed.)
+
+Return to inverses: show the mosaic findZeros
+
+    findZeros( sin(x) ~ x, xlim=c(-10,10) )
+    findZeros( A*sin(2*pi*t/P) ~ t, xlim=c(0,100), P=50, A=2)
+    findZeros( dnorm(x,mean=0,sd=10) - 0.5*dnorm(0,mean=0,sd=10)
+
+Discuss the construction of an indicator function for solving for non-zero output -- just subtract the target output from the function to create a function with a zero at the right place. Explain how the function moves continuously across zero, which gives insight into where the solution is even when you aren't there. Give simple presentation of Newton's method: Use the straight-line approximation to zoom in on the right spot.

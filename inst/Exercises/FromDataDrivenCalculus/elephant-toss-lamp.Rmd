@@ -1,0 +1,38 @@
+---
+chapter: "Proportionality"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [notes, functions, linear]
+id: elephant-toss-lamp 
+---
+
+(ref:elephant-toss-lamp) Exercise in file elephant-toss-lamp
+
+```{r elephant-toss-lamp-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Proportionality and Power Functions
+
+Proportionality functions $f(x) = k x$ are like linear functions -- no intercept. They have a slope parameter, which is helpful for describing the relationship between inputs and outputs.
+
+Power functions -- I call them "power-law" functions -- are a generalization of proportionality functions. They add a new parameter called an exponent: $f(x) = k x^p$. Why?
+
+1.  They give us a simple way to represent curved relationships.
+2.  There is a huge theory of such functions, sometimes called "monomials" when p is an integer, and especially sums of different monomials, called "polynomials". We understand them mathematically very well and can use them to represent many different kinds of relationships. This theory, much of which was worked out at the start of the Renaissance, has informed a lot of more modern mathematics. It dominates what gets taught to high-school students (factoring!), even though few high-school students or their teachers know why they are studying it.
+3.  There is a very close relationship between the linear (that is, affine) functions and the power-law functions. The relationship is mediated by a different kind of function, called a "logarithm", that was invented in the 17th century. Suppose you let $z = \ln(x)$ and $g(z) = \ln(f(x))$. Then $g(z) = p z + \ln(k)$.
+
+- Proportional change, e.g. bank accounts, populations, radioactive decay, coffee cooling: think Exponential
+
+- Lengths, Areas, Volumes and the relationships between them: think Power Law
+
+Power put out by an internal combustion engine. Power has a certain dimension. Depends on volume of fuel burnt per cycle and the duration of a cycle. The volume reflects the "displacement", RPM gives the inverse duration. Of course, we don't know what the amount of fuel burnt is. This has to do with the compression ratio. But often these devices are designed around the constraints of materials, and engineers are trying to make them as light as possible, etc. (Similarly when talking about the "design" of organisms.) The result is that there is often a simple relationship among quantities given by dimensional analysis and visible in data.
+
+Imagine that variables X and Y are related to a constant $Z$ as $Z = X^a Y^b$ , where $Z$ is constant because it is the strength of a material, etc. Then a log-log plot of $X$ against $Y$ will have the form $a \log X = C - b \log Y$. Try it out!
+
+#### Zipf's Law
+
+Introducing the topic: Zipf's Law and the most commonly used words. A list of the [500 most commonly used words](http://www.inenglish.com/pages/WordFrequencies500.pdf) . The top 10 account for 25% of all word use.
+
+

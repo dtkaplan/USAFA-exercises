@@ -1,0 +1,79 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [notes, exponentials, third]
+id: kitten-win-roof 
+---
+
+(ref:kitten-win-roof) Exercise in file kitten-win-roof
+
+```{r kitten-win-roof-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Exponentials
+
+Exponential function:
+: Constant percent change of $f(t)$ for constant increment change in t.
+
+Why this definition leads to a function $f(t) = A b^t$.
+
+i. Each unit increase in t leads to a multiplicative change by $b$.
+ii. Contrast with linear growth where each unit increase in t leads to an additive increase by amount $m$.
+iii. The formula $A b^t$ doesn't produce exponential decay. Note that negative $b$ does not make sense. So we introduce a new two-level parameter that is either $g = 1$ or $g = -1$, and the more general formula is $A b^{g t}$
+
+Mexico example. [exercise](/Exercises/pig-dive-map/)
+
+
+A convenient proportion to focus on is doubling or halving. Set $b=2$ or $1/2$. 
+
+- At the same time, we need a new parameter that tells us what the doubling-time or half-life is. Call this $T_{1/2}$ or $T_2$.
+- Resulting formulas: $f(t) = A 2^{t/T}$ or $f(t) = A 2^{-t/T}$
+
+The base $e = 2.718282...$ We can write any exponential in the form $A 2^{gt/T_2}$ or $B 10^{gt/T_10}$. Or we could use any other positive base such as 5 or 11.234. For reasons that are initially obscure, the standard choice is $e = 2.71828...$.
+
+All exponential functions can be put in the form $f(t) = A e^{kt}$
+
+How to change between the two main forms we will use: $A 2^{t/T} = A e^{kt}$
+
+
+
+Logarithms: $\log(x)$ and $\exp(x)$ are inverse functions. Read a table from t
+to $e^t$ or reversing the columns from $e^t$ to t. Second way is called
+taking the log.
+
+Find k so that $2^{-t/1.6} = e^{kt}$
+
+The reasons to use e and $\ln$ come from integration and differentiation. This reason isn't so compelling except in those situations where you want to do symbolic differentiation or integration, so many people prefer to talk about doubling/halving time and ignore e. But, for the record, here are the motivations:
+
+* Interest rate. Imagine that you have a principle P(0) growing at an interest rate of r per year. Measuring time t in years gives the formula for the amount at any time: $P_Y(t) = P(0) (1 + r)^t$. Simple enough.
+
+    Now suppose that you are asked to compute and compound the interest quarterly. The formula will be $P_Q(t) = P(0) (1 + r/4)^{4 t}$. This produces a different amount. For instance, if $r = 0.06$ (that is, 6% per year), after one year the value of $P_Y(1) = P(0) 1.06$. But $P_Q(1)$ will be a little different: $P_Q(1) = P(0) (1.015)^4 = P(0) 1.0614. Quarterly compounding provides a bit more interest. Using the same logic, we can look at monthly compounding, weekly compounding, daily compounding, and so on.
+    
+Compounding period | Growth after 1 year at $r = 6\%$ | Formula | at $r=100\%$
+-------------------|-------------:|----------:---------:
+yearly             | 1.06         | $P(0) (1+r)^t$  | 2
+quarterly          | 1.0614       | $P(0) (1+r/4)^{4 t}$ | 2.44
+monthly            | 1.0617       | $P(0) (1 + r/12)^{12 t}$ | 2.613
+weekly             |  1.0618363   | $P(0) (1 + r/52)^{52 t}$ | 2.6926
+daily              |  1.0618365   | $P(0) (1 + r/365)^{365 t}$ | 2.7146
+hourly             |  1.06183765  | $P(0) (1 + r/(24*365))^{(24*365)}$ | 2.71813
+
+You can carry this logic as far as you want. For people interested in the infinitesimal and infinite, it's tempting to carry out the calculation for minute-by-minute compounding (1.061837), second-by-second compounding, and so on, down to the infinitesimal. You can see from the table that the result is likely to be about 1.06184 or less. No big deal.
+
+But imagine that the interest rate is $r = 1 = 100\%$. One year's yearly compounding doubles your money. Quarterly compounding over a year leads to a pretty substantial increase, from a factor of 2 to a factor of 2.44. You can work through monthly, weekly, daily, and hourly compounding. Similarly, the end result after a year of second-by-second compounding is 2.718282$. For microsecond-by-microsecond compounding the result is pretty similar, although ordinary numerical computing shows some rounding error at this level. The number that emerges for infinitesimal compounding is 2.71828182845904523536028747.... (If you're interested, the first 10,000 digits of the base of the natural logarithm are presented at [this web site](http://www-history.mcs.st-and.ac.uk/HistTopics/e_10000.html).)
+
+It's lovely that people have figured out how to calculate a number to such precision. In practical terms, the precision is illusory because the real-world systems on which the calculations are being done are approximations. For instance, if we had daily or finer compounding, we'd have to figure out how to handle leap years, which have 366 days. Using a nominal year length of 365 introduces an error of about 0.3% in leap years, about the same as the proportional difference between 2.718 and 2.719. So there's little point -- in applications -- of worrying about the 10th digit.
+
+
+
+
+```{r kitten-win-roof-1, echo = FALSE}
+
+```
+
+```{r kitten-win-roof-2, echo = FALSE}
+
+```

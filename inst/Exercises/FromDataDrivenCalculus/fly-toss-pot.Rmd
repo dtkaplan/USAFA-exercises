@@ -1,0 +1,26 @@
+---
+chapter: "Second derivatives"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, curvature, second derivative]
+id: fly-toss-pot 
+---
+
+(ref:fly-toss-pot) Exercise in file fly-toss-pot
+
+```{r fly-toss-pot-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Second derivatives and curvature
+
+The "modes" of reading off the first and second derivative from a function: height, slope, curvature.
+
+Exercise with identifying regions of positive and negative curvature and using those to help guide a sketch of a derivative.
+
+Mnemonic for curvature : Smile = positive, Frown=negative
+
+Use `mDerivs` to show a set of derivatives. changes -- keep a consistent color scheme for the functions: black=f, blue=df, red=ddf, yellow=integral.
+
+Exercise with sorting out the order of derivatives from graphs.

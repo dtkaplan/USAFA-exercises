@@ -1,0 +1,394 @@
+---
+chapter: "Dynamics raw notes"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, dynamics, third]
+id: kid-bend-pencil 
+---
+
+(ref:kid-bend-pencil) Exercise in file kid-bend-pencil
+
+```{r kid-bend-pencil-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Starting Differential Equations
+------------------------------------------------------------------
+
+Fundamental problem: instead of having $dx/dt$ as a function of $t$, so that you can integrate it, you have it as a function of $x$
+
+-   Example: Movement on the ocean
+    -   Velocity versus time of a ship keeping track with regular logs.  Just integrate velocity over time to get position.
+    -   Velocity of an object drifting with the current. You can measure current velocity as a function of position. How do you integrate this to get position versus time. Clearly there **is** a position versus time, so we know a solution exists. How to find it?
+
+### The Linear Differential Equation
+
+$\frac{dx}{dt} = k x$
+
+-   Phenomenology: as $x$ increases, so will $\frac{dx}{dt}$.
+-   Ansatz: $x(t) = A e^{kt}$
+-   Integration: $\frac{dx}{x} = k dt$, integrate both sides to get $\ln(x) = kt + C$ and exponentiate to get $x = e^{kt} e^C = A e^{kt}$.
+-   The phase line.
+
+    mPhaseLine( function(x){2*x}, xlim=c(-2,2))
+    mPhaseLine( function(x){-2*x}, xlim=c(-2,2))
+
+Flath
+-----------------------------
+
+-   Begin study of differential equations
+-   Algebraic equations vs functional equations - unknown number vs unknown function
+    -   Differential equations: unknown is a function
+        -   Solution can be specified many ways: formula, table of values, graph
+        -   Differential equation: a clue about an unknown function, often an unknown function of time. The clue is info about the derivative of the function.
+
+<!-- -->
+
+-   Why differential equations?
+    -   Rate information (which is local information) may be simpler or easier to obtain than global information about the entire function.
+    -   Examples: growth of an investment at constant interest, metabolism of caffeine in the body (17 per cent per hour), population growth, fish population increase with constant annual harvesting.
+-   Most important Differential equation in the world: $dx/dt = k x$.
+-   Distinction between $dx/dt = t$ and $dx/dt = x$. Car driver reports speed every second vs reports speed every hundred feet. From that info reconstruct position x(t).
+-   Focus on $dx/dt = f(x)$. Phase line. Several examples, including $dx/dt = x$.
+
+#### The fundamental equation
+
+$\frac{dx}{dt} = k x$
+
+-   Solution by method of Ansatz
+-   Solution by integration
+-   Solution by examination of the phase line
+
+Stability (depends only on $k$)
+
+##### Applications
+
+-   Radioactive decay in the presence of new production (by, e.g., cosmic rays)
+
+### Flath
+
+-   dx/dt = f(x): Given DE as table of values for dx/dt as function of x, goal is to find solution, namely complete a table of values for x as a function of t. Show this graphically as well: two different graphs, the DE which is dx/dt vs x; and the solution which is x vs t. You need an initial value, x(0), to get started.
+    -   Students have great difficulty understanding the dx/dt vs x graph. They seem to grasp the table of values approach better.
+-   dx/dt = 2x, x(0) = 5: algebraically x = 5 exp(2 t); phase line picture; Euler's method.
+-   Work out three steps of Euler's method on the board for simple exponential equation.
+-   Play with mEulerIntegrate()
+-   Newton's law of cooling example
+-   Logistic population growth
+
+##### Big Picture
+
+Calculus is an approach to modeling based on breaking wholes into small bits that are simpler. Then we use a formalism (integration) to put the parts back together again.
+
+-   We've studied anti-differentiation as an integration technique. This applies to problems of this sort: change with respect to t is a function of t: that is: $\frac{d x}{dt} = g(t)$
+-   Now we're studying systems where the change is a function of the state: $\frac{d x}{dt} = f(x)$
+
+Linear differential equation. Linear dynamics leads to exponential solution.
+
+-   Stability: depends on the sign of $k$
+
+Idea of describing change with instantaneous snapshots.
+
+-   Example: Draw a picture of a person with arrows to describe movement.
+-   Mathematical realization: the phase line:
+
+    mPhaseLine()
+
+#### Building Models of Dynamics
+
+Main point: don't worry about the consequences of the dynamics, leave that for the solution phase. Draw the picture with arrows. (But it's easier to draw the arrows as a function, so that you can see positive, negative, and size easily and spot the equilibria.
+
+Constructing other models using differential equations.
+
+-   Newton's Law of Cooling
+    -   The furnace model
+-   Reaction Kinetics: first order
+-   Logistic Growth
+-   Hooke's Law: but note that it's $\frac{d^2 x}{dt^2} = -k x$, so the solution is a function whose second derivative is proportional to the function itself.
+
+
+#### Solving Differential Equations
+
+##### The linear DE
+
+We have found the solution to one differential equation
+
+-   $\frac{d x}{dt} = k x$ has solution $x(t) = A e^{kt}$
+    -   $A$ is the initial condition. Show the dynamics graph for this.
+    -   Phenomenology: Growth from or decay toward the equilibrium point.
+
+Another important differential equation is
+
+-   $\frac{d x}{dt} = k x + b$
+    -   Show the dynamics for this -- it's just a shifted version of the system $\frac{d x}{dt} = kx$.
+
+-   Calculation of the equilibrium point. Solve $\frac{d x}{dt} = 0$
+-   Stability of the equilibrium
+
+For the shifted system, the equilibrium is at $x$ such that $kx + b=0$. Define a new variable that measures distance from that equilibrium, e.g., $y = x + b/k$ and we get back a simple exponential system.
+
+##### Other DEs
+
+-   Euler method.
+    -   Description
+    -   Demonstration
+    
+    > mEulerIntegrate()
+
+#### Flath
+
+-   Model 1 Heating a house with a thermostat
+    -   With heat on, equilibrium temp is 90 degrees, with it off equilibrium temp is 30 degrees.
+
+dT/dt = -k1(T-90) and dT/dt = -k2(T-30).
+
+-   -   Thermostat set as follows:
+        -   If heater is off and temp drops down to 62 degrees, then heater is switched on.
+        -   If heater is on and temp increases up to 70 degrees, then heater is switched off.
+        -   Thermostat switch changes the differential equation describing temperature in the house.
+    -   Show graphically what happens when house temp starts at 40 degrees, or starts at 80 degrees.
+    -   Discuss control generally.
+
+-   Model 2 Population with linear death rate and quadratic birth rate
+    -   dP/dt = k1P^2 - k2P
+    -   Show graphically birth rate and death rate as fctns of P, discuss where the graphs cross, what happens before and after
+        the crossing.
+    -   Show phase line
+    -   Show solutions with different initial values.
+    -   Point is a threshold for viability. Discuss thresholds.
+
+### Review of Simple Population Growth Model
+
+Linear system gives exponential dynamics
+
+Grinnell vs St. Paul -- a richer model is that a very small population leads to fewer babies and even a smaller rate of birth. But the death rate remains the same. Divide the change into that due to babies and that due to deaths. Deaths remains linear (and negative), births is roughly quadratic, so flat and near zero at the origin.
+
+-   Reaction kinetics when there is an unlimited amount of the other substance.
+-   Newton's Law of Cooling.
+    -   Draw graph with "inside temperature" as the state. Fix the value of the "outside temperature" as something cold. Ask what's going to happen to the inside temperature. Without a furnace, it will go down.
+
+##### Furnace Model
+
+$\frac{dT}{dt} = f( outside - T ) + F$ where $f()$ is approximately linear and $F$ is the heat input from the furnace.
+
+When the furnace is off, $F$ is zero.
+
+Construct a model of what happens in a house, when the outside temperature is much less than $T$ and the furnace is either on or off. How does a thermostat work?
+
+##### Logistic growth
+
+Introduce the `mPhaseLine` program.
+
+##### The Euler Integration method
+
+##### May's Cows
+
+Just construct the model today, solve it on Friday.
+
+-   Vegetation growth: logistic.
+-   Vegetation removal: Each cow eats inefficiently at low V, eats ravenously at medium V, and eats to satisfaction at high V. Amount removed is proportional to herd size H
+
+
+#### Flath
+
+-   Logistic growth model for fish in lake, with constant number of fish removed each year
+    -   As the number of fish removed increases, the equilibrium points approach each other and then there is a bifurcation beyond which there is no equilibrium. Overfishing.
+-   The vibrating spring. Slow discussion/development of the model. Show how to convert from second order DE to a system of first order DEs. Phase plane for next class period.
+
+Wed 7 Dec
+---------
+
+#### Two-Variable Differential Equations
+
+Start with Hooke's Law: $F = m\frac{d^2 x}{dt^2} = - k x$. Ask for a solution. But note that the equation is $ m \frac{d^2x}{dt^2} = - k x$, so we need a function whose second derivative is the negative of itself: a sine $A \sin( \sqrt{\frac{k}{m}} t )$, implying that $2 \pi / P = \sqrt{k/m}$ or $P = 2 \sqrt{m/k}$ But formally, wouldn't this be the same as an exponential with an imaginary $k$, that is, $ e^{i\sqrt{k}t}$
+
+-   Show that the plot of $exp(ikt)$ gives a sine.
+
+    plotFun( Re(exp(1i*3*t))~t, t=range(0,10))
+    plotFun( Re(exp((-.2+1i)*3*t~t, t=range(0,10))
+
+#### Flath
+
+-   Single variable population models: focus on the phase line.
+    -   Exponential - constant percent growth per year.
+    -   Viability threshold - unstable positive equilibrium population
+    -   Carrying capacity - stable positive equilibrium population
+    -   Viability threshold and carrying capacity - two positive equilibria
+-   Vibrating spring
+    -   What is the phase plane? Representing the vector field
+    -   Euler method generates a trajectory through phase plane
+    -   Graphs of solutions and their relation to trajectory through phase plane
+    -   Play with pplane, without and then with friction. Change parameter values.
+
+Fri 9 Dec
+---------
+
+More generally, imagine that we have two variables: $x$ for position and $\frac{d x}{dt} = v$ for velocity. This gives a system
+
+$\frac{d x}{dt} = v$
+
+$\frac{d v}{dt} = -\frac{k}{m} x$
+
+Show the flow field.
+
+    spring = function(x,v){
+     k=1; m=1;
+     return(c(dx=v,dv=-(k/m)*x) )
+    }
+    mPP(spring, xlim=c(-5,5),ylim=c(-5,5))
+
+Use `mPP( )` to find the period. Then quadruple $m$ and show what happens to the period.
+
+You can do this using the `mPP` software. Set up the system, and make trajectory 2 active. Then edit the dynamics for system 2 to set `m=4`.
+
+##### Add in air resistance
+
+Add in a $-0.1 v$ term to the $\frac{d v}{dt}$ term.
+
+\
+
+##### Solution with the exponential Ansatz
+
+Plug $ x(t) = A e^{kt}$ in to the 2nd-order linear differential equation and show that the stability corresponds to the real part of $k$
+
+-   Purely imaginary: $\frac{d^2 x}{dt^2} = - w x$
+-   With damping: $\frac{d^2 x}{dt^2} = -w x - \gamma \frac{dx}{dt}$ -- gives a negative real part
+-   With anti-damping: $\frac{d^2 x}{dt^2} = -w x + \gamma \frac{dx}{dt}$ -- gives a negative real part
+
+##### The Nature of Equilibria in Two Variables
+
+A differential equation in two variables amounts to specifying a flow field on the plane. (You can also have flow fields on the globe, etc, but that's a more advanced topic.)
+
+The arrows show how the state changes over a little period of time $dt$. The style of calculus is to make $dt$ as small as possible, which means that the arrows will be short. 
+It turns out that there are only a few kinds of patterns that you can get when you have a "small" flow field (that is, one consisting of arbitrarily short arrows, and many of these involve fixed points.
+
+    mGlassPattern()
+
+#### Predator-Prey
+
+Rabbits and Foxes
+
+$\frac{d R}{dt} = rR - kRF$
+
+$\frac{d F}{dt} = -\alpha F + m R F$
+
+    mPP( predator.prey )
+
+
+#### Flath
+
+-   SIR-model
+-   Romeo and Juliet (See, e.g.  [Project](/homeworks/Projects/romeo-and-juliet/))
+
+
+Mon 12 Dec
+----------
+
+#### Finishing Up Differential Equations
+
+Main idea: if you can describe change locally, you can integrate (accumulate) up the change to see the global pattern. 
+
+They say, "Act locally, think globally.
+
+In calculus, say, "Modeling locally, let the formalism figure out the global stuff." Modeling locally can means "consider limited ranges for the variables, e.g., hold the number of crows constant when modeling how the rabbit population change depends on the number of crows." A kind of intellectual division of labor between the local dynamics and the accumulated consequences for change over time.
+
+Model in the "here and now."
+
+##### Harmonic Oscillator
+
+-   From Friday, add in velocity-proportional damping term. Solve characteristic equation by method of Ansatz to get complex $\lambda$.
+-   Remind how to turn a 2nd-order equation into two first-order equations.
+-   Briefly: Show how to turn two linear first-order equations into a second-order equation; differentiate one of the equations and then plug in the other.
+
+##### Glass Patterns
+
+The major forms of equilibria:
+
+-   Center
+-   Saddle
+-   Focus
+
+Summarization in terms of eigenvalues:
+
+-   Center: two real of the same sign
+-   Saddle: two real of different signs
+-   Focus: Imaginary (complex conjugates)
+
+##### Ballistics
+
+The differential equation acts as a framework for modeling. We can add in new phenomena using the "here and now" approach: we know x and y and $\frac{d}{dt}x$ and $\frac{d}{dt} y$, so add in new terms based on these. Or construct approximation functions using these variables. 
+
+Write down the equation in two spatial variables for a shell.
+
+-   gravity acts in y direction
+-   drag proportional to velocity squared working against both x and y -- turn it into a atan(y/x)
+-   research program for figuring out how drag coefficient depends on altitude and whether it is really a square law.
+    -   turns out to be more complicated: laminar versus turbulent flow, dimples on a golf ball to reduce drag.
+-   for space travel, add in a more nuanced form of gravity and gravity due to different objects. Drag dependence becomes more complicated, since there is a circular geometry to the density dependence.
+
+Mathematics and physics that was originally motivated by ballistics gradually made its way to other areas.
+
+-   Chemistry with the law of mass action
+-   Quetelet and *social physics*
+-   Florence Nightingale in statistics, free will and social patterns
+
+Move to SIR and Predator Prey
+
+##### Structure of Predator Prey
+
+##### Structure of SIR
+
+-   Romeo and Juliet activity (need to update to new software from [last year's version](http://dl.dropbox.com/u/5098197/Math135/In-Class/lab3.pdf)
+    
+
+##### Romeo and Juliet
+
+A series of systems to work with
+
+-   Romeo is in love, but afraid of commitment
+
+$\dot{R} = -J$
+
+$\dot{J} = R$
+
+-   Cross-reinforcing love
+
+$\dot{R} = J$
+
+$\dot{J} = R$
+
+Note that if Romeo doesn't initially love Juliet, they will head into mutual hatred, unless Juliet's love is very strong, winning Romeo over. A small change in initial conditions can lead to a large change in outcome.
+
+Note the saddle shape of the flow field, you can think of it as the surface of a mountain pass, with the arrows showing how rain flows.
+
+-   Romeo is in love, but afraid of commitment, but let's try to DAMP things down
+
+$\dot{R} = -0.8 J$
+
+$\dot{J} = 0.8 R$
+
+Compare the trajectory here to the trajectory in the original system. Show how the oscillation slows down here, but doesn't decay.
+
+-   To get things to decay, we need a cross term: letting each person's love decrease proportional to their current state of love.
+
+$\dot{R} = -R + 10 J$
+
+$\dot{J} = -10 R - 3 J$
+
+-   If we soften Juliet's concern about Romeo's love, letting her fall faster the deeper she is in love, we get oscillating growth.
+
+$\dot{R} = -R + 10 J$
+
+$\dot{J} = -10 R + 3 J$
+
+-   We can get qualitatively different behaviors with a small change in the parameters. The bifurcation point here is when the parameter in the Juliet equation is \$+1\$. Bigger than that leads to exponential growth, small than that leads to exponential decay.
+
+##### Stability analysis through eigenvalues
+
+#### Toward Chaos
+
+-   In 2 variables, we can reproduce a lot of phenemona, and get the general approach to stability near an equilibrium.
+-   But one phenomenon requires three variables: Chaos
+    -   Exercise on board with drawing trajectories without lifting the pen from the paper. Have several people draw trajectories on the board.
+    -   [Rossler system trajectory](http://www.geom.uiuc.edu/~worfolk/apps/Rossler/)
+        

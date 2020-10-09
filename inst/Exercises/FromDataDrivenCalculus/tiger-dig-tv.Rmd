@@ -1,0 +1,21 @@
+---
+chapter: "Derivative examples"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [derivatives, notes, third]
+id: tiger-dig-tv 
+---
+
+(ref:tiger-dig-tv) Exercise in file tiger-dig-tv
+
+```{r tiger-dig-tv-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: #### Derivatives and the economy
+
+Sommer Gentry's exercise based on *The Economist*:
+[1](http://www.mosaic-web.org/Repository/SommerGentry/secondDerivativeInTheNews.pdf) and more information [here](http://www.mosaic-web.org/Repository/SommerGentry/secondDerivativeInstructorNotes.pdf) and a [video](http://www.mosaic-web.org/MCAST/videos/MCAST-2011-05-06/index.htm).
+
+For next week: physical chemistry example of directional change. activity1.Rnw from Math135/Kaplan/GasLaw/

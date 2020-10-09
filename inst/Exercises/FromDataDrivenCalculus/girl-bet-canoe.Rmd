@@ -1,0 +1,115 @@
+---
+chapter: "Interactions"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, interactions, third]
+id: girl-bet-canoe 
+---
+
+(ref:girl-bet-canoe) Exercise in file girl-bet-canoe
+
+```{r girl-bet-canoe-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Using 2nd derivatives for modeling
+
+
+#### Simple Review of Partial Differentiation
+
+-   What's $\frac{\partial}{\partial x} 6 x$?
+-   What's $\frac{\partial}{\partial x} 2 \cdot 3 x$?
+-   What's $\frac{\partial}{\partial x} 2 \cdot \pi x$?
+-   What's $\frac{\partial}{\partial x} 2 y x$?
+
+#### Review the basic polynomial approximation in two variables
+
+${F}(x,y) \approx f(x,y) = a_0 + a_1 x + a_2 y + b x y + c x^2 + d y^2$ Interpretation of terms to include in a model:
+
+-   Always: $a_0 + a_1 x + a_2 y$
+-   Interaction: If effect of $x$ is modulated by $y$ or vice versa.
+-   Internal extrema: Is there a "best" value of $x$ or $y$ to make the value of $f(x,y)$ extreme?
+
+##### Identifying interactions and internal extrema in graphs
+
+-   Show single variable graph of f versus x and f versus y.
+    -   If there is an internal maximum or minimum, then you can see the $x^2$ and/or $y^2$ is required.
+    -   Draw the relationship for two different values of the other input. If the graphs have a different shape, then there is an interaction. Do X shaped graphs and ones with lesser slopes. Discuss how a small change in slope reflects an interaction, but it becomes a statistical question of how small is detectable in some data.
+
+##### Interaction and Partial Derivatives
+
+Show that
+
+-   $\frac{\partial^2 f}{\partial y \partial x} = b$
+-   $\frac{\partial^2 f}{\partial x^2} = 2c$
+-   $\frac{\partial^2 f}{\partial y^2} = 2d$
+
+So the mixed partial derivatives indicate about interaction, while the non-mixed 2nd derivatives indicate an internal extremum (if they have the same sign) or a saddle (if they are different. 
+
+##### Word Descriptions that Indicate Interactions
+
+How do you explain better to students the significance of the second mixed partials? Here are a couple of ideas.
+
+#### Height and Weight
+
+[Dubois formula for human surface area](http://en.wikipedia.org/wiki/Body_surface_area) S as function of height h and weight w.
+
+The Dubois & Dubois formula:^[\[1\]](#cite_note-1)^:
+
+${BSA (m^2)}=0.007184 \times {weight \mbox{ (kg)}}^{0.425} \times {height \mbox{ (cm)}}^{0.725} =\frac{{weight \mbox{ (kg)}}^{0.425} \times {height \mbox{(cm)}}^{0.725}}{139.2} $
+
+It may not be so clear in advance why the second mixed partial should be positive. But what its positivity says can be interpreted pretty simply. It says that $\partial S/\partial w$ is an increasing function of $h$. Thus for people of the same weight, an extra pound of flesh gained increases surface area more for the tall person than it does for the short person. So we could ask students about 2 people of same weight and different heights. OR, we could do the partials in the other order: $\partial S/\partial h$ is an increasing function of $w$, but it does not make so much sense to have a person increase their height as it does for them to increase their weight. [Flath](/wiki/mosaic/index.php/User:Flath "User:Flath")
+
+This is essentially a Cobb-Douglas formula: diminishing marginal returns to scale in each of the variables height and weight (holding the other constant). But the effect of height is amplified by increased weight, and vice versa.
+
+#### Cobb-Douglas
+
+This scenario is similar but more understandable for Cobb-Douglas $Y = f(K, L)$. (Y production, K capital, L labor. For economists, Y is a flow variable, units produced per unit time. So is L, something like manhours of labor per unit time.) The second mixed partial is positive. Hence $\partial Y/\partial L$ is increasing function of K. For two factories with same L, increasing L improves production more for the factory with more K. If you have more equipment to help, then you can use additional labor more effectively.
+
+The Cobb-Douglass is of the general set up: one factor is a catalyst to make the other more effective. Kapital helps Labor to be more effective in producing. Marginal value of one thing depends on the quantity of another thing. I think with some imagination, we could probably come up with a variety of stories. It would be great to have some medical examples - marginal effectiveness of a drug depends on something else, weight, blood pressure, sugar in the blood. In the business line - marginal effectiveness of advertising depends on advertising by the competition, market share. Expert advice required to get this really right.
+
+#### Geography
+
+You are hiking on a trail going East (x) and hoping to strike off cross country up the mountain to your left (North, y). However, since the slope up to the left is too steep now and seems to be gentler the further you go along the trail, you decide to wait before turning off. What partial derivatives went in to your decision? Sketch a topographical contour map that illustrates what is going on. [Flath](/wiki/mosaic/index.php/User:Flath "User:Flath") 11:25, 7 November 2010 (EST) 
+\
+
+#### Economics
+
+Consider the statement "economies of smaller countries are growing faster than of bigger countries." So d/dtime of the size of the economy itself depends on the size of the country: d/dpopulation d/dtime economysize is negative, even though both d/dpopulation economysize and d/dtime economysize are positive. ([Kaplan](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") 11:43, 6 November 2010 (EDT))
+
+#### Human Relationships
+
+From a New York Times essay ["Why Sisterly Chats Make People Happier"](http://www.nytimes.com/2010/10/26/health/26essay.html)  by Deborah Tannen (Oct. 25, 2010): "British psychologists Liz Wright and Tony Cassidy found that young people who had grown up with at least one sister tended to be happier and more optimistic, especially if their parents had divorced. Another British researcher, Judy Dunn, found a similar pattern among older adults." So the change from zero sisters to one makes people happier -- a positive partial dhappiness/dnumsisters. That derivative itself changes with respect to divorce: d/dparentsdivorce d/dnumsisters of happiness is positive. [I realize](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") that these are discrete changes, and perhaps more aptly called "partial change" rather than "partial derivatives." In statistics, it's very common to include discrete - that is, "categorical" - variables in models, and it's useful to be able to apply the same concepts of partial differentiation to partial change. The example in \[www.macalester.edu/\~kaplan/ISM my book\] on world records in swimming as a function of time and sex provides an intuitively accessible illustration of mixed partials. ([Kaplan](/wiki/mosaic/index.php/User:Kaplan "User:Kaplan") 11:35, 6 November 2010 (EDT))
+
+#### Cooking
+
+T = tastiness of a soup as a function of its volume V and the quantity S of salt in it. What are the signs of the three partials:
+
+1.  $T_{SS} \< 0$,
+2.  $T_{VV} \< 0$,
+3.  $T_{SV} \>0$.
+
+For taste, there is optimal salt for given volume, optimal volume for given salt. Adding salt (for given initial quantity of salt) helps or hurts depending on what the volume is. [From Dan Flath](/wiki/mosaic/index.php/User:Flath "User:Flath") 
+
+#### Visualizing 2nd-order partials as the change in first-order partials
+
+    f <- rpoly()
+    mGrad(f(x,y)~x&y)
+
+Do this also for a `practice.max( )` function. Show how the partial arrows vary with both x and y and show what this means for the 2nd-order partials. 
+
+Evaluate the partials as a function and ask students to interpret the sign from the graph, then compare it to the numerical value:
+
+    fxx <- D( f(x,y)~x&x)
+    fyy <- D(f(x,y)~y&y)
+    fxy <- D(f(x,y)~x&y)
+    fyx <- D(f(x,y)~y&x)
+
+Pick an (x,y) point and have the students make a guess, then evaluate the derivs, e.g.,
+
+    fxx( x=2,y=0 )
+    fxy( x=2,y=0 )
+    fyx( x=2,y=0 )
+
+Remember to use the named form of the arguments to avoid mixing them up.

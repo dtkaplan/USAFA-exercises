@@ -1,0 +1,31 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [contours, tables as functions, by-hand]
+id: bird-come-shoe 
+---
+
+(ref:bird-come-shoe) Exercise in file bird-come-shoe
+
+```{r bird-come-shoe-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Consider the function of age and income implied by the table.
+
+
+```{r bird-come-shoe-1, echo = FALSE}
+f = function(x,y){2.5*(x-8)^2 + 1.5*(y-4)}
+x = 0:12
+y = 0:12
+vals = outer(x,y,f)
+inds = ceiling(50*rank(c(vals))/length(c(vals)))
+foo = expand.grid(x,y)
+colorSet = rainbow(80)
+plot(1:10, xlim=range(x), ylim=range(y), xlab="age",ylab="income",type="n")
+text(foo$Var1,foo$Var2, round(vals),cex=1, col=colorSet[inds])
+```
+
+* Draw contours at $0$, $30$, $60$, $90$, $120$, and $150$.

@@ -1,0 +1,24 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [exercise, exponential, linear, growth]
+id: pig-dive-map 
+---
+
+(ref:pig-dive-map) Exercise in file pig-dive-map
+
+```{r pig-dive-map-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Between 1990 and 2000, the population of Mexico increased from roughly 100 to 110 million. The population of the US increased from about 300 to 310 million. If growth continues in the same way, when will the population of Mexico be greater than that of the US?
+
+a. by 2050 
+#. by 2075 
+#. by 2100 
+#. by 2150 
+#. by 2200 
+#. by 2250 
+#. NEVER

@@ -1,0 +1,192 @@
+---
+chapter: "Linear Algebra"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, linear algebra, third]
+id: zebra-choose-fridge 
+---
+
+(ref:zebra-choose-fridge) Exercise in file zebra-choose-fridge
+
+```{r zebra-choose-fridge-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Linear Algebra
+
+1.  Example of a pair of simultaneous linear equations in two variables.
+    - Ask what happens if there are more than two variables but only two equations. (They will say, there are no solutions. Students typically don't realize that there are many solutions.)
+    - Ask what happens if there are three equations in two variables. (They will say, there is no solution.)
+
+    It turns out that the second situation is very, very common. We're going to be studying why it's so common and how to deal with it.
+2.  Transform the algebraic equations into vector equations (in just two dimensions)
+3.  What's a vector?
+     - A pair of numbers.
+     - A length and direction. (Notice that "position" doesn't enterinto it. We're going to have to be careful about thedistinction between "direction" and "position".
+4.  Operations on vectors
+    - Scaling
+    - Addition
+    - Linear combination (just scaling and then addition)
+        
+Clicker Questions: [Clicker  KaplanLinalg1-1](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg1-1.pdf)
+        , [Clicker KaplanLinalg1-2](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg1-2.pdf)
+        , [Clicker KaplanLinalg1-3](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg1-3.pdf)
+        , [Clicker KaplanLinalg1-4](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg1-4.pdf)
+        ,
+    - Length
+    - Dot product
+    - Definition of length in terms of dot product $\| \vec{a} \| = \sqrt{ \vec{a} \cdot \vec{a}}$
+    - Angle between two vectors. Commonsense definition and then the definition in terms of dot products: $\cos \theta = \frac{ a \cdot b }{\sqrt{ a\cdot a \times b \cdot b}}$
+    - Derivation of this dot-product formula for angle based on the law of cosines.
+
+    $$\|a\|^2 + \|b\|^2 - 2 \|a\| \|b\| \cos(\theta) = c^2$$
+    $$\|c\|^2 = \|a - b\|^2 = (a-b) \cdot (a-b) = \sum_i a_i^2 - 2a_i b_i + b_i^2$$
+    So $$2 \|a\| \|b\| \cos(\theta) = \sum_i 2 a_i b_i = 2 a \cdot b$$
+5.  The idea of a subspace defined by a set of vectors: all the places you can get with a linear combination of the vectors.
+    - Subspace of 1 vector is a line.
+    - Subspace of 2 vectors is a plane.
+    - Three vectors in the same plane
+6.  New operations
+    -   Projection
+    -   Coefficient extraction
+7.  Solving equations with vectors.
+    - Two equations with just one variable.
+        - Put the $\vec{b}$ in the same subspace.
+        - Example with $\vec{b}$ NOT in the same subspace.
+    -   Two equations with two variables. Work through several examples. Clicker Questions: [Clicker KaplanLinalg2-1](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg2-1.pdf)
+        ,
+
+[Clicker KaplanLinalg2-2](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/KaplanLinalg2-2.pdf)
+
+
+1. Two equations with three variables. One of the vectors is redundant.
+
+2. GO OUTSIDE with rulers on ground, target on ground
+    - One vector
+        - Put target in line
+        - Put target behind vector
+        - Put target at origin.
+        - Target off of line (to give a positive coefficient)
+        - Target off of line (to give a negative coefficient)
+        - Target off line to give zero coefficient.
+    - Two vectors
+        - Perpendicular
+        - Not perpendicular, but with target in line with one vector
+        - Not perpendicular, but with target out of line with both vectors.
+3. Three vectors in the plane (redundancy)
+4. Target held in the air.
+    - How to get to the target?
+    - Closest point with 2 vectors.
+    - Closest point with just one vector
+5. BACK TO CLASSROOM
+    - Show 3-d coordinate system for defining vectors in three dimensions
+    - Calculations of lengths of 3-d vectors
+    - Calculations of angles between 3-d vectors
+        - Is there a unique angle? Show them two rulers at some fixed angle to convince them that there is a sensible definition of an angle
+        -  Dot product angle calculation
+6.  On to higher dimensions: show them data.
+
+##  Vectors: Two viewpoints
+
+1. Geometric - actual physical arrows.
+2. Algebraic - list of coordinates.
+
+Spend the day on vector fundamentals, a.k.a. "What can you do with vectors?"
+
+First: do everything purely geometrically, without coordinates. Outdoor class activity.
+
+Second: redo everything algebraically.
+
+- Operations
+    - Length
+    - Scaling
+    - Addition
+    - Linear Combination. (clicker questions)
+    - Find linear combinations of given vectors that equal a target vector
+        -  If not possible, get as close as you can. You get to a projection of the target vector on the span of the given vectors. The remaining step to the target vector, that you can not do with the vectors you are givem, is called the residual vector.
+    - Angle
+    - Projection of one vector onto another vector
+    - Coefficient extraction
+
+
+
+- Dot product
+    - Length
+    - Angle between two vectors
+    - Coefficient extraction: projecting a onto b: $\frac{\vec{a}\cdot\vec{b}}{\vec{b}\cdot\vec{b}}$
+    - Projection of one vector on to another
+
+#### Writing a Program
+
+```r
+    manipulate(
+      {plot( TwoVehicles ~ Income, data=housing); 
+      plotFun(C - A*exp(-Income/Y0) ~ Income, Income=c(0,70000),C=offset,A=A,Y0=Y0,add=TRUE)}, 
+      offset = slider(80,120),
+      A=slider(80,120),
+      Y0=slider(10000,50000))
+```
+
+#### Doing the same operation with `project( )`
+
+Do it first with one exponential. Then try two.
+
+
+#### In the News
+
+- [Comparing prices for text messaging](http://www.nytimes.com/2011/10/10/technology/paying-to-text-is-becoming-passe-companies-fret.html?hp)
+    
+
+#### Finish up the dot-product and its uses
+
+-  Angle formula
+-  Projection formula
+-  Orthogonal complement -- subtract out the projected vector to get what's orthogonal to the original. In a sense, this is like looking down the original vector.
+
+#### How does it work with more than one vector
+
+Exercises with the `mLinAlgebra` program. NOTE: This does not yet understand the formula notation `b ~ v1 + v2`. Instead, you list the vectors and put `target = ...` at the end.
+
+##### Two dimensions
+
+```
+b = c(4,1) # or use rbind( ) instead of c( )  
+v1 = c(2,5)  
+v2 = c(-3,5)
+```
+
+- `mLinAlgebra(v1,target=b)`
+- `mLinAlgebra(v2,target=b)`
+- `mLinAlgebra(v1,v2,target=b)`
+
+See the original exercises:
+[solving](http://www.macalester.edu/~kaplan/ISM/Exercises-HTML/11.14.html?access=not-defined&docname=11.14),
+[redundancy](http://www.macalester.edu/~kaplan/ISM/Exercises-HTML/11.15.html?access=not-defined&docname=11.15)
+
+
+##### Three dimensions
+
+```r
+b  <- c(4,1,-3)  # or use rbind( ) instead of c( )
+v1 <- c(2,5,1)  
+v2 <- c(-3,5,0)  
+v3 <- c(1,1,1)
+```
+
+- `mLinAlgebra(v1,v2,target=b)` No exact solution, but there is a least squares solution.
+    1. Grow, shrink, or flip the segments of the walk to create a walk that reaches the target point. Could you do it? If so, congratulations! Now rotate the display. After all, it's a 3-dimensional display. Note the square-length of the residual, printed at the bottom.
+    2. Did your end-of-walk point stay on the target when you rotated the display? Explain.
+    3. Use the hint checkbox to find the best solution, that is, the coefficients that bring the end-of-walk point as close as possible to the target point. How does the length of the residual compare to your solution?
+    4. Change the length of the walk along either of the model vectors from what it was for the correct solution. How does this change affect the length of the residual vector?
+    5. NOTE: Need to add in the residual vector in the display so you can see that it's perpendicular to all the other vectors.
+
+- `mLinAlgebra(v1,v2,v3,target=b)` An exact solution, but it's hard to find until you learn the trick. Then it's easy. Try to find a solution by growing, shrinking, and flipping the segments of the walk. For most people, this will be very hard. When it looks like you have gotten things worked out, rotate the display and check that the end-of-walk point stays on the target. Don't despair! There's a trick that makes it straightforward to find a solution. But you have to follow the steps diligently.
+    1. Pick one of the vectors --- it doesn't matter which --- and rotate the display to look exactly down this vector. The menu item does this for you, but you could also do it by hand by rotating the display.
+    2. Leave the display orientation completely alone, the way you set it in (1). Now, using ONLY THE OTHER VECTORS, grow, shrink, or flip the segments of the walk until the end-of-walk point appears to be right over the target point. Get this as exact as possible. Of course, it's likely that the end-of-walk point will not actually be at the target; it just looks that way. Look at the length of the residual vector? Is it zero?
+    3. Once you have the end-of-walk point appearing directly over the target, rotate the display. Chances are, the end-of-walk point will no longer appear to be over the target. That's fine. (If you can't find a rotation where the end-of-walk point is not over the target, then you have already found a solution. This would be the case only if the length of the residual was zero in step (2). You were lucky!)
+    4. Go back to the vector you picked in step (1) --- make that vector the active vector. Grow or shrink just that vector to move the end-of-walk point. You will be able to move it over the target point. That's the solution! If you have really reached it, then rotating the display will leave the end-of-walk point over the target.
+
+See the original exercises
+[solving](http://www.macalester.edu/~kaplan/ISM/Exercises-HTML/11.16.html?access=not-defined&docname=11.16),
+[redundancy](http://www.macalester.edu/~kaplan/ISM/Exercises-HTML/11.17.html?access=not-defined&docname=11.17)

@@ -1,0 +1,33 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+topics: [contours, tables as functions, by-hand]
+id: cow-dream-sofa 
+---
+
+(ref:cow-dream-sofa) Exercise in file cow-dream-sofa
+
+```{r cow-dream-sofa-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Consider the function $g(x, y)$ as represented by the table.
+
+
+```{r cow-dream-sofa-1, echo = FALSE}
+f = rfun(~x&y, seed=673)
+x = -6:6
+y = seq(6,-6,by=-1)
+vals = 20+8*outer(x,y,f)
+inds = ceiling(540*rank(c(vals))/length(c(vals)))
+foo = expand.grid(x,y)
+plot(1:10, xlim=c(-6,6), ylim=c(-6,6), xlab="x",ylab="y",type="n")
+colorSet = topo.colors(50)
+text(foo$Var1,foo$Var2, round(vals),cex=1.0)
+```
+
+1. What's the value $f( x=4, y=-6)$?
+#. What's the value $f( x=1, y=5)$?
+#. Draw contours at $-50$, $-25$, $0$, $25$, and $50$.

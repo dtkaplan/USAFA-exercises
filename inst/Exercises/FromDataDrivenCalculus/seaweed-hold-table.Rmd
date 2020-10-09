@@ -1,0 +1,22 @@
+---
+chapter: "Circumference and area"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [differentiation, notes, third]
+id: seaweed-hold-table 
+---
+
+(ref:seaweed-hold-table) Exercise in file seaweed-hold-table
+
+```{r seaweed-hold-table-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Area and Circumference of a Circle
+
+Do dimensional analysis to see that the area of a circle must be something proportional to $r^2$ or to $r c$, where $c$ is the circumference.
+
+No particular reason to think that the constants of proportionality need to be the same. Yet they are so closely related: area is $\pi r^2$ and circumference is $2 \pi r$.
+
+Argument that the circumference is the change in the area as $r$ changes.
