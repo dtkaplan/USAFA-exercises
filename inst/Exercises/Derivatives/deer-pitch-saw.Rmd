@@ -1,0 +1,104 @@
+---
+chapter: "Derivatives"
+title: "Title for deer-pitch-saw"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "deer-pitch-saw"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-10-12 
+tags: [curvature, 2nd deriv]
+id: deer-pitch-saw
+---
+
+```{r deer-pitch-saw-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+```{r echo=FALSE}
+source(system.file("Exercises/Scripts/function_set_A.R", package = "math141Zexercises"))
+```
+
+
+`r etude::exercise_title()` The left column of graphs shows functions A(), B(), C(), and D(). The right column shows functions dd1(), dd2(), and so on. Find which function (if any) in the right column corresponds to the 2nd derivative of a function in the left column.
+
+Remember the concepts of "concave up" (a smile!) and "concave down" (a frown). At those values of $x$ for which the 2nd derivative of a given function is positive, the given function will be concave up. When the 2nd derivative is negative, the given function will be concave down.
+
+
+```{r echo=FALSE, out.width = "50%", fig.show="hold"}
+dom <- domain(x = c(-5, 5))
+slice_plot(f5(x) ~ x, dom) %>% gf_labs(title = "Function A()")
+slice_plot(ddf8(x) ~ x, dom) %>% gf_labs(title = "Function dd1()") 
+slice_plot(f2(x) ~ x, dom) %>% gf_labs(title = "Function B()")
+slice_plot(ddf2(x) ~ x, dom) %>% gf_labs(title = "Function dd2()")
+slice_plot(f3(x) ~ x, dom) %>% gf_labs(title = "Function C()")
+slice_plot(ddf9(x) ~ x, dom) %>% gf_labs(title = "Function dd3()")
+slice_plot(f8(x) ~ x, dom) %>% gf_labs(title = "Function D()")
+slice_plot(ddf5(x) ~ x, dom) %>% gf_labs(title = "Function dd4()")
+```
+
+```{r deer-pitch-saw-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "The second derivative of Function A() is which of the following:",
+  choices = list(
+    "dd1()" = "",
+    "dd2()" = "",
+    "dd3()" = "",
+    "+dd4()+" = "",
+    "not shown" = ""
+  )
+)
+```
+
+
+```{r deer-pitch-saw-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "The second derivative of Function B() is which of the following:",
+  choices = list(
+    "dd1()" = "",
+    "+dd2()+" = "",
+    "dd3()" = "",
+    "dd4()" = "",
+    "not shown" = ""
+  )
+)
+```
+
+```{r deer-pitch-saw-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "The second derivative of Function C() is which of the following:",
+  choices = list(
+    "dd1()" = "",
+    "dd2()" = "",
+    "dd3()" = "",
+    "dd4()" = "",
+    "+not shown+" = ""
+  )
+)
+```
+
+```{r deer-pitch-saw-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "The second derivative of Function D() is which of the following:",
+  choices = list(
+    "+dd1()+" = "",
+    "dd2()" = "",
+    "dd3()" = "",
+    "dd4()" = "",
+    "not shown" = ""
+  )
+)
+```
+
+
+
+

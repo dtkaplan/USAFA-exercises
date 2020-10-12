@@ -1,0 +1,105 @@
+---
+chapter: "none yet"
+title: "Title for finch-trim-kayak"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "finch-trim-kayak"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-10-12 
+tags: [first, second, third]
+id: finch-trim-kayak
+---
+
+```{r finch-trim-kayak-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+```{r echo=FALSE}
+source(system.file("Exercises/Scripts/function_set_A.R", package = "math141Zexercises"))
+```
+
+
+`r etude::exercise_title()` Here are graphs of various functions. The right column shows functions named $f_1()$, $f_2()$, and so on. The left column shows functions $A()$, $B()$, $C()$, and so on. Most of the functions on the right are the derivative of some function on the left, and most of the functions on the left have their corresponding derivative on the right. Your task: Match the function on the left to it's derivative on the right.
+
+```{r echo=FALSE, out.width = "50%", fig.show="hold"}
+dom <- domain(x = c(-5, 5))
+slice_plot(f7(x) ~ x, dom) %>% gf_labs(title = "Function A()")
+slice_plot(df4(x) ~ x, dom) %>% gf_labs(title = "Function f1()") 
+slice_plot(f4(x) ~ x, dom) %>% gf_labs(title = "Function B()")
+slice_plot(df7(x) ~ x, dom) %>% gf_labs(title = "Function f2()")
+slice_plot(f10(x) ~ x, dom) %>% gf_labs(title = "Function C()")
+slice_plot(df3(x) ~ x, dom) %>% gf_labs(title = "Function f3()")
+slice_plot(f9(x) ~ x, dom) %>% gf_labs(title = "Function D()")
+slice_plot(df10(x) ~ x, dom) %>% gf_labs(title = "Function f4()")
+```
+
+```{r finch-trim-kayak-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "The derivative of Function A() is which of the following:",
+  choices = list(
+    "f1()" = "",
+    "f2()" = "",
+    "+f3()+" = "",
+    "f4()" = "",
+    "not shown" = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+
+```{r finch-trim-kayak-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "The derivative of Function B() is which of the following:",
+  choices = list(
+    "+f1()+" = "",
+    "f2()" = "",
+    "f3()" = "",
+    "f4()" = "",
+    "not shown" = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+```{r finch-trim-kayak-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "The derivative of Function C() is which of the following:",
+  choices = list(
+    "f1()" = "",
+    "f2()" = "",
+    "f3()" = "",
+    "+f4()+" = "",
+    "not shown" = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+```{r finch-trim-kayak-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "The derivative of Function D() is which of the following:",
+  choices = list(
+    "f1()" = "",
+    "f2()" = "",
+    "f3()" = "",
+    "f4()" = "",
+    "+not shown+" = ""
+  ),
+  random_answer_order = FALSE
+)
+```
+
+
+
+

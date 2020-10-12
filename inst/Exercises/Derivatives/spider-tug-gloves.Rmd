@@ -1,0 +1,129 @@
+---
+chapter: "Derivatives"
+title: "Title for spider-tug-gloves"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "spider-tug-gloves"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-10-12 
+tags: [Average vs marginal, derivatives, optimization]
+id: spider-tug-gloves
+---
+
+```{r spider-tug-gloves-setup, include = FALSE}
+library(mosaicCalc)
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` The graph shows a simplified model of the amount of usable wood that can be harvested from a typical tree in a managed forest of Ponderosa Pine. (You can see some actual forestry research models [here](https://www.fs.fed.us/rm/pubs/rmrs_gtr292/1992_milner.pdf).)
+
+```{r include=FALSE, context="setup"}
+tree_volume <- makeFun(1000*pnorm(year, mean=15, sd=10)^3 ~ year)
+```
+
+```{r spider-tug-gloves-sandbox1, exercise=TRUE, exercise.cap="Sandbox for tree calculation", exercise.eval=FALSE, exercise.lines=8, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+slice_plot(tree_volume(year) ~ year, domain(year = c(0, 50))) %>%
+  gf_labs(y = "Usable wood product (board-feet)",
+          x = "Year after planting")
+
+```
+
+You are writing a business plan for a proposed pine forest. Among other things, you have to forecast the revenue that will be generated and when you will have salable product.
+
+
+```{r spider-tug-gloves-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of these R commands will give the total amount of wood yielded by a harvest in year $y$?",
+  choices = c(
+    "+`tree_volume(y)`+", "`tree_volume(y)/y`", "`tree_volume(y) - tree_volume(y-1)`", "`tree_volume(y) - tree_volume(y -0.1)`", "`(tree_volume(y) - tree_volume(y - 0.1))/0.1`"
+  )
+)
+```
+
+```{r spider-tug-gloves-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of these R commands will give the **average** amount of wood per year of growth yielded by a harvest in year $y$?",
+  choices = c(
+    "`tree_volume(y)`", "+`tree_volume(y)/y`+", "`tree_volume(y) - tree_volume(y-1)`", "`tree_volume(y) - tree_volume(y - 0.1)`", "`(tree_volume(y) - tree_volume(y - 0.1))/0.1`"
+  )
+)
+```
+
+
+```{r spider-tug-gloves-QA9, echo=FALSE}
+etude::choose_one(
+  prompt = "Which of these R commands will give the closest approximation to the derivative of tree growth at year $y$?",
+  choices = c(
+    "`tree_volume(y)`", "+`tree_volume(y)/y`+", "`tree_volume(y) - tree_volume(y-1)`", "`tree_volume(y) - tree_volume(y - 0.1)`", "`(tree_volume(y) - tree_volume(y - 0.1))/0.1`"
+  )
+)
+```
+
+```{r spider-tug-gloves-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "What are the units of the output of the **derivative** of tree growth?",
+  choices = c(
+    "board feet", "years", "+board feet per year+", "years per board foot", "no units"
+  )
+)
+```
+
+```{r spider-tug-gloves-QA6, echo=FALSE}
+etude::choose_one(
+  prompt = "What are the units of the **average rate** of tree growth?",
+  choices = c(
+    "board feet", "years", "+board feet per year+", "years per board foot", "no units"
+  )
+)
+```
+
+
+```{r spider-tug-gloves-QA7, echo=FALSE}
+etude::choose_one(
+  prompt = "Starting at year 0, find the average growth rate (wood volume per year) at year 50 when the tree is completely mature.",
+  choices = c("16.5", "+20+", "27.1", "24.5"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+
+```{r spider-tug-gloves-QA8, echo=FALSE}
+etude::choose_one(
+  prompt = "Starting at year 0, find the *average* growth rate (wood volume per year) at year 20.",
+  choices = c("+16.5+", "20.0", "27.1", "24.5"),
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+)
+```
+
+```{r spider-tug-gloves-Essay1, echo=FALSE}
+etude::essay_response(
+  prompt = "Purely in terms of the amount of useable wood produced, would it be better to harvest at year 20 or at year 50? Justify (briefly) your answer."
+)
+```
+
+```{r spider-tug-gloves-Essay2, echo=FALSE}
+etude::essay_response(
+  prompt = "Reframing the problem as maximizing the average amount of wood produced per year (that is, the **rate** of wood production), would it be better to harvest at year 20 or at year 50? Justify (briefly) your answer."
+)
+```
+
+```{r spider-tug-gloves-Essay3, echo=FALSE}
+etude::essay_response(
+  prompt = "*We haven't yet covered the mathematical principles you would need to answer this question correctly, but we are interested to find out what is your best guess at this point in the course.* Explain how you would go about finding the best time to harvest if your goal is to maximize the average rate of wood production over the interval from planting to harvest? You don't have to worry if your statement is correct. Just make sure it honestly reflects your best thinking at this point."
+)
+```
+
+
+

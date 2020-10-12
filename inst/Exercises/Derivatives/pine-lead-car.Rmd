@@ -1,0 +1,136 @@
+---
+chapter: "derivatives"
+title: "Title for pine-lead-car"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "pine-lead-car"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-10-12 
+tags: [derivatives, monotonicity]
+id: pine-lead-car
+---
+
+```{r pine-lead-car-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+```{r echo=FALSE}
+source(system.file("Exercises/Scripts/function_set_A.R", package = "math141Zexercises"))
+```
+
+
+`r etude::exercise_title()` Each of the following graphs shows the derivative of some function $f()$. (Note: the graph doesn't show $f()$ but rather the function $df()$ which is the derivative of $f()$.) For each graph, say whether the function $f()$ is monotonically increasing, monotonically decreasing, or neither. (Note that the horizontal scale is the same in every graph, but the vertical scale can be different from one scale to another.)
+
+
+
+```{r echo=FALSE, out.width = "50%", fig.show = "hold"}
+slice_plot(df1(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function A", y="df(x)")
+slice_plot(df2(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function B", y="df(x)")
+slice_plot(df3(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function C", y="df(x)")
+slice_plot(df4(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function D", y="df(x)")
+slice_plot(df5(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function E", y="df(x)") %>%
+  gf_theme(axis.text.y=element_blank())
+slice_plot(df6(x) ~ x, domain(x = c(-5,5))) %>% gf_labs(title="Derivative of function F", y="df(x)")
+```
+
+```{r pine-lead-car-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "Function A is ...",
+  choices = list(
+    "+monotonically increasing+" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "monotonically decreasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "non-monotonic" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "Can't tell from the info provided" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
+
+
+```{r pine-lead-car-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = "Function B is ...",
+  choices = list(
+    "monotonically increasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "+monotonically decreasing+" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "non-monotonic" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "Can't tell from the info provided" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
+```{r pine-lead-car-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "Function C is ...",
+  choices = list(
+    "monotonically increasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "monotonically decreasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "+non-monotonic+" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "Can't tell from the info provided" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
+```{r pine-lead-car-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "Function D is ...",
+  choices = list(
+    "+monotonically increasing+" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "monotonically decreasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "non-monotonic" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "Can't tell from the info provided" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
+```{r pine-lead-car-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = "Function E is ...",
+  choices = list(
+    "monotonically increasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "monotonically decreasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "non-monotonic" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "+Can't tell from the info provided+" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
+```{r pine-lead-car-QA6, echo=FALSE}
+etude::choose_one(
+  prompt = "Function F is ...",
+  choices = list(
+    "+monotonically increasing+" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "monotonically decreasing" = "A monotonically increasing function has a function that is everywhere $> 0$",
+    "constant" = "A constant function has a derivative that is everywhere 0.",
+    "non-monotonic" = "A non-monotonic function goes up and down, hence the derivative is positive in some places and negative in others.",
+    "Can't tell from the info provided" = "This is the case if you cannot tell if the derivative is positive or negative."
+  ), 
+  random_answer_order = FALSE,
+  allow_retry = FALSE
+  
+)
+```
