@@ -1,0 +1,35 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [contours, tables as functions, by-hand]
+id: fir-trim-linen 
+---
+
+(ref:fir-trim-linen) Exercise in file fir-trim-linen
+
+```{r fir-trim-linen-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Consider a function $f(x,y)$ as represented by this table.
+
+
+```{r fir-trim-linen-1, echo = FALSE}
+f = function(x,y){20+6*x + 4*y}
+x = -5:5
+y = seq(4,-4,by=-1)
+vals = outer(x,y,f)
+foo = expand.grid(x,y)
+plot(1:10, xlim=range(x), ylim=range(y), xlab="x",ylab="y",type="n")
+text(foo$Var1,foo$Var2, round(vals),cex=1)
+```
+
+ 
+1. What's the value $f( x=2, y=3)$?
+#. What's the value $f( x=1, y=-3)$?
+#. Draw contours at $-20$, $0$, $20$, $40$ and $60$.
+
+
+

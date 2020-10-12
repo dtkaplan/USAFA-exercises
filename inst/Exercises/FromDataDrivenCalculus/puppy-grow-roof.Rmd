@@ -1,0 +1,31 @@
+---
+chapter: "Light and heat"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [utilities, second, third]
+id: puppy-grow-roof 
+---
+
+(ref:puppy-grow-roof) Exercise in file puppy-grow-roof
+
+```{r puppy-grow-roof-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: How variables interplay. In the utilities data, you can imagine that the use of natural gas is somewhat offset by the use of electricity. At least, this will be so in the winter, when natural gas is being used for heating
+
+    u = fetchData("utilities.csv")
+    winter = subset(u, temp < 50 & ccf > 50)
+    project( ccf ~ temp + kwh, data=winter)
+    ... giving output ...
+                     [,1]
+    (Intercept) 301.03791
+    temp         -4.36838
+    kwh          -0.02471
+
+This says that each kwh of electricity reduces the ccf by 0.025; or, in other words, there are about 40kwh to a ccf.
+
+Looking on the web, we find a conversion "1 ccf is approximately equal to 29.3 KWH." So we can see the substitution in the data. 
+ 
+In thinking about this, we made a statement that "one kwh reduces ccf by -0.02471". We need to develop a systematic framework for this sort of thing. That's what derivatives are for.

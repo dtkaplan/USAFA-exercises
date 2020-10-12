@@ -1,0 +1,130 @@
+---
+chapter: "What is Calculus?"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, motivation, third]
+id: boy-hurt-pants 
+---
+
+(ref:boy-hurt-pants) Exercise in file boy-hurt-pants
+
+```{r boy-hurt-pants-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: What is calculus?
+
+-   Ask students who has taken calculus already. What's it about? They will say "integrals" and "derivatives." Ask them what these are for? When they say "areas," ask how often they have a problem involving areas (outside of a math course). Why are areas so important, then?
+-   A strategy for turning descriptions of parts into wholes, and for taking wholes apart into parts.
+    -   Sometimes it's easy to describe things in terms of parts. Examples: Whole: What's the size of the US economy? (Few people can say.) What's the growth rate? (Many people know something reasonable.) Whole: What will be the population in 2050? Part: How many people will be born and will die this year? Whole: How many people will get the flu? Part: For each person who gets the flu, how many new people, on average, will catch it from him or her?
+-   Ask what the word "calculus" means.
+
+A little of the history of calculus: Title Page from Newton's book <http://dl.dropbox.com/u/5098197/Math135/Figures/Newton-Fluxion.pdf>
+
+Note the vocabulary: functions or variables are "fluents", derivatives are "fluxions"
+
+Advising en masse: Should you be in this course?
+
+-   If you are prepared to take Single Variable or Multivariable, and you will eventually take multivariable or linear algebra, then you don't necessarily need to be in this course.
+
+[The billiards problem](http://dl.dropbox.com/u/5098197/Math135/In-Class/draw-billiards.pdf)
+
+
+Some modeling exercises:
+[dots](/wiki/mosaic/index.php/MacMath135_Modeling_Examples#Counting "MacMath135 Modeling Examples"),
+[capacity of light rail](/wiki/mosaic/index.php/MacMath135_Modeling_Examples#Planning_for_Light_Rail "MacMath135 Modeling Examples"),
+[Some modeling exercises: cars through the intersection.](http://dl.dropbox.com/u/5098197/Math135/In-Class/road-capacity.pdf)
+
+Review of the topics of the course. Central themes: modeling and computation, both symbolic and numeric.
+
+-   Functions
+-   Units and Dimensions
+-   Linear Algebra
+-   Derivatives and Integrals
+-   Differential equations
+
+Quick introduction to R and RStudio. [StartR \-- Why a Language?](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-StartR-Why-a-Language/AC-StartR-Why-a-Language-A.html?access=AC6)
+ and then for Friday read and do
+[RStudio](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-StartR-RStudio/AC-StartR-RStudio-A.html?access=AC6)
+
+
+Here's an example of an image (which I copied to my Dropbox Public directory) so that we can keep track of these things until the image uploading is fixed.
+
+<http://dl.dropbox.com/u/5098197/Exercises/HTML/Figures/RobertHookeMicrographia1665.jpg>
+
+Sept 9, 2011
+------------
+
+Introductory comments. This is a hard part of the class to teach. There are students who might not know the material, due to a weak high-school preparation. But most of my students know much of the material very well, e.g., equations of the line, monomials, etc. Those students can tune out, because they think they know the stuff already. And they miss something.
+
+1.  Our interest is in constructing functions, not in the manipulation of equations emphasized in high-school algebra.
+2.  They need to learn a notation that will work for functions of multiple variables. $x$ will not always (or often!) be the input variable. The output variable can't always be called $y$
+3.  They need mainly in the early stage to learn a few different functions and the meaning of their parameters.
+
+An analogy is to writing a screen play for a sitcom. Suppose you want to tell a story of your own, but you want to do it in a setting that will reach a large audience. So, you write for a popular sitcom -- "30 Rock" or "Modern Family" or "House" (for the old-timers) "Gilligan's Island." You have a set of characters you can work with. Each of the characters has his or her own attributes, and you have to work with them. You can customize them a little bit -- put the character in an usual setting -- but not too much or they won't be the character that people expect.
+
+Similarly, in constructing functions, we often do it by putting together one or more functions from a basic library, customizing them by setting their parameters. So the parameters are what determine the detailed features of the "character", whereas the function type (linear, power-law, sine, ...) sets the broad shape of the character.
+
+### Applied Calculus §1.1
+
+What's a function? The book says, "In mathematics, a function is used to represent the dependence of one quantity upon another." Some words to think about:
+
+-   **quantity** -- it doesn't necessarily have to be numerical. Maybe call them "inputs" or "arguments".
+-   **dependence of ... upon ...** -- maybe "relationship" or "association" or "matching" or "pairing" or "correspondence". "Dependence" is an idiom used in mathematics but that carries some freight in other disciplines.
+-   **represent** -- it is not the relationship itself, but a way of presenting the relationship.
+-   **mathematics** -- why in mathematics? What we're looking for is a form of representation that's easy to manipulate, communicate, visualize, take apart, simulate, etc.
+
+In this course "another quantity" is actually going to mean "one or more other inputs". In this early part of the semester, we're going to review some material that may seem very familiar to you. We do this for two reasons:
+
+1.  The review may help to refresh your memory for important basics: straight-line relationships, power-laws and exponentials, sines and cosines.
+2.  We need to help you make the transition from thinking about "the relationship of one quantity upon another" to "the dependence of one quantity on one or more inputs."
+
+You've been brought up in a mathematical notation that presents a simplistic, even Pavlovian approach. $x$ is always the independent quantity. $y$ is always the dependent quantity. That makes it easy to identify what's what. Other letters, a, b, $\gamma$, $\beta$, etc. stand for fixed quantities. The more general terms are: 
+
+-   variables (fluents in Newton's nomenclature) -- the quantities whose variation we are interested in
+-   parameters -- the quantities that are fixed
+
+But in this course, we'll have multiple inputs, and it would be silly to call them all $x$ and $y$. So we'll need a more general notation.
+
+### The Snow Tree Cricket
+
+(Maybe it should be the "snowy tree cricket.")
+
+The book claims that the "chirp rate" can be computed from the temperature T according to the formula
+
+$C = f(T) = 4 T - 160$
+
+Questions:
+
+-   Does this mean that Snow Tree Crickets can measure the temperature, do arithmetic, and measure time?
+-   Why would anyone care about the snow tree cricket?
+
+The first question might seem silly -- of course they can't! -- but how does the cricket get it right? The second might seem callous and disrespectful of nature. But both questions are important in their own way.
+
+The formula is a **model** -- a representation of the snow cricket behavior and the relationship among quantities. But very important in the construction of a model are two issues:
+
+1.  What quantities are you representing? This is the "operationalization" phase of modeling.
+2.  What is the purpose for which you are building the model? This has important implications for the sort of model it's appropriate to construct.
+
+Each issue is closely related to the other.
+
+No disrespect to crickets, but they don't have thermometers or watches. It's hardly likely that they do the arithmetic of multiplying temperature (in degrees Fahrenheit) by 4 and then subtract 160, nor do they know what a minute of time is. Possibly the mechanism has to do with an excitable nerve or muscle cell -- the cell permeability probably depends on temperature (just because many things depend on temperature). The higher the temperature, the higher the permeability to ions. Cell membranes can serve as a kind of oscillator: charge (from the flow of ions) builds up on the membrane, changing the transmembrane electrical potential. When the potential reaches a certain level, the conformation of charged transmembrane protein channels changes, leading to an action potential, a sharp change in permeability, and a resetting of the membrane voltage. Also a chirp.
+
+It's a choice whether to operationalize the cricket's behavior in terms of the transmembrane potential of a cell, or the chirping rate, or something else. It's also a choice whether to measure permeability or temperature. Why to choose one versus the other?
+
+To some extent, it depends on what you can measure and why you are interested in the cricket's behavior. There are all sorts of reasons why you might be interested.
+
+To quote from the Wikipedia entry [on Sept. 8, 2011](http://en.wikipedia.org/wiki/Tree_cricket):
+
+> Tree cricket is also known as poor man's thermometer. It is because if you count the number of chirps in 15 seconds and add 37 you get the temperature close to the Farhenheit temperature of outside.
+
+For some people, the "poor man," the reason to model the cricket's behavior is to be able to tell the temperature from something you can easily quantify -- the number of chirps per 15 seconds. Possibly it would have been better to set up the model explicitly for this purpose, giving temperature as the output:
+
+$T = g(C) = \frac{C + 160}{4}$
+
+Even better, as an aid to computation, and because a minute is a long time to be counting chirps, let $C_{15}$ be the number of chirps in 15 seconds: $C_{15} = C/4$ and $T = C_{15} + 40 $
+
+This is close to, but not identical to the formula given in the Wikipedia entry. It raises the question of how accurate such a model needs to be. Probably the difference of 3 degrees Fahrenheit is not so important to the "poor man".
+
+Unfortunately, the purpose behind models in math books is often to illustrate mathematical principles rather than to illustrate good modeling practices. That's why there's no statement of **why** the model is being built. You should always have such a statement in mind when constructing a model, since it influences the sorts of quantities you will model, how you will operationalize them, and the kinds of relationships you will represent with your mathematical functions, as well as what is the output and what are the inputs.

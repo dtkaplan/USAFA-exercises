@@ -1,0 +1,40 @@
+---
+chapter: "Periodic functions"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+topics: [first, second, third]
+tags: [notes, functions, periodic, sin]
+id: monkey-break-door 
+---
+
+(ref:monkey-break-door) Exercise in file monkey-break-door
+
+```{r monkey-break-door-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Periodic Functions
+
+There are all sorts of ways to describe functions that vary, but end up repeating themselves. Examples: the position of the Earth around the sun, the location of a shadow, the temperature over the course of a week or so (repeats only approximately, unless you live in San Diego), sound and other waves (light, water, ...) . We'll use a simple function that is periodic.
+
+$ f(t) = A \sin( \frac{2 \pi (t- t_0)}{P} ) + C $
+
+There are four parameters here:
+
+1.  P \-- the period of the repeat.
+2.  A \-- the amplitude of the variation
+3.  $t_0$ \-- The horizontal (that is, input) shift parameter, that is, the time of the first, upward going zero crossing.
+4.  C \-- the output shift parameter. The average value of the output.
+
+MEMORIZE this parameterization.
+
+Notice that this explanation is given in terms of an input called $t$. That's arbitrary, but reflects the fact that often we are interested in things that repeat themselves in time.
+
+Question: Give an example of something that repeats itself spatially.
+
+Keep in mind that not all periodic functions are shaped like a sine function. It turns out, however, that any (continuous) periodic function can be written in terms of a sum of such sine functions. This is extremely important in term of technology and science, and played a critical role in the development of the telephone (and from there to the radio, etc.) 
+
+Another way to write the periodic function above is as a sum of a sine and cosine of the same period.
+
+There are many other ways people might (and do) choose to represent periodic functions, e.g., square pulses or saw-tooth waves, or triangle waves. Sines and cosines turn out to be important physically and to have lovely mathematical properties that make them fundamental in important ways. We'll study these toward the end of the semester. There's a lot of mathematical theory behind the choice of sines and cosines as modeling functions, but our primary objective will be to create and use models rather than to illuminate the theory.

@@ -1,0 +1,34 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [contours, tables as functions, by-hand]
+id: octopus-leave-gloves 
+---
+
+(ref:octopus-leave-gloves) Exercise in file octopus-leave-gloves
+
+```{r octopus-leave-gloves-default, include = FALSE}
+SDSdata::sds_setup()
+library(mosaicCalc)
+```
+
+TITLE GOES HERE: Consider the function $h(u, v)$ implied by the table below.
+
+
+```{r octopus-leave-gloves-1, echo = FALSE}
+f = rfun(~x&y, seed=73334)
+x = -5:5
+y = seq(5,-5,by=-1)
+vals =  20+4*outer(x,y,f)
+inds = ceiling(50*rank(c(vals))/length(c(vals)))
+foo = expand.grid(x,y)
+plot(1:10, xlim=range(x), ylim=range(y), xlab="u",ylab="v",type="n")
+#colorSet = topo.colors(50)
+gray = seq(.85,0,length=50)
+colorSet = rgb(gray,gray,gray)
+text(foo$Var1,foo$Var2, ceiling(vals),cex=1.0, col=colorSet[inds])
+```
+
+* Draw contours at $0$, $10$, and $20$.

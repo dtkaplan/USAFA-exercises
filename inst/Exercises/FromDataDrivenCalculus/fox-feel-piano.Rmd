@@ -1,0 +1,59 @@
+---
+chapter: "Doubling and the rule of 72"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, exponentials, Rule of 72]
+id: fox-feel-piano 
+---
+
+(ref:fox-feel-piano) Exercise in file fox-feel-piano
+
+```{r fox-feel-piano-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: The Rule of 72
+
+    f = plotFun( log(2)/log(1+r/100)~r,r=range(2,20))
+    plotFun( 72/r ~ r, add=TRUE, col="red")
+
+Deriving the 72.
+
+    x = seq(1,20,length=100)
+    y = f(x)
+    project( y ~ I(1/x) - 1)
+               [,1]
+    I(1/x) 70.32553
+
+Which is pretty close to 72, a nice number for computation.
+
+What's the error?
+
+-   Absolute error: How far off the doubling time is, in years.
+
+    plotFun( f(r)-72/r ~ r, r=range(2,20))
+
+-   Relative error: How far off the doubling time is, as a fraction of the true answer.
+
+    plotFun( abs(f(r)-72/r)/f(r) ~ r, r=range(0,20))
+
+Try it with 70.3255 -- the error isn't that different.
+
+    plotFun( (f(r)-70.3255/r)^2 ~ r, col="blue",add=TRUE)
+
+An even better polynomial approximation ... include the intercept term.
+
+    project( y ~ 1 + I(1/x))
+                      [,1]
+    (Intercept)  0.3388032
+    I(1/x)      69.3275816
+    plotFun( abs(f(r)-(0.3388 + 69.3276/r))/f(r) ~ r, add=TRUE, col="red")
+
+Looking at the square difference, the quantity that projection minimizes:
+
+    plotFun( (f(r)-70.3255/r)^2 ~ r, r=range(1,20))
+    plotFun( (f(r)-72/r)^2 ~ r, add=TRUE, col="blue")
+    plotFun( (f(r)-(0.3388 + 69.3276/r))^2 ~ r, add=TRUE,col="red")
+
+It's actually the integral of these that is minimized when doing projection. The rule of 72 is somewhat better around 6% interest rates.

@@ -1,0 +1,55 @@
+---
+chapter: "Interpreting contour plots"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [reading contour plots, notes, third]
+id: crow-pay-room 
+---
+
+(ref:crow-pay-room) Exercise in file crow-pay-room
+
+```{r crow-pay-room-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Interpreting contours: 
+
+Interpret this map. Where's the tallest hill? Where is a valley?
+
+Translating from simple knowledge of a function to a contour plot:
+
+![](/images/topomap.png)
+
+![](/images/temporary/9-2-2a.png)
+
+![](/images/temporary/9-2-2b.png)
+
+![](/images/temporary/9-2-2c.png)
+    
+It's hard to draw a function of two variables from a verbal understanding of the function. Examples:
+
+i. Car price depends on both age and mileage.
+ii. The Ideal Gas Law says that pressure increases with temperature and decreases with volume. Plot out contours of pressure as a function of temperature and volume.
+    a. Provide the graph. 
+    b. Show the van der Waals gas law: $$(P + \frac{n^2 a}{V^2})(V-nb) = nr T$$
+    
+Molecule |	a (liters2-atm / mole2)	 | b (liters / mole)
+---------|------------:|----------:   
+H2 |	0.2444	| 0.02661
+O2 |	1.360	  | 0.03183
+N2	| 1.390	  | 0.03913
+CO2	| 3.592	  | 0.04267
+Cl2	| 6.493	  | 0.05622
+Ar	| 1.345	  | 0.03219
+Ne	| 0.2107	| 0.01709
+He	| 0.03412	| 0.02370
+
+Table [source](http://chemistry.bd.psu.edu/jircitano/gases.html)
+
+    
+Highlight difference between a "graph" and a contour plot.
+    -   The graph of a function of two variables will be a 2-d surface.
+    -   DIGRESSION: What would contour plots of a function of one variable look like? (Isolated dots or regions on the single axis.) 
+
+Activity: Drawing contours from tables. Exercises [1](/Exercises/fir-trim-linen/), [2](/Exercises/tiger-make-kayak/), [3](/Exercises/cow-dream-sofa), [4](/Exercises/octopus-leave-gloves/), [5](/Exercises/bird-come-shoe/), [6](/Exercises/camel-cost-roof/)

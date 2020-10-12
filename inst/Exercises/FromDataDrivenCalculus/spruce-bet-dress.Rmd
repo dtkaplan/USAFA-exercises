@@ -1,0 +1,110 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [notes, dimension, dimensional analysis]
+id: spruce-bet-dress 
+---
+
+(ref:spruce-bet-dress) Exercise in file spruce-bet-dress
+
+```{r spruce-bet-dress-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Dimensional analysis
+
+Example: Period of pendulum.
+
+-   Quantitles of importancePeriod $T$, Pendulum length
+    $L$, Mass $M$, Gravity
+    $L/T^2$, Angle (dimensionless).
+    Combine these together
+    $T^a \ L^b \ M^c \ (L/T^2)^d $
+    Find $a,b,c,d$ to give a dimensionless quantity. This
+    amounts to
+    $\mbox{Period}^2 \frac{\mbox{gravity}}{\mbox{length}} =
+    f(\mbox{others})$
+    Hold the angle constant and solve, giving $\mbox{Period} =
+
+\sqrt{\frac{\mbox{Length}}{\mbox{gravity}}}$
+
+DO THE ESTIMATION OF TIME BY SWINGING THE PENDULUM. At a fixed angle of release, find the period. Change the mass and the length. Make a table of the period versus length. See if changing the mass changes anything. See if things change from very small angles to very large angles. 
+Example: Distance travelled by a projectile.
+
+\#\# Friday Sept 23
+
+Dimensions
+
+-   Dimensions: Basic dimensions in science and geometry are length L,
+    time T, mass M. Class expressed preceding dimensions (after deleting
+    money etc) in terms of L, T, M. Notice that angle is L^0 T^0 M^0
+    = 1, referred to (perhaps misleadingly) as dimensionless.
+-   Explicit discussion of Work, Energy, Power.
+-   All terms on both sides of an equation must have the same dimension.
+    Used to advantage in two examples:
+-   Example 1: period P of a pendulum. Modeled based on l = pendulum
+    length, g = acceleration of gravity, m = mass of pendulum bob.
+    Result: P = k \sqrt{l/g}. Note we did not need mass. Seems like
+    magic, but the real depth, intuition came in in the choice of
+    modeling parameters l, g, m. What if you needed more - for example a
+    viscosity parameter or mass density parameter for swinging in a
+    liquid, etc.
+-   Example 2: range R of a projectile: modeling parameters muzzle
+    velocity v, acceleration of gravity g, mass m, initial angle theta.
+    R = f(theta) v^2/g. The unknown function of theta comes in because
+    theta is dimensionless, we can not fix a power of theta. f(theta)
+    determined by more theory or by experiment.
+-   QUIZ 2
+    -   Read contour diagram
+    -   Linear function of 2 variables, from data
+    -   Unit conversion
+
+#### Kaplan
+
+-   News from the world of physics: [faster than light?](http://www.nytimes.com/aponline/2011/09/22/world/europe/AP-EU-Breaking-Light-Speed.html?pagewanted=1&hp)
+    
+-   Seque into the dimensional analysis of $E = m c^2$. What else could it be?
+
+##### Dimensions
+
+Does $x_0 + v_0 t + 1/2 a t^2$ make sense dimensionally?
+
+Calculate my body mass index. Convert mass from pounds to kg (on earth), height from inches to meters.
+
+What are the dimensions of the Body Mass Index? Must there be units to it. Show my BMI in kg/m2 must be equal to my BMI in lbs/in2, and what the conversion factor must be.
+
+Units of coefficients. Work through coefficients on $a x^2 + b x + c$ when $x$ has units of meters. Does the quadratic formula make sense dimensionally?
+
+##### Dimensional Analysis
+
+Pendulum example. What might the period depend on: mass, length, gravity, angle (also, air density, ...) 
+
+Find two dimensionless groups (angle and gravity * time^2^ / length). These must be functions of one another. Work through the implications to get $\sqrt{L}$ dependence of period. Test this.
+
+
+Construct quantities that are dimensionless. The variables involved are related to one another accordingly. Two examples:
+
+1.  Distance travelled by a canonball. Quantities of interest: velocity v, angle alpha, gravity g, mass m, distance d. How to get a quantity of dimension L by combining quantities of dimension $v \rightarrow L/T$, $g \rightarrow L/T^2$, and $m \rightarrow M$? It's $v^2 / g$. We've just discovered about energy going as $v^2$.
+2.  Swing a rock on a string in a circle. What's the force on the string? (The so-called centripetal force.) Force has dimension \$f \rightarrow M L/T^2\$. The rock has mass $m\rightarrow M$ and the string has radius $r \rightarrow L$. Two ways to think about it:
+    -   What's the linear velocity of the rock? $v \rightarrow L/T$
+    -   What's the angular velocity (revolutions per second)? $ \omega \rightarrow 1/T$
+ 
+How to combine linear velocity, mass, and radius to get $M L/T^2$? It's $m v^2 / r$. Or, for angular velocity, it's $m r / \omega^2$. Compare those to the formulas in a physics book.
+
+### ... and more
+
+
+
+Worked on the "corn energy efficiency" problem.
+
+Introduce the Atomic Bomb group project.
+
+```{r spruce-bet-dress-1, echo = FALSE}
+
+```
+
+```{r spruce-bet-dress-2, echo = FALSE}
+
+```

@@ -1,0 +1,21 @@
+---
+chapter: "Fermi problems"
+author: "Daniel Kaplan"
+date: 2019-12-20 
+version: 0.1
+tags: [fermi, recycling]
+id: ash-catch-painting 
+---
+
+(ref:ash-catch-painting) Exercise in file ash-catch-painting
+
+```{r ash-catch-painting-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: From the *New Yorker* (Oct 21, 2019, p. 30):
+
+> According to the Ellen MacArthur Foundation, an organization promoting reuse and recycling, the equivalent of one garbage truck full of textiles is incinerated or added to a landfill every second.
+
+Is this plausible? 
+

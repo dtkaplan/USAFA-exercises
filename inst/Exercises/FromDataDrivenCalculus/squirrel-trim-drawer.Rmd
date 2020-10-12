@@ -1,0 +1,79 @@
+---
+chapter: "Roller Coaster"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+topics: [project, roller coaster, third]
+id: squirrel-trim-drawer 
+---
+
+(ref:squirrel-trim-drawer) Exercise in file squirrel-trim-drawer
+
+```{r squirrel-trim-drawer-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Roller Coaster drawing
+
+We will model a roller coaster as a function, so no loop-the-loops.
+
+What are the properties that make a roller-coaster fun:
+
+-   Fast
+-   Drops steeply -- but not so much rises steeply
+-   Stomach wrenching
+
+Translate to calculus terms
+
+-   Speed has to do with the height -- we want the roller coaster low, so that the train will have high speed
+-   Drop is the derivative
+-   Wrenching is the curvature
+
+Can we accomplish all three things at once?
+
+Construct the spline. Study the delta-height, slope and curvature. Create a function that measures the quality of each of these. Turn that into an overall quality.
+
+First introduction to integration: measure the overall quality of the roller coaster.
+
+-   What's wrong with this sort of roller coaster?
+
+    r = fetchData("roller-2011-10-31-a.csv")
+    plot( y ~ x, data=r )
+    lines( y ~ x, data=r )
+
+-   Try a smoother interpolating function:
+
+    f = spliner( y ~ x, data=r)
+    plotFun(f(x)~x, x=range(1,18))
+    points( y ~ x, data=r )
+    lines( y ~ x, data=r, col="red" )
+    plotFun(f(x)~x, x=range(10,15))
+    points( y~x, data=r)
+    lines( y ~ x, data=r, col="red" )
+
+-   Coming up with some components of a definition, relating to continuity and differentiability:
+
+    df = D( f(x) ~ x)
+    ddf = D( f(x) ~ x&x)
+    plotFun(df(x)~x, x=range(1,18))
+    plotFun(df(x)~x, x=range(11,13))
+    plotFun(ddf(x)~x, x=range(1,18))
+    plotFun(ddf(x)~x, x=range(11,13))
+    dddf = D( ddf(x)~x)
+    plotFun(dddf(x)~x, x=range(1,18))
+    plotFun(dddf(x)~x, x=range(11,14))
+    plotFun(dddf(x)~x, x=range(11.8,12.1))
+    plotFun(f(x)~x, x=range(1,18))
+
+
+### How to model a person's enjoyment of the slide?
+
+-   "Total fun", the integral of fun over the entire ride. Makes sense intuitively and certainly as an operation for a calculus course.
+
+But there are other models
+
+-   "Duration Neglect" [An example article](http://duke.edu/~dandan/Papers/duration1.pdf)
+    
+-   "[Peak-End Rule](http://en.wikipedia.org/wiki/Peak-end_rule)"
+
+These seem to apply largely to negative experiences.

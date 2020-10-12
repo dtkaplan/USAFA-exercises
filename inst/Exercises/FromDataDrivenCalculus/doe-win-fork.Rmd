@@ -1,0 +1,20 @@
+---
+chapter: "Derivatives and noise"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, noise, discontinuities]
+id: doe-win-fork 
+---
+
+(ref:doe-win-fork) Exercise in file doe-win-fork
+
+```{r doe-win-fork-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: 
+
+Growth in the market value of a company. The stock price changes discontinuously. Still, we can talk about the growth.
+
+Finances and brownian motion ... blanking on name from 1900

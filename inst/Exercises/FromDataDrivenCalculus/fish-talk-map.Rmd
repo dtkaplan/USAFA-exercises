@@ -1,0 +1,24 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [draft, tables, basics]
+id: fish-talk-map 
+---
+
+(ref:fish-talk-map) Exercise in file fish-talk-map
+
+```{r fish-talk-map-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Give a table of values, perhaps BMI. Which does BMI depend more on, weight or height?
+
+How would you go about answering this question? What things are ambiguous about the question itself? 
+
+What constitutes a "change in height?" Should we look at a percentage change, e.g. 2" is about 4.1% of 6'? Should we look at a z-score change?
+
+Find sd of height. Is sd of weight as meaningful, or should it be sd of weight at a particular height?
+
+

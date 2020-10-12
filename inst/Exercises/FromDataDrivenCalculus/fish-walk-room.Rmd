@@ -1,0 +1,19 @@
+---
+chapter: "Smoothness"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, smoothness, splines]
+id: fish-walk-room 
+---
+
+(ref:fish-walk-room) Exercise in file fish-walk-room
+
+```{r fish-walk-room-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Continuity, Smoothness, Differentiability
+
+Use splines to illustrate this: show that the third derivative is discontinuous and the 2nd derivative is not differentiable at all points.
+

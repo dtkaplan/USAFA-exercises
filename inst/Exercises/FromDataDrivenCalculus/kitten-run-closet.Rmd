@@ -1,0 +1,119 @@
+---
+chapter: "Rates of change"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, derivatives, third]
+id: kitten-run-closet 
+---
+
+(ref:kitten-run-closet) Exercise in file kitten-run-closet
+
+```{r kitten-run-closet-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Rates of Change and Four Ambiguities
+
+A rate is a "rise over run" -- how much the output changes when the input is changed.
+
+-   Picture of rise over run for a function of one variable.
+-   Picture of rise over run for a function of two variables.
+
+Some questions to answer when considering a rate:
+
+1.  At what value of the input do you accomplish the change?
+2.  How much do you change the input?
+3.  Which of the potentially several inputs do you change?
+4.  Absolute or relative change?
+
+The answers to these questions in the style of calculus are these:
+
+1.  You leave unresolved the question of the input value, and treat the rate of change as a function of the inputs.
+2.  You change the input by infinitesimally little. This way we don't have to argue about what "delta" is. But we do have to worry about whether it makes sense to change something by infinitesimally little.
+3.  You change one of the inputs and hold the other ones constant.
+4.  You can do either -- just know what you're doing. Growth of economies and populations are conventionally described in relative terms: percent changes. Changes in position (e.g., a car's position) are rarely if ever described this way.
+
+### Units of the Derivative
+
+Remember, you're calculating rise over run. So what are the units of rise over run? 
+
+Questions:
+
+-   Derivative of position (in miles) with respect to time?
+-   Derivative of velocity (in miles per hour) with respect to time?
+
+### Notation for derivatives
+
+Notation for derivatives.
+
+1.  When you have a function $f(x)$, common to write the derivative as $df/dx$.
+2.  Newton, and physicists still, write $\dot{x}$ for the derivative of the function $x(t)$.
+3.  Often, and in the book, people write f-prime: $f'$. They really should write $f'(x)$.
+4.  Sometimes people write $f_x(x)$, which is convenient, since it makes it clear what variable is being changed.
+5.  Partial derivative notation: $\frac{\partial f}{\partial y}$
+6.  $\Delta$ used for finite changes.
+7.  Our computer notation: Give the function a name and remember where it came from.
+
+    fprime = D(sin(x^2)~x)
+
+#### Relative Rate of Change
+
+Relative rate of change: $f'(x) / f(x)$. As we will see later, this is related to the derivative of $\ln( f(x))$.
+
+#### Purposes of Derivatives
+
+1.  To understand the consequences of a change.
+    -   We change teachers' salaries. What will happen?
+    -   We change the interest rate charged by the Fed. What will happen?
+    -   We change the age at which people are screened for breast cancer or prostate cancer. What will happen?
+    -   We change the temperature of an engine. What will happen?
+2.  To help us in describing the world: relating real-world things to mathematical descriptions.
+    -   Force equals mass times acceleration.
+    
+Stocks and Flows, Fluents and Fluxions
+
+Many of the things we talk about are easier to describe in terms of
+flows than the things that have accumulated. It is often easier to
+describe the change rather than the thing itself.
+
+- Economy: growth rates versus overall size of the economy.
+- Prices: Inflation rate versus how much things cost.
+- Velocity versus position.
+- Net force versus velocity.
+- Force against distance versus Energy of a system
+- Entropy -- we study only the change in entropy, not the entropy itself. Entropy is the change in energy divided by temperature.
+- How long has the bathtub been filling VERSUS how much water is in the tub.
+- How long have we been driving VERSUS how far have we gone.
+- How long has the food been in the oven. Heat is flowing into the food. VERSUS How much heat is in the food.
+- Changes in salary versus salary itself.
+- Changes in debt versus debt itself
+
+#### Examples of the `D` operator in the mosaic package
+
+A complicated-looking function:
+
+    f=plotFun( sin(x^2*sin(x))~x, x=range(0,6))
+    fprime = D( sin(x^2*sin(x))~x)
+    fprime(3)
+    plotFun(fprime(x)~x, x=range(0,6))
+
+A function without an algebraic form:
+
+    u = fetchData("utilities.csv")
+    ff = smoother( ccf ~ temp, data=u, span=1)
+    dff = D(ff(temp)~ temp)
+    plotFun(dff(temp)~temp, temp=range(20,80))
+
+#### Your Main Tasks in Understanding Derivatives
+
+- Know when to use them and what they mean.
+- Recognize when you know the derivative and want to find something else about the system.
+- Recognize when you know something else and want to find the derivative.
+- NOT so important: How to compute the derivative. `D` will do it for you.
+
+#### Resources for instructors
+
+- Partial derivatives in economics [1](http://www.slideshare.net/leingang/lesson-21-partial-derivatives-in-economics)
+- Examples of derivatives in economics [2](http://www.colorado.edu/economics/morey/4808/deriv-applic.pdf)
+    

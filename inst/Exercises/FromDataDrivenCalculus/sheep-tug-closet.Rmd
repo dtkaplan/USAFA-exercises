@@ -1,0 +1,153 @@
+---
+chapter: "Optimization raw notes"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, optimization, third]
+id: sheep-tug-closet 
+---
+
+(ref:sheep-tug-closet) Exercise in file sheep-tug-closet
+
+```{r sheep-tug-closet-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Optimization - It's the master problem of life. Maximize income, happiness, minimize expense, frustration
+   
+-   Formulate as problem about functions: what inputs maximize output?
+-   Trade-offs. Quantity of sleep and study time to maximize grades.
+-   How to do it? Students all say "take the derivative and set to zero". Acknowledge, explain the fact that at a max, derivative is zero. But say that is not the way in practice optima are found.
+    -   1D - How to get to highest point on a hiking trail? Always step in the uphill direction. Newton's method. Explain graphically. How big a step to take?
+    -   2D - How to get to a peak when hiking in a mountainous desert with no trails? Always step in the direction of the steepest climb. Go in the direction of the gradient.
+    -   Contour diagram examples - students start in different places, show gradient following path to steepest peak. Discuss local versus global maxima.
+    -   Formula for gradient: $f_x i + f_y j$. Why does this formula give a direction perpendicular to the contours?
+
+
+-   Local shapes of contour diagrams: linear, mountain, valley, pass. That is (generically) all you get. Except for isolated points, zooming in gives you a linear contour diagram (approximately).
+-   Why are we finding optima iteratively? One answer: it is the cheapest way. In one or two variables, you can ask the computer to draw a graph or plot a contour diagram and see at a glance where the maximum is. But that means (in essence) evaluating the objective function at every point of the domain. That is just impossible in higher dimensions. For example, to optimize a function of 100 variables, evaluating at just 10 values for each variable leads to 10^100^ (one google) function evaluations, too many. With an iterative scheme, we start at one point and make strategic choices about which function values to compute, approaching a maximum while only evaluating in a very very tiny part of the domain.
+-   Why is $\grad f$ perpendicular to contour lines of $f$? slope of the contour line $f(x, y) = C$ gotten from $f_x Delta x + f_y Delta y = 0$, thus slope $= (Delta y)/(Delta x) = -f_x/f_y$. Slope of $grad f = f_x i + f_y j$ is $(Delta y)/(Delta x) = f_y/f_x$. The two slopes multiply to -1, so they correspond to perpendicular directions.
+-   Constrained optimization (in class activity)
+    -   Vocabulary: objective function, constraint, equality constraint, inequality constraint
+    -   In practice, ALL optimization is constrained optimization
+    -   Graphical picture: max or min for f(x, y) subject to equality constraint g(x, y)=C occurs at a point where the constraining curve is tangent to a contour line of f; equivalently where grad f is perpendicular to the constraining curve.
+    -   Changing an equality constraint: the shadow price (Lagrange multiplier).
+        -   Think budget constraint B. Increase B a little, and find how much the constrained maximum M increases. The derivative (Delta M)/(Delta B) is the Lagrange multiplier, called a "shadow price", because it tells you how much additional M you can buy per dollar additional budget.
+
+### One dimensional
+
+One-dimensional optimization. If you can make a graph, you've got it.
+
+-   Local versus global
+-   maximum versus minimum
+
+Walk up the gradient.
+
+-   How big a step to take? Use dimensionality to show why it's $-f'(x)/f^*(x)$*
+
+Unconstrained maxima in 2 variables. Walk up the gradient.
+
+    mGradSearch( f )  #note, just the function name, not the expression.
+
+-   Local shapes of contour diagrams: linear, mountain, valley, pass. That is (generically) all you get. Except for isolated points, zooming in gives you a linear contour diagram (approximately).
+-   Why are we finding optima iteratively? One answer: it is the cheapest way. In one or two variables, you can ask the computer to draw a graph or plot a contour diagram and see at a glance where the maximum is. But that means (in essence) evaluating the objective function at every point of the domain. That is just impossible in higher dimensions. For example, to optimize a function of 100 variables, evaluating at just 10 values for each variable leads to 10^100 (one google) function evaluations, too many. With an iterative scheme, we start at one point and make strategic choices about which function values to compute, approaching a maximum while only evaluating in a very very tiny part of the domain.
+-   Why is $\nabla f$ perpendicular to contour lines of $f$? slope of the contour line f(x, y)= C gotten from $f_x \Delta x + f_y \Delta y = 0$, thus slope $= (\Delta y)/(\Delta x) = -f_x/f_y$. Slope of $\nabla f = f_x i + f_y j$ is $(\Delta y)/(\Delta x) = f_y/f_x$. The two slopes multiply to -1, so they correspond to perpendicular directions.
+-   Constrained optimization (in class activity)
+    -   Vocabulary: objective function, constraint, equality constraint, inequality constraint
+    -   In practice, ALL optimization is constrained optimization
+    -   Graphical picture: max or min for f(x, y) subject to equality constraint g(x, y)=C occurs at a point where the constraining curve is tangent to a contour line of f; equivalently where grad f is perpendicular to the constraining curve.
+    -   Changing an equality constraint: the shadow price (Lagrange multiplier).
+        -   Think budget constraint B. Increase B a little, and find how  much the constrained maximum M increases. The derivative  (Delta M)/(Delta B) is the Lagrange multiplier, called a  "shadow price", because it tells you how much additional M  you can buy per dollar additional budget.
+
+
+-   Importance of "Guess and Check" in science
+-   What the problem looks like -- not a graph but a set of knobs and sliders and a readout of results. (In many problems, the readout is very noisy and statistics gets involved.)
+
+#### Examples of Optimization
+
+-   Production in a factory
+-   Minimizing side effects
+-   Minimizing costs for electricity generation
+-   Fitting a function, esp. nonlinear parameter estimation
+-   Molecular conformation
+-   Fitness in an environment (as in evolution)
+-   Inverse problems -- optimization instead of "solving"
+-   Design, e.g. the SuperSlide. Each design evaluation is painful.
+
+#### Guess, Check, and Refine
+
+    f = practice.max( seed=11  )
+    mGradSearch( f )  #Note, it's the name of the function, not an expression.  I'll fix this later.
+
+Show show to choose a point, how the value of the function at that point is printed, and the various zoom-in options. Show the gradient line and the little $\rightarrow$ showing which way is uphill.
+
+Then discuss check and refine. (The program doesn't work so well for "check", since it shows just the direction of the gradient and not the magnitude.) 
+
+Two main questions:
+
+-   How to check if you are at the optimum
+    -   Is the derivative zero?
+-   How to refine your guess to improve it
+    -   Walk up (for maximization) the gradient
+    -   But how far to walk? The Newton step.
+
+#### Multiple Objectives
+
+-   Always, **monetary cost** and whatever your direct objective is.
+-   Car design: fuel economy, performance (in various ways)
+-   Labor costs but also employment conditions
+-   Grades and fun
+
+Incommensurability and its consequences. The introduction of constraints instead of multiple objectives.
+
+Solution checking in the presence of constraints.
+
+The Lagrange multiplier and its interpretation.
+
+-   Gradient search - playing with mGradSearch
+-   Graphical discussion of the stepsize -f'(x0)/f*(x0)*
+-   The Lagrange multiplier - interpretation as a derivative of optimum value with respect to the constraining value.
+
+
+### Review
+
+1.  Guess, Check, and Refine.
+    -   Walk along gradient to refine
+    -   Newton step as a more refined refine.
+2.  The Gradient Vector
+    -   Relationship to the linear polynomial.
+        -   A constant gradient corresponds to a purely linear function -- the roof-like approximation to the side of a hill.
+        -   Revisit `m2Fit` to show what the roof-like approximation is like.
+3.  Constrained Optimization
+    -   Objective function and Constraint: use budget as a constraint
+    -   Generalizing to the constraint function. The constraint is a contour of a function. Moving off the contour of the constraint function is like changing the constraint.
+    -   Gradients of objective and constraint must be parallel at the optimum.
+    -   The function showing objective versus constraint value.
+        -   Instantaneous slope of this function is the Lagrange multiplier, known as the "shadow price."
+
+GENERAL NOTE: It's not necessary to push the parallel-gradient formulation of constrained optimization. Use the gradient as a tool in "guess, check, and refine". For the shadow cost, just find the solution at two different values of the constraint and then compare delta-output/delta-constraint.
+
+### [Constrained Optimization Activity](http://dl.dropbox.com/u/5098197/Math135/In-Class/constraints-activity.pdf)
+
+Find the optima for different kinds of constraints.
+
+### Using Shadow Prices
+
+The shadow price allows one to compare the sensibility of constraints in
+different areas.
+
+-   Example: Deciding how much generation capacity to have in different modes, e.g., coal, gas, wind. Decide on a budget for each, then see how changing that budget would change the profit. That tells you how much you should be willing to spend to relax a constraint, or can save by tightening a constraint.
+-   Example: Cap and trade. Pollution as a function of expenditure for different factories. If they can trade emissions, then the efficient factories (at saving pollution) can reduce more than is required and sell their "excess" to the inefficient factories.
+-   Example: [Activity on Allocating funds among different modes of health care](http://dl.dropbox.com/u/5098197/Exercises/HTML/AC-Optimizing-Health-Care-Expenditures/AC-Optimizing-Health-Care-Expenditures-A.html)
+    .
+
+
+
+#### Constrained Optimization Activity
+
+Ask also to draw the optimal production function as the constraint changes. Give a Cobb-Douglas production function (explaining where it comes from) and a budget.
+
+    cd = plotFun( 10*K^a*L^(1-a)~K&L,a=.3,K=range(0,10),L=range(0,10))
+    budget = plotFun( K + L ~ K&L, add=TRUE, col="red", filled=FALSE )
+
+Another potential example: Risk frontier for different investments. What if you constrain the maximum risk you will tolerate? What if you constrain the minimum return you will accept? What if you constrain both? (You may not have a feasible point).

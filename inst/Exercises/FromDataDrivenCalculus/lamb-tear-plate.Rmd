@@ -1,0 +1,43 @@
+---
+chapter: "Logarithms 1"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [logarithms, notes, third]
+id: lamb-tear-plate 
+---
+
+(ref:lamb-tear-plate) Exercise in file lamb-tear-plate
+
+```{r lamb-tear-plate-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Two simple questions that nonetheless tell us a lot about how to arrange our quantitative estimates:
+
+-   How much does something cost?
+-   How many are there of it?
+
+Of course, you can't say, without knowing what that something is.
+
+-   The people who print money can't have any idea what you're going to buy, so they space the denominations logarithmically.
+-   Our written numerical system is also logarithmic: adding a digit increases the amount by 10, just like the log-axis on the graph paper.
+
+It seems to work well to draw an axis and label points at 1, 5, 10, 25, 50 cents, 1, 2, 5, 10, 20, 50, 100 dollars. Then point out that the label values show strongly increasing space between them in dollar units, and that the label positions reflect the logarithm of the label.
+
+You can ask the students: why might we seek answers from the sequence 10, 100, 1000, 10000, ... rather than 100, 200, 300, 400, ....  ? Led to a good class discussion. Some student answers: 
+
+-   the linear sequence takes too long to get up to big numbers like a million or a billion.
+-   while we might care about whether the answer is 1000+100 or 1000-100, we do not care about a mere + or - 100 if the answer is millions so we need to start skipping when we get to larger values
+
+The second answer does indeed get to the heart of the choice of an exponential sequence.
+
+
+
+```{r lamb-tear-plate-1, echo = FALSE}
+
+```
+
+```{r lamb-tear-plate-2, echo = FALSE}
+
+```

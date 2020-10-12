@@ -1,0 +1,47 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [notes, contour plots]
+id: child-write-window 
+---
+
+
+
+(ref:child-write-window) Exercise in file child-write-window
+
+```{r child-write-window-default, include = FALSE}
+SDSdata::sds_setup()
+library(mosaicCalc)
+```
+
+TITLE GOES HERE: 
+
+Review contour plots. Making contour plot in R using the formula for body-mass index. 
+
+```{r child-write-window-1, echo = FALSE}
+BMI <- makeFun(703 * w / h^2 ~ w + h)
+graphFun(BMI(w, h) ~ w + h, wlim = c(50,250), hlim=c(50, 80))
+```
+
+Maybe add in the data from NHANES? 
+
+Talk about units of w and h and how the graph would differ if kilograms and meters were used. Maybe add a second axis for this.
+
+Three shapes of contour plots:
+
+-   a mountain: [Solar energy in Cairo](http://dl.dropbox.com/u/5098197/Math135/Figures/cairo-solar.png)
+    
+-   a hillside, [Body mass index chart](http://dl.dropbox.com/u/5098197/Math135/Figures/1000px-Body_mass_index_chart.png)
+    
+-   a valley (ridge).[BMI percentiles for girls versus age](http://en.wikipedia.org/wiki/File:BMIGirls_1.svg)
+    
+Really this is a kind of hillside, since the labels are for percentiles at each age. But it could more naturally be displayed as a probability density. Here's the same information [for Boys, from Wikipedia](http://en.wikipedia.org/wiki/File:BMIBoys_1.svg)
+    
+Combine the two by drawing the contours on the board and then shifting plots. It's really hard to deal with functions of three variables. And really, there are more variables, since it's weight, height, age, sex involved in this. We're going to need some better way than drawing contours to be able to think about such relationships.
+
+
+```{r child-write-window-2, echo = FALSE}
+
+```

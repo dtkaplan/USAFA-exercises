@@ -1,0 +1,50 @@
+---
+chapter: "Cobb-Douglas production functions"
+author: "Daniel Kaplan"
+date: 2019-09-27 
+version: 0.1
+tags: [notes, cobb-douglas, third]
+id: bird-wear-fridge 
+---
+
+(ref:bird-wear-fridge) Exercise in file bird-wear-fridge
+
+```{r bird-wear-fridge-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Cobb-Douglas Production Function
+
+Production is a function of capital K and labor L: $P(K,L) = \gamma K\ {\alpha} L\ {1-\alpha}$ a form that gives constant returns to scale. 
+
+    cd = plotFun(K^a * L^(1-a)~ K & L, a=.3, K=range(0,1),L=range(0,1))
+    cd.dK = D(cd(K,L)~K)
+    cd.dL = D(cd(K,L)~L)
+    plotFun(cd.dK(K=K,L=L)~K&L, K=range(0,100),L=range(0,100))
+    plotFun(cd.dL(K=K,L=L)~K&L, K=range(0,100),L=range(0,100))
+    # Adding in a constraint
+    plotFun((1-K)~K, add=TRUE)
+    plotFun(L>(1-K)~K&L, add=TRUE)
+
+Treat this as a modeling problem.
+
+-   How to operationalize capital, labor and output?
+    -   labor: hours or person hours or money spent
+    -   capital: tons of equipment or money spent
+    -   output: unicycles produced or dollar value of unicycles produced. (But if we're interested in setting the values of labor and capital, maybe best not to worry about the market price for unicycles.)
+-   Look at the units.
+    -   Why is it permissible to take dollars$^{.3}$?
+        Ordinarily not, but in this case the units will work out when we combine capital with labor.
+    -   $\gamma$ converts $ to unicycles.
+-   In what ways does the Cobb-Douglas capture what we know about production? Why does this particular function form match that?
+    -   Diminishing marginal returns. Suppose we increase capital but hold labor constant. How will output increase? Fast at first, then slower. Same for labor. These are partial derivatives (one way to look at things) but we can also just plot out P against K for constant L. Ask students to do that.
+
+    plotFun( cd(K=K, L=50) ~ K, K=range(0,100))
+    plotFun( cd(K=30,L=L) ~ L, L=range(0,100))
+
+
+
+-   Constant returns to scale. Double both capital and labor, e.g. build a new factory. This should double output. NOTE: It is **not** a partial derivative.
+
+    plotFun( cd(K=inc,L=inc) ~ inc, inc=range(0,100))
+    plotFun( cd(K=inc,L=2*inc) ~ inc, inc=range(0,100))   ## spend twice as much on labor as on capital

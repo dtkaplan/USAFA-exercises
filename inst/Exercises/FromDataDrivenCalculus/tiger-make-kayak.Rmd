@@ -1,0 +1,31 @@
+---
+chapter: "none yet"
+author: "Daniel Kaplan"
+date: 2019-09-18 
+version: 0.1
+tags: [first, second, third]
+id: tiger-make-kayak 
+---
+
+(ref:tiger-make-kayak) Exercise in file tiger-make-kayak
+
+```{r tiger-make-kayak-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Draw contours from the table
+
+```{r tiger-make-kayak-1,echo=FALSE}
+f = function(x,y){3*(x-7)^2 + 2*(y-8)^2 - 20}
+x = 0:12
+y = 0:12
+vals = outer(x,y,f)
+inds = ceiling(50*rank(c(vals))/length(c(vals)))
+foo = expand.grid(x,y)
+gray = seq(.85,0,length=50)
+colorSet = rgb(gray,gray,gray)
+plot(1:10, xlim=range(x), ylim=range(y), xlab="x",ylab="y",type="n")
+text(foo$Var1,foo$Var2, round(vals),cex=1, col=colorSet[inds])
+```
+
+

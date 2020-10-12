@@ -1,0 +1,90 @@
+---
+chapter: "Exponential or power law?"
+author: "Daniel Kaplan"
+date: 2019-09-17 
+version: 0.1
+tags: [notes, exponentials, power-law]
+id: octopus-get-dress 
+---
+
+(ref:octopus-get-dress) Exercise in file octopus-get-dress
+
+```{r octopus-get-dress-default, include = FALSE}
+SDSdata::sds_setup()
+```
+
+TITLE GOES HERE: Exponentials and power-law functions compared
+
+- $a x^p$: power law with scale $a$ and power $p$ that tells about the shape of the function.
+-  $g(t) = a b^t$. This is the way that many  math books present it. But this will lead to problems when we  consider the units of $t$. For reasons that will be  clear later, we'll write the exponential function as $a  exp(t/\tau)$ or often as $a exp(k t)$ where  $k = 1/\tau$. Why? Maybe it's best to start the  story with a mixture of the two parameterizations: $a  b^{t/c}$. Question: Do we really need three parameters,  $a$, $b$ and $c$?
+
+### An example of the use of log-log axes.
+
+! [Infant mortality versus per capita income](/Images/EE-Fig-2-4.png)
+
+
+- Why are they using logarithmic axes?
+- What are the income and infant mortality in Ethiopia? In Singapore? (Find the numerical values.)
+- Is the relationship linear?
+
+### Compare exponential and linear functions
+
+[Clicker
+1-5-14a](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14a.pdf)
+, [Clicker
+1-5-14b](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14b.pdf)
+, [Clicker
+1-5-14c](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14c.pdf)
+
+
+
+2.  Logarithms as the inverse of exponential
+3.  Exponentials are all the same, it's just a question of units. Find $b$ and $c$ that make all these functions of $t$ the same: $2^{t/c}$, $exp(t/b)$, and $10^t$. How?
+    - Try different values for $c$ and $b$, plotting them out one over the other versus t and modifying $c$ and $b$ until they match.
+    -   Pick one value of $t_0 \neq 0$ and find $10^t_0$. Now plot $exp(t_0/b)$ as a function of $b$ and see what value of $b$ gives equality. Then confirm that this works for all $t$.
+
+    [Clicker
+    1-6-24a](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-24a.pdf)
+    ,[Clicker
+    1-6-24b](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-24b.pdf)
+    ,[Clicker
+    1-7-2](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-7-2.pdf)
+    
+4.  Contrast power-law with exponential. Can you find a power $p$ so that $x^p$ matches $2^{t/c}$?
+5.  Log and semi-log graph paper. Examples at
+    [1](http://commons.wikimedia.org/wiki/Category:Logarithmic_scale)
+    -   [Log-Log](http://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Papier_log_log_50.svg/2000px-Papier_log_log_50.svg.png)
+    -   [Log-Linear](http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Papier_log_lin_25_italien.svg/2000px-Papier_log_lin_25_italien.svg.png)
+
+### Clicker Questions
+
+1.  Very simple review of exponentials:
+    -   Graph reading: [Clicker
+        1-5-14a](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14a.pdf)
+        ,
+    -   Graph reading: [Clicker
+        1-5-14b](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14b.pdf)
+        
+    -   Half-life: [Clicker
+        1-5-14c](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-5-14c.pdf)
+        
+2.  Half-life calculations:
+    -   [Clicker
+        1-7-2](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-7-2.pdf)
+        
+3.  Algebra
+    -   Amplitude: [Clicker
+        1-6-24a](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-24a.pdf)
+        , Converting e^kt to b^t: [Clicker
+        1-6-28a](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-28a.pdf)
+        
+    -   Base: [Clicker
+        1-6-24b](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-24b.pdf)
+        , [Clicker
+        1-6-28b](http://dl.dropbox.com/u/5098197/Math135/PRS/Slides/1-6-28b.pdf)
+        
+- scatter plots with housing data, explore CrimeProblem vs Income, try semilog plot and loglog plot, discovered the loglog plot was a straight line, used this to fit a power-law function model
+-  Quiz 1: modeling with A sin(2 pi t/P) + C and with exponential function.
+
+  
+ Graphing exponential and power-law data (need to scan the internal combustion engine data). Use stan-data.csv for exponential.
