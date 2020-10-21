@@ -48,8 +48,8 @@ etude::choose_one(
   prompt = "The derivative of Function A() is which of the following:",
   choices = list(
     "f1()" = "",
-    "f2()" = "",
-    "+f3()+" = "",
+    "+f2()+" = "",
+    "f3()" = "",
     "f4()" = "",
     "not shown" = ""
   ),
