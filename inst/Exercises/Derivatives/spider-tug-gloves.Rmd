@@ -64,7 +64,7 @@ etude::choose_one(
 etude::choose_one(
   prompt = "Which of these R commands will give the closest approximation to the derivative of tree growth at year $y$?",
   choices = c(
-    "`tree_volume(y)`", "+`tree_volume(y)/y`+", "`tree_volume(y) - tree_volume(y-1)`", "`tree_volume(y) - tree_volume(y - 0.1)`", "`(tree_volume(y) - tree_volume(y - 0.1))/0.1`"
+    "`tree_volume(y)`", "`tree_volume(y)/y`", "`tree_volume(y) - tree_volume(y-1)`", "`tree_volume(y) - tree_volume(y - 0.1)`", "+`(tree_volume(y) - tree_volume(y - 0.1))/0.1`+"
   )
 )
 ```
@@ -80,18 +80,22 @@ etude::choose_one(
 
 ```{r spider-tug-gloves-QA6, echo=FALSE}
 etude::choose_one(
-  prompt = "What are the units of the **average rate** of tree growth?",
+  prompt = "What are the units of the **average rate** of tree growth? (You can apply simple dimensional analysis to find out.)",
   choices = c(
     "board feet", "years", "+board feet per year+", "years per board foot", "no units"
   )
 )
 ```
 
+```{r spider-tug-gloves-sandbox2, exercise=TRUE, exercise.cap="Sandbox for tree calculation", exercise.eval=FALSE, exercise.lines=8, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+
+
+```
 
 ```{r spider-tug-gloves-QA7, echo=FALSE}
 etude::choose_one(
-  prompt = "Starting at year 0, find the average growth rate (wood volume per year) at year 50 when the tree is completely mature.",
-  choices = c("16.5", "+20+", "27.1", "24.5"),
+  prompt = "Starting at year 0, find the average growth rate (board feet per year) at year 50 when the tree is completely mature. You can use the sandbox above for your calculations.",
+  choices = c("16.5", "+20.0+", "27.1", "24.5"),
   random_answer_order = FALSE,
   allow_retry = FALSE
 )
