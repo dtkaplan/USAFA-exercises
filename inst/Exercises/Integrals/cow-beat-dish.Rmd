@@ -1,0 +1,38 @@
+---
+chapter: "none yet"
+title: "Title for cow-beat-dish"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "cow-beat-dish"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-12-03 
+tags: [difference-accumulation, health, third]
+id: cow-beat-dish
+---
+
+```{r cow-beat-dish-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` The graph below, from the New York *Times* on Feb. 21, 2012, shows three curves relating to H.I.V./AIDS prevalence and incidence over time.
+
+
+```{r HIV-AIDS, echo=FALSE}
+knitr::include_graphics(system.file("images/HIV-AIDS-NYTimes.jpg", package="math141Zexercises"))
+```
+
+a. What is the relationship between the three curves?
+b. The units on the $y$ axis are "millions of people."  That corresponds to the dimension of the top curve.  The two bottom curves have a different dimension.   What would be a sensible unit for the lower two curves?
+c.  Use the appropriate calculus operations to show whether or not the graph represents the relationship between the three curves in a quantitatively correct manner.
+
+

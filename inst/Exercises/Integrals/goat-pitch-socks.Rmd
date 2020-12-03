@@ -228,21 +228,8 @@ Circumference of a circle is the derivative of area with respect to radius.
 
 3. Total cost is the ............. of marginal cost with respect to quantity. {antideriv}{deriv, 2nd deriv, antideriv, none of these}
 
-<!--begin-answer-->  
-<!--Really this should be "for the homework version"-->
 4. Births per year is part of the ............. of population size with respect to time. (The other parts relate to deaths, immigration, and emigration.)
 {deriv}{deriv, 2nd deriv, antideriv, none of these}
-<!--end-answer-->
 
 
-1. Position is the ............. of velocity with respect to time.
-{antiderivative}{deriv, 2nd deriv, antideriv, none of these}
 
-2. Acceleration is the ............. of velocity with respect to time. {deriv}{deriv, 2nd deriv, antideriv, none of these}
-
-3. Acceleration is the ............. of position with respect to time. {2nd deriv}{deriv, 2nd deriv, antideriv, none of these}
-
-<!--begin-answer-->} 
-<!-- Really this should be "for the homework version"-->
-4. Density is the ............. of mass with respect to position. {deriv}{deriv, 2nd deriv, antideriv, none of these}
-<!--end-answer-->
