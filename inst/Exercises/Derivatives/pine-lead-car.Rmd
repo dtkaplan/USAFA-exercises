@@ -28,7 +28,7 @@ source(system.file("Exercises/Scripts/function_set_A.R", package = "math141Zexer
 ```
 
 
-`r etude::exercise_title()` Each of the following graphs shows the derivative of some function $f()$. (Note: the graph doesn't show $f()$ but rather the function $df()$ which is the derivative of $f()$.) For each graph, say whether the function $f()$ is monotonically increasing, monotonically decreasing, or neither. (Note that the horizontal scale is the same in every graph, but the vertical scale can be different from one scale to another.)
+`r etude::exercise_title()` Each of the following graphs shows the derivative of some function $f(x)$. (Note: the graph doesn't show $f()$ but rather the function $d_x f()$ which is the derivative of $f()$.) For each graph, say whether the function $f()$ is monotonically increasing, monotonically decreasing, or neither. (Note that the horizontal scale is the same in every graph, but the vertical scale can be different from one scale to another.)
 
 
 

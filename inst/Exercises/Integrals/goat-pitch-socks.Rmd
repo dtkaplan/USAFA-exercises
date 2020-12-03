@@ -1,0 +1,248 @@
+---
+chapter: "none yet"
+title: "Title for goat-pitch-socks"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "goat-pitch-socks"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-12-02 
+tags: [deriv-anti-deriv, second, third]
+id: goat-pitch-socks
+---
+
+```{r goat-pitch-socks-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` Choose the correct term for ____ in each of the following:
+
+
+```{r goat-pitch-socks-QA1, echo=FALSE}
+etude::choose_one(
+  prompt = "Velocity is the _____ of acceleration (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "+anti-deriv+" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+```{r goat-pitch-socks-QA2, echo=FALSE}
+etude::choose_one(
+  prompt = " Position is the _____ of velocity (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "+deriv+" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+```{r goat-pitch-socks-QA3, echo=FALSE}
+etude::choose_one(
+  prompt = "Acceleration is the _____ of position (w.r.t. time)?",
+  choices = list(
+    "+2nd deriv+" = "",
+    "deriv" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+```{r goat-pitch-socks-QA4, echo=FALSE}
+etude::choose_one(
+  prompt = "Energy is the ______ of force (w.r.t. time): ",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "+none of the above+" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+```{r goat-pitch-socks-QA5, echo=FALSE}
+etude::choose_one(
+  prompt = " Energy is the _____ of force (w.r.t. distance)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "+anti-deriv+" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+```{r goat-pitch-socks-QA6, echo=FALSE}
+etude::choose_one(
+  prompt = "Cash is the _____ of cash flow (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "+anti-deriv+" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+```{r goat-pitch-socks-QA7, echo=FALSE}
+etude::choose_one(
+  prompt = "Acceleration is the _____ of velocity (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "+deriv+" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+```{r goat-pitch-socks-QA8, echo=FALSE}
+etude::choose_one(
+  prompt = " Position is the _____ of velocity (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "+anti-deriv+" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+```{r goat-pitch-socks-QA9, echo=FALSE}
+etude::choose_one(
+  prompt = "Distance is the _____ of acceleration (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "anti-deriv" = "",
+    "+2nd anti-deriv+" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+
+```{r goat-pitch-socks-QA10, echo=FALSE}
+etude::choose_one(
+  prompt = "Force is the ______ of momentum (w.r.t. time): ",
+  choices = list(
+    "2nd deriv" = "",
+    "+deriv+" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+```{r goat-pitch-socks-QA11, echo=FALSE}
+etude::choose_one(
+  prompt = "Force is the _____ of energy (w.r.t. distance)?",
+  choices = list(
+    "2nd deriv" = "",
+    "+deriv+" = "",
+    "anti-deriv" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+
+```{r goat-pitch-socks-QA12, echo=FALSE}
+etude::choose_one(
+  prompt = "Cash is the _____ of cash flow (w.r.t. time)?",
+  choices = list(
+    "2nd deriv" = "",
+    "deriv" = "",
+    "+anti-deriv+" = "",
+    "2nd anti-deriv" = "",
+    "none of the above" = ""
+  ),
+  random_answer_order = FALSE,
+  inline = FALSE
+)
+```
+
+Circumference of a circle is the derivative of area with respect to radius.
+
+1. Energy is the ............. of force with respect to distance. {antideriv}{deriv, 2nd deriv, antideriv, none of these}
+
+2. Power is the ............. of energy with respect to time. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+3. Total cost is the ............. of marginal cost with respect to quantity. {antideriv}{deriv, 2nd deriv, antideriv, none of these}
+
+<!--begin-answer-->  
+<!--Really this should be "for the homework version"-->
+4. Births per year is part of the ............. of population size with respect to time. (The other parts relate to deaths, immigration, and emigration.)
+{deriv}{deriv, 2nd deriv, antideriv, none of these}
+<!--end-answer-->
+
+
+1. Position is the ............. of velocity with respect to time.
+{antiderivative}{deriv, 2nd deriv, antideriv, none of these}
+
+2. Acceleration is the ............. of velocity with respect to time. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+3. Acceleration is the ............. of position with respect to time. {2nd deriv}{deriv, 2nd deriv, antideriv, none of these}
+
+<!--begin-answer-->} 
+<!-- Really this should be "for the homework version"-->
+4. Density is the ............. of mass with respect to position. {deriv}{deriv, 2nd deriv, antideriv, none of these}
+<!--end-answer-->
