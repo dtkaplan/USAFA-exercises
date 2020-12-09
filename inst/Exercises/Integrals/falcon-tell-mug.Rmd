@@ -1,0 +1,40 @@
+---
+chapter: "none yet"
+title: "Title for falcon-tell-mug"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "falcon-tell-mug"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-12-04 
+tags: [first, second, third]
+id: falcon-tell-mug
+---
+
+```{r falcon-tell-mug-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+```
+
+
+`r etude::exercise_title()` The following graphic was produced based on data from the [US Centers for Disease Control](https://www.cdc.gov/nchs/nvss/vsrr/covid19/excess_deaths.htm) in early December 2020. It shows deaths as a function of time of year.
+
+```{r echo=FALSE}
+nm <- system.file("images/US-deaths.png", package = "math141Zexercises")
+knitr::include_graphics(nm)
+nm
+```
+
+```{r falcon-tell-mug-Essay1, echo=FALSE, eval=FALSE}
+etude::essay_response(
+  prompt = "Based on the graph, estimate how many deaths are their annually in the US in a 'typical' year? Explain briefly how you constructed your estimate."
+)
+```
+

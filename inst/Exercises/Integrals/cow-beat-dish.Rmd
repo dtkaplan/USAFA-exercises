@@ -27,7 +27,7 @@ learnr::tutorial_options(exercise.timelimit = 60,
 `r etude::exercise_title()` The graph below, from the New York *Times* on Feb. 21, 2012, shows three curves relating to H.I.V./AIDS prevalence and incidence over time.
 
 
-```{r HIV-AIDS, echo=FALSE}
+```{r HIV-AIDS, echo=FALSE, out.width = "60%"}
 knitr::include_graphics(system.file("images/HIV-AIDS-NYTimes.jpg", package="math141Zexercises"))
 ```
 

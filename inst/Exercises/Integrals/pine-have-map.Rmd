@@ -1,0 +1,51 @@
+---
+chapter: "none yet"
+title: "Title for pine-have-map"
+author: "Daniel Kaplan"
+difficulty: "XX"
+output: learnr::tutorial
+tutorial:
+  id: "pine-have-map"
+  version: 0.1
+runtime: shiny_prerendered
+date: 2020-12-03 
+tags: [pokegama, area, contours]
+id: pine-have-map
+---
+
+```{r pine-have-map-setup, include = FALSE}
+library(etude)
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+learnr::tutorial_options(exercise.timelimit = 60, 
+                 exercise.checker = gradethis::grade_learnr)
+Lake_contours <- readr::read_csv(
+  system.file("images/Pokegama-contours.csv", 
+              package = "math141Zexercises"))
+```
+
+
+`r etude::exercise_title()` [Pokegama Lake](https://www.google.com/maps/place/Pokegama+Lake/@45.846079,-93.0757956,13z/data=!3m1!4b1!4m5!3m4!1s0x52b24810f4dcec33:0xa243a499464872fc!8m2!3d45.846938!4d-93.0427126) (pronounced: po-KEM-in-a) is located in Minnesota (), about 50 miles north of Minneapolis-Saint Paul.
+
+Dan Hornbach, an ecologist at Macalester College in Saint Paul, asked the author for advice on calculating the volume of the lake from the available data, namely a contour map drawn by the Minnesota Department of Natural Resources. 
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics(system.file("images/PokegamaLake.png", package = "math141Zexercises"))
+```
+
+Prof. Hornbach arranged for his research students to digitize the (x,y)-coordinates of the contours of the lake. These are available to us as the data frame `Lake_contours`
+
+<span title='pine-have-map-sandbox1'>...</span>
+```{r pine-have-map-sandbox1, exercise=TRUE, exercise.cap="Sandbox for mapping the lake depth", exercise.setup="pine-have-map-sandbox1-setup", exercise.eval=FALSE, exercise.lines=4, exercise.completion=FALSE, exercise.startover=TRUE, exercise.diagnostics=TRUE}
+ gf_polygon(y ~ x, data = Lake_contours, 
+            group=~contourID, color =~label, alpha=.1)
+```
+
+Ideas:
+
+1. Lengths of contours
+2. Area inside each contour (Cross product formula)
+
+Estimate of volume based on (1) (by integrating up an interpolation of the contour length vs depth function) and on (2) from the areas? and comparing to the conical frustrum formula.
