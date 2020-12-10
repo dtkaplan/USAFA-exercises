@@ -3,7 +3,9 @@ chapter: "none yet"
 title: "Title for falcon-tell-mug"
 author: "Daniel Kaplan"
 difficulty: "XX"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    self-contained: false
 tutorial:
   id: "falcon-tell-mug"
   version: 0.1
@@ -27,10 +29,18 @@ learnr::tutorial_options(exercise.timelimit = 60,
 `r etude::exercise_title()` The following graphic was produced based on data from the [US Centers for Disease Control](https://www.cdc.gov/nchs/nvss/vsrr/covid19/excess_deaths.htm) in early December 2020. It shows deaths as a function of time of year.
 
 ```{r echo=FALSE}
-nm <- system.file("images/US-deaths.png", package = "math141Zexercises")
-knitr::include_graphics(nm)
-nm
+image <- "images/US-deaths.png"
+image <- "images/QALYS.png"
+nm <- system.file(image, package="math141Zexercises")
+success <- file.copy(from = nm, image)
+knitr::include_graphics(image)
 ```
+
+
+
+
+
+![](images/US-deaths.png)
 
 ```{r falcon-tell-mug-Essay1, echo=FALSE, eval=FALSE}
 etude::essay_response(
