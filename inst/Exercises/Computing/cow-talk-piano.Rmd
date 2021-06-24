@@ -52,7 +52,7 @@ etude::choose_one(
   choices = list(
     "It has no purpose. There is no such thing as a value that equals itself plus 1." = "The `<-` is not a way of expressing mathematical equality. It performs assignment to a name.",
     "+It increments `count` by 1.+" = "",
-    "It replaces the previous value of `count` by the number 1." = "Assignment evaluates the expression on the right-hand side of `<-` and stores it under the name given on the left-hand side."
+    "It replaces the previous value of `count` by the number 1." = "Assignment evaluates the expression on the right-hand side of `<-` and stores it under the name given on the left-hand side. Here, the right-hand side is `count + 1`, not plain `1`."
   ),
   inline = FALSE
 )
